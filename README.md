@@ -1,3 +1,3 @@
 # Project Home
 
-By William Chen, Anna Ung, Jason Love, Zainab Alasadi
+By William Chan, Anna Ung, Jason Love, Zainab Alasadi
