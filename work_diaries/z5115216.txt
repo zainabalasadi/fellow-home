@@ -1,0 +1,16 @@
+# Week 01
+Group was formed. Discussing with the team, we decided to go with project 4 as the scope of the project best fit all the
+team member's skills and areas of expertise. I created a shared Google Drive folder where we will store and collaborate on
+documents. I also created a Facebook group to communicate with the team. During the lab, we made a list of all the features
+we would need to build for the project. I formed the basic files of the GitHub project (such as the README and student 
+diaries) and the kanban board for storing all our user stores. I also scheduled a meeting with the team for the following 
+week.
+
+# Week 02
+In this week, we met up to refine our system scope. We came up with a variety of ideas but ended up deciding on a student 
+accommodation site for finding potential housemates as we saw a business opportunity in this area. We then assigned each 
+team member to a specific role. I nominated to be the general developer and UX/UI designer. We also discussed the language
+and software APIs we will be using to develop the website. Additionally, we assigned each person to a specific section of 
+the report. I nominated to work on the epics/user stories, the system modules and flow, team skills + project choice, the
+bibliography as well as the formatting of the final document. At the end of the week, I contributed 30 user stories to the
+GitHub kanban board.
