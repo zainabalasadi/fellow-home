@@ -1,0 +1,13 @@
+# Week 1
+Formed the group. Discussed with team the skills each member had and what project we wanted to do.
+Ended up choosing Project 3 - Accommodation Web Portal. Made Google docs and a Facebook group to 
+communicate ideas and features for the project. Did research on competitors (i.e. other rental sites)
+and made a list of their advantages and disadvantages.
+
+# Week 2
+Decided on making a student accommodation site for finding housemates. Did more research on competitors 
+(i.e. other student accommodation sites) and started finalising features of the project. Assigned 
+different roles to each member. I was assigned to be a back-end developer. Discussed software (GitHub 
+Project Board)to help manage the project and software (python/js)to be used to build the project.
+Started working on the technical depth section of the proposal. Did research on setting up REST APIs
+and relational/non-relational databases.
