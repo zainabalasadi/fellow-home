@@ -1,24 +1,50 @@
 Week 1
+This week we met up in the Lab to find our teams. Once our teams were arranged we stated to analyse the projects and requirements. After Zainab set up the shared group Google Doc folder I set up a Plan/Notes document to just off load what all things we need to keep in mind throughout the project, what things need to be done as well as brainstorming on the projects.
+While analysing the projects to make decision easier I set up a table where we listed what all large "tasks" are needed in each project, and what are the main aspects of the project. Then like a Pros/Cons list we just looked at which projects had aspects or large task areas that all team members had a decent amount to do within the product development, as well as where the main workload would be. We also did some quick research (1-2 sites) to familiarize with them a bit more. With this we narrowed it down to Project 1 (Chatbot) or Project 3 (Accommodation Web Portal). Initially we were kind of leaning to Project 1 (the chatbot) but once the demonstrator started putting rather heavy emphasis on the AI aspect of it with every member needing "strong" AI background and needing a completely functioning demo by the end, even though Zainab and I couldn't see it being all that steep of a learning curve from prior experience and others were happy to try an learn, we settled on Project 3 (the Accommodation Web portal) as there was not only more guarantee that all of us could contribute but more assurance we would have a finished product by the end. 
+
+After roughly settling on our project we started doing some market and competitor analysis (I set up a Pro/Con table for everyone to add in their findings) to get a better understanding of things before jumping into it. And listing in more detail various major features to be incorporated into the product.
+In the end we settled communication platforms and agreed for me to be Scrum Master, while holding off completely firm project decision till after some competitor analysis.
+
+Key points:
 ~found team
 ~picked and analysed project
 ~market analysis
-~prepared comunication systems and submission platforms (github, google docs,
+~prepared communication systems and submission platforms (GitHub, google docs,
 messenger etc)
 
 
 Week 2
+This week we settled our further roles of who would be specializing in what, though we would all help out with aspects. Through the weeks meetings we settled the software architecture including main programming languages (python backend with JavaScript/React UI). Thanks to the analysis made before we looked into narrowing down our scope to more critically attack the market, we settled on considering two options: 
+# a Venue Booking system 
+      -could be for long/short terms, 
+      -Ceremonies/camps/
+      - sport facilities 
+      - etc
+      
+# a Student accommodation portal for flatmates
+      - To help students in a property find flatmates
+      - accommodations within vicinity of Uni or TAFE
+      - So they can share prices
+      - Searchers can chose not only property but who they share with
+      
+After talks with Lab demonstrator we decided on the student accommodation flatmate portal. Then did some further competitor analysis focused on student accommodation.
+We then listed all the tasks needed in terms of writing up the proposal, and arranged who takes care of what, with everyone working on epics + one personal section. As Scrum Master I took on the project management section.
+
+Key Points:
 ~scope shrinking
 ~competitor analysis
 ~Started proposal writeup 
 ~Meetings
 ~Framework selection
-~system archetecture
+~system architecture
 
 Week 3
+All of us worked on the proposal, I also set up GitHub Kanban boards specifically for the sprints. Ended a week with a Facebook messenger group call to retrospective the proposal before submission, and plan task allotment for the new sprint, as well as overall general sprint schedule. Settling that this sprint will be on Front Page and Accounts.
+
 Week 4
 Week 5
 Week 6
 Week 7
 Week 8
 Week 9
-Week 10
+Week 10 
