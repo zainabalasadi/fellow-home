@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+    fellow-backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        volumes:
+            - './backend:/usr/src/app'
+        ports:
+            - 5000:5000
+        environment:
+            - FLASK_APP=backend/project/__init__.py
+            - FLASK_ENV=development
+            - APP_SETTINGS=project.config.Config
+            - DATABASE_URL=postgres://postgres:postgres@fellow-db:5432/fellow_dev
+        depends_on:
+            - fellow-db
+    fellow-db:
+        build:
+            context: ./backend/project/db
+            dockerfile: Dockerfile
+        ports:
+            - 5435:5432
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+    fellow-frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        volumes:
+            - './frontend:/usr/src/app'
+            - 'usr/src/app/node_modules'
+        ports:
+            - 3000:3000
+        environment:
+            - NODE_ENV=development
+        depends_on:
+            - fellow-backend
