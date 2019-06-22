@@ -2,8 +2,9 @@
 
 from flask.cli import FlaskGroup
 
-from project import app, db
+from project import create_app, db
 
+app = create_app()
 cli = FlaskGroup(app)
 
 @cli.command('recreate_db')

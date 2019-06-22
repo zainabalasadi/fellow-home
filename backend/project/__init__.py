@@ -1,25 +1,22 @@
 # backend/project/__init__.py
 
 import os
-from flask import Flask, jsonify
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
-app = Flask(__name__)
-app.config.from_object(os.getenv('APP_SETTINGS'))
+db = SQLAlchemy()
+cors = CORS()
 
-db = SQLAlchemy(app)
-CORS(app)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(os.getenv('APP_SETTINGS'))
 
-class User(db.Model):
-    __tablename__ = 'users'
+    db.init_app(app)
+    cors.init_app(app)
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(128), nullable=False)
+    from project.controllers.routes import bp as routes
 
-    def __init__(self, username):
-        self.username = username
+    app.register_blueprint(routes)
 
-@app.route('/', methods=['GET'])
-def index():
-    return jsonify({'message': 'HELLO WORLD'})
+    return app
