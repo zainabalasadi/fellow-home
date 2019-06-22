@@ -19,4 +19,12 @@ def create_app():
 
     app.register_blueprint(routes)
 
+    from project.models.user import User
+    with app.app_context():
+        db.create_all()
+
+    @app.shell_context_processor
+    def make_shell_context():
+        return {'app': app, 'db': db}
+
     return app

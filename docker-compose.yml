@@ -10,7 +10,7 @@ services:
         ports:
             - 5000:5000
         environment:
-            - FLASK_APP=backend/project/__init__.py
+            - FLASK_APP=project/__init__.py
             - FLASK_ENV=development
             - APP_SETTINGS=project.config.Config
             - DATABASE_URL=postgres://postgres:postgres@fellow-db:5432/fellow_dev
@@ -20,6 +20,8 @@ services:
         build:
             context: ./backend/project/db
             dockerfile: Dockerfile
+        volumes:
+            - './pgdata:/var/lib/postgresql/data'
         ports:
             - 5435:5432
         environment:
