@@ -12,7 +12,7 @@ $ virtualenv --python=python3 venv
 $ . venv/bin/activate
 $ pip3 install -r requirements.txt 
 ```
-Install [npm]([https://www.npmjs.com/get-npm](https://www.npmjs.com/get-npm)) and the node dependencies.
+Install [npm](https://www.npmjs.com/get-npm) and the node dependencies.
 ```bash
 $ cd ../frontend
 $ npm install
