@@ -14,3 +14,11 @@ and software APIs we will be using to develop the website. Additionally, we assi
 the report. I nominated to work on the epics/user stories, the system modules and flow, team skills + project choice, the
 bibliography as well as the formatting of the final document. At the end of the week, I contributed 30 user stories to the
 GitHub kanban board.
+
+# Week 03
+This week, our team spent a majority of our time working on the project proposal that was due this week. Following the
+plan we made last week, my key priorities were writing up the project choice and team skills section, completing the user
+interface and system flow section as well as completing a section of the user stories and background. I also completed the 
+bibliography and formatting of the document. After submission of the proposal, we had a quick call with the team to
+discuss the next steps forward. These were to get started on the back-end as soon as possible as well as begin to create 
+the interface design, which is my responsibility.
