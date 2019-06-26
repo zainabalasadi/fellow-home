@@ -31,11 +31,13 @@ Shutdown the container
 ```bash
 $ docker-compose down
 ```
-If you get an error which says something along the lines of
+# Testing
+Test the backend
+```bash
+cd backend
+python3 -m pytest
 ```
-If you faced an issue like “Couldn’t connect to Docker daemon at http+docker://localunixsocket — is it running?
-```
-either run `docker-compose`with `sudo` or follow [this guide](https://docs.docker.com/install/linux/linux-postinstall/).
+***NOTE: YOU DO NOT NEED DOCKER FOR THE UNIT TESTS***
 
 # Common commands
 Interact with the flask shell
@@ -51,3 +53,10 @@ In general, to access the shell with docker use
 ```bash
 docker-compose exec <service> <commands...>
 ```
+# Troubleshooting
+If you get an error which says something along the lines of
+```
+If you faced an issue like “Couldn’t connect to Docker daemon at http+docker://localunixsocket — is it running?
+```
+either run `docker-compose`with `sudo` or follow [this guide](https://docs.docker.com/install/linux/linux-postinstall/).
+
