@@ -12,7 +12,7 @@ services:
         environment:
             - FLASK_APP=project/__init__.py
             - FLASK_ENV=development
-            - APP_SETTINGS=project.config.Config
+            - APP_SETTINGS=project.config.DevConfig
             - DATABASE_URL=postgres://postgres:postgres@fellow-db:5432/fellow_dev
             - SECRET_KEY=top-secret
         depends_on:
