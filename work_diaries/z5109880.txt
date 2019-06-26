@@ -11,3 +11,9 @@ different roles to each member. I was assigned to be a back-end developer. Discu
 Project Board)to help manage the project and software (python/js)to be used to build the project.
 Started working on the technical depth section of the proposal. Did research on setting up REST APIs
 and relational/non-relational databases.
+
+# Week 3
+Continued working on the technical depth section and epics section of the proposal. Finished off the 
+proposal at the end of the week and had a group call discussing what we would do next. We decided that
+the next spring would be focused on accounts and front page stuff. I setup Docker, React, Postgres, and
+Flask so that everyone could start working on the actual project.
