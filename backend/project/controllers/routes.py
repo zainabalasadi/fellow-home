@@ -16,15 +16,12 @@ def login():
 		password = request.form["password"]
 	return 'login page'
     #return redirect(url_for('/'))
-            #current_user = usersys.validate_login(user_id, password)
-            #if current_user != None:
-            #    login_user(current_user)
+            #curr_user = User.query().filter_by(<filter>)
+            #if curr_user != None:
+            #    login_user(curr_user)
             #    return redirect(url_for('index'))
             #else:
             #    return render_template("login.html", error=True)
-        #except ValueError:
-            #print("couldn't convert")
-            #return render_template("login.html", error=True)
 
 @bp.route('/register',methods=['GET','POST'])
 def register():
