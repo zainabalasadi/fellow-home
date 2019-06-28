@@ -1,4 +1,4 @@
-# backend/project/models/user.py
+# backend/project/models/room.py
 
 from datetime import date, time
 
