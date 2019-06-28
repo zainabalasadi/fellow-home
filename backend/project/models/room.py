@@ -3,7 +3,7 @@
 from datetime import date, time
 
 class Room():
-	def __init__(self, roomType, cost, furnished, y, m , d, min_stay):
+	def __init__(self, roomType, cost, furnished, y, m, d, min_stay):
 		self.roomType = roomType
 		self.cost = cost
 		self.furnished = furnished
