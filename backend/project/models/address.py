@@ -1,12 +1,11 @@
 # backend/project/models/address.py
 
 class Address():
-	def __init__(self, unitNum, houseNum, name, suburb, postcode):
-		self.unitNum = unitNum
-		self.houseNum = houseNum
-		self.name = name
-		self.suburb = suburb
-		self.postcode = postcode
+	def __init__(self, unitNum, name, suburb, postcode):
+		self._unitNum = unitNum
+		self._name = name
+		self._suburb = suburb
+		self._postcode = postcode
 
 	@property
 	def unitNum(self):
@@ -14,40 +13,31 @@ class Address():
 
 	@unitNum.setter
 	def unitNum(self, var):
-		return unitNum = var
-
-	@property
-	def houseNum(self):
-		return self.houseNum
-
-	@houseNum.setter
-	def houseNum(self, var):
-		return self.houseNum = var
+		self._unitNum = var
 
 	@property
 	def name(self):
-		return self.name
+		return self._name
 
-	@houseNum.setter
+	@name.setter
 	def name(self, var):
-		return self.houseNum = var
-
+		self._name = var
+	
 	@property
 	def suburb(self):
-		return self.suburb
+		return self._suburb
 
 	@suburb.setter
 	def suburb(self, var):
-		return self.suburb = var
+		self._suburb = var
 
 	@property
 	def postcode(self):
-		return self.postcode
+		return self._postcode
 
 	@postcode.setter
 	def postcode(self, var):
-		return self.postcode = var
-	
+		self._postcode = var
 	
 	
 	

@@ -1,13 +1,13 @@
 # backend/project/models/review.py
 
 class Review():
-	def __init__(self, title, paragraph, image, rating, reviewed, reviewing):
-		self.title = title
-		self.paragraph = paragraph
-		self.image = image
-		self.rating = rating
-		self.reviewed = reviewed
-		self.reviewing = reviewing
+	def __init__(self, title, paragraph, rating, reviewed, reviewing):
+		self._title = title
+		self._paragraph = paragraph
+		self._image = []
+		self._rating = rating
+		self._reviewed = reviewed
+		self._reviewing = reviewing
 
 	@property
 	def title(self):
@@ -15,46 +15,50 @@ class Review():
 
 	@title.setter
 	def title(self, var):
-		return self.title = var
+		self._title = var
 
 	@property
 	def paragraph(self):
-		return self.paragraph
+		return self._paragraph
 
 	@paragraph.setter
 	def paragraph(self, var):
-		return self.paragraph = var
+		self._paragraph = var
 
 	@property
 	def image(self):
-		return self.image
+		return self._image
 
 	@image.setter
 	def image(self, var):
-		return self.image = var
+		self._image = var
 
 	@property
 	def rating(self):
-		return self.rating
+		return self._rating
 
 	@rating.setter
 	def rating(self, var):
-		return self.rating = var
+		self._rating = var
 	
 	@property
 	def reviewed(self):
-		return self.reviewed
+		return self._reviewed
 
 	@reviewed.setter
 	def reviewed(self, var):
-		return self.reviewed = var
+		self._reviewed = var
 
 	@property
 	def reviewing(self):
-		return self.reviewing
+		return self._reviewing
 
 	@reviewing.setter
 	def reviewing(self, var):
-		return self.reviewing = var
-	
-	
+		self._reviewing = var
+
+	def addImage(self, var):
+		self._image.append(var)
+
+	def deleteImage(self, var):
+		self._image.remove(var)

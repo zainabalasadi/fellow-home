@@ -7,8 +7,8 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    f_name = db.Column(db.String(128), nullable=False)
-    l_name = db.Column(db.String(128), nullable=False)
+    first_name = db.Column(db.String(128), nullable=False)
+    last_name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False)
     password = db.Column(db.String(256))
     pic = db.Column(db.String(128), nullable=False)
@@ -19,14 +19,98 @@ class User(db.Model):
     #check nullable var
 
     def __init__(self, f_name, l_name, email, password, pic, y, m, d, rating, verified):
-        self.f_name = f_name
-        self.l_name = l_name
-        self.email = email 
-        self.password = password
-        self.pic = pic
-        self.dob = date(y, m, d)
-        self.rating = rating
-        self.verified = verified
+        self._first_name = f_name
+        self._last_name = l_name
+        self._email = email 
+        self._password = password
+        self._pic = pic
+        self._dob = date(y, m, d)
+        self._rating = rating
+        self._verified = verified
+        self._listings = []
+        self._savedListings = []
+        self._socials = []
+
+    @property
+    def first_name(self):
+        return self._first_name
+
+    @first_name.setter
+    def first_name(self, var):
+        self._first_name = var
+
+    @property
+    def last_name(self):
+        return self._last_name
+
+    @last_name.setter
+    def last_name(self, var):
+        self._last.name = var
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, var):
+        self._email = var
+
+    @property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self, var):
+        self._password = var
+
+    @property
+    def pic(self):
+        return self._pic
+
+    @pic.setter
+    def pic(self, var):
+        self.pic = var
+
+    @property
+    def dob(self):
+        return self._dob
+
+    @dob.setter
+    def dob(self, var):
+        self._dob = var
+
+    @property
+    def rating(self):
+        return self._rating
+
+    @rating.setter
+    def rating(self, var):
+        self._rating = var
+
+    @property
+    def verified(self):
+        return self._verified
+
+    @verified.setter
+    def verified(self, var):
+        self._verified = var
+
+    @property
+    def listings(self):
+        return self._listings
+
+    @property
+    def savedListings(self):
+        return self._savedListings
+    
+    def deleteListing(self, var):
+        self._listings.remove(var)
+
+    def deletesavedListings(self, var):
+        self._savedListings.remove(var)
+
+    def addSocial(self, var):
+        self._socials.append(var)
 
     @property
     def rolenames(self):

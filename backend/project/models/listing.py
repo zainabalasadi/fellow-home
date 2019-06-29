@@ -1,80 +1,97 @@
 # backend/project/models/listing.py
 
 class Listing():
-	def __init__(self, name, published, address, images, feature, num_housemates, num_vacancies, restrictions, rooms):
-		self.name = name
-		self.published = published
-		self.address = address
-		self.images = images
-		self.feature = feature
-		self.num_housemates = num_housemates
-		self.num_vacancies = num_vacancies
-		self.restrictions = restrictions
-		self.room = room
+	def __init__(self, name, published, address, feature, num_housemates, num_vacancies):
+		self._name = name
+		self._published = published
+		self._address = address
+		self._images = []
+		self._feature = feature
+		self._num_housemates = num_housemates
+		self._num_vacancies = num_vacancies
+		self._restrictions = []
+		self._room = []
 
 	@property
 	def name(self):
-		return self.name
+		return self._name
 	
 	@name.setter
 	def name(self, var):
-		return self.name = var
+		self._name = var
 
 	@property
 	def published(self):
-		return self.published
+		return self._published
 	
-	@name.published
+	@published.setter
 	def published(self, var):
-		return self.published = var
+		self._published = var
 
 	@property
 	def images(self):
 		return self.images
 	
-	@property
+	@images.setter
 	def images(self, var):
-		return self.images = var
+		self._images = var
 
 	@property
 	def feature(self):
-		return self.feature
+		return self._feature
 	
 	@feature.setter
 	def feature(self, var):
-		return self.feature = var
+		self._feature = var
 
 	@property
 	def num_housemates(self):
-		return self.num_housemates
+		return self._num_housemates
 
 	@num_housemates.setter
 	def num_housemates(self, var):
-		return self.num_housemates = var
+		self._num_housemates = var
 
 	@property
 	def num_vacancies(self):
-		return self.num_vacancies
+		return self._num_vacancies
 
 	@num_vacancies.setter
 	def num_vacancies(self, var):
-		return self.num_vacancies = var
+		self._num_vacancies = var
 
 	@property
 	def restrictions(self):
-		return self.restrictions
+		return self._restrictions
 
 	@restrictions.setter
 	def restrictions(self, var):
-		return self.restrictions = var
+		self._restrictions = var
 
 	@property
 	def room(self):
-		return self.room
+		return self._room
 
 	@room.setter
 	def setter(self, var):
-		return self.room = var
+		self._room = var
+
+	def addImage(self, var):
+		self._image.append(var)
+
+	def deleteImage(self, var):
+		self._image.remove(var)
 	
+	def addRoom(self, var):
+		self._room.append(var)
+
+	def deleteRoom(self, var):
+		self._room.remove(var)
+
+	def addRestrictions(self, var):
+		self._restrictions.append(var)
+
+	def deleteRestrictions(self, var):
+		self._restrictions.remove(var)
 	
 	
