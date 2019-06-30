@@ -13,7 +13,7 @@ class User(db.Model):
     password = db.Column(db.String(256))
     pic = db.Column(db.String(128), nullable=False)
     dob = db.Column(db.String(128), nullable=False)
-    rating = db.Column(db.Double, nullable=False)
+    rating = db.Column(db.Float, nullable=False)
     verified = db.Column(db.Boolean, nullable=False)
     is_active = db.Column(db.Boolean, default=True)
     #check nullable var
