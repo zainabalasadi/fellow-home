@@ -28,7 +28,9 @@ def create_app(config_file=os.getenv('APP_SETTINGS')):
         db.drop_all()
         db.create_all()
         db.session.add(User("wow@gmail.com", "wow"))
+        # db.session.add(User("First", "Last", "fl@gmail.com", "pass000", "pp.img", 2000, 2, 2, 4, True) 
         db.session.commit()
+
 
     @app.shell_context_processor
     def make_shell_context():

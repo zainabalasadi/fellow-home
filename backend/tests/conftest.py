@@ -23,8 +23,8 @@ def test_client():
 @pytest.fixture
 def init_database():
     db.create_all
-    # u1 = User("wow@gmail.com", "wow")
-    u1 = User("First", "Last", "fl@gmail.com", "pass000", "pp.img", 2000, 2, 2, 4, True)
+    u1 = User("wow@gmail.com", "wow")
+    # u1 = User("First", "Last", "fl@gmail.com", "pass000", "pp.img", 2000, 2, 2, 4, True)
 
 
     db.session.add(u1)

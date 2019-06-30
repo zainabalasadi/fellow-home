@@ -7,45 +7,46 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    first_name = db.Column(db.String(128), nullable=False)
-    last_name = db.Column(db.String(128), nullable=False)
+    # first_name = db.Column(db.String(128), nullable=False)
+    # last_name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False)
     password = db.Column(db.String(256))
-    pic = db.Column(db.String(128), nullable=False)
-    dob = db.Column(db.String(128), nullable=False)
-    rating = db.Column(db.Float, nullable=False)
-    verified = db.Column(db.Boolean, nullable=False)
-    is_active = db.Column(db.Boolean, default=True)
+    # pic = db.Column(db.String(128), nullable=False)
+    # dob = db.Column(db.String(128), nullable=False)
+    # rating = db.Column(db.Float, nullable=False)
+    # verified = db.Column(db.Boolean, nullable=False)
+    # is_active = db.Column(db.Boolean, default=True)
     #check nullable var
 
-    def __init__(self, f_name, l_name, email, password, pic, y, m, d, rating, verified):
-        self._first_name = f_name
-        self._last_name = l_name
+    def __init__(self, email, password):
+    # def __init__(self, f_name, l_name, email, password, pic, y, m, d, rating, verified):
+        # self._first_name = f_name
+        # self._last_name = l_name
         self._email = email 
         self._password = password
-        self._pic = pic
-        self._dob = date(y, m, d)
-        self._rating = rating
-        self._verified = verified
+        # self._pic = pic
+        # self._dob = date(y, m, d)
+        # self._rating = rating
+        # self._verified = verified
         self._listings = []
         self._savedListings = []
         self._socials = []
 
-    @property
-    def first_name(self):
-        return self._first_name
+    # @property
+    # def first_name(self):
+    #     return self._first_name
 
-    @first_name.setter
-    def first_name(self, var):
-        self._first_name = var
+    # @first_name.setter
+    # def first_name(self, var):
+    #     self._first_name = var
 
-    @property
-    def last_name(self):
-        return self._last_name
+    # @property
+    # def last_name(self):
+    #     return self._last_name
 
-    @last_name.setter
-    def last_name(self, var):
-        self._last.name = var
+    # @last_name.setter
+    # def last_name(self, var):
+    #     self._last.name = var
 
     @property
     def email(self):
@@ -63,29 +64,29 @@ class User(db.Model):
     def password(self, var):
         self._password = var
 
-    @property
-    def pic(self):
-        return self._pic
+    # @property
+    # def pic(self):
+    #     return self._pic
 
-    @pic.setter
-    def pic(self, var):
-        self.pic = var
+    # @pic.setter
+    # def pic(self, var):
+    #     self.pic = var
 
-    @property
-    def dob(self):
-        return self._dob
+    # @property
+    # def dob(self):
+    #     return self._dob
 
-    @dob.setter
-    def dob(self, var):
-        self._dob = var
+    # @dob.setter
+    # def dob(self, var):
+    #     self._dob = var
 
-    @property
-    def rating(self):
-        return self._rating
+    # @property
+    # def rating(self):
+    #     return self._rating
 
-    @rating.setter
-    def rating(self, var):
-        self._rating = var
+    # @rating.setter
+    # def rating(self, var):
+    #     self._rating = var
 
     @property
     def verified(self):
