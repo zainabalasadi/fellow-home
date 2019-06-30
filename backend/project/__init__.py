@@ -12,7 +12,7 @@ guard = Praetorian()
 
 from project.models.user import User
 
-def create_app(config_file=os.getenv('APP_SETTINGS')):
+def create_app(config_file='project.config.TestConfig'):
     app = Flask(__name__)
     app.config.from_object(config_file)
 
