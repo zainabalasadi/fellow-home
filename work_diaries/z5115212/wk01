@@ -4,7 +4,6 @@ we settled for project 3, creating a website for property rentals. We created a 
 positives and negatives of current websites created for renting properties to prepare for our proposal as wel as the main 
 components that we need to work on for the website's functionailty.
 
-
 wk02
 We had a group meeting and discussed important user stories, the depth of the project, what language we were going to code in
 and refined our focus and aim. We decided to change our focus to student accomodations and build a community to help them share
@@ -16,3 +15,9 @@ We all managed to get our parts of the proposal done. I helped out with the epic
 We all collaborated our work through Google Doc so that we could all work together simultaneously. Once finalised we decided to
 have another group meeting to talk about our sprints and what we were going to get done by the next week. It was confirmed to
 get a base for the backend and have a bit of the frontend done, with testing done throughout.
+
+wk04
+With our proposal done, we begun to focus on the software side for our project. We were told we needed to get the interface
+within the next two weeks, so we split our roles between group members. During our group meeting, we created a uml class
+diagram to give us an overview of the main components of our system needed to give it some functionality. Zainab was going to 
+work on the interface and create a base for the front end, while William, Jason and I were to work on the backend.
