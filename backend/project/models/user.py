@@ -11,19 +11,19 @@ class User(db.Model):
     # last_name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False)
     password = db.Column(db.String(256))
+    roles = db.Column(db.Text)
     # pic = db.Column(db.String(128), nullable=False)
     # dob = db.Column(db.String(128), nullable=False)
     # rating = db.Column(db.Float, nullable=False)
-    # verified = db.Column(db.Boolean, nullable=False)
-    # is_active = db.Column(db.Boolean, default=True)
-    #check nullable var
+    verified = db.Column(db.Boolean, nullable=False)
+    is_active = db.Column(db.Boolean, default=True)
 
     def __init__(self, email, password):
     # def __init__(self, f_name, l_name, email, password, pic, y, m, d, rating, verified):
         # self._first_name = f_name
         # self._last_name = l_name
-        self._email = email 
-        self._password = password
+        self.email = email 
+        self.password = password
         # self._pic = pic
         # self._dob = date(y, m, d)
         # self._rating = rating
@@ -47,22 +47,6 @@ class User(db.Model):
     # @last_name.setter
     # def last_name(self, var):
     #     self._last.name = var
-
-    @property
-    def email(self):
-        return self._email
-
-    @email.setter
-    def email(self, var):
-        self._email = var
-
-    @property
-    def password(self):
-        return self._password
-
-    @password.setter
-    def password(self, var):
-        self._password = var
 
     # @property
     # def pic(self):

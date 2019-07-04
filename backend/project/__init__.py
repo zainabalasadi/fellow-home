@@ -11,6 +11,7 @@ cors = CORS()
 guard = Praetorian()
 
 from project.models.user import User
+from project.models.blacklist import TokenBlacklist
 
 def create_app(config_file=os.getenv('APP_SETTINGS')):
     app = Flask(__name__)
@@ -18,7 +19,7 @@ def create_app(config_file=os.getenv('APP_SETTINGS')):
 
     db.init_app(app)
     cors.init_app(app)
-    guard.init_app(app, User)
+    guard.init_app(app, User, is_blacklisted=TokenBlacklist.lookup)
 
     from project.controllers.routes import bp as routes
 
@@ -27,8 +28,7 @@ def create_app(config_file=os.getenv('APP_SETTINGS')):
     with app.app_context():
         db.drop_all()
         db.create_all()
-        db.session.add(User("wow@gmail.com", "wow"))
-        # db.session.add(User("First", "Last", "fl@gmail.com", "pass000", "pp.img", 2000, 2, 2, 4, True) 
+        db.session.add(User("wow@gmail.com", guard.encrypt_password("wow")))
         db.session.commit()
 
 

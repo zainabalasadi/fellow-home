@@ -4,6 +4,7 @@ from flask import Blueprint, jsonify, Flask, redirect, request, render_template,
 from flask_praetorian import auth_required
 
 from project import guard
+from project.models.blacklist import TokenBlacklist
 
 bp = Blueprint('routes', __name__)
 
@@ -40,12 +41,21 @@ def refresh():
     new_token = guard.refresh_jwt_token(old_token)
     return jsonify(access_token=new_token), 200
 
-@bp.route('/register',methods=['GET','POST'])
+@bp.route('/register', methods=['GET','POST'])
 def register():
     if request.method == "POST":
         user_id = request.form["username"]
         password = request.form["password"]
         return 'register guests'
+
+@bp.route('/logout', methods=['POST'])
+@auth_required
+def logout():
+    if request.method == 'POST':
+        req = request.get_json()
+        data = guard.extract_jwt_token(req['token'])
+        TokenBlacklist.add(token=data['jti'])
+        return jsonify(status='success', msg='token blacklisted'), 200
 
 @bp.route('/editprofile',methods=['GET','POST'])
 def editprofile():
@@ -63,8 +73,3 @@ def postproperty():
 @bp.route('/editproperty',methods=['GET','POST'])
 def editproperty():
     return
-
-@bp.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('login'))
