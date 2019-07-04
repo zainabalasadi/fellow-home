@@ -4,6 +4,7 @@ from flask import Blueprint, jsonify, Flask, redirect, request, render_template,
 from flask_praetorian import auth_required
 
 from project import guard
+from project.models.user import User
 from project.models.blacklist import TokenBlacklist
 
 bp = Blueprint('routes', __name__)
@@ -44,9 +45,11 @@ def refresh():
 @bp.route('/register', methods=['GET','POST'])
 def register():
     if request.method == "POST":
-        user_id = request.form["username"]
-        password = request.form["password"]
-        return 'register guests'
+        req = request.get_json()
+        email = req['email']
+        password = guard.encrypt_password(req['password'])
+        User.add(email=email, password=password)
+        return jsonify(status='success', msg='successfully created user'), 200
 
 @bp.route('/logout', methods=['POST'])
 @auth_required

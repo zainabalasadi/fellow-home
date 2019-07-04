@@ -115,3 +115,9 @@ class User(db.Model):
 
     def is_valid(self):
         return self.is_active
+
+    @classmethod
+    def add(cls, **kwargs):
+        user = User(**kwargs)
+        db.session.add(user)
+        db.session.commit()
