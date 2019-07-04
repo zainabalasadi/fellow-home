@@ -48,6 +48,8 @@ def register():
         req = request.get_json()
         email = req['email']
         password = guard.encrypt_password(req['password'])
+        if User.lookup(email):
+            return jsonify(status='failure', msg='user already exists'), 200
         User.add(email=email, password=password)
         return jsonify(status='success', msg='successfully created user'), 200
 
