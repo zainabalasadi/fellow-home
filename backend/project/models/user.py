@@ -94,6 +94,12 @@ class User(db.Model):
     def deletesavedListings(self, var):
         self._savedListings.remove(var)
 
+    def addListing(self, listing):
+        self._listing.append(listing)
+
+    def removeListing(self, listing):
+        self._listing.remove(listing)
+
     def addSocial(self, var):
         self._socials.append(var)
 
