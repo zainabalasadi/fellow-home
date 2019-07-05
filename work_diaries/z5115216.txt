@@ -22,3 +22,11 @@ interface and system flow section as well as completing a section of the user st
 bibliography and formatting of the document. After submission of the proposal, we had a quick call with the team to
 discuss the next steps forward. These were to get started on the back-end as soon as possible as well as begin to create 
 the interface design, which is my responsibility.
+
+# Week 04
+Since the proposal is done, we have began working on the back-end and front-end of the system. I volunteered to work on the
+user interface and UI components for the system. I am currently working on these components and will be set to complete
+them the following week. During the tutorial, I also began creating a basic UML Class diagram with the team so that we all
+have a clear idea of what to program. We also split tasks that we needed to complete for the next two weeks. I am in charge 
+of the initial interface design and dummy front end whilst the rest of the team is in charge of the back-end. We also 
+scheduled a meeting for next week so we can all catch up on each others progress.
