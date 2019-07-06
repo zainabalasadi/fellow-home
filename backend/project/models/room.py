@@ -1,52 +1,24 @@
 # backend/project/models/room.py
 
-from datetime import date, time
+from datetime import datetime
 
-class Room():
-	def __init__(self, roomType, cost, furnished, y, m, d, min_stay):
-		self._roomType = roomType
-		self._cost = cost
-		self._furnished = furnished
-		self._availability = date(y, m, d)
-		self._min_stay = min_stay
+from project import db
 
-	@property
-	def roomType(self):
-		return self._roomType
+class Room(db.Model):
+    __tablename__ = 'Room'
 
-	@roomType.setter
-	def roomType(self, var):
-		self._roomType = var
-		
-	@property
-	def cost(self):
-		return self._cost
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    type = db.Column(db.String(128), nullable=False)
+    cost = db.Column(db.Integer)
+    furnished = db.Column(db.Boolean)
+    available_from = db.Column(db.DateTime)
+    min_stay = db.Column(db.Integer)
 
-	@cost.setter
-	def cost(self, var):
-		self._cost = var
+    listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)
 
-	@property
-	def furnished(self):
-		return self._furnished
-
-	@furnished.setter
-	def furnished(self, var):
-		self._furnished = var
-
-	@property
-	def availability(self):
-		return self._availability
-
-	@availability.setter
-	def availability(self, y, m, d):
-		self._availability = date(y, m, d)
-
-	@property
-	def min_stay(self):
-		return self._min_stay
-		
-	@min_stay.setter
-	def min_stay(self, var):
-		self._min_stay = var
-		
+    def __init__(self, roomType, cost, furnished, available_from, min_stay):
+        self.roomType = roomType
+        self.cost = cost
+        self.furnished = furnished
+        self.availability = datetime.strptime(available_from, "%d-%m-%Y")
+        self.min_stay = min_stay

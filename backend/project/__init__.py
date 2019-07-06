@@ -11,6 +11,10 @@ cors = CORS()
 guard = Praetorian()
 
 from project.models.user import User
+from project.models.listing import Listing
+from project.models.address import Address
+from project.models.room import Room
+from project.models.review import Review
 from project.models.blacklist import TokenBlacklist
 
 def create_app(config_file=os.getenv('APP_SETTINGS')):
@@ -28,7 +32,7 @@ def create_app(config_file=os.getenv('APP_SETTINGS')):
     with app.app_context():
         db.drop_all()
         db.create_all()
-        db.session.add(User("wow@gmail.com", guard.encrypt_password("wow")))
+        db.session.add(User("Abc", "Def","wow@gmail.com", guard.encrypt_password("wow"), "20-04-1990"))
         db.session.commit()
 
 

@@ -46,11 +46,16 @@ def refresh():
 def register():
     if request.method == "POST":
         req = request.get_json()
+        f_name = req['first_name']
+        l_name = req['last_name']
         email = req['email']
+        dob = req['dob']
         password = guard.encrypt_password(req['password'])
+
         if User.lookup(email):
             return jsonify(status='failure', msg='user already exists'), 200
-        User.add(email=email, password=password)
+
+        User.add(f_name=f_name, l_name=l_name, email=email, password=password, dob=dob)
         return jsonify(status='success', msg='successfully created user'), 200
 
 @bp.route('/logout', methods=['POST'])
