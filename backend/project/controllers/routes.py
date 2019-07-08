@@ -14,6 +14,12 @@ bp = Blueprint('routes', __name__)
 def index():
     return jsonify({'message': 'HELLO WORLD'})
 
+@bp.route('/image_test', methods=['GET', 'POST'])
+def image_test():
+    print(request.files['file'])
+
+    return
+
 @bp.route('/login',methods=['GET','POST'])
 def login():
     if request.method == "POST":

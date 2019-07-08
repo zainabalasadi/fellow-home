@@ -30,11 +30,7 @@ def create_app(config_file=os.getenv('APP_SETTINGS')):
     app.register_blueprint(routes)
 
     with app.app_context():
-        db.drop_all()
         db.create_all()
-        db.session.add(User("Abc", "Def","wow@gmail.com", guard.encrypt_password("wow"), "20-04-1990"))
-        db.session.commit()
-
 
     @app.shell_context_processor
     def make_shell_context():

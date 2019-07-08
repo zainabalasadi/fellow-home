@@ -11,9 +11,10 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     first_name = db.Column(db.String(128), nullable=False)
     last_name = db.Column(db.String(128), nullable=False)
-    email = db.Column(db.String(128), nullable=False)
+    email = db.Column(db.String(128), nullable=False, unique=True)
     password = db.Column(db.String(256))
-    # pic = db.Column(db.String(128), nullable=False)
+    gender = db.Column(db.Text)
+    avatar = db.Column(db.Text, nullable=False)
     dob = db.Column(db.DateTime, nullable=False)
     # rating = db.Column(db.Float, nullable=False)
     verified = db.Column(db.Boolean, nullable=False, default=False)
@@ -27,13 +28,14 @@ class User(db.Model):
     is_active = db.Column(db.Boolean, default=True)
 
 
-    def __init__(self, f_name, l_name, email, password, dob):
+    def __init__(self, f_name, l_name, email, password, dob, avatar, gender):
         self.first_name = f_name
         self.last_name = l_name
         self.email = email 
         self.password = password
-        # self._pic = pic
-        self.dob = datetime.strptime(dob, "%d-%m-%Y")
+        self.avatar = avatar
+        self.gender = gender
+        self.dob = datetime.strptime(dob, "%d/%m/%Y")
         # self._rating = rating
 
     @property

@@ -19,6 +19,7 @@ class Listing(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
 
+
     def __init__(self, name, date_published, num_housemates, num_vacancies):
         self.name = name
         self.date_published = date_published

@@ -3,7 +3,6 @@
 import os
 
 BASE_DIR = os.path.abspath('.')
-print(BASE_DIR)
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
