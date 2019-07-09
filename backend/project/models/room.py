@@ -1,7 +1,6 @@
 # backend/project/models/room.py
 
 from datetime import datetime
-
 from project import db
 
 class Room(db.Model):
