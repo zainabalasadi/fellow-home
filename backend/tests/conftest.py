@@ -3,10 +3,10 @@
 import os
 import pytest
 
-from project import create_app, db
+from project import create_app, db, guard
 from project.models.user import User
 
-@pytest.fixture
+@pytest.fixture(scope='module')
 def test_client():
     flask_app = create_app('project.config.TestConfig')
 
@@ -20,12 +20,10 @@ def test_client():
 
     ctx.pop()
 
-@pytest.fixture
+@pytest.fixture(scope='module')
 def init_database():
-    db.create_all
-    u1 = User("wow@gmail.com", "wow")
-    # u1 = User("First", "Last", "fl@gmail.com", "pass000", "pp.img", 2000, 2, 2, 4, True)
-
+    db.create_all()
+    u1 = User("First", "Last", "wow@gmail.com", guard.encrypt_password("wow"), "20/4/1990", "", "Male")
 
     db.session.add(u1)
     db.session.commit()
@@ -33,5 +31,3 @@ def init_database():
     yield db
 
     db.drop_all()
-    
-
