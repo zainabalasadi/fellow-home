@@ -22,43 +22,43 @@ class Room(db.Model):
         self._availability = datetime.strptime(available_from, "%d-%m-%Y")
         self._min_stay = min_stay
 
-	@property
-	def roomType(self):
-		return self._roomType
+    @property
+    def roomType(self):
+        return self._roomType
 
-	@roomType.setter
-	def roomType(self, var):
-		self._roomType = var
-		
-	@property
-	def cost(self):
-		return self._cost
+    @roomType.setter
+    def roomType(self, var):
+        self._roomType = var
+        
+    @property
+    def cost(self):
+        return self._cost
 
-	@cost.setter
-	def cost(self, var):
-		self._cost = var
+    @cost.setter
+    def cost(self, var):
+        self._cost = var
 
-	@property
-	def furnished(self):
-		return self._furnished
+    @property
+    def furnished(self):
+        return self._furnished
 
-	@furnished.setter
-	def furnished(self, var):
-		self._furnished = var
+    @furnished.setter
+    def furnished(self, var):
+        self._furnished = var
 
-	@property
-	def available_from(self):
-		return self._availability
+    @property
+    def available_from(self):
+        return self._availability
 
-	@available_from.setter
-	def available_from(self, y, m, d):
-		self._availability = datetime.strptime(available_from, "%d-%m-%Y")
+    @available_from.setter
+    def available_from(self, y, m, d):
+        self._availability = datetime.strptime(available_from, "%d-%m-%Y")
 
-	@property
-	def min_stay(self):
-		return self._min_stay
-		
-	@min_stay.setter
-	def min_stay(self, var):
-		self._min_stay = var
-		
+    @property
+    def min_stay(self):
+        return self._min_stay
+        
+    @min_stay.setter
+    def min_stay(self, var):
+        self._min_stay = var
+        
