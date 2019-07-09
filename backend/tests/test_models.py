@@ -1,6 +1,7 @@
 # tests/test_models.py
 
 from project.models.room import Room
+from project.models.user import User
 from project.models.address import Address
 from project.models.message import Message
 from project.models.review import Review
@@ -56,4 +57,23 @@ def test_feature():
 	assert(len(f1.amenities) == 1)
 	assert(f1.num_bathroom == 1)
 	assert(f1.garden == True)
+
+def test_system():
+	s1 = System()
+	u1 = User("a@gmail.com", "pass1")
+	a1 = Address(1, "George", "Sydney", 2000)
+	r1 = Room("private", 100, True, 2019, 8,10,3)
+	l1 = Listing("village", True, a1, None, 2, 1)
+	l1.addRoom(r1)
+	u1.addListing(l1)
+	s1.addAllListing(u1)
+	assert(len(allListings) == 1)
+	u2 = User("b@gmail.com", "pass2")
+	a2 = Address(11, "Georgee", "Sydneyy", 2000)
+	r2 = Room("private", 100, True, 2019, 8,10,3)
+	l2 = Listing("villages", True, a1, None, 2, 1)
+	l2.addRoom(r2)
+	u2.addListing(l2)
+	s1.addAllListing(u2)
+	assert(len(allListings) == 2)
 	
