@@ -7,7 +7,7 @@ class Feature():
 		self._car_space = car_space
 		self._garden = garden
 		self._landsize = landsize
-		self._amenities = []
+		# self._amenities = []
 
 	@property
 	def num_bathroom(self):
@@ -41,18 +41,18 @@ class Feature():
 	def landsize(self, var):
 		self._landsize = var
 
-	@property
-	def amenities(self):
-		return self._amenities
+	# @property
+	# def amenities(self):
+	# 	return self._amenities
 
-	@amenities.setter
-	def amenities(self, var):
-		self._amenities = var
+	# @amenities.setter
+	# def amenities(self, var):
+	# 	self._amenities = var
 
-	def addAmenities(self, var):
-		self._amenities.append(var)
+	# def addAmenities(self, var):
+	# 	self._amenities.append(var)
 
-	def deleteAmenities(self, var):
-		self._amenities.remove(var)	
+	# def deleteAmenities(self, var):
+	# 	self._amenities.remove(var)	
 	
 	
