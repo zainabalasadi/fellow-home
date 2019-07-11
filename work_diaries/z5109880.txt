@@ -17,3 +17,15 @@ Continued working on the technical depth section and epics section of the propos
 proposal at the end of the week and had a group call discussing what we would do next. We decided that
 the next spring would be focused on accounts and front page stuff. I setup Docker, React, Postgres, and
 Flask so that everyone could start working on the actual project.
+
+# Week 4
+Started doing research on authentication methods and eventually settled with using JWT to authenticate 
+users. Also started creating a basic UML diagram to model the backend portion of the system and split up 
+tasks that needed to be completed by the next sprint. I was tasked with scraping fake data for the 
+system and working on other parts of the backend. I also helped the others with problems they had with 
+setting up Docker.
+
+# Week 5
+Continued adding features to the authentication module such as registering users and logging them out. 
+Started scraping fake user data for the system. Also continued to help with problems concerning Docker 
+and working locally. Updated the models such that they would work properly with SQLAlchemy.
