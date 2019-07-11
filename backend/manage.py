@@ -24,16 +24,18 @@ def populate_db(amount):
         data = json.load(f)
         count = 0
         for person in data:
-            User.add(f_name=person['first_name'],
+            u = User(f_name=person['first_name'],
                      l_name=person['last_name'],
                      email=person['email'],
                      avatar=person['avatar'],
                      password=guard.encrypt_password(person['password']),
                      dob=person['dob'],
                      gender=person['gender'])
+            db.session.add(u)
             count += 1
             if count == amount:
                 break
+    db.session.commit()
 
 if __name__ == '__main__':
     cli()
