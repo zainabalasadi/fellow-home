@@ -102,7 +102,6 @@ def editprofile():
 
 @bp.route('/postproperty',methods=['GET','POST'])
 def postproperty():
-    def editprofile():
     if request.method == "POST":
         req = request.get_json()
         name = req['name']
