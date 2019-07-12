@@ -21,3 +21,12 @@ With our proposal done, we begun to focus on the software side for our project. 
 within the next two weeks, so we split our roles between group members. During our group meeting, we created a uml class
 diagram to give us an overview of the main components of our system needed to give it some functionality. Zainab was going to 
 work on the interface and create a base for the front end, while William, Jason and I were to work on the backend.
+
+wk05
+I added getters and setter methods as well as basic methods required for functioning. I encountered problems with compiling
+due to many errors and spent the week trying to fix the problem
+
+wk06
+We had a group meeting to update each other on what was happening. William and I merged what we had together to the master branch
+and continued to debug and add on to the code. Zainab and Jason continued to work on the frontend for the interface. We all
+brainstormed on how the home page should look and talked about error and exception handling.
