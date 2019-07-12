@@ -42,6 +42,19 @@ def google_login():
     # same idea as facebook login
     return
 
+@bp.route('/signup', methods=['GET','POST'])
+def signup():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        try:
+            if (username == ""):
+                raise SignUpError("Please provide a username")
+            elif(password == ""):
+                raise SignUpError("Please provide a password")
+        except SignUpError as error:
+            return error.message
+
 @bp.route('/refresh')
 def refresh():
     old_token = guard.read_token_from_header()
