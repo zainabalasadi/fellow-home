@@ -1,5 +1,7 @@
 # backend/project/models/listing.py
 
+from datetime import datetime
+
 from project import db
 
 class Listing(db.Model):
@@ -19,13 +21,17 @@ class Listing(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
 
-    def __init__(self, name, date_published, num_housemates, num_vacancies):
+    def __init__(self, name, date_published, 
+                    num_housemates, num_vacancies, num_bedrooms, has_garden, landsize):
         self.name = name
-        self.date_published = date_published
+        self.date_published = datetime.strptime(date_published, "%d/%m/%Y")
         # self.address = address
         # self.images = []
         # self.feature = feature
         self.num_housemates = num_housemates
         self.num_vacancies = num_vacancies
+        self.num_bedrooms = num_bedrooms
+        self.has_garden = has_garden
+        self.landsize = landsize
         # self.restrictions = []
         # self.room = []

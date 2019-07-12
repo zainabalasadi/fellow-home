@@ -7,6 +7,8 @@ from flask.cli import FlaskGroup
 
 from project import create_app, db, guard
 from project.models.user import User
+from project.models.listing import Listing
+from project.models.room import Room
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
@@ -35,6 +37,15 @@ def populate_db(amount):
             count += 1
             if count == amount:
                 break
+    db.session.commit()
+
+    p = User.query.get(1)
+    listing = Listing("a house", "12/7/2019", 5, 2, 2, False, 100.0)
+    rooms = [Room("single", 100.0, False, "12/7/2019", 90), 
+             Room("double", 200.0, False, "12/7/2019", 90)]
+    listing.rooms.extend(rooms)
+    p.listings.append(listing)
+    db.session.add(p)
     db.session.commit()
 
 if __name__ == '__main__':
