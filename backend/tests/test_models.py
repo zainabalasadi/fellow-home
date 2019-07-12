@@ -52,8 +52,8 @@ def test_listing():
 def test_feature():
     f1 = Feature(1, 1, "garage", True, 5.5)
     assert(len(f1.amenities) == 0)
-    f1.addAmenities("aircon")
-    assert(len(f1.amenities) == 1)
+    # f1.addAmenities("aircon")
+    # assert(len(f1.amenities) == 1)
     assert(f1.num_bathroom == 1)
     assert(f1.garden == True)
 

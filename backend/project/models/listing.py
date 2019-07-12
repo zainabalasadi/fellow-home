@@ -35,3 +35,4 @@ class Listing(db.Model):
         self.landsize = landsize
         # self.restrictions = []
         # self.room = []
+        # self.tags = []

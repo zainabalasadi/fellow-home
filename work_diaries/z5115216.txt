@@ -30,3 +30,12 @@ them the following week. During the tutorial, I also began creating a basic UML 
 have a clear idea of what to program. We also split tasks that we needed to complete for the next two weeks. I am in charge 
 of the initial interface design and dummy front end whilst the rest of the team is in charge of the back-end. We also 
 scheduled a meeting for next week so we can all catch up on each others progress.
+
+# Week 05
+This week, I continued working on the user interface and experience. This involved drawing very low-fidelity wireframes on 
+paper and then translating them to high-fidelity interfaces using Figma and Material Design guidelines. So far, I have 
+completed the Login, Sign up, Guest homepage, Registered-user homepage, saved listings, messages, seach and refining search,
+profile views (both own and other users) and editing profile screens. I have also developed a preliminary list of all the
+questions and information requests needed from the user when listing a new spot. I have left this flow and interface for last
+as it is the most crucial. After the final interface is completed, I have been allocated the responsibility of implementing
+this interface into the system.
