@@ -29,3 +29,4 @@ class Listing(db.Model):
         self.num_vacancies = num_vacancies
         # self.restrictions = []
         # self.room = []
+        # self.tags = []
