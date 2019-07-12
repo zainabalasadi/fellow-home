@@ -42,19 +42,6 @@ def google_login():
     # same idea as facebook login
     return
 
-@bp.route('/signup', methods=['GET','POST'])
-def signup():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        try:
-            if (username == ""):
-                raise SignUpError("Please provide a username")
-            elif(password == ""):
-                raise SignUpError("Please provide a password")
-        except SignUpError as error:
-            return error.message
-
 @bp.route('/refresh')
 def refresh():
     old_token = guard.read_token_from_header()
@@ -70,6 +57,21 @@ def register():
         email = req['email']
         dob = req['dob']
         password = guard.encrypt_password(req['password'])
+        try:
+            if (email == ""):
+                raise SignUpError("Please provide an email")
+            elif ("@" not in email):
+                raise SignUpError("Please provide a valid email")
+            elif(password == ""):
+                raise SignUpError("Please provide a password")
+            elif(len(password) < 6):
+                raise SignUpError("Please provide a password of minimum 6 characters")
+            elif(f_name == ""):
+                raise SignUpError("Please provide a first name")
+            elif(l_name == ""):
+                raise SignUpError("Please provide a last name")
+        except SignUpError as error:
+            return error.message
 
         if User.lookup(email):
             return jsonify(status='failure', msg='user already exists'), 200
