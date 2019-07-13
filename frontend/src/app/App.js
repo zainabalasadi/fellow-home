@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button'
-import logo from './logo.svg';
+import logo from '../assets/images/logo.svg';
 import './App.css';
 
 class App extends Component {
