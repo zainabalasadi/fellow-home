@@ -4,11 +4,14 @@ import Button from '@material-ui/core/Button'
 import logo from '../assets/images/logo.svg';
 import './App.css';
 
+import Footer from '../components/Footer'
+import Header from '../components/Header'
+
 class App extends Component {
 	constructor() {
 		super();
 		this.state = { 
-			message: ""
+			message: "Hello Welcome to Fellow!"
 		};  
 	};  
 	componentDidMount() {
@@ -26,14 +29,15 @@ class App extends Component {
 	};  
 	render() {
 		return (
-			<Button variant="contained" color="primary">
-			{   
-				this.state.message
-			}   
-			{   
-				this.state.message
-			}   
-			</Button>
+			<div>
+				<Header />
+				<Button variant="contained" color="primary">
+				{   
+					this.state.message
+				}    
+				</Button>
+				<Footer />
+			</div>
 		);  
 	};  
 }
