@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
-import logo from '../assets/images/logo.svg'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Container from '@material-ui/core/Container'
 import './App.css'
 
+
+import logo from '../assets/images/logo.svg'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 
@@ -29,15 +32,19 @@ class App extends Component {
 	};  
 	render() {
 		return (
-			<div>
-				<Header />
-				<Button variant="contained" color="primary">
-				{   
-					this.state.message
-				}    
-				</Button>
+			<React.Fragment>
+         <CssBaseline />
+            <Header />
+				<Container maxWidth="lg">
+					<p>This is main, in a container with padded sides</p>
+					<Button variant="contained" color="primary">
+					{   
+						this.state.message
+					}    
+					</Button>
+            </Container>
 				<Footer />
-			</div>
+			</React.Fragment>
 		);  
 	};  
 }
