@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react'
+import axios from 'axios'
 import Button from '@material-ui/core/Button'
-import logo from '../assets/images/logo.svg';
-import './App.css';
+import logo from '../assets/images/logo.svg'
+import './App.css'
 
 import Footer from '../components/Footer'
 import Header from '../components/Header'
