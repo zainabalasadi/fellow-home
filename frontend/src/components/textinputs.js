@@ -9,11 +9,6 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
-import {Rating} from 'material-ui-rating'
-import AddIcon from '@material-ui/icons/Add'
-import Icon from '@material-ui/core/Icon/'
-
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -177,21 +172,6 @@ export function SelectDrop(props) {
         ))}
     </TextField>
 );
-};
-
-export function Rate(props) {
-    return(
-        <div>
-            <Rating
-                iconFilled={<AddIcon/>}
-                iconHovered={<AddIcon/>}
-                iconNormal={<AddIcon/>}
-                value={3}
-                max={5}
-                onChange={(value) => console.log(`Rated with value ${value}`)}
-            />
-        </div>
-    );
 };
 
 export function FormDialog(props) {
