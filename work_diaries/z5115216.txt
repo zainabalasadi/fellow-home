@@ -39,3 +39,12 @@ profile views (both own and other users) and editing profile screens. I have als
 questions and information requests needed from the user when listing a new spot. I have left this flow and interface for last
 as it is the most crucial. After the final interface is completed, I have been allocated the responsibility of implementing
 this interface into the system.
+
+# Week 06
+This week, we held a meeting to update each other on our progress. Both Anna and William have been working on the back-end
+and have recently merged their work into the master branch. During this meeting, we made some paper wireframes for the
+interface and discussed how we would handle exceptions and error messages. During the tutorial this week, we presented our
+UI/UX to Ali and recieved some great feedback to push the project to the next level. I also created a new github project and
+opened various issues and assigned them to each person with a due date so that the interface can be developed in an organised
+manner. Towards the end of the week, I spent my time learning more about React and JSX which allowed me to create the grid
+uploaded the svg icons and favicons to the front-end branch.
