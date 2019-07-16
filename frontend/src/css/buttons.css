@@ -1,0 +1,56 @@
+@import url("textAndColour.css");
+
+.action-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly
+}
+
+.buttonPlusMinus {
+    width: 30px;
+    height: 30px;
+    /* Fellow Red */
+    box-sizing: border-box;
+    border-radius: 50%;
+
+    /* + */
+    font-family: Inter UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    /* or 144% */
+    text-align: center;
+
+}
+.buttonPlusMinus:hover{
+    cursor: pointer;
+}
+.inactive{
+    opacity: 0.4;
+}
+.inactive:hover{
+    cursor: auto;
+}
+.buttonRect{
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.buttonRect:hover{
+    cursor: pointer;
+}
+.textbox{
+    box-sizing: border-box;
+    border-radius: 4px;
+    outline-color: #FF5240;
+}
+
+.drop{
+    position: absolute;
+    left: 93.07%;
+    right: 4.27%;
+    top: 48.94%;
+    bottom: 40.43%;
+
+    border: 1.5px solid rgba(35, 34, 34, 0.5);
+}
