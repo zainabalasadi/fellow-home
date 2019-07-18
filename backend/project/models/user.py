@@ -16,7 +16,7 @@ class User(db.Model):
     gender = db.Column(db.Text)
     avatar = db.Column(db.Text, nullable=False)
     dob = db.Column(db.DateTime, nullable=False)
-    # rating = db.Column(db.Float, nullable=False)
+    #rating = db.Column(db.Float)
     verified = db.Column(db.Boolean, nullable=False, default=False)
     listings = db.relationship('Listing', backref='user', lazy=True)
 

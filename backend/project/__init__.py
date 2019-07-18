@@ -5,10 +5,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_praetorian import Praetorian
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 cors = CORS()
 guard = Praetorian()
+migrate = Migrate()
 
 from project.models.user import User
 from project.models.listing import Listing
@@ -28,6 +30,7 @@ def create_app(config_file=os.getenv('APP_SETTINGS')):
     db.init_app(app)
     cors.init_app(app)
     guard.init_app(app, User, is_blacklisted=TokenBlacklist.lookup)
+    migrate.init_app(app, db)
 
     from project.controllers.routes import bp as routes
 
@@ -38,6 +41,6 @@ def create_app(config_file=os.getenv('APP_SETTINGS')):
 
     @app.shell_context_processor
     def make_shell_context():
-        return {'app': app, 'db': db, 'guard': guard}
+        return {'app': app, 'db': db, 'guard': guard, 'migrate': migrate}
 
     return app

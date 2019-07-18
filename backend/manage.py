@@ -4,6 +4,7 @@ import click
 import json
 import os
 from flask.cli import FlaskGroup
+from flask_migrate import MigrateCommand
 
 from project import create_app, db, guard
 from project.models.user import User
@@ -16,6 +17,7 @@ from project.models.feature import Feature
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
+cli.add_command('db', MigrateCommand)
 
 @cli.command('recreate_db')
 def recreate_db():
