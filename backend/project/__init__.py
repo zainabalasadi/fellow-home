@@ -13,9 +13,13 @@ guard = Praetorian()
 from project.models.user import User
 from project.models.listing import Listing
 from project.models.address import Address
+from project.models.feature import Feature
+from project.models.amenity import Amenity
+from project.models.restriction import Restriction
 from project.models.room import Room
 from project.models.review import Review
 from project.models.blacklist import TokenBlacklist
+from project.models.listing_image import ListingImage
 
 def create_app(config_file=os.getenv('APP_SETTINGS')):
     app = Flask(__name__)

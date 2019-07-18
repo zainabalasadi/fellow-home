@@ -7,9 +7,9 @@ class Room(db.Model):
     __tablename__ = 'Room'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    roomType = db.Column(db.String(128), nullable=False)
+    roomType = db.Column(db.String(128))
     cost = db.Column(db.Integer)
-    furnished = db.Column(db.Boolean)
+    furnished = db.Column(db.Text)
     availability = db.Column(db.DateTime)
     min_stay = db.Column(db.Integer)
 
@@ -19,5 +19,5 @@ class Room(db.Model):
         self.roomType = roomType
         self.cost = cost
         self.furnished = furnished
-        self.availability = datetime.strptime(availability, "%d/%m/%Y")
+        self.availability = datetime.strptime(availability, "%Y-%m-%d")
         self.min_stay = min_stay

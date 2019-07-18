@@ -12,8 +12,3 @@ class Address(db.Model):
     postcode = db.Column(db.Integer)
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), unique=True)
 
-    def __init__(self, unitNum, name, suburb, postcode):
-        self.unitNum = unitNum
-        self.name = name
-        self.suburb = suburb
-        self.postcode = postcode

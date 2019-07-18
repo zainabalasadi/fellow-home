@@ -9,6 +9,10 @@ from project import create_app, db, guard
 from project.models.user import User
 from project.models.listing import Listing
 from project.models.room import Room
+from project.models.address import Address
+from project.models.amenity import Amenity
+from project.models.listing_image import ListingImage
+from project.models.feature import Feature
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
@@ -39,13 +43,44 @@ def populate_db(amount):
                 break
     db.session.commit()
 
-    p = User.query.get(1)
-    listing = Listing("a house", "12/7/2019", 5, 2, 2, False, 100.0)
-    rooms = [Room("single", 100.0, False, "12/7/2019", 90), 
-             Room("double", 200.0, False, "12/7/2019", 90)]
-    listing.rooms.extend(rooms)
-    p.listings.append(listing)
-    db.session.add(p)
+    with open('data/listings.json') as f:
+        data = json.load(f)
+        for listing in data:
+            user = User.query.get(listing['user_id'])
+
+            new_listing = Listing(name=listing["title"],
+                              property_type=listing["property_type"],
+                              description=listing["description"],
+                              date_published=listing["date_published"],
+                              num_housemates=listing["occupants"],
+                              num_vacancies=listing["vacancies"],
+                              num_bathrooms=listing["bathrooms"],
+                              num_bedrooms=listing["bedrooms"],
+                              landsize=listing["landsize"])
+            address = Address(name=listing["map_data"]["street"],
+                              suburb=listing["map_data"]["suburb"],
+                              postcode=listing["map_data"]["postcode"],
+                              listing=new_listing)
+            images = [ListingImage(url=url) for url in listing["images"]]
+            amenities = [Amenity(amenity=amenity) for amenity in listing["amenities"]]
+            rooms = [Room(roomType=room["attributes"]["room_type"],
+                          cost=room["attributes"]["rent"],
+                          furnished=room["attributes"]["furnishings"],
+                          availability=room["attributes"]["date_available"],
+                          min_stay=room["attributes"]["min_stay"] or 0)
+                          for room in listing["rooms"]]
+            features = [Feature(feature=feat) 
+                        for room in listing["rooms"] 
+                        for feat in room["attributes"]["room_features_attributes"]]
+
+            new_listing.rooms.extend(rooms)
+            new_listing.images.extend(images)
+            new_listing.features.extend(features)
+            new_listing.amenities.extend(amenities)
+            user.listings.append(new_listing)
+
+            db.session.add(user)
+
     db.session.commit()
 
 if __name__ == '__main__':
