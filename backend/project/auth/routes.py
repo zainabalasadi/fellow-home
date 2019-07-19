@@ -2,44 +2,40 @@
 
 from flask import Blueprint, Flask, jsonify, request
 from flask_praetorian import auth_required
+from flask_restful import Api, Resource
 
 from project import guard
 from project.auth.models import User, TokenBlacklist
 from project.auth.errors import SignUpError
 
 bp = Blueprint('auth', __name__)
+api = Api(bp)
 
-@bp.route('/login',methods=['GET','POST'])
-def login():
-    if request.method == "POST":
+class Login(Resource):
+    def post(self):
         req = request.get_json()
         email = req.get("email", None)
         password = req.get("password", None)
 
         user = guard.authenticate(email, password)
-        return jsonify(access_token=guard.encode_jwt_token(user)), 200
+        return {'access_token': guard.encode_jwt_token(user)}
 
-@bp.route('/facebook_login', methods=['POST'])
-def facebook_login():
-    # get access token from frontend
-    # verify access token on backend
-    # send back a jwt access token
-    return jsonify(msg='not implemented yet'), 200
+class FacebookLogin(Resource):
+    def post(self):
+        return {'msg': 'not implemented'}
 
-@bp.route('/google_login', methods=['POST'])
-def google_login():
-    # same idea as facebook login
-    return jsonify(msg='not implemented yet'), 200
+class GoogleLogin(Resource):
+    def post(self):
+        return {'msg': 'not implemented'}
 
-@bp.route('/refresh')
-def refresh():
-    old_token = guard.read_token_from_header()
-    new_token = guard.refresh_jwt_token(old_token)
-    return jsonify(access_token=new_token), 200
+class RefreshToken(Resource):
+    def get(self):
+        old_token = guard.read_token_from_header()
+        new_token = guard.refresh_jwt_token(old_token)
+        return {'access_token': new_token}
 
-@bp.route('/register', methods=['GET','POST'])
-def register():
-    if request.method == "POST":
+class Register(Resource):
+    def post(self):
         req = request.get_json()
         f_name = req['first_name']
         l_name = req['last_name']
@@ -63,16 +59,22 @@ def register():
             return error.message
 
         if User.lookup(email):
-            return jsonify(status='failure', msg='user already exists'), 200
+            return {'status': 'error', 'msg': 'user already exists'}
 
         User.add(f_name=f_name, l_name=l_name, email=email, password=password, dob=dob)
-        return jsonify(status='success', msg='successfully created user'), 200
+        return {'status': 'success', 'msg': 'successfully created user'}
 
-@bp.route('/logout', methods=['POST'])
-@auth_required
-def logout():
-    if request.method == 'POST':
+class Logout(Resource):
+    @auth_required
+    def post(self):
         req = request.get_json()
         data = guard.extract_jwt_token(req['token'])
         TokenBlacklist.add(token=data['jti'])
-        return jsonify(status='success', msg='token blacklisted'), 200
+        return {'status': 'success', 'msg':'token blacklisted'}
+
+api.add_resource(Login, '/api/auth/login')
+api.add_resource(FacebookLogin, '/api/auth/facebook_login')
+api.add_resource(GoogleLogin, '/api/auth/google_login')
+api.add_resource(RefreshToken, '/api/auth/refresh')
+api.add_resource(Register, '/api/auth/register')
+api.add_resource(Logout, '/api/auth/logout')

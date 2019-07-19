@@ -2,14 +2,15 @@
 
 from flask import Blueprint, Flask, jsonify, request
 from flask_praetorian import auth_required
+from flask_restful import Api, Resource
 
 from project.listing.errors import DetailError
 
 bp = Blueprint('listing', __name__)
+api = Api(bp)
 
-@bp.route('/postproperty',methods=['GET','POST'])
-def postproperty():
-    if request.method == "POST":
+class CreateListing(Resource):
+    def post(self):
         req = request.get_json()
         name = req['name']
         date_published = req['date_published']
@@ -30,10 +31,14 @@ def postproperty():
             elif (landsize < 0):
                 raise DetailError("Please provide the landsize")
         except DetailError as error:
-            return error.message
-        Listing.add(name=name, date_published=date_published, num_housemates=num_housemates, num_vacancies=num_vacancies, num_bedrooms=num_bedrooms, has_garden=has_garden, landsize=landsize)
-        return jsonify(status='success', msg='successfully created listing'), 200
+            return {'status': 'error', 'msg': error.message}
+        Listing.add(name=name, 
+                    date_published=date_published, 
+                    num_housemates=num_housemates, 
+                    num_vacancies=num_vacancies, 
+                    num_bedrooms=num_bedrooms, 
+                    has_garden=has_garden, 
+                    landsize=landsize)
+        return {'status': 'success', 'msg': 'successfully created listing'}
 
-@bp.route('/editproperty',methods=['GET','POST'])
-def editproperty():
-    return
+api.add_resource(CreateListing, '/api/listing/create')

@@ -27,7 +27,6 @@ class User(db.Model):
     roles = db.Column(db.Text)
     is_active = db.Column(db.Boolean, default=True)
 
-
     def __init__(self, f_name, l_name, email, password, dob, avatar, gender):
         self.first_name = f_name
         self.last_name = l_name
