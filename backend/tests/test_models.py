@@ -1,13 +1,11 @@
 # tests/test_models.py
 
-from project.models.room import Room
-from project.models.user import User
-from project.models.address import Address
-from project.models.message import Message
-from project.models.review import Review
-from project.models.listing import Listing
-from project.models.feature import Feature
 from datetime import date, time
+
+from project.auth.models import User
+from project.listing.models import Room, Address, Message, Listing, Feature
+from project.review.models import 
+from project.messaging.models import Message
 
 def test_room():
     r1 = Room("private", 100, True, "6-6-2019",3)

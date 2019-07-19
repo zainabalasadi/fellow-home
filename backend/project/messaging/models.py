@@ -1,4 +1,4 @@
-# backend/project/models/message.py
+# backend/project/messaging/models.py
 
 from datetime import date, time
 
@@ -42,7 +42,3 @@ class Message():
     @from_user.setter
     def from_user(self, var):
         self.from_user = var
-    
-    
-
-    

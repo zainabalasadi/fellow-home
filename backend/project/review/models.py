@@ -1,4 +1,4 @@
-# backend/project/models/review.py
+# backend/project/review/models.py
 
 from project import db
 

@@ -12,16 +12,9 @@ cors = CORS()
 guard = Praetorian()
 migrate = Migrate()
 
-from project.models.user import User
-from project.models.listing import Listing
-from project.models.address import Address
-from project.models.feature import Feature
-from project.models.amenity import Amenity
-from project.models.restriction import Restriction
-from project.models.room import Room
-from project.models.review import Review
-from project.models.blacklist import TokenBlacklist
-from project.models.listing_image import ListingImage
+from project.auth.models import User, TokenBlacklist
+from project.listing.models import Listing, ListingImage, Room, Address, Feature, Amenity, Restriction
+from project.review.models import Review
 
 def create_app(config_file=os.getenv('APP_SETTINGS')):
     app = Flask(__name__)
@@ -32,9 +25,13 @@ def create_app(config_file=os.getenv('APP_SETTINGS')):
     guard.init_app(app, User, is_blacklisted=TokenBlacklist.lookup)
     migrate.init_app(app, db)
 
-    from project.controllers.routes import bp as routes
+    from project.auth.routes import bp as auth_bp
+    from project.listing.routes import bp as listing_bp
+    from project.review.routes import bp as review_bp
 
-    app.register_blueprint(routes)
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(listing_bp)
+    app.register_blueprint(review_bp)
 
     with app.app_context():
         db.create_all()

@@ -1,26 +1,13 @@
 # backend/project/controllers/routes.py
 
-from flask import Blueprint, jsonify, Flask, redirect, request, render_template, url_for, abort
+from flask import Blueprint, Flask, jsonify, request
 from flask_praetorian import auth_required
 
 from project import guard
-from project.models.user import User
-from project.models.listing import Listing
-from project.models.error import SignUpError, DetailError
-from project.models.blacklist import TokenBlacklist
+from project.auth.models import User, TokenBlacklist
+from project.auth.errors import SignUpError
 
-bp = Blueprint('routes', __name__)
-
-@bp.route('/', methods=['GET'])
-@auth_required
-def index():
-    return jsonify({'message': 'HELLO WORLD'})
-
-@bp.route('/image_test', methods=['GET', 'POST'])
-def image_test():
-    print(request.files['file'])
-
-    return
+bp = Blueprint('auth', __name__)
 
 @bp.route('/login',methods=['GET','POST'])
 def login():
@@ -37,12 +24,12 @@ def facebook_login():
     # get access token from frontend
     # verify access token on backend
     # send back a jwt access token
-    return
+    return jsonify(msg='not implemented yet'), 200
 
 @bp.route('/google_login', methods=['POST'])
 def google_login():
     # same idea as facebook login
-    return
+    return jsonify(msg='not implemented yet'), 200
 
 @bp.route('/refresh')
 def refresh():
@@ -89,44 +76,3 @@ def logout():
         data = guard.extract_jwt_token(req['token'])
         TokenBlacklist.add(token=data['jti'])
         return jsonify(status='success', msg='token blacklisted'), 200
-
-@bp.route('/editprofile',methods=['GET','POST'])
-def editprofile():
-    if request.method == "POST":
-        req = request.get_json()
-        contact = req["contact"]
-        about = req["about"]
-        school = req["school"]
-        study = req["study"]
-        return 'editing profile'
-
-@bp.route('/postproperty',methods=['GET','POST'])
-def postproperty():
-    if request.method == "POST":
-        req = request.get_json()
-        name = req['name']
-        date_published = req['date_published']
-        num_housemates = req['num_housemates']
-        num_vacancies = req['num_vacancies']
-        num_bedrooms = req['num_bedrooms']
-        has_garden = req['has_garden']
-        landsize = req['landsize']
-        try:
-            if (name == ""):
-                raise DetailError("Please provide a title")
-            elif (num_housemates < 0):
-                raise DetailError("Please provide the number of housemates")
-            elif (num_vacancies < 0):
-                raise DetailError("Please provide the number of vacancies")
-            elif (num_bedrooms < 0):
-                raise DetailError("Please provide the number of bedrooms")
-            elif (landsize < 0):
-                raise DetailError("Please provide the landsize")
-        except DetailError as error:
-            return error.message
-        Listing.add(name=name, date_published=date_published, num_housemates=num_housemates, num_vacancies=num_vacancies, num_bedrooms=num_bedrooms, has_garden=has_garden, landsize=landsize)
-        return jsonify(status='success', msg='successfully created listing'), 200
-
-@bp.route('/editproperty',methods=['GET','POST'])
-def editproperty():
-    return

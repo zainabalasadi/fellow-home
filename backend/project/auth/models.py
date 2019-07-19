@@ -1,9 +1,9 @@
-# backend/project/models/user.py
+# backend/project/auth/models.py
 
 from datetime import datetime
 
 from project import db
-from project.models.review import Review
+from project.review.models import Review
 
 class User(db.Model):
     __tablename__ = 'User'
@@ -37,8 +37,6 @@ class User(db.Model):
         self.gender = gender
         self.dob = datetime.strptime(dob, "%d/%m/%Y")
         # self._rating = rating
-        # self._listings = []
-        # self._savedListings = []
         # self._socials = []
 
     @property
@@ -64,4 +62,19 @@ class User(db.Model):
     def add(cls, **kwargs):
         user = User(**kwargs)
         db.session.add(user)
+        db.session.commit()
+
+class TokenBlacklist(db.Model):
+    __tablename__ = 'TokenBlacklist'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    token = db.Column(db.String(256))
+
+    @classmethod
+    def lookup(cls, token):
+        return cls.query.filter_by(token=token).one_or_none()
+
+    @classmethod
+    def add(cls, token):
+        db.session.add(TokenBlacklist(token=token))
         db.session.commit()

@@ -1,0 +1,9 @@
+# backend/project/listing/errors.py
+
+class DetailError(Exception):
+    def __init__(self, message):
+        super().__init__()
+        self._message = message
+
+    def __str__(self):
+        return f"{self.message}"

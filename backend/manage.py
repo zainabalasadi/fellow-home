@@ -7,13 +7,8 @@ from flask.cli import FlaskGroup
 from flask_migrate import MigrateCommand
 
 from project import create_app, db, guard
-from project.models.user import User
-from project.models.listing import Listing
-from project.models.room import Room
-from project.models.address import Address
-from project.models.amenity import Amenity
-from project.models.listing_image import ListingImage
-from project.models.feature import Feature
+from project.auth.models import User
+from project.listing.models import Listing, Room, Address, Amenity, ListingImage, Feature
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
