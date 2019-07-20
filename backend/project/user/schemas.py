@@ -3,13 +3,7 @@
 from project import ma
 from project.user.models import User
 
-class UserSchema(ma.Schema):
+class UserSchema(ma.ModelSchema):
     class Meta:
-        fields = ('id', 
-                  'first_name', 
-                  'last_name', 
-                  'email', 
-                  'gender', 
-                  'avatar',
-                  'dob',
-                  'verified')
+        model = User
+        fields = ('id', 'first_name', 'last_name', 'email',  'gender', 'avatar', 'dob', 'verified')

@@ -1,15 +1,23 @@
 # backend/project/listing/routes.py
 
-from flask import Blueprint, Flask, jsonify, request
+from flask import Blueprint, Flask, request
 from flask_praetorian import auth_required
 from flask_restful import Api, Resource
 
+from project.listing.models import Listing
+from project.listing.schemas import ListingSchema
 from project.listing.errors import DetailError
 
 bp = Blueprint('listing', __name__)
 api = Api(bp)
 
-class CreateListing(Resource):
+class ListingListResource(Resource):
+    def get(self):
+        listings = Listing.query.all()
+        return {'status': 'success',
+                'data': [ListingSchema().dump(listing).data for listing in listings]}
+
+    @auth_required
     def post(self):
         req = request.get_json()
         name = req['name']
@@ -41,4 +49,11 @@ class CreateListing(Resource):
                     landsize=landsize)
         return {'status': 'success', 'msg': 'successfully created listing'}
 
-api.add_resource(CreateListing, '/create')
+class ListingResource(Resource):
+    def get(self, id):
+        listing = Listing.query.get(id)
+        return {'status': 'success',
+                'data': ListingSchema().dump(listing).data}
+
+api.add_resource(ListingListResource, '/')
+api.add_resource(ListingResource, '/<int:id>')
