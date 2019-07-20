@@ -1,5 +1,6 @@
 # backend/project/listing/routes.py
 
+import os
 from flask import Blueprint, Flask, request
 from flask_praetorian import auth_required
 from flask_restful import Api, Resource
@@ -13,7 +14,8 @@ api = Api(bp)
 
 class ListingListResource(Resource):
     def get(self):
-        listings = Listing.query.all()
+        page = request.args.get('page', 1, type=int)
+        listings = Listing.query.paginate(page, os.getenv('PER_PAGE', 10), False).items
         return {'status': 'success',
                 'data': [ListingSchema().dump(listing).data for listing in listings]}
 
