@@ -1,11 +1,12 @@
-# backend/project/controllers/routes.py
+# backend/project/auth/routes.py
 
 from flask import Blueprint, Flask, jsonify, request
 from flask_praetorian import auth_required
 from flask_restful import Api, Resource
 
 from project import guard
-from project.auth.models import User, TokenBlacklist
+from project.auth.models import TokenBlacklist
+from project.user.models import User
 from project.auth.errors import SignUpError
 
 bp = Blueprint('auth', __name__)
@@ -72,9 +73,9 @@ class Logout(Resource):
         TokenBlacklist.add(token=data['jti'])
         return {'status': 'success', 'msg':'token blacklisted'}
 
-api.add_resource(Login, '/api/auth/login')
-api.add_resource(FacebookLogin, '/api/auth/facebook_login')
-api.add_resource(GoogleLogin, '/api/auth/google_login')
-api.add_resource(RefreshToken, '/api/auth/refresh')
-api.add_resource(Register, '/api/auth/register')
-api.add_resource(Logout, '/api/auth/logout')
+api.add_resource(Login, '/login')
+api.add_resource(FacebookLogin, '/facebook_login')
+api.add_resource(GoogleLogin, '/google_login')
+api.add_resource(RefreshToken, '/refresh')
+api.add_resource(Register, '/register')
+api.add_resource(Logout, '/logout')

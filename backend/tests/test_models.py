@@ -2,7 +2,7 @@
 
 from datetime import date, time
 
-from project.auth.models import User
+from project.user.models import User
 from project.listing.models import Room, Address, Message, Listing, Feature
 from project.review.models import 
 from project.messaging.models import Message

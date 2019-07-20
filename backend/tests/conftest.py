@@ -4,7 +4,7 @@ import os
 import pytest
 
 from project import create_app, db, guard
-from project.auth.models import User
+from project.user.models import User
 
 @pytest.fixture(scope='module')
 def test_client():

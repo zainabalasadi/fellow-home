@@ -41,4 +41,4 @@ class CreateListing(Resource):
                     landsize=landsize)
         return {'status': 'success', 'msg': 'successfully created listing'}
 
-api.add_resource(CreateListing, '/api/listing/create')
+api.add_resource(CreateListing, '/create')
