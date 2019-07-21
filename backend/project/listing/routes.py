@@ -15,7 +15,7 @@ api = Api(bp)
 class ListingListResource(Resource):
     def get(self):
         page = request.args.get('page', 1, type=int)
-        listings = Listing.query.paginate(page, os.getenv('PER_PAGE', 10), False).items
+        listings = Listing.query.paginate(page, int(os.getenv('PER_PAGE', 10)), False).items
         return {'status': 'success',
                 'data': [ListingSchema().dump(listing).data for listing in listings]}
 

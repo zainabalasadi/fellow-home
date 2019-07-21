@@ -14,15 +14,24 @@ api = Api(bp)
 class UserListResource(Resource):
     def get(self):
         page = request.args.get('page', 1, type=int)
-        users = User.query.paginate(page, os.getenv('PER_PAGE', 10), False).items
+        users = User.query.paginate(page, int(os.getenv('PER_PAGE', 10)), False).items
+
+        if not users:
+            return {'status': 'error',
+                    'error': 'Page not found'}, 404
+
         return {'status': 'success',
-                'data': [UserSchema().dump(user).data for user in users]}
+                'data': [UserSchema(exclude='password').dump(user).data for user in users]}
 
 class UserResource(Resource):
     def get(self, id):
         user = User.query.get(id)
+        if user is None:
+            return {'status': 'error',
+                    'error': 'User not found'}, 404
+
         return {'status': 'success',
-                'data': UserSchema().dump(user).data}
+                'data': UserSchema(exclude='password').dump(user).data}
 
 api.add_resource(UserListResource, '/')
 api.add_resource(UserResource, '/<int:id>')

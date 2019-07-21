@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from project import db
+from project import db, guard
 from project.review.models import Review
 
 class User(db.Model):
@@ -27,14 +27,14 @@ class User(db.Model):
     roles = db.Column(db.Text)
     is_active = db.Column(db.Boolean, default=True)
 
-    def __init__(self, f_name, l_name, email, password, dob, avatar, gender):
-        self.first_name = f_name
-        self.last_name = l_name
+    def __init__(self, first_name, last_name, email, password, dob, avatar, gender):
+        self.first_name = first_name
+        self.last_name = last_name
         self.email = email 
-        self.password = password
+        self.password = guard.encrypt_password(password)
         self.avatar = avatar
         self.gender = gender
-        self.dob = datetime.strptime(dob, "%d/%m/%Y")
+        self.dob = dob
         # self._rating = rating
         # self._socials = []
 
@@ -58,7 +58,8 @@ class User(db.Model):
         return self.is_active
 
     @classmethod
-    def add(cls, **kwargs):
-        user = User(**kwargs)
+    def add(cls, user):
         db.session.add(user)
         db.session.commit()
+
+        return user.id
