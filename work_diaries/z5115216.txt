@@ -34,7 +34,7 @@ scheduled a meeting for next week so we can all catch up on each others progress
 # Week 05
 This week, I continued working on the user interface and experience. This involved drawing very low-fidelity wireframes on 
 paper and then translating them to high-fidelity interfaces using Figma and Material Design guidelines. So far, I have 
-completed the Login, Sign up, Guest homepage, Registered-user homepage, saved listings, messages, seach and refining search,
+completed the Login, Sign up, Guest homepage, Registered-user homepage, saved listings, messages, search and refining search,
 profile views (both own and other users) and editing profile screens. I have also developed a preliminary list of all the
 questions and information requests needed from the user when listing a new spot. I have left this flow and interface for last
 as it is the most crucial. After the final interface is completed, I have been allocated the responsibility of implementing
@@ -48,3 +48,12 @@ UI/UX to Ali and recieved some great feedback to push the project to the next le
 opened various issues and assigned them to each person with a due date so that the interface can be developed in an organised
 manner. Towards the end of the week, I spent my time learning more about React and JSX which allowed me to create the grid
 uploaded the svg icons and favicons to the front-end branch.
+
+# Week 07
+This week, I completed some basic components and worked on importing fonts and setting a grid for the front-end component of
+the project. I was experiencing some issues with npm and Material Design UI React Library which slowed the front-end progress.
+The team also organised a quick call to update each other on our progress. Since William overlooks back-end, I made sure to ask
+him about the issues I was having with npm. I also suggested that William and Anna jump on front-end after they complete the
+majority of the back-end so that we can complete the website design as soon as possible. I also looked into the requirements for
+the final report and am planning to devise tasks to complete. I am also responsible for creating error messages for the user
+to hand over to William soon.
