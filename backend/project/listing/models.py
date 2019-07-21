@@ -1,7 +1,5 @@
 # backend/project/listing/models.py
 
-from datetime import datetime
-
 from project import db
 
 class Listing(db.Model):
@@ -32,13 +30,21 @@ class Listing(db.Model):
         self.name = name
         self.property_type = property_type
         self.description = description
-        self.date_published = datetime.strptime(date_published, "%Y-%m-%dT%H:%M:%S.%fZ")
         self.num_housemates = num_housemates
         self.num_vacancies = num_vacancies
         self.num_bathrooms = num_bathrooms
         self.num_bedrooms = num_bedrooms
+        self.date_published = date_published
         self.landsize = landsize
         # self.tags = []
+
+    @classmethod
+    def add(cls, user, listing):
+        user.listings.append(listing)
+        db.session.add(user)
+        db.session.commit()
+
+        return listing.id
 
 class ListingImage(db.Model):
     __tablename__ = 'ListingImage'

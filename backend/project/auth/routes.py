@@ -9,7 +9,6 @@ from project import guard
 from project.auth.models import TokenBlacklist
 from project.user.models import User
 from project.user.schemas import UserSchema
-from project.auth.errors import SignUpError
 
 bp = Blueprint('auth', __name__)
 api = Api(bp)
@@ -21,7 +20,9 @@ class LoginResource(Resource):
         password = req.get("password", None)
 
         user = guard.authenticate(email, password)
-        return {'access_token': guard.encode_jwt_token(user)}
+        # use this when refreshing tokens automatically is added
+        #return {'access_token': guard.encode_jwt_token(user)}
+        return {'access_token': guard.encode_eternal_jwt_token(user)}
 
 class FacebookLoginResource(Resource):
     def post(self):

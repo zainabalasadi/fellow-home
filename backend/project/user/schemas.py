@@ -1,7 +1,6 @@
 # backend/project/users/routes.py
 
-from datetime import datetime
-from marshmallow import pre_load, validates_schema, ValidationError
+from marshmallow import validates_schema, ValidationError
 
 from project import ma
 from project.user.models import User
@@ -13,13 +12,8 @@ class UserSchema(ma.ModelSchema):
         fields = ('id', 'first_name', 'last_name', 'email', 'password', 
                   'gender', 'avatar', 'dob', 'verified')
 
-    @pre_load
-    def convert_string_to_datetime(self, in_data, **kwargs):
-        in_data['dob'] = str(datetime.strptime(in_data['dob'], "%d/%m/%Y"))
-        return in_data
-
     @validates_schema
-    def validate_email(self, data, **kwargs):
+    def validate_user(self, data, **kwargs):
         errors = {}
 
         if "@" not in data['email']:

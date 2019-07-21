@@ -1,6 +1,7 @@
 # backend/project/users/routes.py
 
 import os
+
 from flask import Blueprint, Flask, request
 from flask_praetorian import auth_required
 from flask_restful import Api, Resource

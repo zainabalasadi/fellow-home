@@ -3,6 +3,8 @@
 import click
 import json
 import os
+
+from datetime import datetime
 from flask.cli import FlaskGroup
 from flask_migrate import MigrateCommand
 
@@ -27,12 +29,12 @@ def populate_db(amount):
         data = json.load(f)
         count = 0
         for person in data:
-            u = User(f_name=person['first_name'],
-                     l_name=person['last_name'],
+            u = User(first_name=person['first_name'],
+                     last_name=person['last_name'],
                      email=person['email'],
                      avatar=person['avatar'],
-                     password=guard.encrypt_password(person['password']),
-                     dob=person['dob'],
+                     password=person['password'],
+                     dob=datetime.strptime(person['dob'], '%d/%m/%Y'),
                      gender=person['gender'])
             db.session.add(u)
             count += 1

@@ -1,7 +1,5 @@
 # backend/project/user/models.py
 
-from datetime import datetime
-
 from project import db, guard
 from project.review.models import Review
 
@@ -33,8 +31,8 @@ class User(db.Model):
         self.email = email 
         self.password = guard.encrypt_password(password)
         self.avatar = avatar
-        self.gender = gender
         self.dob = dob
+        self.gender = gender
         # self._rating = rating
         # self._socials = []
 
