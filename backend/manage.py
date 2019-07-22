@@ -65,7 +65,8 @@ def populate_db(amount):
             rooms = [Room(roomType=room["attributes"]["room_type"],
                           cost=room["attributes"]["rent"],
                           furnished=room["attributes"]["furnishings"],
-                          availability=room["attributes"]["date_available"],
+                          availability=datetime.strptime(room["attributes"]["date_available"], 
+                                                        "%Y-%m-%d"),
                           min_stay=room["attributes"]["min_stay"] or 0)
                           for room in listing["rooms"]]
             features = [Feature(feature=feat) 

@@ -5,7 +5,7 @@ from project import db
 class Listing(db.Model):
     __tablename__ = 'Listing'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     property_type = db.Column(db.String(128))
     description = db.Column(db.Text)
@@ -26,7 +26,7 @@ class Listing(db.Model):
 
     def __init__(self, name, property_type, description, 
                 date_published, num_housemates, num_vacancies, num_bathrooms, 
-                num_bedrooms, landsize):
+                num_bedrooms, landsize, address, rooms, features, amenities, restrictions):
         self.name = name
         self.property_type = property_type
         self.description = description
@@ -36,11 +36,17 @@ class Listing(db.Model):
         self.num_bedrooms = num_bedrooms
         self.date_published = date_published
         self.landsize = landsize
+        self.address = address
+        self.rooms = rooms
+        self.features = features
+        self.amenities = amenities
+        self.restrictions = restrictions
         # self.tags = []
 
     @classmethod
     def add(cls, user, listing):
         user.listings.append(listing)
+
         db.session.add(user)
         db.session.commit()
 
@@ -49,7 +55,7 @@ class Listing(db.Model):
 class ListingImage(db.Model):
     __tablename__ = 'ListingImage'
     
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.Text, nullable=False)
 
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)
@@ -57,7 +63,7 @@ class ListingImage(db.Model):
 class Room(db.Model):
     __tablename__ = 'Room'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     roomType = db.Column(db.String(128))
     cost = db.Column(db.Integer)
     furnished = db.Column(db.Text)
@@ -70,13 +76,13 @@ class Room(db.Model):
         self.roomType = roomType
         self.cost = cost
         self.furnished = furnished
-        self.availability = datetime.strptime(availability, "%Y-%m-%d")
+        self.availability = availability
         self.min_stay = min_stay
 
 class Address(db.Model):
     __tablename__ = 'Address'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     unitNum = db.Column(db.Integer)
     name = db.Column(db.Text)
     suburb = db.Column(db.Text)
@@ -86,7 +92,7 @@ class Address(db.Model):
 class Feature(db.Model):
     __tablename__ = 'Feature'
     
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     feature = db.Column(db.String(128), nullable=False)
     quantity = db.Column(db.Integer, default=1)
 
@@ -95,7 +101,7 @@ class Feature(db.Model):
 class Amenity(db.Model):
     __tablename__ = 'Amenity'
     
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     amenity = db.Column(db.String(128), nullable=False)
 
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)
@@ -106,7 +112,7 @@ class Amenity(db.Model):
 class Restriction(db.Model):
     __tablename__ = 'Restriction'
     
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     restriction = db.Column(db.String(128), nullable=False)
 
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)

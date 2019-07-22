@@ -1,6 +1,6 @@
 # backend/project/listing/schemas.py
 
-from marshmallow import post_dump, validates_schema, ValidationError
+from marshmallow import post_dump, pre_load, validates_schema, ValidationError
 
 from project import ma
 from project.listing.models import Listing, ListingImage, Room, Address, Feature, Amenity, Restriction
@@ -33,6 +33,10 @@ class FeatureSchema(ma.ModelSchema):
     def convert_to_list(self, out_data, many, **kwargs):
         return [x['feature'] for x in out_data]
 
+    @pre_load(pass_many=True)
+    def convert_from_list(self, in_data, many, **kwargs):
+        return [{"feature": x} for x in in_data]
+
 class AmenitySchema(ma.ModelSchema):
     class Meta:
         model = Amenity
@@ -42,6 +46,10 @@ class AmenitySchema(ma.ModelSchema):
     def convert_to_list(self, out_data, many, **kwargs):
         return [x['amenity'] for x in out_data]
 
+    @pre_load(pass_many=True)
+    def convert_from_list(self, in_data, many, **kwargs):
+        return [{"amenity": x} for x in in_data]
+
 class RestrictionSchema(ma.ModelSchema):
     class Meta:
         model = Restriction
@@ -50,6 +58,10 @@ class RestrictionSchema(ma.ModelSchema):
     @post_dump(pass_many=True)
     def convert_to_list(self, out_data, many, **kwargs):
         return [x['restriction'] for x in out_data]
+
+    @pre_load(pass_many=True)
+    def convert_from_list(self, in_data, many, **kwargs):
+        return [{"restriction": x} for x in in_data]
 
 class ListingSchema(ma.ModelSchema):
     class Meta:

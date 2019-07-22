@@ -8,7 +8,12 @@ from flask_restful import Api, Resource
 from marshmallow import ValidationError
 
 from project.listing.models import Listing
-from project.listing.schemas import ListingSchema
+from project.listing.schemas import (ListingSchema, 
+                                    FeatureSchema, 
+                                    AmenitySchema, 
+                                    RestrictionSchema,
+                                    RoomSchema, 
+                                    AddressSchema)
 
 bp = Blueprint('listing', __name__)
 api = Api(bp)
@@ -24,8 +29,8 @@ class ListingListResource(Resource):
     def post(self):
         user = current_user()
         try:
-            data, _ = ListingSchema().load(request.get_json())
-            id = Listing.add(user, data)
+            listing, _ = ListingSchema().load(request.get_json())
+            id = Listing.add(user, listing)
         except ValidationError as err:
             return {'status': 'error', 'errors': err.messages['_schema']}
 
