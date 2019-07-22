@@ -5,7 +5,7 @@ from project import db
 class TokenBlacklist(db.Model):
     __tablename__ = 'TokenBlacklist'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     token = db.Column(db.String(256))
 
     @classmethod

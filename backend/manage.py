@@ -47,19 +47,9 @@ def populate_db(amount):
         for listing in data:
             user = User.query.get(listing['user_id'])
 
-            new_listing = Listing(name=listing["title"],
-                              property_type=listing["property_type"],
-                              description=listing["description"],
-                              date_published=listing["date_published"],
-                              num_housemates=listing["occupants"],
-                              num_vacancies=listing["vacancies"],
-                              num_bathrooms=listing["bathrooms"],
-                              num_bedrooms=listing["bedrooms"],
-                              landsize=listing["landsize"])
             address = Address(name=listing["map_data"]["street"],
                               suburb=listing["map_data"]["suburb"],
-                              postcode=listing["map_data"]["postcode"],
-                              listing=new_listing)
+                              postcode=listing["map_data"]["postcode"])
             images = [ListingImage(url=url) for url in listing["images"]]
             amenities = [Amenity(amenity=amenity) for amenity in listing["amenities"]]
             rooms = [Room(roomType=room["attributes"]["room_type"],
@@ -73,10 +63,21 @@ def populate_db(amount):
                         for room in listing["rooms"] 
                         for feat in room["attributes"]["room_features_attributes"]]
 
-            new_listing.rooms.extend(rooms)
-            new_listing.images.extend(images)
-            new_listing.features.extend(features)
-            new_listing.amenities.extend(amenities)
+            new_listing = Listing(name=listing["title"],
+                              property_type=listing["property_type"],
+                              description=listing["description"],
+                              date_published=listing["date_published"],
+                              num_housemates=listing["occupants"],
+                              num_vacancies=listing["vacancies"],
+                              num_bathrooms=listing["bathrooms"],
+                              num_bedrooms=listing["bedrooms"],
+                              landsize=listing["landsize"],
+                              address=address,
+                              rooms=rooms,
+                              features=features,
+                              amenities=amenities,
+                              restrictions=[])
+
             user.listings.append(new_listing)
 
             db.session.add(user)
