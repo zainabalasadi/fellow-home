@@ -22,6 +22,10 @@ class ListingListResource(Resource):
     def get(self):
         page = request.args.get('page', 1, type=int)
         listings = Listing.query.paginate(page, int(os.getenv('PER_PAGE', 10)), False).items
+        if not listings:
+            return {'status': 'error',
+                    'error': 'Page not found'}, 404
+
         return {'status': 'success',
                 'data': [ListingSchema().dump(listing).data for listing in listings]}
 
@@ -39,6 +43,10 @@ class ListingListResource(Resource):
 class ListingResource(Resource):
     def get(self, id):
         listing = Listing.query.get(id)
+        if listing is None:
+            return {'status': 'error',
+                    'error': 'Listing not found'}, 404
+
         return {'status': 'success',
                 'data': ListingSchema().dump(listing).data}
 
