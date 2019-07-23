@@ -19,7 +19,7 @@ class UserListResource(Resource):
 
         if not users:
             return {'status': 'error',
-                    'error': 'Page not found'}, 404
+                    'error': 'No users found'}, 404
 
         return {'status': 'success',
                 'data': [UserSchema(exclude='password').dump(user).data for user in users]}

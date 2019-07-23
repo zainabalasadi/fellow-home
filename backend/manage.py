@@ -76,7 +76,8 @@ def populate_db(amount):
                               rooms=rooms,
                               features=features,
                               amenities=amenities,
-                              restrictions=[])
+                              restrictions=[],
+                              published=True)
 
             user.listings.append(new_listing)
 
