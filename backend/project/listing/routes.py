@@ -9,12 +9,7 @@ from marshmallow import ValidationError
 
 from project import guard
 from project.listing.models import Listing
-from project.listing.schemas import (ListingSchema, 
-                                    FeatureSchema, 
-                                    AmenitySchema, 
-                                    RestrictionSchema,
-                                    RoomSchema, 
-                                    AddressSchema)
+from project.listing.schemas import ListingSchema 
 
 bp = Blueprint('listing', __name__)
 api = Api(bp)
@@ -70,7 +65,20 @@ class ListingResource(Resource):
 
     @auth_required
     def delete(self, id):
-        return {'status', 'success'}
+        user = current_user()
+        listing = Listing.query.get(id)
+        if listing is None:
+            return {'status': 'error',
+                    'error': 'Listing not found'}, 404
+
+        if listing.user_id != user.id:
+            return {'status': 'error',
+                    'error': 'Cannot delete listing that you do not own'}, 403
+
+        Listing.remove(listing)
+
+        return {'status': 'success',
+                'msg': f'Listing {id} successfully removed'}
 
 api.add_resource(ListingListResource, '/')
 api.add_resource(ListingResource, '/<int:id>')

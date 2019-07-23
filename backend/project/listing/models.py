@@ -16,12 +16,13 @@ class Listing(db.Model):
     num_bedrooms = db.Column(db.Integer)
     landsize = db.Column(db.Float)
     published = db.Column(db.Boolean, default=False)
-    address = db.relationship('Address', backref='listing', uselist=False)
-    rooms = db.relationship('Room', backref='listing', lazy=True)
-    features = db.relationship('Feature', backref='listing', lazy=True)
-    amenities = db.relationship('Amenity', backref='listing', lazy=True)
-    restrictions = db.relationship('Restriction', backref='listing', lazy=True)
-    images = db.relationship('ListingImage', backref='listing', lazy=True)
+    address = db.relationship('Address', backref='listing', uselist=False, cascade="all, delete-orphan")
+    rooms = db.relationship('Room', backref='listing', lazy=True, cascade="all, delete-orphan")
+    features = db.relationship('Feature', backref='listing', lazy=True, cascade="all, delete-orphan")
+    amenities = db.relationship('Amenity', backref='listing', lazy=True, cascade="all, delete-orphan")
+    restrictions = db.relationship('Restriction', backref='listing', lazy=True, 
+                                    cascade="all, delete-orphan")
+    images = db.relationship('ListingImage', backref='listing', lazy=True, cascade="all, delete-orphan")
 
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
 
@@ -54,6 +55,11 @@ class Listing(db.Model):
         db.session.commit()
 
         return listing.id
+
+    @classmethod
+    def remove(cls, listing):
+        db.session.delete(listing)
+        db.session.commit()
 
 class ListingImage(db.Model):
     __tablename__ = 'ListingImage'
