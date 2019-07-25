@@ -27,6 +27,11 @@ I added getters and setter methods as well as basic methods required for functio
 due to many errors and spent the week trying to fix the problem
 
 wk06
-We had a group meeting to update each other on what was happening. William and I merged what we had together to the master branch
-and continued to debug and add on to the code. Zainab and Jason continued to work on the frontend for the interface. We all
-brainstormed on how the home page should look and talked about error and exception handling.
+We had a group meeting to update each other on what was happening. William and I merged what we had together to the master 
+branch and continued to debug and add on to the code. Zainab and Jason continued to work on the frontend for the interface. We 
+all brainstormed on how the home page should look and talked about error and exception handling.
+
+wk07
+I worked on a bit of error and exception handling for users when logging in with the wrong details, new guests trying to login 
+to create a valid account as well as filling out all necessary information, and for leaving out blanks when filling out 
+descriptions and details for renting a house and such. 
