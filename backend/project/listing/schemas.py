@@ -79,20 +79,25 @@ class ListingSchema(ma.ModelSchema):
     def validate_listing(self, data, **kwargs):
         errors = {}
 
-        if data['name'] == "":
-            errors['name'] = "Please provide a title"
+        if 'name' in data:
+            if data['name'] == "":
+                errors['name'] = "Please provide a title"
 
-        if data['num_housemates'] < 0:
-            errors['num_housemates'] = "Please provide the number of housemates"
+        if 'num_housemates' in data:
+            if data['num_housemates'] < 0:
+                errors['num_housemates'] = "Please provide the number of housemates"
 
-        if data['num_vacancies'] < 0:
-            errors['num_vacancies'] = "Please provide the number of vacancies"
+        if 'num_vacancies' in data:
+            if data['num_vacancies'] < 0:
+                errors['num_vacancies'] = "Please provide the number of vacancies"
 
-        if data['num_bedrooms'] < 0:
-            errors['num_bedrooms'] =  "Please provide the number of bedrooms"
+        if 'num_bedrooms' in data:
+            if data['num_bedrooms'] < 0:
+                errors['num_bedrooms'] =  "Please provide the number of bedrooms"
 
-        if data['landsize'] < 0:
-            errors['landsize'] = "Please provide the landsize"
+        if 'landsize' in data:
+            if data['landsize'] < 0:
+                errors['landsize'] = "Please provide the landsize"
 
         if errors:
             raise ValidationError(errors)

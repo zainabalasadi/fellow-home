@@ -50,7 +50,8 @@ class UserSettingsResource(Resource):
                                     instance=User.lookup(user.email), 
                                     partial=True)
         db.session.commit()
-        return {'status': 'success'}
+        return {'status': 'success',
+                'msg': f'User {id} successfully updated'}
 
 
 api.add_resource(UserListResource, '/')

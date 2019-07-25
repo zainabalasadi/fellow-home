@@ -7,7 +7,7 @@ from flask_praetorian import auth_required, current_user
 from flask_restful import Api, Resource
 from marshmallow import ValidationError
 
-from project import guard
+from project import db, guard
 from project.listing.models import Listing
 from project.listing.schemas import ListingSchema 
 
@@ -61,7 +61,25 @@ class ListingResource(Resource):
 
     @auth_required
     def put(self, id):
-        return {'status': 'success'}
+        user = current_user()
+        listing = Listing.query.get(id)
+        if listing is None:
+            return {'status': 'error',
+                    'error': 'Listing not found'}, 404
+
+        if listing.user_id != user.id:
+            return {'status': 'error',
+                    'error': 'Cannot update listing that you do not own'}, 403
+        try:
+            data, _ = ListingSchema().load(request.get_json(), 
+                                           instance=Listing.query.get(id),
+                                           partial=True)
+            db.session.commit()
+        except ValidationError as err:
+            return {'status': 'error', 'errors': err.messages['_schema']}
+
+        return {'status': 'success',
+                'msg': f'Listing {id} successfully updated'}
 
     @auth_required
     def delete(self, id):
