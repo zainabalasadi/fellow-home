@@ -29,7 +29,7 @@ class User(db.Model):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email 
-        self.password = guard.encrypt_password(password)
+        self.password = guard.hash_password(password)
         self.avatar = avatar
         self.dob = dob
         self.gender = gender

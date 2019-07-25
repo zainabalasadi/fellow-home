@@ -3,9 +3,10 @@
 import os
 
 from flask import Blueprint, Flask, request
-from flask_praetorian import auth_required
+from flask_praetorian import auth_required, current_user
 from flask_restful import Api, Resource
 
+from project import db
 from project.user.models import User
 from project.user.schemas import UserSchema
 
@@ -22,7 +23,7 @@ class UserListResource(Resource):
                     'error': 'No users found'}, 404
 
         return {'status': 'success',
-                'data': [UserSchema(exclude='password').dump(user).data for user in users]}
+                'data': [UserSchema(exclude=['password']).dump(user).data for user in users]}
 
 class UserResource(Resource):
     def get(self, id):
@@ -32,7 +33,26 @@ class UserResource(Resource):
                     'error': 'User not found'}, 404
 
         return {'status': 'success',
-                'data': UserSchema(exclude='password').dump(user).data}
+                'data': UserSchema(exclude=['password']).dump(user).data}
+
+class UserSettingsResource(Resource):
+    @auth_required
+    def get(self):
+        user = current_user()
+
+        return {'status': 'success',
+                'data': UserSchema(exclude=(['password'])).dump(user).data}
+
+    @auth_required
+    def put(self):
+        user = current_user()
+        data, _ = UserSchema().load(request.get_json(), 
+                                    instance=User.lookup(user.email), 
+                                    partial=True)
+        db.session.commit()
+        return {'status': 'success'}
+
 
 api.add_resource(UserListResource, '/')
 api.add_resource(UserResource, '/<int:id>')
+api.add_resource(UserSettingsResource, '/settings')
