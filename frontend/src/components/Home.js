@@ -86,7 +86,7 @@ class Home extends Component {
                                     this.state.message
                                 }
                             </Button>
-                            <Button variant="contained" color="t">
+                            <Button variant="contained">
                                 {
                                     this.state.message
                                 }

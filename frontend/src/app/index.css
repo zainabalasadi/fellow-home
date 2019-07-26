@@ -17,3 +17,116 @@ body {
 code {
    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+h1 {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 96px;
+   line-height: 115px;
+}
+
+h2 {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 60px;
+   line-height: 72px;
+}
+
+h3 {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 48px;
+   line-height: 63px;
+   /* or 131% */
+}
+
+h4 {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 32px;
+   line-height: 43px;
+   /* identical to box height, or 134% */
+}
+
+h5 {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 24px;
+   line-height: 32px;
+   /* or 133% */
+}
+
+h6 {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 20px;
+   line-height: 24px;
+}
+
+.body1 {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 18px;
+   line-height: 22px;
+}
+
+.body2 {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 18px;
+   line-height: 26px;
+   /* or 144% */
+}
+
+.subtitle {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 17px;
+}
+
+.overline {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 12px;
+   line-height: 14px;
+   letter-spacing: 0.05em;
+   text-transform: uppercase;
+}
+
+.autoText {
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 18px;
+   line-height: 32px;
+   opacity: 0.4;
+   position: absolute;
+   left: 3.2%;
+   right: 2.93%;
+   top: 14.89%;
+   bottom: 31.91%;
+}
+
+.buttonText {
+   position: absolute;
+   top: 29.17%;
+   bottom: 31.25%;
+
+   font-family: Inter UI;
+   font-style: normal;
+   font-weight: bold;
+   font-size: 16px;
+   line-height: 19px;
+   text-align: center;
+}
