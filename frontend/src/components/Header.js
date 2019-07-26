@@ -3,7 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 
 import NavigationMenuItem from './NavigationMenuItem';
-import '../css/NavigationMenu.css';
 import * as TextInput from "./TextInputs";
 import SearchIcon from '@material-ui/icons/Search'
 /*import {Switch} from "@material-ui/core";

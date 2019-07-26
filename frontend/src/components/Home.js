@@ -15,7 +15,7 @@ import * as TextInput from "./TextInputs";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import MapContainer from "../components/MapContainer";
-import '../css/textAndColour.css'
+import '../css/colour.css'
 import '../css/buttons.css'
 import Fab from "@material-ui/core/Fab";
 import ListingCard from "../components/ListingThumbnail"
