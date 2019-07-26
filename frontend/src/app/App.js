@@ -62,9 +62,11 @@ class App extends Component {
 			<React.Fragment>
 				<ThemeProvider theme={theme}>
 				<CssBaseline />
-                  <Header/>
+               <Header/>
+						<Container maxWidth="lg">
 
-				<Footer />
+						</Container>
+					<Footer />
 					<div>
 						<MapContainer  />
 					</div>
