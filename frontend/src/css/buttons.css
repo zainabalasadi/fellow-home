@@ -5,6 +5,24 @@
     flex-flow: row nowrap;
     justify-content: space-evenly
 }
+.action-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+.action-cards .card {
+    flex: 0 0 auto;
+}
+.action-lists {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    height: 500px;
+}
+.action-lists .list {
+    flex: 0 0 auto;
+}
+
 
 .buttonPlusMinus {
     width: 30px;

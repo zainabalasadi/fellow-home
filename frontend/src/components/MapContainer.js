@@ -14,6 +14,7 @@ export class MapContainer extends Component {
         }
 */
         return (
+
             <Map google={this.props.google} zoom={14}>
 
                 <Marker onClick={this.onMarkerClick}
@@ -30,5 +31,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyCCcrMNsAZnLxERQxNyY-W3aUMxb6U0jeU"
+    apiKey: "AIzaSyAtO4JyetkqAKRLeoSdXPtEbXhn9XE_IR8"
 })(MapContainer)

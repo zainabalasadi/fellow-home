@@ -9,6 +9,10 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
+
+import AddIcon from '@material-ui/icons/Add'
+import Icon from '@material-ui/core/Icon/'
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -18,10 +22,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 export function InputText(props){
     return(
         <TextField
+            className={props.classNames}
             margin={"theme.spacing(1)"}
             placeholder={props.placeholder}
             variant="outlined"
-            id="input"
+            id={props.id}
+            onChange={props.onChange}
             InputProps={{
                 startAdornment: <InputAdornment position="start">{props.startAdornment}</InputAdornment>,
                 endAdornment: <InputAdornment position="start">{props.endAdornment}</InputAdornment>,
@@ -35,7 +41,8 @@ export function Named(props) { return(
         margin={"theme.spacing(1)"}
         label={props.name}
         variant="outlined"
-        id="input"
+        id={props.id}
+        onChange={props.onChange}
     />
 );
 };
@@ -47,7 +54,8 @@ export function Require(props) { return(
         label={props.name}
         placeholder={props.placeholder}
         variant="outlined"
-        id="input"
+        id={props.id}
+        onChange={props.onChange}
     />
 );
 };
@@ -58,17 +66,20 @@ export function Error(props) { return(
         margin={"theme.spacing(1)"}
         label={props.name}
         variant="outlined"
-        id="input"
+        id={props.id}
+        onChange={props.onChange}
     />
 );
 };
+
 export function Disabled(props) { return(
     <TextField
         disabled
+        multiline
         margin={"theme.spacing(1)"}
-        placeholder={props.placeholder}
+        defaultValue={props.placeholder}
         variant="outlined"
-        id="input"
+        id={props.id}
     />
 );
 };
@@ -111,14 +122,15 @@ export function Email (props) { return(
         type="email"
         autoComplete="email"
         variant="outlined"
-        id="input"
+        id={props.id}
+        onChange={props.onChange}
     />
 );
 };
 
 export function Multiline (props) {
     const [values, setValues] = React.useState({
-        multiline: '',
+        multiline: props.value,
     });
 
     const handleChange = name => event => {
@@ -127,12 +139,15 @@ export function Multiline (props) {
     return(
     <TextField
         multiline
+        disabled={props.disabledText}
+        className={props.classNames}
+        style={props.styling}
         rowsMax={props.lineShow}
         value={values.multiline}
         onChange={handleChange('multiline')}
         margin={"normal"}
         variant="outlined"
-        id="input"
+        id={props.id}
     />
 );
 };
@@ -173,6 +188,7 @@ export function SelectDrop(props) {
     </TextField>
 );
 };
+
 
 export function FormDialog(props) {
     const [open, setOpen] = React.useState(false);

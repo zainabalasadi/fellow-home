@@ -2,7 +2,6 @@
     position: absolute;
     height: 89px;
     left: 0px;
-    top: -13px;
 
     /* White */
     background: #FFFFFF;
@@ -13,12 +12,12 @@
     width: 100%;
     /*background-color: rgb(240, 231, 223);*/
     overflow-x: hidden;
-    padding: 40px 10px 0px 10px;
+    padding: 0px 0px 0px 10px;
 }
 
 .navigation .nav-item {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     align-items: center;
     margin-bottom: 20px;
     text-decoration: none;

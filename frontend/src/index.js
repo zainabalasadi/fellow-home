@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'semantic-ui-css/semantic.min.css';
 import './app/index.css';
 import App from './app/App';
 import * as serviceWorker from './utils/serviceWorker';
