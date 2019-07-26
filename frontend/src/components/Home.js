@@ -8,10 +8,10 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
-import SnackBar from "../components/snack";
-import Check from "../components/check";
+import SnackBar from "../components/Snack";
+import Check from "../components/Check";
 import config from "../utils/config";
-import * as TextInput from "../components/textinputs";
+import * as TextInput from "./TextInputs";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import MapContainer from "../components/MapContainer";
