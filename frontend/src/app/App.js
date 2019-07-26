@@ -63,7 +63,6 @@ class App extends Component {
 				<ThemeProvider theme={theme}>
 				<CssBaseline />
                   <Header/>
-
 				<Footer />
 					<div>
 						<MapContainer  />

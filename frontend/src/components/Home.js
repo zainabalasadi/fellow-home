@@ -80,6 +80,20 @@ class Home extends Component {
                     </div>
                     <Container maxWidth="lg">
                         <p>This is main, in a container with padded sides</p>
+
+                            <TextInput.FormDialog buttonLabel={"Login"} submitLabel={"Login"} message={
+                                <DialogContent>
+                                    <DialogContentText>
+                                        Please enter your details below
+                                    </DialogContentText>
+                                    <TextInput.Email/>
+                                     <TextInput.Password/>
+                                     <DialogContentText>
+                                        Don't have an account? Sign up
+                                    </DialogContentText>
+                                </DialogContent>
+                            }/>
+
                         <div className="action-buttons">
                             <Button variant="contained" color="primary">
                                 {
