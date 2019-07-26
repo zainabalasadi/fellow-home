@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import NavigationMenuItem from './NavigationMenuItem';
 import '../css/NavigationMenu.css';
-import * as TextInput from "../components/textinputs";
+import * as TextInput from "./TextInputs";
 import SearchIcon from '@material-ui/icons/Search'
 /*import {Switch} from "@material-ui/core";
 */
@@ -51,7 +51,7 @@ function Header() {
       <header className="overline"><overline>
           <BrowserRouter>
                   <Grid direction="row" container justify="space-between" alignItems="center">
-                      <img padding-top={200} height={20} src={require("../assets/images/fellow.png")}/>
+                      <img padding-top={200} height={20} src={require("../assets/images/logo.svg")}/>
                       <TextInput.InputText onEnter={(e)=> searchMap(e)} classNames={{width: "25%", height: "10%", fontsize:"8px"}} placeholder="Search by university, city or suburb" startAdornment={<SearchIcon/>}/>
                       <Button disableRipple className="buttonText" href={'../app/listings'}>Add Listing</Button>
                       <Button disableRipple href={'../app/'}>Saved</Button>

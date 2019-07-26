@@ -5,7 +5,7 @@ import {Button, Avatar, Card, CardContent, CardMedia, Divider, Grid} from "@mate
 import Typography from "@material-ui/core/Typography";
 import VerifiedUser from "@material-ui/core/SvgIcon/SvgIcon";
 import {Button as ButtonStyle} from "semantic-ui-react";
-import * as TextInput from "./textinputs";
+import * as TextInput from "./TextInputs";
 import config from "../utils/config";
 import ListingCard from "./ListingThumbnail";
 import List from "@material-ui/core/List";

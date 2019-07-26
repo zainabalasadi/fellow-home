@@ -3,7 +3,7 @@ import {Button,CardContent,Divider,Grid,Avatar,Card,CardMedia} from "@material-u
 import Typography from "@material-ui/core/Typography";
 import VerifiedUser from '@material-ui/icons/VerifiedUser'
 import RateReview from '@material-ui/icons/RateReview'
-import * as TextInput from "../components/textinputs";
+import * as TextInput from "./TextInputs";
 import config from '../utils/config'
 import {Button as ButtonStyle} from 'semantic-ui-react';
 import ListingCard from "./ListingThumbnail";
