@@ -24,7 +24,7 @@ class ListingListResource(Resource):
                     'error': 'No listings found'}, 404
 
         return {'status': 'success',
-                'data': [ListingSchema().dump(listing).data for listing in listings]}
+                'data': ListingSchema().dump(listing, many=True).data}
 
     @auth_required
     def post(self):
@@ -98,5 +98,23 @@ class ListingResource(Resource):
         return {'status': 'success',
                 'msg': f'Listing {id} successfully removed'}
 
+class ListingPublishResource(Resource):
+    @auth_required
+    def put(self, id):
+        user = current_user()
+        listing = Listing.query.get(id)
+
+        if listing.user_id != user.id:
+            return {'status': 'error',
+                    'msg': 'You do not have access to this listing'}, 403
+        data, _ = ListingSchema().load({'published': True}, 
+                                        instance=Listing.query.get(id),
+                                        partial=True)
+        db.session.commit()
+
+        return {'status': 'success',
+                'msg': f'Listing {id} successfully published'}
+
 api.add_resource(ListingListResource, '/')
 api.add_resource(ListingResource, '/<int:id>')
+api.add_resource(ListingPublishResource, '/<int:id>/publish')

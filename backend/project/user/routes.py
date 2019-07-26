@@ -9,6 +9,8 @@ from flask_restful import Api, Resource
 from project import db
 from project.user.models import User
 from project.user.schemas import UserSchema
+from project.listing.models import Listing
+from project.listing.schemas import ListingSchema
 
 bp = Blueprint('user', __name__)
 api = Api(bp)
@@ -23,7 +25,7 @@ class UserListResource(Resource):
                     'error': 'No users found'}, 404
 
         return {'status': 'success',
-                'data': [UserSchema(exclude=['password']).dump(user).data for user in users]}
+                'data': UserSchema(exclude=['password']).dump(users, many=True).data}
 
 class UserResource(Resource):
     def get(self, id):
@@ -34,6 +36,17 @@ class UserResource(Resource):
 
         return {'status': 'success',
                 'data': UserSchema(exclude=['password']).dump(user).data}
+
+class UserListingResource(Resource):
+    def get(self, id):
+        listings = Listing.query.filter(Listing.user_id == id)
+
+        if not listings:
+            return {'status': 'error',
+                    'error': 'No listings found'}, 404
+
+        return {'status': 'success',
+                'data': ListingSchema().dump(listings, many=True).data}
 
 class UserSettingsResource(Resource):
     @auth_required
@@ -56,4 +69,5 @@ class UserSettingsResource(Resource):
 
 api.add_resource(UserListResource, '/')
 api.add_resource(UserResource, '/<int:id>')
+api.add_resource(UserListingResource, '/<int:id>/listings')
 api.add_resource(UserSettingsResource, '/settings')
