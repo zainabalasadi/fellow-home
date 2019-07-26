@@ -24,7 +24,7 @@ class ListingListResource(Resource):
                     'error': 'No listings found'}, 404
 
         return {'status': 'success',
-                'data': ListingSchema().dump(listing, many=True).data}
+                'data': ListingSchema().dump(listings, many=True).data}
 
     @auth_required
     def post(self):
