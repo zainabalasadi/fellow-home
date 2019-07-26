@@ -3,15 +3,18 @@
 import click
 import json
 import os
+
+from datetime import datetime
 from flask.cli import FlaskGroup
+from flask_migrate import MigrateCommand
 
 from project import create_app, db, guard
-from project.models.user import User
-from project.models.listing import Listing
-from project.models.room import Room
+from project.user.models import User
+from project.listing.models import Listing, Room, Address, Amenity, ListingImage, Feature
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
+cli.add_command('db', MigrateCommand)
 
 @cli.command('recreate_db')
 def recreate_db():
@@ -26,12 +29,12 @@ def populate_db(amount):
         data = json.load(f)
         count = 0
         for person in data:
-            u = User(f_name=person['first_name'],
-                     l_name=person['last_name'],
+            u = User(first_name=person['first_name'],
+                     last_name=person['last_name'],
                      email=person['email'],
                      avatar=person['avatar'],
-                     password=guard.encrypt_password(person['password']),
-                     dob=person['dob'],
+                     password=person['password'],
+                     dob=datetime.strptime(person['dob'], '%d/%m/%Y'),
                      gender=person['gender'])
             db.session.add(u)
             count += 1
@@ -39,13 +42,46 @@ def populate_db(amount):
                 break
     db.session.commit()
 
-    p = User.query.get(1)
-    listing = Listing("a house", "12/7/2019", 5, 2, 2, False, 100.0)
-    rooms = [Room("single", 100.0, False, "12/7/2019", 90), 
-             Room("double", 200.0, False, "12/7/2019", 90)]
-    listing.rooms.extend(rooms)
-    p.listings.append(listing)
-    db.session.add(p)
+    with open('data/listings.json') as f:
+        data = json.load(f)
+        for listing in data:
+            user = User.query.get(listing['user_id'])
+
+            address = Address(name=listing["map_data"]["street"],
+                              suburb=listing["map_data"]["suburb"],
+                              postcode=listing["map_data"]["postcode"])
+            images = [ListingImage(url=url) for url in listing["images"]]
+            amenities = [Amenity(amenity=amenity) for amenity in listing["amenities"]]
+            rooms = [Room(roomType=room["attributes"]["room_type"],
+                          cost=room["attributes"]["rent"],
+                          furnished=room["attributes"]["furnishings"],
+                          availability=datetime.strptime(room["attributes"]["date_available"], 
+                                                        "%Y-%m-%d"),
+                          min_stay=room["attributes"]["min_stay"] or 0)
+                          for room in listing["rooms"]]
+            features = [Feature(feature=feat) 
+                        for room in listing["rooms"] 
+                        for feat in room["attributes"]["room_features_attributes"]]
+
+            new_listing = Listing(name=listing["title"],
+                              property_type=listing["property_type"],
+                              description=listing["description"],
+                              date_published=listing["date_published"],
+                              num_housemates=listing["occupants"],
+                              num_vacancies=listing["vacancies"],
+                              num_bathrooms=listing["bathrooms"],
+                              num_bedrooms=listing["bedrooms"],
+                              landsize=listing["landsize"],
+                              address=address,
+                              rooms=rooms,
+                              features=features,
+                              amenities=amenities,
+                              restrictions=[])
+
+            user.listings.append(new_listing)
+
+            db.session.add(user)
+
     db.session.commit()
 
 if __name__ == '__main__':

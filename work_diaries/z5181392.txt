@@ -39,11 +39,18 @@ Key Points:
 ~system architecture
 
 Week 3
-All of us worked on the proposal, I also set up GitHub Kanban boards specifically for the sprints. Ended a week with a Facebook messenger group call to retrospective the proposal before submission, and plan task allotment for the new sprint, as well as overall general sprint schedule. Settling that this sprint will be on Front Page and Accounts.
+All of us worked on the proposal, I also set up GitHub Kanban boards specifically for the sprints. Durring the weeks standups we also settled the logo and colour themes. Ended a week with a Facebook messenger group call to retrospective the proposal before submission, and plan task allotment for the new sprint, as well as overall general sprint schedule. Settling that this sprint will be on Front Page and Accounts.
 
 Week 4
+As we split into tasks to start on creating the site in entirety I decided to join on with Zainab on frontend and UI, while Anna and William grouped for the backend and database. Durring the weekly meeting we also created a basic UML class diagram to know and clarify the aspects and features (atributes) to create both in front end and linkages with backend. I set up the new Kanban board for the sprint.
+
 Week 5
+I worked on figuring out the usage descrepancies in utilising design packages like Material Ui and Semantic UI from basic hardcode React that I was familiar with. 
+
 Week 6
+As Anna was away durring when we would have the weekly meeting last week we rescheduled it for the start of this week to update on progress. Durring this we settled some details on the layout of listings, headers, and the details/complexity of search function/page + functionality of buttons in different stages (eg dissable when required fields not filled). I also created a new google doc to list varrious optional add ons as well as limitations/exclusions/exceptions + errors in user input/entry fields. After getting feedback from Ali on the websites UI aswell as features we allocated more specific tasks to people. 
+Otherwise I worked on integrating API's like google maps and special dessign components for the listings. 
+
 Week 7
 Week 8
 Week 9

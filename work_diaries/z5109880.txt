@@ -29,3 +29,17 @@ setting up Docker.
 Continued adding features to the authentication module such as registering users and logging them out. 
 Started scraping fake user data for the system. Also continued to help with problems concerning Docker 
 and working locally. Updated the models such that they would work properly with SQLAlchemy.
+
+# Week 6
+Had a group meeting early in the week to discuss the layout and other functionalities of the site and
+how we would handle errors. Merged my work with Anna's to the master branch. Got feedback from Ali about
+the UI. Continued to debug the code and fix up the unit tests. Did some research on libraries such as 
+Flask-Restful and Marshmallow to ease development.
+
+# Week 7
+Had a group call to discuss everyone's progress for the week. Jason and Zainab had completed some 
+components for the frontend and asked me to add in extra exceptions for the backend. I also tried to 
+help Zainab with some issues she was having with Postgres/Docker. Scraped fake data for listings and
+added basic functionalities for creating and getting data from the backend. Added a migration system
+for the database and migrated to using Flask-Restful to build the REST API and Marshmallow to serialize 
+the data from the frontend to the backend and vice-versa.
