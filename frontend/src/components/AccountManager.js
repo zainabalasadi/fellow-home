@@ -1,30 +1,52 @@
 import React, { Component } from 'react';
 import Switch from 'react-switch';
-import Profile, {EditProfile, EditProfileCard, ProfileCard} from "./Profile";
-import {Button, Avatar, Card, CardContent, CardMedia, Divider, Grid} from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import VerifiedUser from "@material-ui/core/SvgIcon/SvgIcon";
-import {Button as ButtonStyle} from "semantic-ui-react";
-import * as TextInput from "./TextInputs";
-import config from "../utils/config";
+import axios from 'axios';
+
 import ListingCard from "./ListingThumbnail";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import RateReview from '@material-ui/icons/RateReview'
+import {Button, Avatar, Card, CardContent, CardMedia, Divider, Grid} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import VerifiedUser from "@material-ui/core/SvgIcon/SvgIcon";
+import {Button as ButtonStyle} from "semantic-ui-react";
+
+import Profile, { EditProfile, EditProfileCard, ProfileCard } from "./Profile";
+import * as TextInput from "./TextInputs";
+import config from "../utils/config";
 
 class AccountManager extends Component {
     constructor(props) {
         super(props);
 
         this.user = this.props.user;
+        this.uid = this.props.match.params.uid;
 
         this.state = {
             isEditMode: false,
+            info: {}
         }
 
         this.handleNameChange = this.handleNameChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.getUserInfo();
+    }
+
+    getUserInfo() {
+        axios.get(config.backendPath + 'users/' + this.uid)
+            .then((res) => {
+                console.log(res)
+                this.setState({
+                    info: res.data.data
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     handleNameChange(event) {
@@ -75,11 +97,11 @@ class AccountManager extends Component {
     }
 
     renderProfile(editButton) {
-        return(<Profile user={this.user} editProfButton={editButton}/>)
+        return(<Profile user={this.state.info} editProfButton={editButton}/>)
     }
 
     renderEditProfile(saveButton) {
-        return(<EditProfile user={this.user} saveProfButton={saveButton}/>)
+        return(<EditProfile user={this.state.info} saveProfButton={saveButton}/>)
     }
 
     render() {
@@ -106,7 +128,8 @@ class AccountManager extends Component {
                 <h1>Profile</h1>
                 <Grid container  style={containerStyle}>
                     <Grid item style={cardStyle}>
-                        {isEditMode ? <EditProfileCard/> : <ProfileCard/>}
+                        {isEditMode ? <EditProfileCard 
+                                        user={this.state.info}/> : <ProfileCard user={this.state.info}/>}
                     </Grid>
                     <Grid item style={contentStyle}>
                         <div className="section">

@@ -25,7 +25,7 @@ export function EditProfileCard(props) {
             <p/>
             <Grid container justify="space-around" alignItems="center">
             <Avatar alt="Remy Sharp"
-                    src={require("../assets/images/octar.jpg")}
+                    src={props.user.avatar}
                     margin={10}
                     style={{height: "112px", width: "112px"}}
             />
@@ -56,7 +56,7 @@ export function ProfileCard(props) {
             <p/>
             <Grid container justify="space-around" alignItems="center">
                 <Avatar alt="Remy Sharp"
-                        src={require("../assets/images/octar.jpg")}
+                        src={props.user.avatar}
                         margin={10}
                         style={{height: "112px", width: "112px"}}
                 />
@@ -132,16 +132,18 @@ function Profile(props) {
         <Grid width="100%" direction="row" container justify="space-around" alignItems="center">
             <Grid item xs>
                 <div>
-                    <h3 className="textFellowDark">Hi, I'm {props.user.name}</h3>
+                    <h3 className="textFellowDark">Hi, I'm {props.user.first_name}</h3>
                     <hr style={{width: "90%"}}/>
-                    <p className="outline textFellowLight">Joined in 2019 {props.editProfButton}</p>
+                    <p className="outline textFellowLight">
+                        Joined in 2019 {props.editProfButton}
+                    </p>
                     <TextInput.Multiline className="body2 textFellowRed"
                                          styling={{width: "90%"}}
                                          disabledText={true}
                         value={props.user.abstract}
                     />
                     <Divider style={{width: "90%"}}/>
-                    <h5 className="textFellowDark">{props.user.name}'s listings</h5>
+                    <h5 className="textFellowDark">{props.user.first_name}'s listings</h5>
                     <div style={{width: "90%"}} className="action-cards">
                         {config.listings.map(ListingCard)}
                     </div>

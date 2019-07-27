@@ -63,10 +63,15 @@ const reviews = [
         person: '/static/images/avatar/2.jpg',
     }
     ];
+
+const backendPath = "http://localhost:5000/api/";
+
 module.exports = {
     checkFeatures: checkFeatures,
     dropFeatures: dropFeatures,
     listings: listings,
     reviews: reviews,
-    userProfile: userProfile
+    userProfile: userProfile,
+    backendPath: backendPath
 }
+

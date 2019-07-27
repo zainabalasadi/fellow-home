@@ -85,6 +85,12 @@ function Header() {
                     <Route path="/saved" component={() => <ListingCard/>} />
                     <Route path="/message" component={() => <ListingCard/>} />
                     <Route path="/help" component={() => <ListingCard/>} />
+                    <Route path="/user/:uid" component={
+                                                (props) => 
+                                                    <AccountManager {...props} 
+                                                        user={config.userProfile}
+                                                    />
+                                            }/>
                     <Route path="/profile" component={() => <AccountManager 
                                                                 user={config.userProfile}/>} />
                 </Switch>
