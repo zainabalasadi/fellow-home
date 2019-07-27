@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from "@material-ui/core/DialogContent";
@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 function Register() {
     const [open, setOpen] = React.useState(false);

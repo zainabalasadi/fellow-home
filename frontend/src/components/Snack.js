@@ -4,8 +4,9 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import '../css/buttons.css'
-const useStyles = makeStyles(theme => ({
+import '../css/buttons.css';
+
+const useStyles = makeStyles((theme) => ({
     close: {
         padding: theme.spacing(0.5),
     },

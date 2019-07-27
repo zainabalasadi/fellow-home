@@ -1,10 +1,8 @@
-import React, {Component} from 'react'
-import { Button } from 'semantic-ui-react'
-import '../css/buttons.css'
+import React, { Component } from 'react';
+import { Button } from 'semantic-ui-react';
+import '../css/buttons.css';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
-
 
 class Check extends Component {
     /*checkbox*/
@@ -12,7 +10,7 @@ class Check extends Component {
         this.selectedCheckboxes = new Set();
     }
 
-    toggleCheckbox = label => {
+    toggleCheckbox = (label) => {
         if (this.selectedCheckboxes.has(label)) {
             this.selectedCheckboxes.delete(label);
         } else {
@@ -20,16 +18,12 @@ class Check extends Component {
         }
     }
 
-    createCheckbox = labels => (
+    createCheckbox = (labels) => (
         <FormControlLabel
             label={labels}
             control={
-                <Checkbox
-                    handleCheckboxChange={this.toggleCheckbox}
-                    color="primary"
-                />
+                <Checkbox handleCheckboxChange={this.toggleCheckbox} color="primary"/>
             }
-
         />
     )
 
@@ -37,12 +31,12 @@ class Check extends Component {
         this.props.features.map(this.createCheckbox)
     )
 
-    render(){
-        return(
+    render() {
+        return (
             <form>
                 {this.createCheckboxes()}
             </form>
-    );
-    };
+        );
+    }
 }
 export default Check

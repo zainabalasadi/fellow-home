@@ -35,21 +35,29 @@ class AccountManager extends Component {
         this.user.abstract = document.getElementById("abstract").value;
         this.setState({isEditMode: newState});
     }
+
     renderSaveButton(newState) {
         return(
-        <ButtonStyle.Group>
-            <Button disableRipple variant="contained" color="primary"
-                    onClick={() => this.handleStateChange(newState)}>Save</Button>
-            <ButtonStyle.Or />
-            <Button disableRipple variant="outlined"
-                    onClick={() => this.setState({isEditMode: newState})}>Cancel</Button>
-        </ButtonStyle.Group>
+            <ButtonStyle.Group>
+                <Button disableRipple variant="contained" color="primary" 
+                        onClick={() => this.handleStateChange(newState)}>
+                    Save
+                </Button>
+                <ButtonStyle.Or />
+                <Button disableRipple variant="outlined"
+                        onClick={() => this.setState({isEditMode: newState})}>
+                    Cancel
+                </Button>
+            </ButtonStyle.Group>
         )
     }
+
     renderEditButton(newState){
         return(
-        <Button className="body2" color={"primary"}
-                onClick={() => this.setState({isEditMode: newState})}>Edit Profile</Button>
+            <Button className="body2" color={"primary"} 
+                    onClick={() => this.setState({isEditMode: newState})}>
+                Edit Profile
+            </Button>
         )
     }
 
@@ -60,21 +68,19 @@ class AccountManager extends Component {
         }
         return (
             <Grid item>
-                {this.state.isEditMode ? this.renderSaveButton(newState) : this.renderEditButton(newState)}
+                {this.state.isEditMode ? 
+                    this.renderSaveButton(newState) : this.renderEditButton(newState)}
             </Grid>
         )
     }
 
     renderProfile(editButton) {
-     return(<Profile user={this.user} editProfButton={editButton}/>)
+        return(<Profile user={this.user} editProfButton={editButton}/>)
     }
 
     renderEditProfile(saveButton) {
         return(<EditProfile user={this.user} saveProfButton={saveButton}/>)
     }
-
-
-
 
     render() {
         const isEditMode = this.state.isEditMode;
@@ -85,14 +91,16 @@ class AccountManager extends Component {
             flexFlow: "row wrap",
             justify: "center",
             alignItems: "flex-start",
-        }
+        };
 
         const cardStyle = {
             width: "28%",
-        }
+        };
+
         const contentStyle = {
             width: "68%",
-        }
+        };
+
         return (
             <div width="90%" className="content">
                 <h1>Profile</h1>
@@ -102,12 +110,12 @@ class AccountManager extends Component {
                     </Grid>
                     <Grid item style={contentStyle}>
                         <div className="section">
-                            {isEditMode ? this.renderEditProfile(this.renderButton()) : this.renderProfile(this.renderButton())}
+                            {isEditMode ? 
+                                this.renderEditProfile(this.renderButton()) 
+                                : this.renderProfile(this.renderButton())}
                         </div>
                     </Grid>
                 </Grid>
-
-
                 {this.renderButton()}
             </div>
         )

@@ -10,8 +10,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 
-import AddIcon from '@material-ui/icons/Add'
-import Icon from '@material-ui/core/Icon/'
+import AddIcon from '@material-ui/icons/Add';
+import Icon from '@material-ui/core/Icon/';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -19,7 +19,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export function InputText(props){
+export function InputText(props) {
     return(
         <TextField
             className={props.classNames}
@@ -34,54 +34,58 @@ export function InputText(props){
             }}
         />
     );
+}
+
+export function Named(props) { 
+    return (
+        <TextField
+            margin={"theme.spacing(1)"}
+            label={props.name}
+            variant="outlined"
+            id={props.id}
+            onChange={props.onChange}
+        />
+    );
+}
+
+export function Require(props) { 
+    return (
+        <TextField
+            required
+            margin={"theme.spacing(1)"}
+            label={props.name}
+            placeholder={props.placeholder}
+            variant="outlined"
+            id={props.id}
+            onChange={props.onChange}
+        />
+    );
 };
 
-export function Named(props) { return(
-    <TextField
-        margin={"theme.spacing(1)"}
-        label={props.name}
-        variant="outlined"
-        id={props.id}
-        onChange={props.onChange}
-    />
-);
-};
+export function Error(props) { 
+    return (
+        <TextField
+            error
+            margin={"theme.spacing(1)"}
+            label={props.name}
+            variant="outlined"
+            id={props.id}
+            onChange={props.onChange}
+        />
+    );
+}
 
-export function Require(props) { return(
-    <TextField
-        required
-        margin={"theme.spacing(1)"}
-        label={props.name}
-        placeholder={props.placeholder}
-        variant="outlined"
-        id={props.id}
-        onChange={props.onChange}
-    />
-);
-};
-
-export function Error(props) { return(
-    <TextField
-        error
-        margin={"theme.spacing(1)"}
-        label={props.name}
-        variant="outlined"
-        id={props.id}
-        onChange={props.onChange}
-    />
-);
-};
-
-export function Disabled(props) { return(
-    <TextField
-        disabled
-        multiline
-        margin={"theme.spacing(1)"}
-        defaultValue={props.placeholder}
-        variant="outlined"
-        id={props.id}
-    />
-);
+export function Disabled(props) { 
+    return (
+        <TextField
+            disabled
+            multiline
+            margin={"theme.spacing(1)"}
+            defaultValue={props.placeholder}
+            variant="outlined"
+            id={props.id}
+        />
+    );
 };
 
 export function Password (props) {
@@ -95,7 +99,7 @@ export function Password (props) {
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
     };
-    return(
+    return (
         <FormControl>
             <InputLabel htmlFor="adornment-password">Password</InputLabel>
             <Input
@@ -105,27 +109,29 @@ export function Password (props) {
                 onChange={handleChange('password')}
                 endAdornment={
                     <InputAdornment position="end">
-                        <IconButton aria-label="Toggle password visibility" onClick={handleClickShowPassword}>
+                        <IconButton aria-label="Toggle password visibility" 
+                                    onClick={handleClickShowPassword}>
                             {values.showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
                 }
             />
         </FormControl>
-);
+    );
 };
 
-export function Email (props) { return(
-    <TextField
-        margin={"theme.spacing(1)"}
-        label="email"
-        type="email"
-        autoComplete="email"
-        variant="outlined"
-        id={props.id}
-        onChange={props.onChange}
-    />
-);
+export function Email (props) { 
+    return(
+        <TextField
+            margin={"theme.spacing(1)"}
+            label="email"
+            type="email"
+            autoComplete="email"
+            variant="outlined"
+            id={props.id}
+            onChange={props.onChange}
+        />
+    );
 };
 
 export function Multiline (props) {
@@ -136,22 +142,21 @@ export function Multiline (props) {
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
-    return(
-    <TextField
-        multiline
-        disabled={props.disabledText}
-        className={props.classNames}
-        style={props.styling}
-        rowsMax={props.lineShow}
-        value={values.multiline}
-        onChange={handleChange('multiline')}
-        margin={"normal"}
-        variant="outlined"
-        id={props.id}
-    />
-);
+    return (
+        <TextField
+            multiline
+            disabled={props.disabledText}
+            className={props.classNames}
+            style={props.styling}
+            rowsMax={props.lineShow}
+            value={values.multiline}
+            onChange={handleChange('multiline')}
+            margin={"normal"}
+            variant="outlined"
+            id={props.id}
+        />
+    );
 };
-
 
 export function SelectDrop(props) {
     const [values, setValues] = React.useState({
@@ -165,30 +170,29 @@ export function SelectDrop(props) {
         setValues({ ...values, [name]: event.target.value });
     };
 
-    return(
-    <TextField
-        id="filled-select-currency"
-        select
-        label="Select"
+    return (
+        <TextField
+            id="filled-select-currency"
+            select
+            label="Select"
 
-        value={values.currency}
-        onChange={handleChange('currency')}
-        SelectProps={{
-            MenuProps: {width: 200},
-        }}
-        helperText="Number Fellows"
-        margin="normal"
+            value={values.currency}
+            onChange={handleChange('currency')}
+            SelectProps={{
+                MenuProps: {width: 200},
+            }}
+            helperText="Number Fellows"
+            margin="normal"
 
-    >
-        {props.features.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-                {option.label}
-            </MenuItem>
-        ))}
-    </TextField>
-);
+        >
+            {props.features.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+            ))}
+        </TextField>
+    );
 };
-
 
 export function FormDialog(props) {
     const [open, setOpen] = React.useState(false);
