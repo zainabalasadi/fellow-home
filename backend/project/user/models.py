@@ -2,6 +2,7 @@
 
 from project import db, guard
 from project.review.models import Review
+from project.listing.models import Listing
 
 class User(db.Model):
     __tablename__ = 'User'
@@ -61,3 +62,9 @@ class User(db.Model):
         db.session.commit()
 
         return user.id
+
+    def add_listing(self, listing):
+        return Listing.add(self, listing)
+
+    def add_review(self, reviewee, review):
+        Review.add(self, reviewee, review)

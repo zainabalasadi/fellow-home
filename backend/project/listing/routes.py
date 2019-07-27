@@ -20,7 +20,7 @@ class ListingListResource(Resource):
         page = request.args.get('page', 1, type=int)
 
         # search by suburbs
-        listings = Listing.query.join(Address).filter(Listing.published == True).\
+        listings = Listing.query.join(Address).filter(Listing.published).\
                         filter(Address.suburb.ilike(f'%{search_string}%')).\
                         paginate(page, int(os.getenv('PER_PAGE', 10)), False).items
         if not listings:
@@ -35,7 +35,7 @@ class ListingListResource(Resource):
         user = current_user()
         try:
             listing, _ = ListingSchema().load(request.get_json())
-            id = Listing.add(user, listing)
+            id = user.add_listing(listing)
         except ValidationError as err:
             return {'status': 'error', 'errors': err.messages['_schema']}
 

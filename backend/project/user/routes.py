@@ -59,7 +59,7 @@ class UserResource(Resource):
 
 class UserListingResource(Resource):
     def get(self, id):
-        listings = Listing.query.filter(Listing.user_id == id).all()
+        listings = Listing.query.filter(Listing.published).filter(Listing.user_id == id).all()
 
         if not listings:
             return {'status': 'error',
@@ -96,7 +96,7 @@ class UserReviewsResource(Resource):
 
         try:
             data, _ = ReviewSchema().load(request.get_json())
-            Review.add(user, reviewee, data)
+            user.add_review(reviewee, data)
         except Exception as err:
             print(err)
             return {'status': 'error',
