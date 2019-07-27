@@ -12,7 +12,6 @@ import MapContainer from "../components/MapContainer";
 import '../css/textAndColour.css'
 import '../css/buttons.css'
 
-
 const theme = createMuiTheme({
 	palette: {
 		primary: {
@@ -57,6 +56,7 @@ class App extends Component {
 				console.log(err);
 			})
 	};
+  
 	render() {
 		return (
 			<React.Fragment>

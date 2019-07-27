@@ -16,6 +16,7 @@ import AccountManager from "./AccountManager";
 import config from '../utils/config'
 import Home from "./Home";
 import {MapContainer} from "./MapContainer";
+
 function NavigationMenu(props) {
     return (
         <div className="navigation">
