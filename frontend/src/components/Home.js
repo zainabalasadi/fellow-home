@@ -26,9 +26,8 @@ import Avatar from "@material-ui/core/Avatar";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Profile from "../components/Profile";
-
-import TextField from '@material-ui/core/TextField';
-
+import Login from "../components/Login";
+import Register from "../components/Register";
 
 const theme = createMuiTheme({
     palette: {
@@ -57,7 +56,8 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            message: "Hello Welcome to Fellow!"
+            message: "Hello Welcome to Fellow!",
+            open : false
         };
     };
     componentDidMount() {
@@ -73,7 +73,10 @@ class Home extends Component {
                 console.log(err);
             })
     };
+
+
     render() {
+
         return (
             <React.Fragment>
                 <ThemeProvider theme={theme}>
@@ -85,91 +88,16 @@ class Home extends Component {
                     <Container maxWidth="lg">
                         <p>This is main, in a container with padded sides</p>
 
+                        <Login/>
+                        <Register/>
 
-
-
-
-            <BrowserRouter>
-                <Button disableRipple href={'../Profile'}>prof</Button>
-                    <Switch>
-                        <Route path="/Profile" component={() => <Profile/>}/>
-                    </Switch>
-          </BrowserRouter>
-                            
-                            <TextInput.FormDialog buttonLabel={"Login"} submitLabel={"Login"} message={
-                                <DialogContent>
-                                    <DialogContentText>
-                                        Please enter your details below
-                                    </DialogContentText>
-                                        <div>
-                                        <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="name"
-                                        label="Email Address"
-                                        type="email"
-                                        />
-                                        </div>
-                                        <div>
-                                            <TextInput.Password/>
-                                        </div>
-                                     <DialogContentText>
-                                        Don't have an account? 
-                                        <a href="/">Sign Up!</a>
-                                    </DialogContentText>
-                                </DialogContent>
-                            }/>
-                            <TextInput.FormDialog buttonLabel={"Sign Up"} submitLabel={"Sign Up"} message={
-                                <DialogContent>
-                                    <DialogContentText>
-                                        Please enter your details below
-                                    </DialogContentText>
-                                        <div>
-                                        <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="name"
-                                        label="Email Address"
-                                        type="email"
-                                        />
-                                        </div>
-                                        <div>
-                                        <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="f_name"
-                                        label="First Name"
-                                        type="text"
-                                        />
-                                        </div>
-                                        <div>
-                                        <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="l_name"
-                                        label="Last Name"
-                                        type="text"
-                                        />
-                                        </div>
-                                        <div>
-                                        <TextInput.Password/>
-                                        </div>
-                                    <div>
-                                        <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="name"
-                                        label="University"
-                                        type="text"
-                                        />
-                                    </div>
-                                    <DialogContentText>
-                                        Already have a fellow account?  
-                                        <a href="/">Log in</a>
-                                    </DialogContentText>
-                                </DialogContent>
-                            }/>
-
+                        <BrowserRouter>
+                            <Button disableRipple href={'../Profile'}>prof</Button>
+                        <Switch>
+                            <Route path="/Profile" component={() => <Profile/>}/>
+                        </Switch>
+                        </BrowserRouter>
+                        
                         <div className="action-buttons">
                             <Button variant="contained" color="primary">
                                 {
@@ -226,5 +154,6 @@ class Home extends Component {
         );
     };
 }
+
 
 export default Home;
