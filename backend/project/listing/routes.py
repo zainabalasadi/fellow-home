@@ -8,7 +8,7 @@ from flask_restful import Api, Resource
 from marshmallow import ValidationError
 
 from project import db, guard
-from project.listing.models import Listing
+from project.listing.models import Listing, Address
 from project.listing.schemas import ListingSchema 
 
 bp = Blueprint('listing', __name__)
@@ -16,9 +16,13 @@ api = Api(bp)
 
 class ListingListResource(Resource):
     def get(self):
+        search_string = request.args.get('search', '')
         page = request.args.get('page', 1, type=int)
-        listings = Listing.query.filter_by(published=True).paginate(page, 
-                                            int(os.getenv('PER_PAGE', 10)), False).items
+
+        # search by suburbs
+        listings = Listing.query.join(Address).filter(Listing.published == True).\
+                        filter(Address.suburb.ilike(f'%{search_string}%')).\
+                        paginate(page, int(os.getenv('PER_PAGE', 10)), False).items
         if not listings:
             return {'status': 'error',
                     'error': 'No listings found'}, 404
