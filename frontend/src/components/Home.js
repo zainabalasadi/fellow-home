@@ -25,6 +25,10 @@ import AccountManager from "../components/AccountManager";
 import Avatar from "@material-ui/core/Avatar";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import Profile from "../components/Profile";
+import Login from "../components/Login";
+import Register from "../components/Register";
+
 const theme = createMuiTheme({
     palette: {
         primary: {
@@ -48,12 +52,12 @@ const theme = createMuiTheme({
     }
 });
 
-
 class Home extends Component {
     constructor() {
         super();
         this.state = {
-            message: "Hello Welcome to Fellow!"
+            message: "Hello Welcome to Fellow!",
+            open : false
         };
     };
     componentDidMount() {
@@ -69,7 +73,10 @@ class Home extends Component {
                 console.log(err);
             })
     };
+
+
     render() {
+
         return (
             <React.Fragment>
                 <ThemeProvider theme={theme}>
@@ -80,6 +87,17 @@ class Home extends Component {
                     </div>
                     <Container maxWidth="lg">
                         <p>This is main, in a container with padded sides</p>
+
+                        <Login/>
+                        <Register/>
+
+                        <BrowserRouter>
+                            <Button disableRipple href={'../Profile'}>prof</Button>
+                        <Switch>
+                            <Route path="/Profile" component={() => <Profile/>}/>
+                        </Switch>
+                        </BrowserRouter>
+                        
                         <div className="action-buttons">
                             <Button variant="contained" color="primary">
                                 {
@@ -136,5 +154,6 @@ class Home extends Component {
         );
     };
 }
+
 
 export default Home;

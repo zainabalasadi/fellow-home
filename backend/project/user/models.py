@@ -2,6 +2,7 @@
 
 from project import db, guard
 from project.review.models import Review
+from project.listing.models import Listing
 
 class User(db.Model):
     __tablename__ = 'User'
@@ -18,8 +19,8 @@ class User(db.Model):
     verified = db.Column(db.Boolean, nullable=False, default=False)
     listings = db.relationship('Listing', backref='user', lazy=True)
 
-    reviewee = db.relationship('Review', backref='to', primaryjoin=id==Review.reviewee_id)
-    reviewer = db.relationship('Review', backref='from', primaryjoin=id==Review.reviewer_id)
+    reviews_recv = db.relationship('Review', backref='from', primaryjoin=id==Review.reviewer_id)
+    reviews_sent  = db.relationship('Review', backref='to', primaryjoin=id==Review.reviewee_id)
 
     # flask-praetorian stuff
     roles = db.Column(db.Text)
@@ -29,7 +30,7 @@ class User(db.Model):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email 
-        self.password = guard.encrypt_password(password)
+        self.password = guard.hash_password(password)
         self.avatar = avatar
         self.dob = dob
         self.gender = gender
@@ -61,3 +62,9 @@ class User(db.Model):
         db.session.commit()
 
         return user.id
+
+    def add_listing(self, listing):
+        return Listing.add(self, listing)
+
+    def add_review(self, reviewee, review):
+        Review.add(self, reviewee, review)
