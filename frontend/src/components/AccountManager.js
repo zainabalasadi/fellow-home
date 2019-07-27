@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import Switch from 'react-switch';
 import Profile, {EditProfile, EditProfileCard, ProfileCard} from "./Profile";
-import {Button, Avatar, Card, CardContent, CardMedia, Divider, Grid} from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import VerifiedUser from "@material-ui/core/SvgIcon/SvgIcon";
+import {Grid} from "@material-ui/core";
 import {Button as ButtonStyle} from "semantic-ui-react";
-import * as TextInput from "./textinputs";
-import config from "../utils/config";
-import ListingCard from "./ListingThumbnail";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemText from "@material-ui/core/ListItemText";
-import RateReview from '@material-ui/icons/RateReview'
+import * as buts from './Button';
+import {theme} from './Theme';
 
 class AccountManager extends Component {
     constructor(props) {
@@ -38,18 +29,18 @@ class AccountManager extends Component {
     renderSaveButton(newState) {
         return(
         <ButtonStyle.Group>
-            <Button disableRipple variant="contained" color="primary"
-                    onClick={() => this.handleStateChange(newState)}>Save</Button>
+            <buts.buttonFill colour={theme.colors.primary}
+                    click={() => this.handleStateChange(newState)} message={"Save"}/>
             <ButtonStyle.Or />
-            <Button disableRipple variant="outlined"
-                    onClick={() => this.setState({isEditMode: newState})}>Cancel</Button>
+            <buts.buttonOutline colour={theme.colors.dark}
+                    click={() => this.setState({isEditMode: newState})} message={"Cancel"}/>
         </ButtonStyle.Group>
         )
     }
     renderEditButton(newState){
         return(
-        <Button className="body2" color={"primary"}
-                onClick={() => this.setState({isEditMode: newState})}>Edit Profile</Button>
+        <buts.buttonLink className="body2" colour={theme.colors.primary}
+                click={() => this.setState({isEditMode: newState})} message={"Edit Profile"}/>
         )
     }
 
@@ -95,7 +86,6 @@ class AccountManager extends Component {
         }
         return (
             <div width="90%" className="content">
-                <h1>Profile</h1>
                 <Grid container  style={containerStyle}>
                     <Grid item style={cardStyle}>
                         {isEditMode ? <EditProfileCard/> : <ProfileCard/>}

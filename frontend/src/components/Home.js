@@ -1,56 +1,23 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Button from '@material-ui/core/Button'
+import * as buts from './Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
 import '../app/App.css';
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
-import SnackBar from "../components/snack";
-import Check from "../components/check";
+import SnackBar from "./Snack";
+import Check from "./Check";
 import config from "../utils/config";
-import * as TextInput from "../components/textinputs";
+import * as TextInput from "./Textinputs";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import MapContainer from "../components/MapContainer";
 import '../css/textAndColour.css'
 import '../css/buttons.css'
 import Fab from "@material-ui/core/Fab";
 import ListingCard from "../components/ListingThumbnail"
-import Grid from "@material-ui/core/Grid";
-import SearchIcon from "@material-ui/core/SvgIcon/SvgIcon";
-import AccountManager from "../components/AccountManager";
-import Avatar from "@material-ui/core/Avatar";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import Profile from "../components/Profile";
-import Login from "../components/Login";
-import Register from "../components/Register";
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#FF5240',
-        },
-        secondary: {
-            main: '#FFB133',
-        },
-    },
-    tertiary: {
-        main: '#00A077'
-    },
-    light: {
-        main: '#E4E4E4'
-    },
-    dark: {
-        main: '#484848'
-    },
-    white: {
-        main: '#FFFFFF',
-    }
-});
+import {theme} from './Theme'
+import Login from "./Login";
+import Register from "./Register";
 
 class Home extends Component {
     constructor() {
@@ -93,47 +60,46 @@ class Home extends Component {
 
                         <BrowserRouter>
                             <Button disableRipple href={'../Profile'}>prof</Button>
-                        <Switch>
-                            <Route path="/Profile" component={() => <Profile/>}/>
-                        </Switch>
+                            <Switch>
+                                <Route path="/Profile" component={() => <Profile/>}/>
+                            </Switch>
                         </BrowserRouter>
-                        
+
                         <div className="action-buttons">
-                            <Button variant="contained" color="primary">
-                                {
-                                    this.state.message
-                                }
-                            </Button>
-                            <Button variant="contained" color="t">
-                                {
-                                    this.state.message
-                                }
-                            </Button>
-                            <Button disabled variant="contained" color="Dark">
-                                {
-                                    this.state.message
-                                }
-                            </Button>
+                            <buts.buttonPlus disabled={true}/>
+                            <buts.buttonMinus/>
+                            <buts.buttonFill
+                                disabled={true}
+                                colour={theme.colors.tertiary}
+                                message={this.state.message}
+                            />
+                            <buts.buttonOutline
+                                disabled={true}
+                                colour={theme.colors.primary}
+                                message={this.state.message}
+                            />
+                            <buts.buttonLink
+                                colour={theme.colors.primary}
+                                message={this.state.message}
+                            />
                         </div>
                         <div>
-                            <Fab size="small" color="primary" className="buttonPlusMinus">
+                            <Fab size="small" color="primary" className="buttonPlusMinus" justify="centre">
                                 <i className="settings icon"/>
                             </Fab>
-                            <button className="buttonPlusMinus textFellowRed backgroundFellowWhite lineFellowRed">+</button>
-                            <button className="buttonPlusMinus lineFellowRed textFellowRed backgroundFellowWhite inactive">-</button>
-                            <SnackBar message="Not Here" buttonLabel="Click Here" buttonStyle="backgroundFellowGreen lineFellowWhite textFellowWhite buttonRect"/>
+                            <SnackBar fill={true} message="Not Here" buttonLabel="Click Here" colour={theme.colors.tertiary}/>
                         </div>
                         <div>
                             <Check features={config.checkFeatures}/>
                             <form>
-
+                                <TextInput.Named/>
                                 <TextInput.SelectDrop features={config.dropFeatures}/>
                                 <TextInput.Password/>
                                 <TextInput.InputText startAdornment={"$"} endAdornment={"%"}/>
                                 <TextInput.Email/>
                                 <TextInput.Disabled/>
                             </form>
-                            <TextInput.FormDialog buttonLabel={"Open Modal"} submitLabel={"Check In"} message={
+                            <TextInput.FormModal color={theme.colors.primary} buttonLabel={"Open Modal"} submitLabel={"Check In"} message={
                                 <DialogContent>
                                     <DialogContentText>
                                         To subscribe to this website, please enter your email address here. We will send updates
@@ -154,6 +120,5 @@ class Home extends Component {
         );
     };
 }
-
 
 export default Home;
