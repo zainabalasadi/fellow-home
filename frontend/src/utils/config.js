@@ -5,6 +5,17 @@ const  checkFeatures = [
     'Kitchen',
     'Garden'
 ];
+
+const  checkAmenities = [
+    'Bedside Table',
+    'Balcony',
+    'Wardrobe',
+    'Door lock',
+    'Air Conditioning/Heater',
+    'Kitchenette',
+    'Desk',
+    'TV'
+];
 const dropFeatures= [
     { value: "7", label: "7"},
     { value: "8", label: "8"},
@@ -65,6 +76,7 @@ const reviews = [
     ];
 module.exports = {
     checkFeatures: checkFeatures,
+    checkAmenities: checkAmenities,
     dropFeatures: dropFeatures,
     listings: listings,
     reviews: reviews,

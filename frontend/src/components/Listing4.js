@@ -23,9 +23,12 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import Paper from '@material-ui/core/Paper';
 import { BrowserRouter} from 'react-router-dom';
 import { Link, Route, Switch } from 'react-router-dom';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
-import Listing4 from "./Listing4";
+import config from "../utils/config";
 
+import Check from "./Check";
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
@@ -40,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function Listing3 () {
+function Listing4 () {
     const classes = useStyles();
     const [state, setState] = React.useState({
         age: '',
@@ -62,73 +65,44 @@ function Listing3 () {
     	<React.Fragment>
 	    	<CssBaseline />
 	      	<Container maxWidth="md">
-		      	<h4>Tell us about the rooms available</h4>
-		      	<p>ROOM NAME</p>
-                <TextField
-                    id="room1"
-                    placeholder="Room 1"
-                    type="text"
-                    margin="normal"
-                    className={classes.formControl}
-                    variant="outlined"
-                    fullWidth
-                />
-                <p>ROOM TYPE</p>
+		      	<h4>What ammenities do the room offer?</h4>
+                <p>Room with a view</p>
+		      	<p>BED TYPE</p>
                 <FormControl 
                     variant="outlined" 
                     margin="normal"
                     fullWidth
                     className={classes.formControl}
                 >
-                    <InputLabel ref={inputLabel} htmlFor="roomtype">
+                    <InputLabel ref={inputLabel} htmlFor="bedtype">
                         Select one
                     </InputLabel>
                     <Select
                         native
                         value={state.adress}
-                        onChange={handleChange('roomtype')}
+                        onChange={handleChange('bedtype')}
                         input={
-                            <OutlinedInput name="roomtype" labelWidth={labelWidth} id="roomtype" />
+                            <OutlinedInput name="bedtype" labelWidth={labelWidth} id="bedtype" />
                         }
                     >
                     <option value="" />
-                    <option value={0}>Small</option>
-                    <option value={1}>Medium</option>
-                    <option value={2}>Large</option>
+                    <option value={0}>Single</option>
+                    <option value={1}>Double</option>
+                    <option value={2}>Queen</option>
+                    <option value={3}>King</option>
+                    <option value={4}>None</option>
                     </Select>
                 </FormControl>
-                <p>BATHROOM ACCESS</p>
-                <FormControl 
-                    variant="outlined" 
-                    margin="normal"
-                    fullWidth
-                    className={classes.formControl}
-                >
-                    <InputLabel ref={inputLabel} htmlFor="bathroomaccess">
-                        Select one
-                    </InputLabel>
-                    <Select
-                        native
-                        value={state.adress}
-                        onChange={handleChange('bathroomaccess')}
-                        input={
-                            <OutlinedInput name="bathroomaccess" labelWidth={labelWidth} id="bathroomaccess" />
-                        }
-                    >
-                    <option value="" />
-                    <option value={0}>Yes</option>
-                    <option value={1}>No</option>
-                    </Select>
-                </FormControl>
-                + add another room
-                <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing4'}>Continue</Button>
-                    <Route path="/Listing4" component={() => <Listing4/>}/>
-                </BrowserRouter>
+                <p>Amenities</p>
+                
+                <p>These are just the amentiies housemates usually expect, but you can add even more after you publish</p>
+                <div>
+                    <Check features={config.checkAmenities}/>
+                </div>
         	</Container>
     	</React.Fragment>
     );
 }
  
-export default Listing3;
+export default Listing4;
 

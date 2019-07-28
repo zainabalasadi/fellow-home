@@ -9,7 +9,7 @@ import Profile from '../components/Profile'
 import Listing1 from '../components/Listing1'
 import Listing2 from '../components/Listing2'
 import Listing3 from '../components/Listing3'
-
+import Listing4 from '../components/Listing4'
 import {ThemeProvider} from "@material-ui/styles";
 import MapContainer from "../components/MapContainer";
 import '../css/textAndColour.css'
@@ -55,6 +55,7 @@ class App extends Component {
 							<Route path="/Listing1" component={() => <Listing1/>}/>
 							<Route path="/Listing2" component={() => <Listing2/>}/>
 							<Route path="/Listing3" component={() => <Listing3/>}/>
+							<Route path="/Listing4" component={() => <Listing4/>}/>
 							<Route path="/listings" component={() => <ListingCard/>}/>
 							<Route path="/saved" component={() => <ListingCard/>}/>
 							<Route path="/message" component={() => <ListingCard/>}/>
