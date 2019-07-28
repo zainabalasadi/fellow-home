@@ -1,18 +1,19 @@
 import React from 'react';
-import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from '@material-ui/core/DialogTitle';
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
+import {CssTextField} from "./Textinputs";
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import * as Buttons from './Button';
+import {theme} from "./Theme";
+import Login from "./Login";
 
-function Register() {
+function Register(props) {
     const [open, setOpen] = React.useState(false);
 
     function handleClickOpen() {
@@ -22,7 +23,16 @@ function Register() {
     function handleClose() {
         setOpen(false);
     }
-    
+
+    function handleSubmit(){
+        /*create user*/
+        props.onLogin();
+        handleClose();
+    }
+    function handelSwitch() {
+        handleClose();
+        return(<Login openModal={true}/>)
+    }
     const [values, setValues] = React.useState({
         password: '',
         showPassword: false,
@@ -42,12 +52,10 @@ function Register() {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Sign Up
-            </Button>
-            <Dialog open={open} 
-                onClose={handleClose} 
-                aria-labelledby="register-title" 
+            <Buttons.ButtonLink color={theme.colors.primary} click={handleClickOpen} message={"Sign Up"}/>
+            <Dialog open={open}
+                onClose={handleClose}
+                aria-labelledby="register-title"
                 aria-describedby="register-description">
                 <DialogTitle id="register-title">{"Sign Up"}</DialogTitle>
                 <DialogContent>
@@ -56,7 +64,7 @@ function Register() {
                             Please enter your details below
                         </DialogContentText>
                         <div>
-                            <TextField
+                            <CssTextField
                                 autoFocus
                                 margin="dense"
                                 id="email"
@@ -67,7 +75,7 @@ function Register() {
                             />
                         </div>
                         <div>
-                            <TextField
+                            <CssTextField
                                 autoFocus
                                 margin="dense"
                                 id="f_name"
@@ -78,7 +86,7 @@ function Register() {
                             />
                         </div>
                         <div>
-                            <TextField
+                            <CssTextField
                             autoFocus
                             margin="dense"
                             id="l_name"
@@ -89,7 +97,7 @@ function Register() {
                             />
                         </div>
                         <div>
-                            <TextField
+                            <CssTextField
                                 id="password"
                                 fullWidth
                                 variant="outlined"
@@ -115,7 +123,7 @@ function Register() {
                             />
                         </div>
                         <div>
-                            <TextField
+                            <CssTextField
                                 autoFocus
                                 margin="dense"
                                 id="uni"
@@ -126,18 +134,14 @@ function Register() {
                             />
                         </div>
                             <DialogContentText>
-                                Already have a fellow account?  
-                                <a href="/">Log in</a>
+                                Already have a fellow account?
+                                <Buttons.ButtonLink click={handelSwitch} message={"Log in"} color={theme.colors.primary}/>
                             </DialogContentText>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClose} color="primary">
-                    Cancel
-                  </Button>
-                  <Button onClick={handleClose} color="primary" autoFocus>
-                    Submit
-                  </Button>
+                    <Buttons.ButtonLink click={handleClose} color={theme.colors.primary} message={"Cancel"}/>
+                    <Buttons.ButtonLink click={handleSubmit} color={theme.colors.primary} message={"Submit"} autoFocus/>
                 </DialogActions>
             </Dialog>
         </div>

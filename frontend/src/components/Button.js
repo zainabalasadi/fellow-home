@@ -4,53 +4,53 @@ import {theme} from './Theme'
 
 
 
-export function buttonFill(props){
+export function ButtonFill(props){
     let style={
-        backgroundColor: props.colour,
-        color: props.colour==theme.colors.white? theme.colors.primary : theme.colors.white,
+        backgroundColor: props.color,
+        color: props.color==theme.colors.white? theme.colors.primary : theme.colors.white,
         opacity: props.disabled ? 0.4 : 1
     };
     return(
-    <Button className={props.className} href={props.href} onClick={()=>props.click()} disabled={props.disabled} variant="contained" color={props.colour} style={style} disableRipple={true}>
+    <Button className={props.className} href={props.href} onClick={()=>props.click()} disabled={props.disabled} variant="contained" color={props.color} style={style} disableRipple={true}>
         {props.message}
     </Button>
     )
 }
 
-export function buttonOutline(props){
+export function ButtonOutline(props){
     let style={
         backgroundColor: theme.colors.white,
-        color: props.colour,
-        borderColor: props.colour,
+        color: props.color,
+        borderColor: props.color,
         opacity: props.disabled ? 0.4 : 1
     };
     return(
-        <Button  className={props.className} href={props.href} onClick={()=>props.click()}  disabled={props.disabled} variant="outlined" color={props.colour} style={style} disableRipple={true}>
+        <Button  className={props.className} href={props.href} onClick={()=>props.click()}  disabled={props.disabled} variant="outlined" color={props.color} style={style} disableRipple={true}>
             {props.message}
         </Button>
     )
 }
-export function buttonLink(props){
+export function ButtonLink(props){
     let style={
         backgroundColor: theme.colors.white,
-        color: props.colour,
+        color: props.color,
         opacity: props.disabled ? 0.4 : 1
     };
     return(
-        <Button  className={props.className} href={props.href} onClick={()=>props.click()}  disabled={props.disabled} color={props.colour} style={style} disableRipple={true}>
+        <Button  className={props.className} href={props.href} onClick={()=>props.click()}  disabled={props.disabled} color={props.color} style={style} disableRipple={true}>
             {props.message}
         </Button>
     )
 }
 
-export function buttonPlus(props){
+export function ButtonPlus(props){
     return(
         <button onClick={()=>props.click()}  disabled={props.disabled} className={props.disabled?
             "buttonPlusMinus textFellowRed backgroundFellowWhite lineFellowRed inactive":
             "buttonPlusMinus textFellowRed backgroundFellowWhite lineFellowRed"}>+</button>
     )
 }
-export function buttonMinus(props){
+export function ButtonMinus(props){
     return(
         <button onClick={()=>props.click()}  disabled={props.disabled} className={props.disabled?
             "buttonPlusMinus textFellowRed backgroundFellowWhite lineFellowRed inactive":

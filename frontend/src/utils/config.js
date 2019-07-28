@@ -20,13 +20,14 @@ const dropFeatures= [
     { value: "7", label: "7"},
     { value: "8", label: "8"},
     { value: "9", label: "9"}
-]
+];
 
 const userProfile = {
     name: "Laura Smith",
     email: "jane@gmail.com",
     phone: "0412345678",
     password: "password",
+    loggedin: false,
     billing: {
         number: "0123456789012345",
         expMonth: 12,
@@ -81,4 +82,4 @@ module.exports = {
     listings: listings,
     reviews: reviews,
     userProfile: userProfile
-}
+};

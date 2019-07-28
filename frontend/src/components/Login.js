@@ -1,20 +1,20 @@
 import React from 'react';
-import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from '@material-ui/core/DialogTitle';
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-import Register from "../components/Register";
+import {CssTextField} from "./Textinputs";
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import * as Buttons from './Button';
+import {theme} from "./Theme";
+import config from '../utils/config'
 
+function Login(props) {
 
-function Login() {
     const [open, setOpen] = React.useState(false);
 
     function handleClickOpen() {
@@ -24,12 +24,20 @@ function Login() {
     function handleClose() {
         setOpen(false);
     }
-    
+
     function handleRegister() {
-        Register().handleClickOpen()
-        setOpen(false);
+        handleClose();
     }
-  
+
+    function handleLogin(){ /*fix for security check and user search*/
+        props.onLogin();
+        let user=config.userProfile;  /*replace with actual user db connection*/
+        if (values.password == user.password){
+            user.loggedin = true;
+        }
+        handleClose();
+    }
+
     const [values, setValues] = React.useState({
         password: '',
         showPassword: false,
@@ -49,13 +57,11 @@ function Login() {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Login
-            </Button>
-            <Dialog 
-                open={open} 
-                onClose={handleClose} 
-                aria-labelledby="login-title" 
+            <Buttons.ButtonLink color={theme.colors.primary} click={handleClickOpen} message={"Login"}/>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="login-title"
                 aria-describedby="login-description">
                 <DialogTitle id="login-title">{"Login"}</DialogTitle>
                 <DialogContent>
@@ -64,7 +70,7 @@ function Login() {
                             Please enter your details below
                     </DialogContentText>
                         <div>
-                            <TextField
+                            <CssTextField
                                 autoFocus
                                 margin="dense"
                                 id="email"
@@ -75,7 +81,7 @@ function Login() {
                             />
                         </div>
                         <div>
-                            <TextField
+                            <CssTextField
                                 id="password"
                                 fullWidth
                                 variant="outlined"
@@ -102,19 +108,15 @@ function Login() {
                         </div>
                         <div>
                             <DialogContentText>
-                                Don't have an account? 
-                                <a onClick={handleRegister} color="primary">Sign Up!</a> 
+                                Don't have an account?
+                                <Buttons.ButtonLink click={handleRegister} color={theme.colors.primary} message={"Sign Up!"}/>
                             </DialogContentText>
                         </div>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={handleClose} color="primary" autoFocus>
-                        Login
-                    </Button>
+                    <Buttons.ButtonLink click={handleClose} color={theme.colors.primary} message={"Cancel"}/>
+                    <Buttons.ButtonLink click={handleLogin} color={theme.colors.primary} message={"Login"} autoFocus/>
                 </DialogActions>
             </Dialog>
         </div>
