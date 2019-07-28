@@ -97,13 +97,7 @@ class Home extends Component {
 
                         <Login/>
                         <Register/>
-                            <Button disableRipple href={'../Profile'}>prof</Button>
-                            <Switch>
-                                <Route path="/Profile" component={() => <Profile/>}/>
-                            </Switch>
-                        </BrowserRouter>
 
->>>>>>> 9497fb5966de22abc92d7e1cc1a418d95cd1b7ee
                         <div className="action-buttons">
                             <buts.buttonPlus disabled={true}/>
                             <buts.buttonMinus/>
