@@ -4,6 +4,12 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import './App.css';
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import Profile from '../components/Profile'
+
+import Listing1 from '../components/Listing1'
+import Listing2 from '../components/Listing2'
+import Listing3 from '../components/Listing3'
+
 import {ThemeProvider} from "@material-ui/styles";
 import MapContainer from "../components/MapContainer";
 import '../css/textAndColour.css'
@@ -45,8 +51,10 @@ class App extends Component {
 					<BrowserRouter>
 						<Header loggedin={this.loggedin} user={this.user} colour={theme.colors.primary}/>
 						<Switch>
-
 							<Route exact path="/" component={() => <Home/>} />
+							<Route path="/Listing1" component={() => <Listing1/>}/>
+							<Route path="/Listing2" component={() => <Listing2/>}/>
+							<Route path="/Listing3" component={() => <Listing3/>}/>
 							<Route path="/listings" component={() => <ListingCard/>}/>
 							<Route path="/saved" component={() => <ListingCard/>}/>
 							<Route path="/message" component={() => <ListingCard/>}/>

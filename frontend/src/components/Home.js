@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
-    import axios from 'axios'
-    import * as buts from './Button'
-    import CssBaseline from '@material-ui/core/CssBaseline'
-    import Container from '@material-ui/core/Container'
-    import '../app/App.css';
-    import {ThemeProvider} from "@material-ui/styles";
-    import SnackBar from "./Snack";
-    import Check from "./Check";
-    import config from "../utils/config";
-    import * as TextInput from "./Textinputs";
-    import DialogContent from "@material-ui/core/DialogContent";
-    import DialogContentText from "@material-ui/core/DialogContentText";
-    import '../css/textAndColour.css'
-    import '../css/buttons.css'
-    import Fab from "@material-ui/core/Fab";
-    import ListingCard from "../components/ListingThumbnail"
-    import {theme} from './Theme'
-    import Login from "./Login";
-    import Register from "./Register";
+import axios from 'axios'
+import * as buts from './Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Container from '@material-ui/core/Container'
+import '../app/App.css';
+import {ThemeProvider} from "@material-ui/styles";
+import SnackBar from "./Snack";
+import Check from "./Check";
+import config from "../utils/config";
+import * as TextInput from "./Textinputs";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import '../css/textAndColour.css'
+import '../css/buttons.css'
+import Fab from "@material-ui/core/Fab";
+import ListingCard from "../components/ListingThumbnail"
+import {theme} from './Theme'
+import Login from "./Login";
+import Register from "./Register";
+
+import Profile from "./Profile";
+import { Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 class Home extends Component {
         constructor() {
@@ -53,33 +58,33 @@ class Home extends Component {
                     </div>
                     <Container maxWidth="lg">
                         <p>This is main, in a container with padded sides</p>
+                          
                         <Login/>
                         <Register/>
-
-                    <div className="action-buttons">
-                        <buts.buttonPlus disabled={true}/>
-                        <buts.buttonMinus/>
-                        <buts.buttonFill
-                            disabled={true}
-                            colour={theme.colors.tertiary}
-                            message={this.state.message}
-                        />
-                        <buts.buttonOutline
-                            disabled={true}
-                            colour={theme.colors.primary}
-                            message={this.state.message}
-                        />
-                        <buts.buttonLink
-                            colour={theme.colors.primary}
-                            message={this.state.message}
-                        />
-                    </div>
-                    <div>
-                        <Fab size="small" color="primary" className="buttonPlusMinus" justify="centre">
-                            <i className="settings icon"/>
-                        </Fab>
-                    </div>
-                    <div>
+                        <div className="action-buttons">
+                            <buts.buttonPlus disabled={true}/>
+                            <buts.buttonMinus/>
+                            <buts.buttonFill
+                                disabled={true}
+                                colour={theme.colors.tertiary}
+                                message={this.state.message}
+                            />
+                            <buts.buttonOutline
+                                disabled={true}
+                                colour={theme.colors.primary}
+                                message={this.state.message}
+                            />
+                            <buts.buttonLink
+                                colour={theme.colors.primary}
+                                message={this.state.message}
+                            />
+                        </div>
+                        <div>
+                            <Fab size="small" color="primary" className="buttonPlusMinus" justify="centre">
+                                <i className="settings icon"/>
+                            </Fab>
+                        </div>
+                        <div>
                         <Check features={config.checkFeatures}/>
                         <form>
                             <TextInput.Named/>
@@ -98,7 +103,7 @@ class Home extends Component {
                                 <TextInput.Email/>
                             </DialogContent>
                         }/>
-                    </div>
+                        </div>
                     </Container>
                     <ListingCard abstract={"This impressive paella is a perfect party dish and a fun meal to cook together with your\n" +
                     "                    guests. Add 1 cup of frozen peas along with the mussels, if you like."}/>
