@@ -8,9 +8,9 @@ import MapContainer from '../components/MapContainer';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import config from '../utils/config'
-import Check  from '../components/check'
-import SnackBar from '../components/snack'
-import * as TextInput from '../components/textinputs'
+import Check  from '../components/Check'
+import SnackBar from '../components/Snack'
+import * as TextInput from '../components/Textinputs'
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogContent from "@material-ui/core/DialogContent";
 
@@ -104,15 +104,7 @@ class App extends Component {
                             <TextInput.Email/>
                             <TextInput.Disabled/>
                         </form>
-                        <TextInput.FormDialog buttonLabel={"Open Modal"} submitLabel={"Check In"} message={
-                            <DialogContent>
-                                <DialogContentText>
-                                    To subscribe to this website, please enter your email address here. We will send updates
-                                    occasionally.
-                                </DialogContentText>
-                                <TextInput.Email/>
-                            </DialogContent>
-                        }/>
+
 
                     </div>
                     <div>

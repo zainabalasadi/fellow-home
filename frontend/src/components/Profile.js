@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button,CardContent,Divider,Grid,Avatar,Card,CardMedia} from "@material-ui/core";
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import VerifiedUser from '@material-ui/icons/VerifiedUser'
 import RateReview from '@material-ui/icons/RateReview'
-import * as TextInput from "../components/textinputs";
+import * as TextInput from "./Textinputs";
 import config from '../utils/config'
 import {Button as ButtonStyle} from 'semantic-ui-react';
 import ListingCard from "./ListingThumbnail";
@@ -12,7 +12,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 
 
 let abs="Hey! I’m Laura. I’m a Biomedical Science student at UNSW. My hobbies include hiking, bouldering," +
@@ -30,6 +29,12 @@ export function EditProfileCard(props){
             </Grid>
             <CardContent>
                 <p className="textFellowRed">Update Photo</p>
+                <input
+                    accept="image/*"
+                    id="raised-button-file"
+                    multiple
+                    type="file"
+                />
                 <Divider />
                 <Typography variant="body2" color={"textPrimary"} component="p">
                     <VerifiedUser/> Verified 🖐Hello World!

@@ -15,18 +15,21 @@ class Listing(db.Model):
     num_bathrooms = db.Column(db.Integer)
     num_bedrooms = db.Column(db.Integer)
     landsize = db.Column(db.Float)
-    address = db.relationship('Address', backref='listing', uselist=False)
-    rooms = db.relationship('Room', backref='listing', lazy=True)
-    features = db.relationship('Feature', backref='listing', lazy=True)
-    amenities = db.relationship('Amenity', backref='listing', lazy=True)
-    restrictions = db.relationship('Restriction', backref='listing', lazy=True)
-    images = db.relationship('ListingImage', backref='listing', lazy=True)
+    published = db.Column(db.Boolean, default=False)
+    address = db.relationship('Address', backref='listing', uselist=False, cascade="all, delete-orphan")
+    rooms = db.relationship('Room', backref='listing', lazy=True, cascade="all, delete-orphan")
+    features = db.relationship('Feature', backref='listing', lazy=True, cascade="all, delete-orphan")
+    amenities = db.relationship('Amenity', backref='listing', lazy=True, cascade="all, delete-orphan")
+    restrictions = db.relationship('Restriction', backref='listing', lazy=True, 
+                                    cascade="all, delete-orphan")
+    images = db.relationship('ListingImage', backref='listing', lazy=True, cascade="all, delete-orphan")
 
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
 
     def __init__(self, name, property_type, description, 
                 date_published, num_housemates, num_vacancies, num_bathrooms, 
-                num_bedrooms, landsize, address, rooms, features, amenities, restrictions):
+                num_bedrooms, landsize, address, rooms, features, amenities, restrictions,
+                published=False):
         self.name = name
         self.property_type = property_type
         self.description = description
@@ -41,6 +44,7 @@ class Listing(db.Model):
         self.features = features
         self.amenities = amenities
         self.restrictions = restrictions
+        self.published = published
         # self.tags = []
 
     @classmethod
@@ -51,6 +55,11 @@ class Listing(db.Model):
         db.session.commit()
 
         return listing.id
+
+    @classmethod
+    def remove(cls, listing):
+        db.session.delete(listing)
+        db.session.commit()
 
 class ListingImage(db.Model):
     __tablename__ = 'ListingImage'
