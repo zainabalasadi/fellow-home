@@ -27,7 +27,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Profile from "../components/Profile";
 import Login from "../components/Login";
+import Listing from "../components/Listing";
 import Register from "../components/Register";
+import {
+  BrowserRouter as Router,
+  Link,
+} from 'react-router-dom';
 
 const theme = createMuiTheme({
     palette: {
@@ -92,12 +97,19 @@ class Home extends Component {
                         <Register/>
 
                         <BrowserRouter>
-                            <Button disableRipple href={'../Profile'}>prof</Button>
+                            <Button disableRipple href={'../Listing'}>Listing</Button>
                         <Switch>
-                            <Route path="/Profile" component={() => <Profile/>}/>
+                            <Route path="/Listing" component={Listing}/>
                         </Switch>
                         </BrowserRouter>
-                        
+
+ <Link to="/Listing">Show List of Users</Link>
+ <Router>
+      <Switch>
+        <Route exact path="/Listing" component={Listing} />
+      </Switch>
+      </Router>
+
                         <div className="action-buttons">
                             <Button variant="contained" color="primary">
                                 {
