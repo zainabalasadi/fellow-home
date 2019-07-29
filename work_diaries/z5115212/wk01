@@ -35,3 +35,15 @@ wk07
 I worked on a bit of error and exception handling for users when logging in with the wrong details, new guests trying to login 
 to create a valid account as well as filling out all necessary information, and for leaving out blanks when filling out 
 descriptions and details for renting a house and such. 
+
+wk08
+I decided to help with the front end as there's still a lot work that needs to be done for it. We have a project page on github
+where we can choose which parts of the frontend to work on so that we can keep track on who's doing what and what needs to be
+done. Since I'm new to the language react, I spent most of the week learning about it before creating the login and signup
+pages.
+
+wk09
+There's still a lot more needing to be done for front end. So far we have a somewhat interactive system, but only for user 
+profile, login and signup. It doesn't work with the backend yet. This week I decided to take on listing pages so that users
+can add a listing to the site. I've been able to somewhat code the base design and functionality but as there's 9 pages for it,
+it might take a while to finish.
