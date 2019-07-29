@@ -1,3 +1,4 @@
+#!/usr/local/bin/python3
 # backend/manage.py
 
 import click
