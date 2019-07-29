@@ -6,6 +6,7 @@ import pytest
 from project import create_app, db, guard
 from project.user.models import User
 
+
 @pytest.fixture(scope='module')
 def test_client():
     flask_app = create_app('project.config.TestConfig')
@@ -19,6 +20,7 @@ def test_client():
     yield testing_client
 
     ctx.pop()
+
 
 @pytest.fixture(scope='module')
 def init_database():

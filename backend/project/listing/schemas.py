@@ -5,29 +5,33 @@ from marshmallow import post_dump, pre_load, validates_schema, ValidationError
 from project import ma
 from project.listing.models import Listing, ListingImage, Room, Address, Feature, Amenity, Restriction
 
+
 class ListingImageSchema(ma.ModelSchema):
     class Meta:
         model = ListingImage
-        fields = ('url', )
+        fields = ('url',)
 
     @post_dump(pass_many=True)
     def convert_to_list(self, out_data, many, **kwargs):
         return [x['url'] for x in out_data]
+
 
 class RoomSchema(ma.ModelSchema):
     class Meta:
         model = Room
         fields = ('roomType', 'cost', 'furnished', 'availability', 'min_stay')
 
+
 class AddressSchema(ma.ModelSchema):
     class Meta:
         model = Address
         fields = ('name', 'suburb', 'postcode')
 
+
 class FeatureSchema(ma.ModelSchema):
     class Meta:
         model = Feature
-        fields = ('feature', )
+        fields = ('feature',)
 
     @post_dump(pass_many=True)
     def convert_to_list(self, out_data, many, **kwargs):
@@ -37,10 +41,11 @@ class FeatureSchema(ma.ModelSchema):
     def convert_from_list(self, in_data, many, **kwargs):
         return [{"feature": x} for x in in_data]
 
+
 class AmenitySchema(ma.ModelSchema):
     class Meta:
         model = Amenity
-        fields = ('amenity', )
+        fields = ('amenity',)
 
     @post_dump(pass_many=True)
     def convert_to_list(self, out_data, many, **kwargs):
@@ -50,10 +55,11 @@ class AmenitySchema(ma.ModelSchema):
     def convert_from_list(self, in_data, many, **kwargs):
         return [{"amenity": x} for x in in_data]
 
+
 class RestrictionSchema(ma.ModelSchema):
     class Meta:
         model = Restriction
-        fields = ('restriction', )
+        fields = ('restriction',)
 
     @post_dump(pass_many=True)
     def convert_to_list(self, out_data, many, **kwargs):
@@ -62,6 +68,7 @@ class RestrictionSchema(ma.ModelSchema):
     @pre_load(pass_many=True)
     def convert_from_list(self, in_data, many, **kwargs):
         return [{"restriction": x} for x in in_data]
+
 
 class ListingSchema(ma.ModelSchema):
     class Meta:
@@ -93,7 +100,7 @@ class ListingSchema(ma.ModelSchema):
 
         if 'num_bedrooms' in data:
             if data['num_bedrooms'] < 0:
-                errors['num_bedrooms'] =  "Please provide the number of bedrooms"
+                errors['num_bedrooms'] = "Please provide the number of bedrooms"
 
         if 'landsize' in data:
             if data['landsize'] < 0:

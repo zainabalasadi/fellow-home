@@ -9,10 +9,11 @@ from marshmallow import ValidationError
 
 from project import db, guard
 from project.listing.models import Listing, Address
-from project.listing.schemas import ListingSchema 
+from project.listing.schemas import ListingSchema
 
 bp = Blueprint('listing', __name__)
 api = Api(bp)
+
 
 class ListingListResource(Resource):
     def get(self):
@@ -20,9 +21,9 @@ class ListingListResource(Resource):
         page = request.args.get('page', 1, type=int)
 
         # search by suburbs
-        listings = Listing.query.join(Address).filter(Listing.published).\
-                        filter(Address.suburb.ilike(f'%{search_string}%')).\
-                        paginate(page, int(os.getenv('PER_PAGE', 10)), False).items
+        listings = Listing.query.join(Address).filter(Listing.published). \
+            filter(Address.suburb.ilike(f'%{search_string}%')). \
+            paginate(page, int(os.getenv('PER_PAGE', 10)), False).items
         if not listings:
             return {'status': 'error',
                     'error': 'No listings found'}, 404
@@ -40,6 +41,7 @@ class ListingListResource(Resource):
             return {'status': 'error', 'errors': err.messages['_schema']}
 
         return {'status': 'success', 'msg': f'successfully created listing {id}'}
+
 
 class ListingResource(Resource):
     def get(self, id):
@@ -75,7 +77,7 @@ class ListingResource(Resource):
             return {'status': 'error',
                     'error': 'Cannot update listing that you do not own'}, 403
         try:
-            data, _ = ListingSchema().load(request.get_json(), 
+            data, _ = ListingSchema().load(request.get_json(),
                                            instance=Listing.query.get(id),
                                            partial=True)
             db.session.commit()
@@ -102,6 +104,7 @@ class ListingResource(Resource):
         return {'status': 'success',
                 'msg': f'Listing {id} successfully removed'}
 
+
 class ListingPublishResource(Resource):
     @auth_required
     def put(self, id):
@@ -111,13 +114,14 @@ class ListingPublishResource(Resource):
         if listing.user_id != user.id:
             return {'status': 'error',
                     'msg': 'You do not have access to this listing'}, 403
-        data, _ = ListingSchema().load({'published': True}, 
-                                        instance=Listing.query.get(id),
-                                        partial=True)
+        data, _ = ListingSchema().load({'published': True},
+                                       instance=Listing.query.get(id),
+                                       partial=True)
         db.session.commit()
 
         return {'status': 'success',
                 'msg': f'Listing {id} successfully published'}
+
 
 api.add_resource(ListingListResource, '/')
 api.add_resource(ListingResource, '/<int:id>')

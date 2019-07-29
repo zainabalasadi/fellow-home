@@ -19,6 +19,7 @@ from project.listing.models import Listing, ListingImage, Room, Address, Feature
 from project.review.models import Review
 from project.user.models import User
 
+
 def create_app(config_file=os.getenv('APP_SETTINGS')):
     app = Flask(__name__)
     app.config.from_object(config_file)

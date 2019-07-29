@@ -2,6 +2,7 @@
 
 from project import db
 
+
 class Review(db.Model):
     __tablename__ = 'Review'
 
@@ -15,7 +16,7 @@ class Review(db.Model):
     def __init__(self, title, content, rating):
         self.title = title
         self.content = content
-        #self.image = []
+        # self.image = []
         self.rating = rating
 
     @classmethod

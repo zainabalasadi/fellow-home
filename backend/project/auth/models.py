@@ -2,6 +2,7 @@
 
 from project import db
 
+
 class TokenBlacklist(db.Model):
     __tablename__ = 'TokenBlacklist'
 
