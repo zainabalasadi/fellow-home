@@ -16,31 +16,16 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import Listing2 from "./Listing2";
+import Listing9 from "./Listing9";
 import { BrowserRouter} from 'react-router-dom';
 import { Link, Route, Switch } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 
 
-const useStyles = makeStyles(theme => ({
- 	root: {
-    	display: 'flex',
-    	flexWrap: 'wrap',
-  	},
-  	formControl: {
-    	margin: theme.spacing(1),
-    	minWidth: 120,
-  	},
-  	selectEmpty: {
-    	marginTop: theme.spacing(2),
-  	},
-}));
-
 function Listing1 () {
- 	const classes = useStyles();
   	const [state, setState] = React.useState({
-    	age: '',
+    	num: '',
     	name: 'hai',
  	});
 	const inputLabel = React.useRef(null);
@@ -69,15 +54,6 @@ function Listing1 () {
                     >
                         <Grid container spacing={0}>
                             <Grid item xs = {2}>
-                                Type of accomodation
-                            </Grid>
-                            <Grid item xs>
-                                Basics
-                            </Grid>
-                            <Grid item xs>
-                                Housemates
-                            </Grid>
-                            <Grid item xs>
                                 <Box 
                                     color="black" 
                                     bgcolor="white" 
@@ -86,8 +62,17 @@ function Listing1 () {
                                     p={0}
                                     style={{height: '2rem'}}
                                 >
-                                    Rooms
+                                    Type of accomodation
                                 </Box>
+                            </Grid>
+                            <Grid item xs>
+                                Basics
+                            </Grid>
+                            <Grid item xs>
+                                Housemates
+                            </Grid>
+                            <Grid item xs>
+                                Rooms
                             </Grid>
                             <Grid item xs>
                                 Features
@@ -114,7 +99,6 @@ function Listing1 () {
 			      		variant="outlined" 
 			      		margin="normal"
 			      		fullWidth
-			      		className={classes.formControl}
 			      	>
 				        <InputLabel ref={inputLabel} htmlFor="address">
 				          	Select one
@@ -146,8 +130,8 @@ function Listing1 () {
 			        	fullWidth
 			      	/>
 		          	<BrowserRouter>
-	                    <Button variant="contained" color="secondary" href={'../Listing2'}>Continue</Button>
-	                    <Route path="/Listing2" component={() => <Listing2/>}/>
+	                    <Button variant="contained" color="secondary" href={'../Listing9'}>Continue</Button>
+	                    <Route path="/Listing9" component={() => <Listing9/>}/>
 	                </BrowserRouter>
             	</Container>
         	</Container>

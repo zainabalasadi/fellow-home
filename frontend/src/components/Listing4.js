@@ -28,25 +28,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import config from "../utils/config";
 import Check from "./Check";
 import Box from '@material-ui/core/Box';
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
-    boxStyle: {
 
-    }
-}));
+import Listing5 from "./Listing5";
 
 function Listing4 () {
-    const classes = useStyles();
     const [state, setState] = React.useState({
         age: '',
         name: 'hai',
@@ -123,7 +108,6 @@ function Listing4 () {
                         variant="outlined" 
                         margin="normal"
                         fullWidth
-                        className={classes.formControl}
                     >
                         <InputLabel ref={inputLabel} htmlFor="bedtype">
                             Select one
@@ -150,7 +134,10 @@ function Listing4 () {
                     <div>
                         <Check features={config.checkAmenities}/>
                     </div>
-                
+                    <BrowserRouter>
+                        <Button variant="contained" color="secondary" href={'../Listing5'}>Continue</Button>
+                        <Route path="/Listing5" component={() => <Listing5/>}/>
+                    </BrowserRouter>
                 </Container>
         	</Container>
     	</React.Fragment>

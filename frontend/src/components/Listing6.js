@@ -22,26 +22,21 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Paper from '@material-ui/core/Paper';
 import { BrowserRouter} from 'react-router-dom';
-import Listing3 from "./Listing3";
 import { Link, Route, Switch } from 'react-router-dom';
-
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import config from "../utils/config";
+import Check from "./Check";
 import Box from '@material-ui/core/Box';
 
-function Listing2 () {
-    const [values, setValues] = React.useState({
-            name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
-    });
 
-    const handleChange = name => event => {
-        setValues({ ...values, [name]: event.target.value });
-    };
+import Listing7 from "./Listing7";
+
+function Listing6 () {
 
     return (
         <React.Fragment>
-        <CssBaseline/>
+            <CssBaseline />
             <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
                 <Container style={{padding: 20}} maxWidth="md">
                     <Box 
@@ -59,16 +54,7 @@ function Listing2 () {
                                 Basics
                             </Grid>
                             <Grid item xs>
-                                <Box 
-                                    color="black" 
-                                    bgcolor="white" 
-                                    borderBottom={4} 
-                                    borderColor="tomato" 
-                                    p={0}
-                                    style={{height: '2rem'}}
-                                >
-                                    Housemates
-                                </Box>
+                                Housemates
                             </Grid>
                             <Grid item xs>
                                 Rooms
@@ -80,7 +66,16 @@ function Listing2 () {
                                 Rent
                             </Grid>
                             <Grid item xs>
-                                Availabilities
+                                <Box 
+                                    color="black" 
+                                    bgcolor="white" 
+                                    borderBottom={4} 
+                                    borderColor="tomato" 
+                                    p={0}
+                                    style={{height: '2rem'}}
+                                >
+                                    Availabilities
+                                </Box>
                             </Grid>
                             <Grid item xs>
                                 Photos
@@ -91,36 +86,11 @@ function Listing2 () {
                         </Grid>
                     </Box>
                 </Container>
-                <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm"><h4>Tell us more about who lives in the property?</h4>
-                    <p>Current number of housemates</p>
-                    <TextField
-                        id="housemates"
-                        value={values.age}
-                        onChange={handleChange('age')}
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        margin="dense"
-                        variant="outlined"
-                    />
+                <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
                     
-                    <p>Number of Vacancies</p>
-                    {/* error as number occurs in both boxes}
-                    <TextField
-                        id="vacancies"
-                        value={values.age}
-                        onChange={handleChange('age')}
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        margin="dense"
-                        variant="outlined"
-                    />*/}
                     <BrowserRouter>
-                        <Button variant="contained" color="secondary" href={'../Listing3'}>Continue</Button>
-                        <Route path="/Listing3" component={() => <Listing3/>}/>
+                        <Button variant="contained" color="secondary" href={'../Listing7'}>Continue</Button>
+                        <Route path="/Listing7" component={() => <Listing7/>}/>
                     </BrowserRouter>
                 </Container>
             </Container>
@@ -128,5 +98,5 @@ function Listing2 () {
     );
 }
  
-export default Listing2;
+export default Listing6;
 
