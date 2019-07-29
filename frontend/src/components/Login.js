@@ -1,15 +1,18 @@
 import React from 'react';
+import axios from 'axios';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {CssTextField} from "./Textinputs";
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
 import * as Buttons from './Button';
+import {CssTextField} from "./Textinputs";
 import {theme} from "./Theme";
 import config from '../utils/config'
 
@@ -30,15 +33,24 @@ function Login(props) {
     }
 
     function handleLogin(){ /*fix for security check and user search*/
-        props.onLogin();
         let user=config.userProfile;  /*replace with actual user db connection*/
-        if (values.password == user.password){
-            user.loggedin = true;
-        }
+        axios.post('http://localhost:5000/api/auth/login', {
+            email: values.email,
+            password: values.password
+        }).then((res) => {
+            console.log(res);
+            props.onLogin();
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('currentUser', res.data.user);
+        }).catch((err) => {
+            console.log(err);
+        });
+
         handleClose();
     }
 
     const [values, setValues] = React.useState({
+        email: '',
         password: '',
         showPassword: false,
     });
@@ -75,6 +87,8 @@ function Login(props) {
                                 margin="dense"
                                 id="email"
                                 label="Email Address"
+                                value={values.email}
+                                onChange={handleChange('email')}
                                 type="email"
                                 variant="outlined"
                                 fullWidth

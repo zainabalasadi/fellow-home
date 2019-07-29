@@ -23,7 +23,8 @@ class LoginResource(Resource):
         user = guard.authenticate(email, password)
         # use this when refreshing tokens automatically is added
         # return {'access_token': guard.encode_jwt_token(user)}
-        return {'access_token': guard.encode_eternal_jwt_token(user)}
+        return {'access_token': guard.encode_eternal_jwt_token(user),
+                'user': UserSchema(exclude=['password']).dump(user).data}
 
 
 class FacebookLoginResource(Resource):

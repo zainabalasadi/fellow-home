@@ -22,9 +22,8 @@ import {theme} from "../components/Theme"
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
-
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			user: config.userProfile,
 			message: "Hello Welcome to Fellow!",
@@ -32,30 +31,20 @@ class App extends Component {
 		};
 		this.onUserLogin=this.onUserLogin.bind(this);
 		localStorage.setItem("login", "");
-	};
+	}
+
 	onUserLogin(){
 		/*this.setState({user : event.target.value})*/
 		this.setState({isLoggedIn : true});
 		localStorage.setItem("login", "true");
 	}
+
 	onUserLogout(){
 		/*this.setState({user : event.target.value})*/
 		this.setState({isLoggedIn : false});
 		localStorage.setItem("login", "");
 	}
-	componentDidMount() {
-		this.getMessage();
-	}
-	getMessage() {
-		axios.get('http://localhost:5000')
-			.then((res) => {
-				this.setState({ message: res.data.message });
-				console.log(res.data.message);
-			})
-			.catch((err) => {
-				console.log(err);
-			})
-	};
+
 	render() {
 		let login=localStorage.getItem("login");
 		return (
@@ -65,7 +54,6 @@ class App extends Component {
 					<BrowserRouter>
 						<Header onLogin={this.onUserLogin} loggedin={login} user={this.state.user} color={theme.colors.primary}/>
 						<Switch>
-
 							<Route exact path="/" component={() => <Home/>} />
 							<Route path="/Listing1" component={() => <Listing1/>}/>
 							<Route path="/Listing2" component={() => <Listing2/>}/>
