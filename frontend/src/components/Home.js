@@ -25,20 +25,6 @@ class Home extends Component {
             open : false
         };
     };
-    componentDidMount() {
-        this.getMessage();
-    }
-    getMessage() {
-        axios.get('http://localhost:5000')
-            .then((res) => {
-                this.setState({ message: res.data.message });
-                console.log(res.data.message);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    };
-
 
     render() {
 

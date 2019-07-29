@@ -21,10 +21,11 @@ function searchMap() {
     )
 }
 function Header(props) {
+    const currUser = JSON.parse(localStorage.getItem('currentUser'));
    return (
 
       <header className="overline"><overline>
-          {props.loggedin?
+          {currUser ?
           <BrowserRouter>
                   <Grid direction="row" container justify="space-evenly" alignItems="center">
                       <img padding-top={20} height={20} src={require("../assets/images/logo.svg")}/>
@@ -36,7 +37,7 @@ function Header(props) {
                       <Buttons.ButtonLink color={props.color} href={'../'} message={"Help"}/>
                       <Button disableRipple href={'../profile'} >
                           <Avatar alt="Remy Sharp"
-                              src={require("../assets/images/octar.jpg")}
+                              src={currUser['avatar']}
                               margin={10} />
                       </Button>
                   </Grid>
@@ -45,8 +46,8 @@ function Header(props) {
           </BrowserRouter>
           :
               <BrowserRouter>
-                  <Grid direction="row" container justify="space-between" alignItems="center">
-                      <img padding-top={20} height={20} src={require("../assets/images/fellow.png")}/>
+                  <Grid direction="row" container justify="space-evenly" alignItems="center">
+                      <img padding-top={20} height={20} src={require("../assets/images/logo.svg")}/>
                       <TextInput.InputText color={props.color} onEnter={(e)=> searchMap(e)} classNames={{width: "25%", height: "10%", fontsize:"8px"}} placeholder="Search by university, city or suburb" startAdornment={<SearchIcon/>}/>
                       <Buttons.ButtonLink color={props.color} className="buttonText" href={'../app/listings'} message={"About Fellow"}/>
                     {/*<Buttons.ButtonLink color={props.color} href={'../app/profile'} message={"List your Place"}/>*/}

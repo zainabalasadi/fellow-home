@@ -32,8 +32,7 @@ function Login(props) {
         handleClose();
     }
 
-    function handleLogin(){ /*fix for security check and user search*/
-        let user=config.userProfile;  /*replace with actual user db connection*/
+    function handleLogin(){
         axios.post('http://localhost:5000/api/auth/login', {
             email: values.email,
             password: values.password
@@ -41,7 +40,7 @@ function Login(props) {
             console.log(res);
             props.onLogin();
             localStorage.setItem('token', res.data.token);
-            localStorage.setItem('currentUser', res.data.user);
+            localStorage.setItem('currentUser', JSON.stringify(res.data.user));
         }).catch((err) => {
             console.log(err);
         });
