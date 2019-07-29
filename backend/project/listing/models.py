@@ -2,6 +2,7 @@
 
 from project import db
 
+
 class Listing(db.Model):
     __tablename__ = 'Listing'
 
@@ -20,16 +21,16 @@ class Listing(db.Model):
     rooms = db.relationship('Room', backref='listing', lazy=True, cascade="all, delete-orphan")
     features = db.relationship('Feature', backref='listing', lazy=True, cascade="all, delete-orphan")
     amenities = db.relationship('Amenity', backref='listing', lazy=True, cascade="all, delete-orphan")
-    restrictions = db.relationship('Restriction', backref='listing', lazy=True, 
-                                    cascade="all, delete-orphan")
+    restrictions = db.relationship('Restriction', backref='listing', lazy=True,
+                                   cascade="all, delete-orphan")
     images = db.relationship('ListingImage', backref='listing', lazy=True, cascade="all, delete-orphan")
 
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
 
-    def __init__(self, name, property_type, description, 
-                date_published, num_housemates, num_vacancies, num_bathrooms, 
-                num_bedrooms, landsize, address, rooms, features, amenities, restrictions,
-                published=False):
+    def __init__(self, name, property_type, description,
+                 date_published, num_housemates, num_vacancies, num_bathrooms,
+                 num_bedrooms, landsize, address, rooms, features, amenities, restrictions,
+                 images, published=False):
         self.name = name
         self.property_type = property_type
         self.description = description
@@ -44,6 +45,7 @@ class Listing(db.Model):
         self.features = features
         self.amenities = amenities
         self.restrictions = restrictions
+        self.images = images
         self.published = published
         # self.tags = []
 
@@ -61,13 +63,15 @@ class Listing(db.Model):
         db.session.delete(listing)
         db.session.commit()
 
+
 class ListingImage(db.Model):
     __tablename__ = 'ListingImage'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.Text, nullable=False)
 
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)
+
 
 class Room(db.Model):
     __tablename__ = 'Room'
@@ -88,6 +92,7 @@ class Room(db.Model):
         self.availability = availability
         self.min_stay = min_stay
 
+
 class Address(db.Model):
     __tablename__ = 'Address'
 
@@ -98,18 +103,20 @@ class Address(db.Model):
     postcode = db.Column(db.Integer)
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), unique=True)
 
+
 class Feature(db.Model):
     __tablename__ = 'Feature'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     feature = db.Column(db.String(128), nullable=False)
     quantity = db.Column(db.Integer, default=1)
 
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)
 
+
 class Amenity(db.Model):
     __tablename__ = 'Amenity'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     amenity = db.Column(db.String(128), nullable=False)
 
@@ -118,9 +125,10 @@ class Amenity(db.Model):
     def __init__(self, amenity):
         self.amenity = amenity
 
+
 class Restriction(db.Model):
     __tablename__ = 'Restriction'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     restriction = db.Column(db.String(128), nullable=False)
 

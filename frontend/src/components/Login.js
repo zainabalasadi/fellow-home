@@ -1,20 +1,23 @@
 import React from 'react';
-import Button from '@material-ui/core/Button'
+import axios from 'axios';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from '@material-ui/core/DialogTitle';
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-import Register from "../components/Register";
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
+import * as Buttons from './Button';
+import {CssTextField} from "./Textinputs";
+import {theme} from "./Theme";
+import config from '../utils/config'
 
-function Login() {
+function Login(props) {
+
     const [open, setOpen] = React.useState(false);
 
     function handleClickOpen() {
@@ -24,13 +27,29 @@ function Login() {
     function handleClose() {
         setOpen(false);
     }
-    
+
     function handleRegister() {
-        Register().handleClickOpen()
-        setOpen(false);
+        handleClose();
     }
-  
+
+    function handleLogin(){
+        axios.post('http://localhost:5000/api/auth/login', {
+            email: values.email,
+            password: values.password
+        }).then((res) => {
+            console.log(res);
+            props.onLogin();
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('currentUser', JSON.stringify(res.data.user));
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        handleClose();
+    }
+
     const [values, setValues] = React.useState({
+        email: '',
         password: '',
         showPassword: false,
     });
@@ -49,13 +68,11 @@ function Login() {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Login
-            </Button>
-            <Dialog 
-                open={open} 
-                onClose={handleClose} 
-                aria-labelledby="login-title" 
+            <Buttons.ButtonLink color={theme.colors.primary} click={handleClickOpen} message={"Login"}/>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="login-title"
                 aria-describedby="login-description">
                 <DialogTitle id="login-title">{"Login"}</DialogTitle>
                 <DialogContent>
@@ -64,18 +81,20 @@ function Login() {
                             Please enter your details below
                     </DialogContentText>
                         <div>
-                            <TextField
+                            <CssTextField
                                 autoFocus
                                 margin="dense"
                                 id="email"
                                 label="Email Address"
+                                value={values.email}
+                                onChange={handleChange('email')}
                                 type="email"
                                 variant="outlined"
                                 fullWidth
                             />
                         </div>
                         <div>
-                            <TextField
+                            <CssTextField
                                 id="password"
                                 fullWidth
                                 variant="outlined"
@@ -102,19 +121,15 @@ function Login() {
                         </div>
                         <div>
                             <DialogContentText>
-                                Don't have an account? 
-                                <a onClick={handleRegister} color="primary">Sign Up!</a> 
+                                Don't have an account?
+                                <Buttons.ButtonLink click={handleRegister} color={theme.colors.primary} message={"Sign Up!"}/>
                             </DialogContentText>
                         </div>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={handleClose} color="primary" autoFocus>
-                        Login
-                    </Button>
+                    <Buttons.ButtonLink click={handleClose} color={theme.colors.primary} message={"Cancel"}/>
+                    <Buttons.ButtonLink click={handleLogin} color={theme.colors.primary} message={"Login"} autoFocus/>
                 </DialogActions>
             </Dialog>
         </div>

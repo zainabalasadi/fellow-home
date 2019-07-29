@@ -4,6 +4,7 @@ __pycache__/
 .DS_Store
 *.swp
 *.pyc
+.idea/
 ./pytest_cache
 pgdata/
 test.db

@@ -22,34 +22,37 @@ import {theme} from "../components/Theme"
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
-			loggedin: false,
-			user: null,
-			message: "Hello Welcome to Fellow!"
+			user: config.userProfile,
+			message: "Hello Welcome to Fellow!",
+			isLoggedIn: config.userProfile.loggedin
 		};
-	};
-	componentDidMount() {
-		this.getMessage();
+		this.onUserLogin=this.onUserLogin.bind(this);
+		localStorage.setItem("login", "");
 	}
-	getMessage() {
-		axios.get('http://localhost:5000')
-			.then((res) => {
-				this.setState({ message: res.data.message });
-				console.log(res.data.message);
-			})
-			.catch((err) => {
-				console.log(err);
-			})
-	};
+
+	onUserLogin(){
+		/*this.setState({user : event.target.value})*/
+		this.setState({isLoggedIn : true});
+		localStorage.setItem("login", "true");
+	}
+
+	onUserLogout(){
+		/*this.setState({user : event.target.value})*/
+		this.setState({isLoggedIn : false});
+		localStorage.setItem("login", "");
+	}
+
 	render() {
+		let login=localStorage.getItem("login");
 		return (
 			<React.Fragment>
 				<ThemeProvider theme={theme}>
 				<CssBaseline />
 					<BrowserRouter>
-						<Header loggedin={this.loggedin} user={this.user} colour={theme.colors.primary}/>
+						<Header onLogin={this.onUserLogin} loggedin={login} user={this.state.user} color={theme.colors.primary}/>
 						<Switch>
 							<Route exact path="/" component={() => <Home/>} />
 							<Route path="/Listing1" component={() => <Listing1/>}/>
@@ -60,11 +63,10 @@ class App extends Component {
 							<Route path="/saved" component={() => <ListingCard/>}/>
 							<Route path="/message" component={() => <ListingCard/>}/>
 							<Route path="/help" component={() => <ListingCard/>}/>
-							<Route path="/profile" component={() => <AccountManager user={config.userProfile}/>}>
+							<Route path="/profile" component={() => <AccountManager user={this.state.user}/>}>
 							</Route>
 						</Switch>
 					</BrowserRouter>
-                  <Header/>
 
 				<Footer />
 					<div>

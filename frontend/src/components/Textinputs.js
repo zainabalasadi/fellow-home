@@ -12,18 +12,16 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {theme} from "./Theme";
-import * as buts from './Button';
-
+import * as Buttons from './Button';
 import { withStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
 
-const CssTextField = withStyles({
+export const CssTextField = withStyles({
     root: {
         '& label.Mui-focused': {
-            color: 'green',
+            color: theme.colors.primary,
         },
         '& .MuiInput-underline:after': {
-            borderBottomColor: 'green',
+            borderBottomColor: theme.colors.primary,
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
@@ -54,13 +52,11 @@ export function InputText(props){
             }}
         />
     );
-};
-
+}
 export function Named(props) { return(
     <Button>JK</Button>
 );
-};
-
+}
 export function Require(props) { return(
     <CssTextField
         required
@@ -72,8 +68,7 @@ export function Require(props) { return(
         onChange={props.onChange}
     />
 );
-};
-
+}
 export function Error(props) { return(
     <CssTextField
         error
@@ -84,8 +79,7 @@ export function Error(props) { return(
         onChange={props.onChange}
     />
 );
-};
-
+}
 export function Disabled(props) { return(
     <CssTextField
         disabled
@@ -96,8 +90,7 @@ export function Disabled(props) { return(
         id={props.id}
     />
 );
-};
-
+}
 export function Password (props) {
     const [values, setValues] = React.useState({
         password: '',
@@ -127,21 +120,21 @@ export function Password (props) {
             />
         </FormControl>
 );
-};
-
+}
 export function Email (props) { return(
     <CssTextField
-        margin={"theme.spacing(1)"}
-        label="email"
+        margin={"dense"}
+        label={props.label}
         type="email"
+        autoFocus
         autoComplete="email"
         variant="outlined"
         id={props.id}
         onChange={props.onChange}
+        className={props.style}
     />
 );
-};
-
+}
 export function Multiline (props) {
     const [values, setValues] = React.useState({
         multiline: props.value,
@@ -164,9 +157,7 @@ export function Multiline (props) {
         id={props.id}
     />
 );
-};
-
-
+}
 export function SelectDrop(props) {
     const [values, setValues] = React.useState({
         name: 'Cat in the Hat',
@@ -201,9 +192,7 @@ export function SelectDrop(props) {
         ))}
     </CssTextField>
 );
-};
-
-
+}
 export function FormModal(props) {
     const [open, setOpen] = React.useState(false);
 
@@ -218,13 +207,13 @@ export function FormModal(props) {
     return (
         <div>
 
-            <buts.buttonOutline colour={props.color} click={handleClickOpen} message={props.buttonLabel}/>
+            <Buttons.ButtonOutline color={props.color} click={handleClickOpen} message={props.buttonLabel}/>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">{props.submitLabel}</DialogTitle>
                 {props.message}
                 <DialogActions>
-                    <buts.buttonFill colour={props.color} click={handleClose} message={"Cancel"}/>
-                    <buts.buttonFill colour={props.color} onClick={()=>props.handleSave()} message={props.submitLabel}/>
+                    <Buttons.ButtonFill color={props.color} click={handleClose} message={"Cancel"}/>
+                    <Buttons.ButtonFill color={props.color} onClick={()=>props.handleSave()} message={props.submitLabel}/>
                 </DialogActions>
             </Dialog>
         </div>

@@ -17,6 +17,7 @@ from project.review.schemas import ReviewSchema
 bp = Blueprint('user', __name__)
 api = Api(bp)
 
+
 class UserListResource(Resource):
     def get(self):
         page = request.args.get('page', 1, type=int)
@@ -29,6 +30,7 @@ class UserListResource(Resource):
         return {'status': 'success',
                 'data': UserSchema(exclude=['password']).dump(users, many=True).data}
 
+
 class UserSettingsResource(Resource):
     @auth_required
     def get(self):
@@ -40,12 +42,13 @@ class UserSettingsResource(Resource):
     @auth_required
     def put(self):
         user = current_user()
-        data, _ = UserSchema().load(request.get_json(), 
-                                    instance=User.lookup(user.email), 
+        data, _ = UserSchema().load(request.get_json(),
+                                    instance=User.lookup(user.email),
                                     partial=True)
         db.session.commit()
         return {'status': 'success',
                 'msg': f'User {id} successfully updated'}
+
 
 class UserResource(Resource):
     def get(self, id):
@@ -56,6 +59,7 @@ class UserResource(Resource):
 
         return {'status': 'success',
                 'data': UserSchema(exclude=['password']).dump(user).data}
+
 
 class UserListingResource(Resource):
     def get(self, id):
@@ -68,10 +72,11 @@ class UserListingResource(Resource):
         return {'status': 'success',
                 'data': ListingSchema().dump(listings, many=True).data}
 
+
 class UserReviewsResource(Resource):
     def get(self, id):
         reviewee = User.query.get(1)
-        
+
         if not reviewee:
             return {'status': 'error',
                     'error': 'User not found'}, 404
@@ -89,7 +94,7 @@ class UserReviewsResource(Resource):
     def post(self, id):
         user = current_user()
         reviewee = User.query.get(id)
-        
+
         if not reviewee:
             return {'status': 'error',
                     'error': 'User not found'}, 404
@@ -104,6 +109,7 @@ class UserReviewsResource(Resource):
 
         return {'status': 'success',
                 'msg': f'Successfully reviewed {id}'}
+
 
 api.add_resource(UserListResource, '/')
 api.add_resource(UserSettingsResource, '/settings')

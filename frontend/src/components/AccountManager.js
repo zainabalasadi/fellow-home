@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Profile, {EditProfile, EditProfileCard, ProfileCard} from "./Profile";
 import {Grid} from "@material-ui/core";
 import {Button as ButtonStyle} from "semantic-ui-react";
-import * as buts from './Button';
+import * as Buttons from './Button';
 import {theme} from './Theme';
 
 class AccountManager extends Component {
@@ -13,7 +13,7 @@ class AccountManager extends Component {
 
         this.state = {
             isEditMode: false,
-        }
+        };
 
         this.handleNameChange = this.handleNameChange.bind(this);
     }
@@ -29,17 +29,17 @@ class AccountManager extends Component {
     renderSaveButton(newState) {
         return(
         <ButtonStyle.Group>
-            <buts.buttonFill colour={theme.colors.primary}
+            <Buttons.ButtonFill color={theme.colors.primary}
                     click={() => this.handleStateChange(newState)} message={"Save"}/>
             <ButtonStyle.Or />
-            <buts.buttonOutline colour={theme.colors.dark}
+            <Buttons.ButtonOutline color={theme.colors.dark}
                     click={() => this.setState({isEditMode: newState})} message={"Cancel"}/>
         </ButtonStyle.Group>
         )
     }
     renderEditButton(newState){
         return(
-        <buts.buttonLink className="body2" colour={theme.colors.primary}
+        <Buttons.ButtonLink className="body2" color={theme.colors.primary}
                 click={() => this.setState({isEditMode: newState})} message={"Edit Profile"}/>
         )
     }
@@ -76,14 +76,14 @@ class AccountManager extends Component {
             flexFlow: "row wrap",
             justify: "center",
             alignItems: "flex-start",
-        }
+        };
 
         const cardStyle = {
             width: "28%",
-        }
+        };
         const contentStyle = {
             width: "68%",
-        }
+        };
         return (
             <div width="90%" className="content">
                 <Grid container  style={containerStyle}>

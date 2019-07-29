@@ -1,5 +1,5 @@
 import React from 'react';
-import * as buts from './Button';
+import * as Buttons from './Button';
 import Button from '@material-ui/core/Button'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -27,9 +27,9 @@ export default function SnackBar(props) {
 
     return (
         <div>
-            {props.fill? <buts.buttonFill message={props.buttonLabel} colour={props.colour} click={()=>handleClick()}/> :null}
-            {props.out? <buts.buttonOutline message={props.buttonLabel} colour={props.colour} click={()=>handleClick()}/> :null}
-            {props.link?<buts.buttonLink message={props.buttonLabel} colour={props.colour} click={()=>handleClick()}/>:null}
+            {props.fill? <Buttons.ButtonFill message={props.buttonLabel} color={props.color} click={()=>handleClick()}/> :null}
+            {props.out? <Buttons.ButtonOutline message={props.buttonLabel} color={props.color} click={()=>handleClick()}/> :null}
+            {props.link?<Buttons.ButtonLink message={props.buttonLabel} color={props.color} click={()=>handleClick()}/>:null}
             <ThemeProvider theme={theme}>
             <Snackbar
                 anchorOrigin={{

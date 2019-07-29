@@ -2,9 +2,11 @@
 
 import json
 
+
 def test_unauthorised_path(test_client, init_database):
     response = test_client.get('/')
     assert response.status_code == 401
+
 
 def test_login(test_client, init_database):
     response = test_client.post('/login',
@@ -15,6 +17,7 @@ def test_login(test_client, init_database):
 
     data = response.get_json()
     assert data['access_token']
+
 
 def test_authorised_login(test_client, init_database):
     response = test_client.post('/login',

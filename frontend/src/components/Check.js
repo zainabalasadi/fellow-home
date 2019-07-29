@@ -44,7 +44,7 @@ class Check extends Component {
     /*checkbox*/
     componentWillMount = () => {
         this.selectedCheckboxes = new Set();
-    }
+    };
 
     toggleCheckbox = (label) => {
         if (this.selectedCheckboxes.has(label)) {
@@ -52,7 +52,7 @@ class Check extends Component {
         } else {
             this.selectedCheckboxes.add(label);
         }
-    }
+    };
 
     createCheckbox = (labels) => {
 
@@ -65,11 +65,11 @@ class Check extends Component {
             }
 
         />)
-    }
+    };
 
     createCheckboxes = () => (
         this.props.features.map(this.createCheckbox)
-    )
+    );
 
     render(){
         return(

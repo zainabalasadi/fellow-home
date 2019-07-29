@@ -1,3 +1,4 @@
+#!/usr/local/bin/python3
 # backend/manage.py
 
 import click
@@ -16,11 +17,13 @@ app = create_app()
 cli = FlaskGroup(create_app=create_app)
 cli.add_command('db', MigrateCommand)
 
+
 @cli.command('recreate_db')
 def recreate_db():
     db.drop_all()
     db.create_all()
     db.session.commit()
+
 
 @cli.command('populate_db')
 @click.argument('amount', default=1000)
@@ -55,35 +58,37 @@ def populate_db(amount):
             rooms = [Room(roomType=room["attributes"]["room_type"],
                           cost=room["attributes"]["rent"],
                           furnished=room["attributes"]["furnishings"],
-                          availability=datetime.strptime(room["attributes"]["date_available"], 
-                                                        "%Y-%m-%d"),
+                          availability=datetime.strptime(room["attributes"]["date_available"],
+                                                         "%Y-%m-%d"),
                           min_stay=room["attributes"]["min_stay"] or 0)
-                          for room in listing["rooms"]]
-            features = [Feature(feature=feat) 
-                        for room in listing["rooms"] 
+                     for room in listing["rooms"]]
+            features = [Feature(feature=feat)
+                        for room in listing["rooms"]
                         for feat in room["attributes"]["room_features_attributes"]]
 
             new_listing = Listing(name=listing["title"],
-                              property_type=listing["property_type"],
-                              description=listing["description"],
-                              date_published=listing["date_published"],
-                              num_housemates=listing["occupants"],
-                              num_vacancies=listing["vacancies"],
-                              num_bathrooms=listing["bathrooms"],
-                              num_bedrooms=listing["bedrooms"],
-                              landsize=listing["landsize"],
-                              address=address,
-                              rooms=rooms,
-                              features=features,
-                              amenities=amenities,
-                              restrictions=[],
-                              published=True)
+                                  property_type=listing["property_type"],
+                                  description=listing["description"],
+                                  date_published=listing["date_published"],
+                                  num_housemates=listing["occupants"],
+                                  num_vacancies=listing["vacancies"],
+                                  num_bathrooms=listing["bathrooms"],
+                                  num_bedrooms=listing["bedrooms"],
+                                  landsize=listing["landsize"],
+                                  address=address,
+                                  rooms=rooms,
+                                  features=features,
+                                  amenities=amenities,
+                                  restrictions=[],
+                                  images=images,
+                                  published=True)
 
             user.listings.append(new_listing)
 
             db.session.add(user)
 
     db.session.commit()
+
 
 if __name__ == '__main__':
     cli()

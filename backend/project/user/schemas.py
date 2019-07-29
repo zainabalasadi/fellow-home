@@ -5,11 +5,12 @@ from marshmallow import validates_schema, ValidationError
 from project import ma
 from project.user.models import User
 
+
 class UserSchema(ma.ModelSchema):
     class Meta:
         model = User
         strict = True
-        fields = ('id', 'first_name', 'last_name', 'email', 'password', 
+        fields = ('id', 'first_name', 'last_name', 'email', 'password',
                   'gender', 'avatar', 'dob', 'verified')
 
     @validates_schema

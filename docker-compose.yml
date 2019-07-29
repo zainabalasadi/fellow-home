@@ -23,7 +23,7 @@ services:
             context: ./backend/project/db
             dockerfile: Dockerfile
         volumes:
-            - './pgdata:/var/lib/postgresql/data'
+            - pgdata:/var/lib/postgresql/data
         ports:
             - 5435:5432
         environment:
@@ -42,3 +42,5 @@ services:
             - NODE_ENV=development
         depends_on:
             - fellow-backend
+volumes:
+    pgdata:
