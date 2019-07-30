@@ -31,7 +31,22 @@ import Box from '@material-ui/core/Box';
 
 
 function Listing8 () {
+    const [state, setState] = React.useState({
+        num: '',
+        name: 'hai',
+    });
+    const inputLabel = React.useRef(null);
+    const [labelWidth, setLabelWidth] = React.useState(0);
+    React.useEffect(() => {
+        setLabelWidth(inputLabel.current.offsetWidth);
+    }, []);
 
+    const handleChange = name => event => {
+        setState({
+          ...state,
+          [name]: event.target.value,
+        });
+      };
     return (
         <React.Fragment>
             <CssBaseline />
@@ -78,14 +93,53 @@ function Listing8 () {
                                     p={0}
                                     style={{height: '2rem'}}
                                 >
-                                    Availabilities
+                                    Preferences and About
                                 </Box>
                             </Grid>
                         </Grid>
                     </Box>
                 </Container>
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
+                    <h4>Describe your property</h4>
+                    <p>Description</p>
+                          <TextField
+                            id="outlined-multiline-static"
+                            placeholder="Describe the housemates location, atmosphere, etc."
+                            multiline
+                            rows="4"
+                            margin="normal"
+                            variant="outlined"
+                            fullWidth
+                          />
+                    <p>Housemate Preferences</p>
+                    <FormControl 
+                        variant="outlined" 
+                        margin="normal"
+                        fullWidth
+                    >
+                        <InputLabel ref={inputLabel} htmlFor="pref">
+                            Select one
+                        </InputLabel>
+                            
+                        <Select
+                            native
+                            value={state.pref}
 
+                            onChange={handleChange('pref')}
+                            input={
+                                <OutlinedInput name="pref" labelWidth={labelWidth} id="pref" />
+                            }
+                        >
+
+                        <option value="" />
+                        <option value={0}>No Preferences</option>
+                        <option value={1}>Female Only</option>
+                        <option value={2}>Male Only</option>
+                        <option value={2}>Couples</option>
+                        <option value={2}>No Couples</option>
+                        <option value={2}>Under 30 years of Age</option>
+                        </Select>
+                    </FormControl>
                 </Container>
             </Container>
         </React.Fragment>

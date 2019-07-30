@@ -87,7 +87,20 @@ function Listing7 () {
                     </Box>
                 </Container>
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-                    
+                    <h4>Add photos to your listing</h4>
+                    <p>Photos</p>
+                    <input
+                        accept="image/*"
+                        id="contained-button-file"
+                        multiple
+                        type="file"
+                        style={{display:'none'}}
+                      />
+                      <label htmlFor="contained-button-file">
+                        <Button variant="contained" component="span">
+                          Upload
+                        </Button>
+                      </label>
                     <BrowserRouter>
                         <Button variant="contained" color="secondary" href={'../Listing8'}>Continue</Button>
                         <Route path="/Listing8" component={() => <Listing8/>}/>

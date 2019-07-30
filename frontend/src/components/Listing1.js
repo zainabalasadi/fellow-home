@@ -100,15 +100,15 @@ function Listing1 () {
 			      		margin="normal"
 			      		fullWidth
 			      	>
-				        <InputLabel ref={inputLabel} htmlFor="address">
+				        <InputLabel ref={inputLabel} htmlFor="accomodation">
 				          	Select one
 				        </InputLabel>
 				        <Select
 					        native
-					        value={state.adress}
-					        onChange={handleChange('address')}
+					        value={state.accomodation}
+					        onChange={handleChange('accomodation')}
 					        input={
-					        	<OutlinedInput name="address" labelWidth={labelWidth} id="address" />
+					        	<OutlinedInput name="accomodation" labelWidth={labelWidth} id="accomodation" />
 				          	}
 				        >
 		          		<option value="" />

@@ -28,12 +28,25 @@ import Checkbox from '@material-ui/core/Checkbox';
 import config from "../utils/config";
 import Check from "./Check";
 import Box from '@material-ui/core/Box';
-
-
 import Listing7 from "./Listing7";
 
 function Listing6 () {
+    const [state, setState] = React.useState({
+        num: '',
+        name: 'hai',
+    });
+    const inputLabel = React.useRef(null);
+    const [labelWidth, setLabelWidth] = React.useState(0);
+    React.useEffect(() => {
+        setLabelWidth(inputLabel.current.offsetWidth);
+    }, []);
 
+    const handleChange = name => event => {
+        setState({
+          ...state,
+          [name]: event.target.value,
+        });
+      };
     return (
         <React.Fragment>
             <CssBaseline />
@@ -87,7 +100,47 @@ function Listing6 () {
                     </Box>
                 </Container>
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-                    
+                    <h4>When is your property available?</h4>
+                    <p>Room with a view</p>
+                    <TextField
+                        id="date"
+                        label="Date available from"
+                        type="date"
+                        placeholder="YYYY-MM-DD"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                    />
+                    <p>minimum length stay</p>
+                    <FormControl 
+                        variant="outlined" 
+                        margin="normal"
+                        fullWidth
+                    >
+                        <InputLabel ref={inputLabel} htmlFor="minstay">
+                            Select one
+                        </InputLabel>
+                            
+                        <Select
+                            native
+                            value={state.minstay}
+
+                            onChange={handleChange('minstay')}
+                            input={
+                                <OutlinedInput name="minstay" labelWidth={labelWidth} id="minstay" />
+                            }
+                        >
+
+                        <option value="" />
+                        <option value={0}>1 Month</option>
+                        <option value={1}>2 Months</option>
+                        <option value={2}>3 Months</option>
+                        <option value={2}>4 Months</option>
+                        <option value={2}>5 Months</option>
+                        <option value={2}>6 Months</option>
+                        <option value={2}>1 Year</option>
+                        </Select>
+                    </FormControl>
                     <BrowserRouter>
                         <Button variant="contained" color="secondary" href={'../Listing7'}>Continue</Button>
                         <Route path="/Listing7" component={() => <Listing7/>}/>
