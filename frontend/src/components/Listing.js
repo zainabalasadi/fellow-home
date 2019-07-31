@@ -7,7 +7,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-
 import Box from '@material-ui/core/Box';
 
 function Listing () {
@@ -57,6 +56,7 @@ function Listing () {
                             <Divider/>
                             <h5>About the property</h5>
                             <p>description of property</p>
+
                             <br/><br/>
                             <Divider/>
                             <h5>Room 1</h5>
