@@ -10,7 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import * as Buttons from './Button';
 import {CssTextField} from "./Textinputs";
 import {theme} from "./Theme";
@@ -125,6 +126,10 @@ function Login(props) {
                                 <Buttons.ButtonLink click={handleRegister} color={theme.colors.primary} message={"Sign Up!"}/>
                             </DialogContentText>
                         </div>
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="secondary" />}
+                            label="Remember me"
+                        />
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
