@@ -1,40 +1,21 @@
 import React, { Component } from "react";
-
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import Button from '@material-ui/core/Button'
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
+import Box from '@material-ui/core/Box';
+import {CssTextField} from "./Textinputs";
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Paper from '@material-ui/core/Paper';
-import { BrowserRouter} from 'react-router-dom';
-import { Link, Route, Switch } from 'react-router-dom';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import config from "../utils/config";
-import Check from "./Check";
-import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing7 from "./Listing7";
 
 function Listing6 () {
-    const [state, setState] = React.useState({
-        num: '',
-        name: 'hai',
+    const [values, setValue] = React.useState({
+        minStay: '',
     });
+
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
@@ -42,14 +23,14 @@ function Listing6 () {
     }, []);
 
     const handleChange = name => event => {
-        setState({
-          ...state,
-          [name]: event.target.value,
+        setValue({
+            ...values,
+            [name]: event.target.value,
         });
-      };
+    };
+
     return (
         <React.Fragment>
-            <CssBaseline />
             <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
                 <Container style={{padding: 20}} maxWidth="md">
                     <Box 
@@ -102,13 +83,13 @@ function Listing6 () {
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
                     <h4>When is your property available?</h4>
                     <p>Room with a view</p>
-                    <TextField
+                    <CssTextField
                         id="date"
                         label="Date available from"
                         type="date"
                         placeholder="YYYY-MM-DD"
                         InputLabelProps={{
-                          shrink: true,
+                            shrink: true,
                         }}
                     />
                     <p>minimum length stay</p>
@@ -117,20 +98,18 @@ function Listing6 () {
                         margin="normal"
                         fullWidth
                     >
-                        <InputLabel ref={inputLabel} htmlFor="minstay">
+                        <InputLabel ref={inputLabel} htmlFor="minStay">
                             Select one
                         </InputLabel>
-                            
                         <Select
                             native
-                            value={state.minstay}
+                            value={values.minStay}
 
-                            onChange={handleChange('minstay')}
+                            onChange={handleChange('minStay')}
                             input={
-                                <OutlinedInput name="minstay" labelWidth={labelWidth} id="minstay" />
+                                <OutlinedInput name="minStay" labelWidth={labelWidth} id="minStay" />
                             }
                         >
-
                         <option value="" />
                         <option value={0}>1 Month</option>
                         <option value={1}>2 Months</option>
@@ -152,4 +131,3 @@ function Listing6 () {
 }
  
 export default Listing6;
-

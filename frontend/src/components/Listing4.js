@@ -1,41 +1,22 @@
 import React, { Component } from "react";
-
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import Button from '@material-ui/core/Button'
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
+import Box from '@material-ui/core/Box';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Paper from '@material-ui/core/Paper';
-import { BrowserRouter} from 'react-router-dom';
-import { Link, Route, Switch } from 'react-router-dom';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import config from "../utils/config";
+import Button from '@material-ui/core/Button';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Check from "./Check";
-import Box from '@material-ui/core/Box';
-
+import config from "../utils/config";
 import Listing5 from "./Listing5";
 
 function Listing4 () {
-    const [state, setState] = React.useState({
-        age: '',
-        name: 'hai',
+    const [values, setValue] = React.useState({
+        bedType: '',
     });
+
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
@@ -43,15 +24,15 @@ function Listing4 () {
     }, []);
 
     const handleChange = name => event => {
-        setState({
-          ...state,
-          [name]: event.target.value,
+        setValue({
+            ...values,
+            [name]: event.target.value,
         });
-      };
+    };
+
     return (
-    	<React.Fragment>
-	    	<CssBaseline />
-	      	<Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
+        <React.Fragment>
+            <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
                 <Container style={{padding: 20}} maxWidth="md">
                     <Box 
                         color="tomato" 
@@ -101,23 +82,23 @@ function Listing4 () {
                     </Box>
                 </Container>
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-    		      	<h4>What ammenities do the rooms offer?</h4>
+                    <h4>What ammenities do the rooms offer?</h4>
                     <p>Room with a view</p>
-    		      	<p>BED TYPE</p>
+                    <p>BED TYPE</p>
                     <FormControl 
                         variant="outlined" 
                         margin="normal"
                         fullWidth
                     >
-                        <InputLabel ref={inputLabel} htmlFor="bedtype">
+                        <InputLabel ref={inputLabel} htmlFor="bedType">
                             Select one
                         </InputLabel>
                         <Select
                             native
-                            value={state.adress}
-                            onChange={handleChange('bedtype')}
+                            value={values.bedType}
+                            onChange={handleChange('bedType')}
                             input={
-                                <OutlinedInput name="bedtype" labelWidth={labelWidth} id="bedtype" />
+                                <OutlinedInput name="bedType" labelWidth={labelWidth} id="bedType" />
                             }
                         >
                         <option value="" />
@@ -129,7 +110,6 @@ function Listing4 () {
                         </Select>
                     </FormControl>
                     <p>Amenities</p>
-                    
                     <p>These are just the amentiies housemates usually expect, but you can add even more after you publish</p>
                     <div>
                         <Check features={config.checkAmenities}/>
@@ -139,10 +119,9 @@ function Listing4 () {
                         <Route path="/Listing5" component={() => <Listing5/>}/>
                     </BrowserRouter>
                 </Container>
-        	</Container>
-    	</React.Fragment>
+            </Container>
+        </React.Fragment>
     );
 }
  
 export default Listing4;
-

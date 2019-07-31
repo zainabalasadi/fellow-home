@@ -1,42 +1,24 @@
 import React, { Component } from "react";
-
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import Button from '@material-ui/core/Button'
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
+import Box from '@material-ui/core/Box';
+import {CssTextField} from "./Textinputs";
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Paper from '@material-ui/core/Paper';
-import { BrowserRouter} from 'react-router-dom';
-import { Link, Route, Switch } from 'react-router-dom';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import config from "../utils/config";
-import Check from "./Check";
-import Box from '@material-ui/core/Box';
 import InputAdornment from '@material-ui/core/InputAdornment';
-
+import Button from '@material-ui/core/Button';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing6 from "./Listing6";
 
 function Listing5 () {
-    const [state, setState] = React.useState({
-        num: '',
-        name: 'hai',
+    const [values, setValue] = React.useState({
+        amount: '',
+        bond: '',
+        bills: '',
     });
+
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
@@ -44,20 +26,14 @@ function Listing5 () {
     }, []);
 
     const handleChange = name => event => {
-        setState({
-          ...state,
-          [name]: event.target.value,
+        setValue({
+            ...values,
+            [name]: event.target.value,
         });
     };
-      const handleMonChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-    const [values, setValues] = React.useState({
-    amount: '',
-  });
+    
     return (
         <React.Fragment>
-            <CssBaseline />
             <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
                 <Container style={{padding: 20}} maxWidth="md">
                     <Box 
@@ -108,20 +84,20 @@ function Listing5 () {
                     </Box>
                 </Container>
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-                  <h4>Price your property</h4>
-                  <p>Room with a view</p>
-                  <p>WEEKLY RENT</p>
-                    <TextField
-                        id="outlined-adornment-amount"
+                    <h4>Price your property</h4>
+                    <p>Room with a view</p>
+                    <p>WEEKLY RENT</p>
+                    <CssTextField
+                        id="amount"
                         variant="outlined"
                         label="Amount"
                         value={values.amount}
-                        onChange={handleMonChange('amount')}
+                        onChange={handleChange('amount')}
                         InputProps={{
                           startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }}
-                      />
-                  <p>BOND</p>
+                    />
+                    <p>BOND</p>
                     <FormControl 
                         variant="outlined" 
                         margin="normal"
@@ -132,7 +108,7 @@ function Listing5 () {
                         </InputLabel>
                         <Select
                             native
-                            value={state.adress}
+                            value={values.bond}
                             onChange={handleChange('bond')}
                             input={
                                 <OutlinedInput name="bond" labelWidth={labelWidth} id="bond" />
@@ -157,7 +133,7 @@ function Listing5 () {
                         </InputLabel>
                         <Select
                             native
-                            value={state.adress}
+                            value={values.bills}
                             onChange={handleChange('bills')}
                             input={
                                 <OutlinedInput name="bills" labelWidth={labelWidth} id="bills" />
@@ -175,10 +151,9 @@ function Listing5 () {
                         <Route path="/Listing6" component={() => <Listing6/>}/>
                     </BrowserRouter>
                 </Container>
-        	</Container>
-    	</React.Fragment>
+            </Container>
+        </React.Fragment>
     );
 }
  
 export default Listing5;
-

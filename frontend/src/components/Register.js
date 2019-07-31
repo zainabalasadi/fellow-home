@@ -72,6 +72,7 @@ function Register(props) {
                                 type="email"
                                 variant="outlined"
                                 fullWidth
+                                required
                             />
                         </div>
                         <div>
@@ -83,6 +84,7 @@ function Register(props) {
                                 type="text"
                                 variant="outlined"
                                 fullWidth
+                                required
                             />
                         </div>
                         <div>
@@ -94,10 +96,12 @@ function Register(props) {
                             type="text"
                             variant="outlined"
                             fullWidth
+                            required
                             />
                         </div>
                         <div>
                             <CssTextField
+                                required
                                 id="password"
                                 fullWidth
                                 variant="outlined"
@@ -131,6 +135,7 @@ function Register(props) {
                                 type="text"
                                 variant="outlined"
                                 fullWidth
+                                required
                             />
                         </div>
                             <DialogContentText>

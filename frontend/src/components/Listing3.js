@@ -1,37 +1,22 @@
 import React, { Component } from "react";
-
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import Button from '@material-ui/core/Button'
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
+import Box from '@material-ui/core/Box';
+import {CssTextField} from "./Textinputs";
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Paper from '@material-ui/core/Paper';
-import { BrowserRouter} from 'react-router-dom';
-import { Link, Route, Switch } from 'react-router-dom';
-
-import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing4 from "./Listing4";
 
 function Listing3 () {
-    const [state, setState] = React.useState({
-        age: '',
-        name: 'hai',
+    const [values, setValue] = React.useState({
+        roomType: '',
+        bathroomAccess: '',
     });
+
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
@@ -39,15 +24,15 @@ function Listing3 () {
     }, []);
 
     const handleChange = name => event => {
-        setState({
-          ...state,
+        setValue({
+          ...values,
           [name]: event.target.value,
         });
     };
+
     return (
-    	<React.Fragment>
-	    	<CssBaseline />
-	      	<Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
+        <React.Fragment>
+            <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
                 <Container style={{padding: 20}} maxWidth="md">
                     <Box 
                         color="tomato" 
@@ -97,9 +82,9 @@ function Listing3 () {
                     </Box>
                 </Container>
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-    		      	<h4>Tell us about the rooms available</h4>
-    		      	<p>ROOM NAME</p>
-                    <TextField
+                    <h4>Tell us about the rooms available</h4>
+                    <p>ROOM NAME</p>
+                    <CssTextField
                         id="room1"
                         placeholder="Room 1"
                         type="text"
@@ -113,15 +98,15 @@ function Listing3 () {
                         margin="normal"
                         fullWidth
                     >
-                        <InputLabel ref={inputLabel} htmlFor="roomtype">
+                        <InputLabel ref={inputLabel} htmlFor="roomType">
                             Select one
                         </InputLabel>
                         <Select
                             native
-                            value={state.adress}
-                            onChange={handleChange('roomtype')}
+                            value={values.roomType}
+                            onChange={handleChange('roomType')}
                             input={
-                                <OutlinedInput name="roomtype" labelWidth={labelWidth} id="roomtype" />
+                                <OutlinedInput name="roomType" labelWidth={labelWidth} id="roomType" />
                             }
                         >
                         <option value="" />
@@ -136,15 +121,15 @@ function Listing3 () {
                         margin="normal"
                         fullWidth
                     >
-                        <InputLabel ref={inputLabel} htmlFor="bathroomaccess">
+                        <InputLabel ref={inputLabel} htmlFor="bathroomAccess">
                             Select one
                         </InputLabel>
                         <Select
                             native
-                            value={state.adress}
-                            onChange={handleChange('bathroomaccess')}
+                            value={values.bathroomAccess}
+                            onChange={handleChange('bathroomAccess')}
                             input={
-                                <OutlinedInput name="bathroomaccess" labelWidth={labelWidth} id="bathroomaccess" />
+                                <OutlinedInput name="bathroomAccess" labelWidth={labelWidth} id="bathroomAccess" />
                             }
                         >
                         <option value="" />
@@ -158,10 +143,9 @@ function Listing3 () {
                         <Route path="/Listing4" component={() => <Listing4/>}/>
                     </BrowserRouter>
                 </Container>
-        	</Container>
-    	</React.Fragment>
+            </Container>
+        </React.Fragment>
     );
 }
  
 export default Listing3;
-

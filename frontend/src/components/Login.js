@@ -92,6 +92,7 @@ function Login(props) {
                                 type="email"
                                 variant="outlined"
                                 fullWidth
+                                required
                             />
                         </div>
                         <div>
@@ -100,6 +101,7 @@ function Login(props) {
                                 fullWidth
                                 variant="outlined"
                                 margin="dense"
+                                required
                                 type={values.showPassword ? 'text' : 'password'}
                                 label="Password"
                                 value={values.password}

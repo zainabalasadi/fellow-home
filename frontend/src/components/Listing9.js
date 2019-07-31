@@ -1,42 +1,24 @@
 import React, { Component } from "react";
-
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import Button from '@material-ui/core/Button'
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
+import Box from '@material-ui/core/Box';
+import {CssTextField} from "./Textinputs";
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Paper from '@material-ui/core/Paper';
-import { BrowserRouter} from 'react-router-dom';
-import { Link, Route, Switch } from 'react-router-dom';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import config from "../utils/config";
-import Check from "./Check";
-import Box from '@material-ui/core/Box';
-
+import Button from '@material-ui/core/Button';
+import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing2 from "./Listing2";
 
-
 function Listing9 () {
-    const [state, setState] = React.useState({
-        num: '',
-        name: 'hai',
+    const [values, setValues] = React.useState({
+        bedroom: '',
+        bathroom: '',
+        parking: '',
+        internet: '',
     });
+
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
@@ -44,25 +26,14 @@ function Listing9 () {
     }, []);
 
     const handleChange = name => event => {
-        setState({
-          ...state,
-          [name]: event.target.value,
+        setValues({ 
+            ...values, 
+            [name]: event.target.value, 
         });
     };
 
-    const [values, setValues] = React.useState({
-            name: 'Cat in the Hat',
-    num: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
-    });
-
-    const handleNoChange = name => event => {
-        setValues({ ...values, [name]: event.target.value });
-    };
     return (
         <React.Fragment>
-            <CssBaseline />
             <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
                 <Container style={{padding: 20}} maxWidth="md">
                     <Box 
@@ -115,11 +86,22 @@ function Listing9 () {
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
                     <h4>Tell us more about the property</h4>
                     <p>Total number of bedrooms</p>
+                    <CssTextField
+                        id="bedroom"
+                        value={values.bedroom}
+                        onChange={handleChange('bedroom')}
+                        type="number"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        margin="dense"
+                        variant="outlined"
+                    />
                     <p>Total number of bathrooms</p>
-                    <TextField
-                        id="housemates"
-                        value={values.num}
-                        onChange={handleNoChange('num')}
+                    <CssTextField
+                        id="bathroom"
+                        value={values.bathroom}
+                        onChange={handleChange('bathroom')}
                         type="number"
                         InputLabelProps={{
                             shrink: true,
@@ -138,7 +120,7 @@ function Listing9 () {
                         </InputLabel>
                         <Select
                             native
-                            value={state.adress}
+                            value={values.parking}
                             onChange={handleChange('parking')}
                             input={
                                 <OutlinedInput name="parking" labelWidth={labelWidth} id="parking" />
@@ -161,7 +143,7 @@ function Listing9 () {
                         </InputLabel>
                         <Select
                             native
-                            value={state.adress}
+                            value={values.internet}
                             onChange={handleChange('internet')}
                             input={
                                 <OutlinedInput name="internet" labelWidth={labelWidth} id="internet" />
@@ -185,5 +167,3 @@ function Listing9 () {
 }
  
 export default Listing9;
-
-
