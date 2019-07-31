@@ -33,136 +33,134 @@ function Listing9 () {
     };
 
     return (
-        <React.Fragment>
-            <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
-                <Container style={{padding: 20}} maxWidth="md">
-                    <Box 
-                        color="tomato" 
-                        borderBottom={4} 
-                        borderColor="gainsboro" 
-                        p={0}
-                        style={{height: '2rem'}}
-                    >
-                        <Grid container spacing={0}>
-                            <Grid item xs = {2}>
-                                Type of accomodation
-                            </Grid>
-                            <Grid item xs>
-                                <Box 
-                                    color="black" 
-                                    bgcolor="white" 
-                                    borderBottom={4} 
-                                    borderColor="tomato" 
-                                    p={0}
-                                    style={{height: '2rem'}}
-                                >
-                                    Basics
-                                </Box>
-                            </Grid>
-                            <Grid item xs>
-                                Housemates
-                            </Grid>
-                            <Grid item xs>
-                                Rooms
-                            </Grid>
-                            <Grid item xs>
-                                Features
-                            </Grid>
-                            <Grid item xs>
-                                Rent
-                            </Grid>
-                            <Grid item xs>
-                                Availabilities
-                            </Grid>
-                            <Grid item xs>
-                                Photos
-                            </Grid>
-                            <Grid item xs = {2}>
-                                Preferences and About
-                            </Grid>
+        <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
+            <Container style={{padding: 20}} maxWidth="md">
+                <Box 
+                    color="tomato" 
+                    borderBottom={4} 
+                    borderColor="gainsboro" 
+                    p={0}
+                    style={{height: '2rem'}}
+                >
+                    <Grid container spacing={0}>
+                        <Grid item xs = {2}>
+                            Type of accomodation
                         </Grid>
-                    </Box>
-                </Container>
-                <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-                    <h4>Tell us more about the property</h4>
-                    <p>Total number of bedrooms</p>
-                    <CssTextField
-                        id="bedroom"
-                        value={values.bedroom}
-                        onChange={handleChange('bedroom')}
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        margin="dense"
-                        variant="outlined"
-                    />
-                    <p>Total number of bathrooms</p>
-                    <CssTextField
-                        id="bathroom"
-                        value={values.bathroom}
-                        onChange={handleChange('bathroom')}
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        margin="dense"
-                        variant="outlined"
-                    />
-                    <p>PARKING</p>
-                    <FormControl 
-                        variant="outlined" 
-                        margin="normal"
-                        fullWidth
-                    >
-                        <InputLabel ref={inputLabel} htmlFor="parking">
-                            Select one
-                        </InputLabel>
-                        <Select
-                            native
-                            value={values.parking}
-                            onChange={handleChange('parking')}
-                            input={
-                                <OutlinedInput name="parking" labelWidth={labelWidth} id="parking" />
-                            }
-                        >
-                        <option value="" />
-                        <option value={0}>Off-street Parking</option>
-                        <option value={1}>On-street Parking</option>
-                        <option value={2}>No Parking</option>
-                        </Select>
-                    </FormControl>
-                    <p>INTERNET</p>
-                    <FormControl 
-                        variant="outlined" 
-                        margin="normal"
-                        fullWidth
-                    >
-                        <InputLabel ref={inputLabel} htmlFor="internet">
-                            Select one
-                        </InputLabel>
-                        <Select
-                            native
-                            value={values.internet}
-                            onChange={handleChange('internet')}
-                            input={
-                                <OutlinedInput name="internet" labelWidth={labelWidth} id="internet" />
-                            }
-                        >
-                        <option value="" />
-                        <option value={0}>No Internet</option>
-                        <option value={1}>Available but not included in rent</option>
-                        <option value={2}>Available with rent</option>
-                        <option value={3}>Unlimited included in rent</option>
-                        </Select>
-                    </FormControl>
-                    <BrowserRouter>
-                        <Button variant="contained" color="secondary" href={'../Listing2'}>Continue</Button>
-                        <Route path="/Listing2" component={() => <Listing2/>}/>
-                    </BrowserRouter>
-                </Container>
+                        <Grid item xs>
+                            <Box 
+                                color="black" 
+                                bgcolor="white" 
+                                borderBottom={4} 
+                                borderColor="tomato" 
+                                p={0}
+                                style={{height: '2rem'}}
+                            >
+                                Basics
+                            </Box>
+                        </Grid>
+                        <Grid item xs>
+                            Housemates
+                        </Grid>
+                        <Grid item xs>
+                            Rooms
+                        </Grid>
+                        <Grid item xs>
+                            Features
+                        </Grid>
+                        <Grid item xs>
+                            Rent
+                        </Grid>
+                        <Grid item xs>
+                            Availabilities
+                        </Grid>
+                        <Grid item xs>
+                            Photos
+                        </Grid>
+                        <Grid item xs = {2}>
+                            Preferences and About
+                        </Grid>
+                    </Grid>
+                </Box>
             </Container>
-        </React.Fragment>
+            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+                <h4>Tell us more about the property</h4>
+                <p>Total number of bedrooms</p>
+                <CssTextField
+                    id="bedroom"
+                    value={values.bedroom}
+                    onChange={handleChange('bedroom')}
+                    type="number"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    margin="dense"
+                    variant="outlined"
+                />
+                <p>Total number of bathrooms</p>
+                <CssTextField
+                    id="bathroom"
+                    value={values.bathroom}
+                    onChange={handleChange('bathroom')}
+                    type="number"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    margin="dense"
+                    variant="outlined"
+                />
+                <p>PARKING</p>
+                <FormControl 
+                    variant="outlined" 
+                    margin="normal"
+                    fullWidth
+                >
+                    <InputLabel ref={inputLabel} htmlFor="parking">
+                        Select one
+                    </InputLabel>
+                    <Select
+                        native
+                        value={values.parking}
+                        onChange={handleChange('parking')}
+                        input={
+                            <OutlinedInput name="parking" labelWidth={labelWidth} id="parking" />
+                        }
+                    >
+                    <option value="" />
+                    <option value={0}>Off-street Parking</option>
+                    <option value={1}>On-street Parking</option>
+                    <option value={2}>No Parking</option>
+                    </Select>
+                </FormControl>
+                <p>INTERNET</p>
+                <FormControl 
+                    variant="outlined" 
+                    margin="normal"
+                    fullWidth
+                >
+                    <InputLabel ref={inputLabel} htmlFor="internet">
+                        Select one
+                    </InputLabel>
+                    <Select
+                        native
+                        value={values.internet}
+                        onChange={handleChange('internet')}
+                        input={
+                            <OutlinedInput name="internet" labelWidth={labelWidth} id="internet" />
+                        }
+                    >
+                    <option value="" />
+                    <option value={0}>No Internet</option>
+                    <option value={1}>Available but not included in rent</option>
+                    <option value={2}>Available with rent</option>
+                    <option value={3}>Unlimited included in rent</option>
+                    </Select>
+                </FormControl>
+                <BrowserRouter>
+                    <Button variant="contained" color="secondary" href={'../Listing2'}>Continue</Button>
+                    <Route path="/Listing2" component={() => <Listing2/>}/>
+                </BrowserRouter>
+            </Container>
+        </Container>
     );
 }
  

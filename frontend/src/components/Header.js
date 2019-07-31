@@ -1,12 +1,11 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-
 import NavigationMenuItem from './NavigationMenuItem';
 import '../css/NavigationMenu.css';
 import * as TextInput from "./Textinputs";
 import SearchIcon from '@material-ui/icons/Search'
-
+import Divider from '@material-ui/core/Divider';
 import { BrowserRouter} from 'react-router-dom';
 import {Button} from "@material-ui/core";
 import {MapContainer} from "./MapContainer";
@@ -61,6 +60,7 @@ function Header(props) {
               </BrowserRouter>
           }
               </overline>
+              <Divider/>
               </header>
    )
 }

@@ -23,79 +23,77 @@ class Listing7 extends React.Component{
 
     render(){
         return (
-            <React.Fragment>
-                <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
-                    <Container style={{padding: 20}} maxWidth="md">
-                        <Box 
-                            color="tomato" 
-                            borderBottom={4} 
-                            borderColor="gainsboro" 
-                            p={0}
-                            style={{height: '2rem'}}
-                        >
-                            <Grid container spacing={0}>
-                                <Grid item xs = {2}>
-                                    Type of accomodation
-                                </Grid>
-                                <Grid item xs>
-                                    Basics
-                                </Grid>
-                                <Grid item xs>
-                                    Housemates
-                                </Grid>
-                                <Grid item xs>
-                                    Rooms
-                                </Grid>
-                                <Grid item xs>
-                                    Features
-                                </Grid>
-                                <Grid item xs>
-                                    Rent
-                                </Grid>
-                                <Grid item xs>
-                                    Availabilities
-                                </Grid>
-                                <Grid item xs>
-                                    <Box 
-                                        color="black" 
-                                        bgcolor="white" 
-                                        borderBottom={4} 
-                                        borderColor="tomato" 
-                                        p={0}
-                                        style={{height: '2rem'}}
-                                    >
-                                        Photos
-                                    </Box>
-                                </Grid>
-                                <Grid item xs = {2}>
-                                    Preferences and About
-                                </Grid>
+            <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
+                <Container style={{padding: 20}} maxWidth="md">
+                    <Box 
+                        color="tomato" 
+                        borderBottom={4} 
+                        borderColor="gainsboro" 
+                        p={0}
+                        style={{height: '2rem'}}
+                    >
+                        <Grid container spacing={0}>
+                            <Grid item xs = {2}>
+                                Type of accomodation
                             </Grid>
-                        </Box>
-                    </Container>
-                    <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-                        <h4>Add photos to your listing</h4>
-                        <p>Photos</p>
-                        <input
-                            accept="image/*"
-                            id="contained-button-file"
-                            multiple
-                            type="file" onChange={this.handleChange}
-                            style={{display:'none'}}
-                        />
-                        <label htmlFor="contained-button-file">
-                            <Button variant="contained" component="span">
-                                Upload
-                            </Button>
-                        </label>
-                        <img src={this.state.file}/>
-                        <BrowserRouter>
-                            <Button variant="contained" color="secondary" href={'../Listing8'}>Continue</Button>
-                            <Route path="/Listing8" component={() => <Listing8/>}/>
-                        </BrowserRouter>
-                    </Container>
+                            <Grid item xs>
+                                Basics
+                            </Grid>
+                            <Grid item xs>
+                                Housemates
+                            </Grid>
+                            <Grid item xs>
+                                Rooms
+                            </Grid>
+                            <Grid item xs>
+                                Features
+                            </Grid>
+                            <Grid item xs>
+                                Rent
+                            </Grid>
+                            <Grid item xs>
+                                Availabilities
+                            </Grid>
+                            <Grid item xs>
+                                <Box 
+                                    color="black" 
+                                    bgcolor="white" 
+                                    borderBottom={4} 
+                                    borderColor="tomato" 
+                                    p={0}
+                                    style={{height: '2rem'}}
+                                >
+                                    Photos
+                                </Box>
+                            </Grid>
+                            <Grid item xs = {2}>
+                                Preferences and About
+                            </Grid>
+                        </Grid>
+                    </Box>
                 </Container>
-            </React.Fragment>
+                <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+                    <h4>Add photos to your listing</h4>
+                    <p>Photos</p>
+                    <input
+                        accept="image/*"
+                        id="contained-button-file"
+                        multiple
+                        type="file" onChange={this.handleChange}
+                        style={{display:'none'}}
+                    />
+                    <label htmlFor="contained-button-file">
+                        <Button variant="contained" component="span">
+                            Upload
+                        </Button>
+                    </label>
+                    <img src={this.state.file}/>
+                    <BrowserRouter>
+                        <Button variant="contained" color="secondary" href={'../Listing8'}>Continue</Button>
+                        <Route path="/Listing8" component={() => <Listing8/>}/>
+                    </BrowserRouter>
+                </Container>
+            </Container>
         );
     }
 }

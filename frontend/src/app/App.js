@@ -5,7 +5,7 @@ import './App.css';
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Profile from '../components/Profile'
-
+import Listing from '../components/Listing'
 import Listing1 from '../components/Listing1'
 import Listing2 from '../components/Listing2'
 import Listing3 from '../components/Listing3'
@@ -60,6 +60,7 @@ class App extends Component {
 						<Header onLogin={this.onUserLogin} loggedin={login} user={this.state.user} color={theme.colors.primary}/>
 						<Switch>
 							<Route exact path="/" component={() => <Home/>} />
+							<Route path="/Listing" component={() => <Listing/>}/>
 							<Route path="/Listing1" component={() => <Listing1/>}/>
 							<Route path="/Listing2" component={() => <Listing2/>}/>
 							<Route path="/Listing3" component={() => <Listing3/>}/>
