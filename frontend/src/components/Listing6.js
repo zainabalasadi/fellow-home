@@ -82,7 +82,6 @@ function Listing6 () {
                 </Container>
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
                     <h4>When is your property available?</h4>
-                    <p>Room with a view</p>
                     <CssTextField
                         id="date"
                         label="Date available from"

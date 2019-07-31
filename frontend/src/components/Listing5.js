@@ -85,43 +85,49 @@ function Listing5 () {
                 </Container>
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
                     <h4>Price your property</h4>
-                    <p>Room with a view</p>
-                    <p>WEEKLY RENT</p>
-                    <CssTextField
-                        id="amount"
-                        variant="outlined"
-                        label="Amount"
-                        value={values.amount}
-                        onChange={handleChange('amount')}
-                        InputProps={{
-                          startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                        }}
-                    />
-                    <p>BOND</p>
-                    <FormControl 
-                        variant="outlined" 
-                        margin="normal"
-                        fullWidth
-                    >
-                        <InputLabel ref={inputLabel} htmlFor="bond">
-                            Select one
-                        </InputLabel>
-                        <Select
-                            native
-                            value={values.bond}
-                            onChange={handleChange('bond')}
-                            input={
-                                <OutlinedInput name="bond" labelWidth={labelWidth} id="bond" />
-                            }
-                        >
-                        <option value="" />
-                        <option value={0}>None</option>
-                        <option value={1}>1 week</option>
-                        <option value={2}>2 weeks</option>
-                        <option value={3}>3 weeks</option>
-                        <option value={4}>4 weeks</option>
-                        </Select>
-                    </FormControl>
+                    <Grid container spacing = {4}>
+                        <Grid item xs = {6}>
+                            <p>WEEKLY RENT</p>
+                            <CssTextField
+                                id="amount"
+                                variant="outlined"
+                                label="Amount"
+                                fullWidth
+                                value={values.amount}
+                                onChange={handleChange('amount')}
+                                InputProps={{
+                                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs = {6}>
+                            BOND
+                            <FormControl 
+                                variant="outlined" 
+                                margin="normal"
+                                fullWidth
+                            >
+                                <InputLabel ref={inputLabel} htmlFor="bond">
+                                    Select one
+                                </InputLabel>
+                                <Select
+                                    native
+                                    value={values.bond}
+                                    onChange={handleChange('bond')}
+                                    input={
+                                        <OutlinedInput name="bond" labelWidth={labelWidth} id="bond" />
+                                    }
+                                >
+                                <option value="" />
+                                <option value={0}>None</option>
+                                <option value={1}>1 week</option>
+                                <option value={2}>2 weeks</option>
+                                <option value={3}>3 weeks</option>
+                                <option value={4}>4 weeks</option>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid>
                     <p>BILLS</p>
                     <FormControl 
                         variant="outlined" 

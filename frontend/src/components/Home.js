@@ -38,8 +38,8 @@ class Home extends Component {
                     <Container maxWidth="lg">
                         <p>This is main, in a container with padded sides</p>
 
-                        <Button disableRipple href={'../Profile'}>prof</Button>
-
+                        <Button disableRipple href={'../Profile'}>Profile</Button>
+                        <Button disableRipple href={'../Listing'}>Listing</Button>
                         <div className="action-buttons">
                             <Buttons.ButtonPlus disabled={true}/>
                             <Buttons.ButtonMinus/>

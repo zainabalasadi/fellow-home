@@ -83,7 +83,6 @@ function Listing4 () {
                 </Container>
                 <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
                     <h4>What ammenities do the rooms offer?</h4>
-                    <p>Room with a view</p>
                     <p>BED TYPE</p>
                     <FormControl 
                         variant="outlined" 
