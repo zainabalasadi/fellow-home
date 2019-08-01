@@ -19,6 +19,8 @@ import {CssTextField} from "./Textinputs";
 import GridListing from "./GridListing"
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 class Home extends Component {
     constructor() {
@@ -36,61 +38,55 @@ class Home extends Component {
             <React.Fragment>     
                     <CssBaseline />
                     <img src="http://i64.tinypic.com/9jok7p.jpg" fullWidth style={{position:'relative'}}/>
-                    <Container style={{height:'350px', width:'330px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-200px', padding:20,borderRadius: '7px'}}>
-                    <h6>Find housemates to live with while you study</h6>
-
-                    <div style ={{padding:10}}>
-                        <CssTextField
-                            id="where"
-                            label="WHERE"
-                            variant="outlined"
-                            margin="dense"
-                            fullWidth
-                            placeholder="Search by university, city or suburb"
-                            InputProps={{
-                              startAdornment: <InputAdornment position="start"></InputAdornment>,
-                            }}
-                        />
-                    </div>
-                    <div style ={{padding:10}}>
-                        <CssTextField
-                            id="roomType"
-                            label="ROOM TYPE"
-                            variant="outlined"
-                            margin="dense"
-                            fullWidth
-                            InputProps={{
-                              startAdornment: <InputAdornment position="start"></InputAdornment>,
-                            }}
-                        />
-                    </div>
-                    <div style ={{padding:10}}>
-                        <CssTextField
-                            id="amount"
-                            label="MAXIMUM RENT"
-                            variant="outlined"
-                            margin="dense"
-                            fullWidth
-                            InputProps={{
-                              startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                            }}
-                        />
-                    </div>
-
-                        <Button variant="contained" color="secondary" href={'../'}>Search</Button>
-                    </Container>
+                        <Container style={{height:'380px', width:'330px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-200px', padding:24,borderRadius: '7px'}}>
+                            <Box fontSize={20} padding={1}>
+                                Find housemates to live with while you study
+                            </Box>
+                            <div style ={{padding:10}}>
+                                <CssTextField
+                                    id="where"
+                                    label="WHERE"
+                                    variant="outlined"
+                                    margin="dense"
+                                    fullWidth
+                                    placeholder="Search by university, city or suburb"
+                                    InputProps={{
+                                      startAdornment: <InputAdornment position="start"></InputAdornment>,
+                                    }}
+                                />
+                            </div>
+                            <div style ={{padding:10}}>
+                                <CssTextField
+                                    id="roomType"
+                                    label="ROOM TYPE"
+                                    variant="outlined"
+                                    margin="dense"
+                                    fullWidth
+                                    InputProps={{
+                                      startAdornment: <InputAdornment position="start"></InputAdornment>,
+                                    }}
+                                />
+                            </div>
+                            <div style ={{padding:10}}>
+                                <CssTextField
+                                    id="amount"
+                                    label="MAXIMUM RENT"
+                                    variant="outlined"
+                                    margin="dense"
+                                    fullWidth
+                                    InputProps={{
+                                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                    }}
+                                />
+                            </div><p/>
+                            <Button variant="contained" color="secondary" href={'../'}>Search</Button>
+                        </Container>
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
-                    <h4>New Listings</h4>
-                    <GridListing /> 
-                    <div><Check features={config.checkFeatures}/>
-                    </div>
-                    <div><Check features={config.checkFeatures}/>
-                    </div>
-                    
-                        <p>This is main, in a container with padded sides</p>
-
+                        <h4>Newest Listings</h4>
+                        <GridListing />
                         <Button disableRipple href={'../Profile'}>Profile</Button>
                         <Button disableRipple href={'../Listing'}>Listing</Button>
+                        {/*}
                         <div className="action-buttons">
                             <Buttons.ButtonPlus disabled={true}/>
                             <Buttons.ButtonMinus/>
@@ -109,14 +105,15 @@ class Home extends Component {
                                 message={this.state.message}
                             />
                         </div>
+
                         <div>
                             <Fab size="small" color="primary" className="buttonPlusMinus" justify="centre">
                                 <i className="settings icon"/>
                             </Fab>
                             <SnackBar fill={true} message="Not Here" buttonLabel="Click Here" color={theme.colors.tertiary}/>
                         </div>
+                        
                         <div>
-                            <Check features={config.checkFeatures}/>
                             <form>
                                 <TextInput.Named/>
                                 <TextInput.SelectDrop features={config.dropFeatures}/>
@@ -135,9 +132,7 @@ class Home extends Component {
                             }/>
 
                         </div>
-
-                    
-                    
+                        */}
                 </Container>
             </React.Fragment>
         );
