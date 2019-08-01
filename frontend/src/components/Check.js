@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../css/buttons.css';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import Checkbox from '@material-ui/core/Checkbox' ;

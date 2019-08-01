@@ -12,11 +12,14 @@ import Listing from "./Listing";
 const useStyles = makeStyles(theme => ({
     card: {
         maxWidth: 285,
-        raised: false,
+        boxShadow: 'none',
     },
     media: {
-        height: 0,
         paddingTop: '56.25%', // 16:9
+    },
+    content: {
+        padding: 0,
+        paddingTop: 20,
     },
     avatar: {
         backgroundColor: red[500],
@@ -34,19 +37,20 @@ export default function ListingCard(props) {
                     image={require('../assets/images/cooking.jpg')}
                     title="Fellow"
                 />
-                <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {props.abstract}
-                    </Typography>
+                <CardContent className={classes.content}>
+                    <Typography variant="overline" color="textSecondary">{props.details.roomType} · {props.details.suburb}</Typography>
+                    <Typography variant="h6" color="textSecondary">{props.details.title}</Typography>
+                    <Typography variant="body2" color="textSecondary">${props.details.price}/week</Typography>
+
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="Recipe" className={classes.avatar}>
+                                R
+                            </Avatar>
+                        }
+                        title="Kelsey"
+                    />
                 </CardContent>
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="Recipe" className={classes.avatar}>
-                            R
-                        </Avatar>
-                    }
-                    title="Kelsey"
-                />
             </Card>
             </a>
         </div>
