@@ -79,7 +79,7 @@ class Home extends Component {
 
                         <Button variant="contained" color="secondary" href={'../'}>Search</Button>
                     </Container>
-                    <Container maxWidth="lg">
+                    <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                     <h4>New Listings</h4>
                     <GridListing /> 
                     <div><Check features={config.checkFeatures}/>
