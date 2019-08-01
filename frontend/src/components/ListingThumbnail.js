@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
+import Listing from "./Listing";
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -26,7 +27,7 @@ export default function ListingCard(props) {
     const classes = useStyles();
 
     return (
-        <div>
+        <div><a href= {'../Listing'}>
             <Card className={classes.card}>
                 <CardMedia
                     style={{ height: 0, paddingTop: '56%'}}
@@ -47,6 +48,7 @@ export default function ListingCard(props) {
                     title="Kelsey"
                 />
             </Card>
+            </a>
         </div>
     );
 }
