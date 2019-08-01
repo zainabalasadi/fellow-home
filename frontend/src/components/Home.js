@@ -17,6 +17,8 @@ import Button from '@material-ui/core/Button'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {CssTextField} from "./Textinputs";
 import GridListing from "./GridListing"
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 class Home extends Component {
     constructor() {
@@ -31,15 +33,12 @@ class Home extends Component {
     render() {
 
         return (
-            <React.Fragment>              
-                
-                    
-                
-                
+            <React.Fragment>     
                     <CssBaseline />
                     <img src="http://i64.tinypic.com/9jok7p.jpg" fullWidth style={{position:'relative'}}/>
                     <Container style={{height:'350px', width:'330px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-200px', padding:20,borderRadius: '7px'}}>
                     <p>Find housemates to live with while you study</p>
+
                     <div style ={{padding:10}}>
                         <CssTextField
                             id="where"
@@ -77,9 +76,11 @@ class Home extends Component {
                             }}
                         />
                     </div>
+
                         <Button variant="contained" color="secondary" href={'../'}>Search</Button>
                     </Container>
                     <Container maxWidth="lg">
+                    <h4>New Listings</h4>
                     <GridListing /> 
                     <div><Check features={config.checkFeatures}/>
                     </div>
