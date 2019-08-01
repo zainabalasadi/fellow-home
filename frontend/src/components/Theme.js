@@ -8,5 +8,13 @@ export const theme = createMuiTheme({
         light: '#E4E4E4',
         white: '#FFFFFF'
     },
+    overrides: {
+        MuiAppBar: {
+          boxShadow: 'none',
+        },
+        MuiButtonBase: {
+            disableRipple: true,
+        },
+    }
 });
 
