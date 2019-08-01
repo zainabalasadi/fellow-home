@@ -14,13 +14,9 @@ import Fab from "@material-ui/core/Fab";
 import ListingCard from "./ListingThumbnail"
 import {theme} from './Theme'
 import Button from '@material-ui/core/Button'
-<<<<<<< HEAD
-import homeSearch from './homeSearch'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {CssTextField} from "./Textinputs";
-=======
 import GridListing from "./GridListing"
->>>>>>> ae92f7693e55daac0d156f2fdf83e250901365ad
 
 class Home extends Component {
     constructor() {
