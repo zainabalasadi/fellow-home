@@ -10,7 +10,7 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
     card: {
-        maxWidth: 345,
+        maxWidth: 285,
         raised: false,
     },
     media: {

@@ -10,12 +10,11 @@ import config from "../utils/config";
 import * as TextInput from "./Textinputs";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import '../css/textAndColour.css'
-import '../css/buttons.css'
 import Fab from "@material-ui/core/Fab";
-import ListingCard from "../components/ListingThumbnail"
+import ListingCard from "./ListingThumbnail"
 import {theme} from './Theme'
 import Button from '@material-ui/core/Button'
+import GridListing from "./GridListing"
 
 class Home extends Component {
     constructor() {
@@ -29,13 +28,17 @@ class Home extends Component {
     render() {
 
         return (
-            <React.Fragment>
+            <React.Fragment>              
+                <Container maxWidth="lg">
+                    <GridListing /> 
+                
+                
                     <CssBaseline />
                     <div><Check features={config.checkFeatures}/>
                     </div>
                     <div><Check features={config.checkFeatures}/>
                     </div>
-                    <Container maxWidth="lg">
+                    
                         <p>This is main, in a container with padded sides</p>
 
                         <Button disableRipple href={'../Profile'}>Profile</Button>
@@ -85,10 +88,9 @@ class Home extends Component {
 
                         </div>
 
-                    </Container>
-                    <ListingCard abstract={"This impressive paella is a perfect party dish and a fun meal to cook together with your\n" +
-                    "                    guests. Add 1 cup of frozen peas along with the mussels, if you like."}/>
-
+                    
+                    
+                </Container>
             </React.Fragment>
         );
     };

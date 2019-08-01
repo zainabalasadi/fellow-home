@@ -17,8 +17,6 @@ import Listing8 from '../components/Listing8'
 import Listing9 from '../components/Listing9'
 import {ThemeProvider} from "@material-ui/styles";
 import MapContainer from "../components/MapContainer";
-import '../css/textAndColour.css'
-import '../css/buttons.css'
 import Home from "../components/Home";
 import ListingCard from "../components/ListingThumbnail";
 import AccountManager from "../components/AccountManager";
