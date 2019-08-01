@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Container from '@material-ui/core/Container';
 import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import TextField from '@material-ui/core/TextField';
+import {CssTextField} from "./Textinputs";
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -127,7 +127,7 @@ function Listing () {
                             p={2}
                         >
                             <h4>Contact</h4>
-                            <TextField 
+                            <CssTextField 
                                 id="description"
                                 placeholder="Type your message..."
                                 multiline
