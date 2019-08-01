@@ -6,7 +6,8 @@ export const theme = createMuiTheme({
         tertiary: '#00A077',
         dark: '#484848',
         light: '#E4E4E4',
-        white: '#FFFFFF'
+        white: '##FAFAFA',
+        grey: 'darkgray',
     },
     overrides: {
         MuiAppBar: {

@@ -25,7 +25,7 @@ export const CssTextField = withStyles({
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: theme.colors.dark,
+                borderColor: theme.colors.grey,
             },
             '&:hover fieldset': {
                 borderColor: theme.colors.dark,
@@ -42,9 +42,11 @@ export function InputText(props){
         <CssTextField
             className={props.classNames}
             margin={"theme.spacing(1)"}
+            margin="dense"
             placeholder={props.placeholder}
             variant="outlined"
             id={props.id}
+            style={{width:300, height:42}}
             onChange={props.onChange}
             InputProps={{
                 startAdornment: <InputAdornment position="start">{props.startAdornment}</InputAdornment>,
