@@ -38,7 +38,9 @@ def populate_db(amount):
                      avatar=person['avatar'],
                      password=person['password'],
                      dob=datetime.strptime(person['dob'], '%d/%m/%Y'),
-                     gender=person['gender'])
+                     gender=person['gender'],
+                     description=person['description'],
+                     university=person['university'])
             db.session.add(u)
             count += 1
             if count == amount:

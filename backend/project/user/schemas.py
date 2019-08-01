@@ -11,7 +11,7 @@ class UserSchema(ma.ModelSchema):
         model = User
         strict = True
         fields = ('id', 'first_name', 'last_name', 'email', 'password',
-                  'gender', 'avatar', 'dob', 'verified')
+                  'gender', 'description', 'university', 'avatar', 'dob', 'verified')
 
     @validates_schema
     def validate_user(self, data, **kwargs):

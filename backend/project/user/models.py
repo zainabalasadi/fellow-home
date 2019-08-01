@@ -16,6 +16,8 @@ class User(db.Model):
     gender = db.Column(db.Text)
     avatar = db.Column(db.Text, nullable=False)
     dob = db.Column(db.DateTime, nullable=False)
+    description = db.Column(db.Text)
+    university = db.Column(db.Text)
     # rating = db.Column(db.Float)
     verified = db.Column(db.Boolean, nullable=False, default=False)
     listings = db.relationship('Listing', backref='user', lazy=True)
@@ -27,7 +29,8 @@ class User(db.Model):
     roles = db.Column(db.Text)
     is_active = db.Column(db.Boolean, default=True)
 
-    def __init__(self, first_name, last_name, email, password, dob, avatar, gender):
+    def __init__(self, first_name, last_name, email, password, dob, avatar, gender, description,
+                 university):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
@@ -35,6 +38,8 @@ class User(db.Model):
         self.avatar = avatar
         self.dob = dob
         self.gender = gender
+        self.description = description
+        self.university = university
         # self._rating = rating
         # self._socials = []
 
