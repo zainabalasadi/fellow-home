@@ -32,8 +32,8 @@ class Home extends Component {
 
         return (
             <React.Fragment>              
-                <Container maxWidth="lg">
-                    <GridListing /> 
+                
+                    
                 
                 
                     <CssBaseline />
@@ -79,6 +79,8 @@ class Home extends Component {
                     </div>
                         <Button variant="contained" color="secondary" href={'../'}>Search</Button>
                     </Container>
+                    <Container maxWidth="lg">
+                    <GridListing /> 
                     <div><Check features={config.checkFeatures}/>
                     </div>
                     <div><Check features={config.checkFeatures}/>
