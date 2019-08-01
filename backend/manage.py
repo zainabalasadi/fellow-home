@@ -12,6 +12,7 @@ from flask_migrate import MigrateCommand
 from project import create_app, db, guard
 from project.user.models import User
 from project.listing.models import Listing, Room, Address, Amenity, ListingImage, Feature
+from project.review.models import Review
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
@@ -24,13 +25,9 @@ def recreate_db():
     db.create_all()
     db.session.commit()
 
-
-@cli.command('populate_db')
-@click.argument('amount', default=1000)
-def populate_db(amount):
+def populate_users():
     with open('data/people.json') as f:
         data = json.load(f)
-        count = 0
         for person in data:
             u = User(first_name=person['first_name'],
                      last_name=person['last_name'],
@@ -42,11 +39,9 @@ def populate_db(amount):
                      description=person['description'],
                      university=person['university'])
             db.session.add(u)
-            count += 1
-            if count == amount:
-                break
     db.session.commit()
 
+def populate_listings():
     with open('data/listings.json') as f:
         data = json.load(f)
         for listing in data:
@@ -87,9 +82,33 @@ def populate_db(amount):
 
             user.listings.append(new_listing)
 
-            db.session.add(user)
+            #db.session.add(user)
+    db.session.commit()
+
+def populate_reviews():
+    with open('data/reviews.json') as f:
+        data = json.load(f)
+        for review in data:
+            rev_from = User.query.get(review['from'])
+            rev_to = User.query.get(review['to'])
+            new_review = Review(review['title'],
+                                review['content'],
+                                review['rating']['Overall'])
+
+            new_review.reviewee_id = review['to']
+            new_review.reviewer_id = review['from']
+
+            rev_from.reviews_sent.append(new_review)
+            rev_to.reviews_recv.append(new_review)
 
     db.session.commit()
+
+
+@cli.command('populate_db')
+def populate_db():
+    populate_users()
+    populate_listings()
+    populate_reviews()
 
 
 if __name__ == '__main__':

@@ -10,7 +10,7 @@ class Review(db.Model):
     reviewee_id = db.Column(db.Integer, db.ForeignKey('User.id'))
     reviewer_id = db.Column(db.Integer, db.ForeignKey('User.id'))
     title = db.Column(db.String(128), nullable=False)
-    content = db.Column(db.String(512))
+    content = db.Column(db.Text)
     rating = db.Column(db.Float)
 
     def __init__(self, title, content, rating):
