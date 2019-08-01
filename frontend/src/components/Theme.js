@@ -1,4 +1,5 @@
 import {createMuiTheme} from "@material-ui/core";
+import { nominalTypeHack } from "prop-types";
 export const theme = createMuiTheme({
     colors: {
         primary: '#FF5240',
@@ -9,8 +10,13 @@ export const theme = createMuiTheme({
         white: '##FAFAFA',
         grey: 'darkgray',
     },
+    typography: {
+        button: {
+            textTransform: 'none',
+        },
+    },
     overrides: {
-        MuiAppBar: {
+        Card: {
           boxShadow: 'none',
         },
         MuiButtonBase: {

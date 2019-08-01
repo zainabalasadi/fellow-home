@@ -1,83 +1,70 @@
-
-h1{
-    font-family: Inter UI;
-    font-style: normal;
+h1 {
     font-weight: bold;
     font-size: 96px;
     line-height: 115px;
 }
-h2{
-    font-family: Inter UI;
-    font-style: normal;
+
+h2 {
     font-weight: bold;
     font-size: 60px;
     line-height: 72px;
 }
-h3{
-    font-family: Inter UI;
-    font-style: normal;
+
+h3 {
     font-weight: bold;
     font-size: 48px;
     line-height: 63px;
     /* or 131% */
 }
-h4{
-    font-family: Inter UI;
-    font-style: normal;
+
+h4 {
     font-weight: bold;
     font-size: 32px;
     line-height: 43px;
     /* identical to box height, or 134% */
 }
-h5{
-    font-family: Inter UI;
-    font-style: normal;
+
+h5 {
     font-weight: bold;
     font-size: 24px;
     line-height: 32px;
     /* or 133% */
 }
-h6{
-    font-family: Inter UI;
-    font-style: normal;
+
+h6 {
     font-weight: bold;
     font-size: 20px;
     line-height: 24px;
 }
-.body1{
-    font-family: Inter UI;
-    font-style: normal;
+
+.body1 {
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
 }
-.body2{
-    font-family: Inter UI;
-    font-style: normal;
+
+.body2 {
     font-weight: normal;
     font-size: 18px;
     line-height: 26px;
     /* or 144% */
 }
-.subtitle{
-    font-family: Inter UI;
-    font-style: normal;
+.subtitle {
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
 }
+
 .overline{
     font-family: Inter UI;
     font-style: normal;
-    {/*font-weight: bold;*/}
     font-size: 12px;
     line-height: 14px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
-.autoText{
-    font-family: Inter UI;
-    font-style: normal;
+
+.autoText {
     font-weight: normal;
     font-size: 18px;
     line-height: 32px;
@@ -88,72 +75,84 @@ h6{
     top: 14.89%;
     bottom: 31.91%;
 }
-.buttonText{
+
+.buttonText {
     position: absolute;
     top: 29.17%;
     bottom: 31.25%;
-
-    font-family: Inter UI;
-    font-style: normal;
     font-weight: bold;
     font-size: 16px;
     line-height: 19px;
     text-align: center;
 }
 
-
-.backgroundFellowRed{
+.backgroundFellowRed {
     background: #FF5240;
 }
-.backgroundFellowYellow{
+
+.backgroundFellowYellow {
     background: #FFB133;
 }
+
 .backgroundFellowGreen{
     background: #00A077;
 }
-.backgroundFellowDark{
+.backgroundFellowDark {
     background: #484848;
 }
-.backgroundFellowLight{
+
+.backgroundFellowLight {
     background: #E4E4E4;
 }
-.backgroundFellowWhite{
+
+.backgroundFellowWhite {
     background: #FFFFFF;
 }
-.textFellowRed{
+
+.textFellowRed {
     color: #FF5240;
 }
-.textFellowYellow{
+
+.textFellowYellow {
     color: #FFB133;
 }
-.textFellowGreen{
+
+.textFellowGreen {
     color: #00A077;
 }
-.textFellowDark{
+
+.textFellowDark {
     color: #484848;
 }
-.textFellowLight{
+
+.textFellowLight {
     color: #E4E4E4;
 }
-.textFellowWhite{
+
+.textFellowWhite {
     color: #FFFFFF;
 }
 
-.lineFellowRed{
+.lineFellowRed {
     border: 1px solid #FF5240;
 }
-.lineFellowYellow{
+
+.lineFellowYellow {
     border: 1px solid #FFB133;
 }
-.lineFellowGreen{
+
+.lineFellowGreen {
     border: 1px solid #00A077;
 }
-.lineFellowDark{
+
+.lineFellowDark {
     border: 1px solid #484848;
 }
-.lineFellowLight{
+
+.lineFellowLight {
     border: 1px solid #E4E4E4;
 }
-.lineFellowWhite{
+
+.lineFellowWhite {
     border: 1px solid #FFFFFF;
 }

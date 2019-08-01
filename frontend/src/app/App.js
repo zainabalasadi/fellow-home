@@ -19,8 +19,6 @@ import About from '../components/About'
 import Help from '../components/Help'
 import {ThemeProvider} from "@material-ui/styles";
 import MapContainer from "../components/MapContainer";
-import '../css/textAndColour.css'
-import '../css/buttons.css'
 import Home from "../components/Home";
 import ListingCard from "../components/ListingThumbnail";
 import AccountManager from "../components/AccountManager";
