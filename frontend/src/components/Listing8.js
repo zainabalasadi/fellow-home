@@ -79,8 +79,12 @@ function Listing8 () {
                 </Box>
             </Container>
             <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                <h4>Describe your property</h4>
-                <p>Description</p>
+                <Box fontSize={24}>
+                    Describe your property
+                </Box>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
+                    DESCRIPTION
+                </Box>
                       <CssTextField 
                         id="description"
                         placeholder="Describe the housemates location, atmosphere, etc."
@@ -90,7 +94,9 @@ function Listing8 () {
                         variant="outlined"
                         fullWidth
                       />
-                <p>Housemate Preferences</p>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2} mb={0}>
+                    HOUSEMATE PREFERENCES
+                </Box>
                 <FormControl 
                     variant="outlined" 
                     margin="normal"
@@ -116,6 +122,7 @@ function Listing8 () {
                     <option value={2}>Under 30 years of Age</option>
                     </Select>
                 </FormControl>
+                <p/>
                 <BrowserRouter>
                     <Button variant="contained" color="secondary" href={'../Listing'}>Finish</Button>
                 </BrowserRouter>

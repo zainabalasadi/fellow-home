@@ -81,8 +81,12 @@ function Listing4 () {
                 </Box>
             </Container>
             <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                <h4>What ammenities do the rooms offer?</h4>
-                <p>BED TYPE</p>
+                <Box fontSize={24}>
+                    What ammenities do the rooms offer?
+                </Box>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
+                    BED TYPE
+                </Box>
                 <FormControl 
                     variant="outlined" 
                     margin="normal"
@@ -107,11 +111,14 @@ function Listing4 () {
                     <option value={4}>None</option>
                     </Select>
                 </FormControl>
-                <p>Amenities</p>
+                <Box fontSize={15} fontWeight="fontWeightBold" mt={2}>
+                    Amenities
+                </Box>
                 <p>These are just the amentiies housemates usually expect, but you can add even more after you publish</p>
                 <div>
                     <Check features={config.checkAmenities}/>
                 </div>
+                <p/>
                 <BrowserRouter>
                     <Button variant="contained" color="secondary" href={'../Listing5'}>Continue</Button>
                     <Route path="/Listing5" component={() => <Listing5/>}/>

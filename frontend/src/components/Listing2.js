@@ -70,8 +70,13 @@ function Listing2 () {
                     </Grid>
                 </Box>
             </Container>
-            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm"><h4>Tell us more about who lives in the property?</h4>
-                <p>Current number of housemates</p>
+            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+                <Box fontSize={24}>
+                    Tell us more about who lives in the property?
+                </Box>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
+                    Current number of housemates
+                </Box>
                 <CssTextField
                     id="housemates"
                     value={values.housemates}
@@ -83,7 +88,9 @@ function Listing2 () {
                     margin="dense"
                     variant="outlined"
                 />
-                <p>Number of Vacancies</p>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
+                    Number of Vacancies
+                </Box>
                 <CssTextField
                     id="vacancies"
                     value={values.vacancies}
@@ -95,6 +102,7 @@ function Listing2 () {
                     margin="dense"
                     variant="outlined"
                 />
+                <p/>
                 <BrowserRouter>
                     <Button variant="contained" color="secondary" href={'../Listing3'}>Continue</Button>
                     <Route path="/Listing3" component={() => <Listing3/>}/>

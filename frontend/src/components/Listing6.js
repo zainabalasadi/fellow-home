@@ -80,17 +80,23 @@ function Listing6 () {
                 </Box>
             </Container>
             <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                <h4>When is your property available?</h4>
+                <Box fontSize={24}>
+                    When is your property available?
+                </Box>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={1}>
+                    DATE AVAILABLE FROM
+                </Box>
                 <CssTextField
                     id="date"
-                    label="Date available from"
                     type="date"
                     placeholder="YYYY-MM-DD"
                     InputLabelProps={{
                         shrink: true,
                     }}
                 />
-                <p>minimum length stay</p>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
+                    MINIMUM LENGTH OF STAY
+                </Box>
                 <FormControl 
                     variant="outlined" 
                     margin="normal"
@@ -118,6 +124,7 @@ function Listing6 () {
                     <option value={2}>1 Year</option>
                     </Select>
                 </FormControl>
+                <p/>
                 <BrowserRouter>
                     <Button variant="contained" color="secondary" href={'../Listing7'}>Continue</Button>
                     <Route path="/Listing7" component={() => <Listing7/>}/>

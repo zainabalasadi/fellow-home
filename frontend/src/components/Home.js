@@ -38,7 +38,7 @@ class Home extends Component {
             <React.Fragment>     
                     <CssBaseline />
                     <img src="http://i64.tinypic.com/9jok7p.jpg" fullWidth style={{position:'relative'}}/>
-                        <Container style={{height:'380px', width:'330px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-200px', padding:24,borderRadius: '7px'}}>
+                        <Container style={{height:'380px', width:'330px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-300px', padding:24,borderRadius: '7px'}}>
                             <Box fontSize={20} padding={1}>
                                 Find housemates to live with while you study
                             </Box>

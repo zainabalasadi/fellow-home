@@ -73,8 +73,12 @@ class Listing7 extends React.Component{
                     </Box>
                 </Container>
                 <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                    <h4>Add photos to your listing</h4>
-                    <p>Photos</p>
+                    <Box fontSize={24}>
+                        Add photos to your listing
+                    </Box>
+                    <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
+                        Photos
+                    </Box>
                     <input
                         accept="image/*"
                         id="contained-button-file"
@@ -82,12 +86,14 @@ class Listing7 extends React.Component{
                         type="file" onChange={this.handleChange}
                         style={{display:'none'}}
                     />
+                    <p/>
                     <label htmlFor="contained-button-file">
                         <Button variant="contained" component="span">
                             Upload
                         </Button>
                     </label>
                     <img src={this.state.file}/>
+                    <p/>
                     <BrowserRouter>
                         <Button variant="contained" color="secondary" href={'../Listing8'}>Continue</Button>
                         <Route path="/Listing8" component={() => <Listing8/>}/>

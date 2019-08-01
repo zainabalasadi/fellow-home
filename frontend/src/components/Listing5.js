@@ -83,10 +83,14 @@ function Listing5 () {
                 </Box>
             </Container>
             <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                <h4>Price your property</h4>
+                <Box fontSize={24}>
+                    Price your property
+                </Box>
                 <Grid container spacing = {4}>
                     <Grid item xs = {6}>
-                        <p>WEEKLY RENT</p>
+                        <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={2}>
+                            WEEKLY RENT
+                        </Box>
                         <CssTextField
                             id="amount"
                             variant="outlined"
@@ -100,7 +104,9 @@ function Listing5 () {
                         />
                     </Grid>
                     <Grid item xs = {6}>
-                        BOND
+                        <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
+                            BOND
+                        </Box>
                         <FormControl 
                             variant="outlined" 
                             margin="normal"
@@ -127,7 +133,9 @@ function Listing5 () {
                         </FormControl>
                     </Grid>
                 </Grid>
-                <p>BILLS</p>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2} mb={0}>
+                    BILLS
+                </Box>
                 <FormControl 
                     variant="outlined" 
                     margin="normal"
@@ -151,6 +159,7 @@ function Listing5 () {
                     <option value={3}>Included in rent</option>
                     </Select>
                 </FormControl>
+                <p/>
                 <BrowserRouter>
                     <Button variant="contained" color="secondary" href={'../Listing6'}>Continue</Button>
                     <Route path="/Listing6" component={() => <Listing6/>}/>
