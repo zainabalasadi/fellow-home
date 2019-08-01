@@ -7,20 +7,44 @@ export default function GridListing(props) {
        <div>
             <Grid container spacing={3}>
                <Grid item md={3}>
-                  <ListingCard abstract={"This impressive paella is a perfect party dish and a fun meal to cook together with your\n" +
-                                        "                    guests. Add 1 cup of frozen peas along with the mussels, if you like."}/>
+                  <ListingCard
+                  details={{
+                     roomType: "Private Room",
+                     suburb: "Chatswood",
+                     title: "Private room with a view",
+                     price: 175
+                  }}
+                  />
                </Grid>
                <Grid item md={3}>
-                  <ListingCard abstract={"This impressive paella is a perfect party dish and a fun meal to cook together with your\n" +
-                                        "                    guests. Add 1 cup of frozen peas along with the mussels, if you like."}/>
+                  <ListingCard
+                  details={{
+                     roomType: "Private Room",
+                     suburb: "Chatswood",
+                     title: "Private room with a view",
+                     price: 175
+                  }}
+                  />
                </Grid>
                <Grid item md={3}>
-                  <ListingCard abstract={"This impressive paella is a perfect party dish and a fun meal to cook together with your\n" +
-                                        "                    guests. Add 1 cup of frozen peas along with the mussels, if you like."}/>
+                  <ListingCard
+                  details={{
+                     roomType: "Private Room",
+                     suburb: "Chatswood",
+                     title: "Private room with a view",
+                     price: 175
+                  }}
+                  />
                </Grid>
                <Grid item md={3}>
-                  <ListingCard abstract={"This impressive paella is a perfect party dish and a fun meal to cook together with your\n" +
-                                        "                    guests. Add 1 cup of frozen peas along with the mussels, if you like."}/>
+                  <ListingCard
+                  details={{
+                     roomType: "Private Room",
+                     suburb: "Chatswood",
+                     title: "Private room with a view",
+                     price: 175
+                  }}
+                  />
                </Grid>
             </Grid> 
        </div>
