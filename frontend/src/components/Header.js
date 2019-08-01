@@ -1,18 +1,18 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
-import NavigationMenuItem from './NavigationMenuItem';
-import * as TextInput from "./TextInputs";
+import React from 'react'
+import Avatar from '@material-ui/core/Avatar'
+import Grid from '@material-ui/core/Grid'
+import NavigationMenuItem from './NavigationMenuItem'
+import * as TextInput from "./TextInputs"
 import SearchIcon from '@material-ui/icons/Search'
-//import {Switch} from "@material-ui/core";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import App from '../app/componentTest';
-import ListingCard from "./ListingThumbnail";
-import { Button } from "@material-ui/core";
-import AccountManager from "./AccountManager";
+//import {Switch} from "@material-ui/core"
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import App from '../app/componentTest'
+import ListingCard from "./ListingThumbnail"
+import { Button } from "@material-ui/core"
+import AccountManager from "./AccountManager"
 import config from '../utils/config'
-import Home from "./Home";
-import { MapContainer } from "./MapContainer";
+import Home from "./Home"
+import { MapContainer } from "./MapContainer"
 
 function NavigationMenu(props) {
     return (
