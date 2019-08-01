@@ -7,7 +7,7 @@ import * as TextInput from "./Textinputs";
 import config from '../utils/config'
 import {Button as ButtonStyle} from 'semantic-ui-react';
 import ListingCard from "./ListingThumbnail";
-
+import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -18,7 +18,7 @@ let abs="Hey! I’m Laura. I’m a Biomedical Science student at UNSW. My hobbie
     " breadmaking and watching National Geographic. I have a fascination with turtles and love dogs and cats.";
 export function EditProfileCard(props){
     return(
-        <Card>
+        <Card style={{width: "70%", position:'relative', left:'240px', top:'80px'}}>
             <p/>
             <Grid container justify="space-around" alignItems="center">
             <Avatar alt="Remy Sharp"
@@ -44,17 +44,19 @@ export function EditProfileCard(props){
                 </Typography>
                 <Divider />
                 <p/>
-                <ButtonStyle circular color='facebook' icon='facebook' />
-                <ButtonStyle circular color='twitter' icon='twitter' />
-                <ButtonStyle circular color='linkedin' icon='linkedin' />
-                <ButtonStyle circular color='google plus' icon='google plus' />
+                <Container style={{textAlign:'center'}}>
+                    <ButtonStyle circular color='facebook' icon='facebook' />
+                    <ButtonStyle circular color='twitter' icon='twitter' />
+                    <ButtonStyle circular color='linkedin' icon='linkedin' />
+                    <ButtonStyle circular color='google plus' icon='google plus' />
+                </Container>
             </CardContent>
         </Card>
     )
 }
 export function ProfileCard(props){
     return(
-        <Card style={{width: "90%"}}>
+        <Card style={{width: "70%", position:'relative', left:'240px', top:'80px'}}>
             <p/>
             <Grid container justify="space-around" alignItems="center">
                 <Avatar alt="Remy Sharp"
@@ -63,33 +65,34 @@ export function ProfileCard(props){
                         style={{height: "112px", width: "112px"}}
                 />
             </Grid>
-        <CardContent>
-        <Divider />
-        <Typography variant="body2" color={"textPrimary"} component="p">
-        <VerifiedUser/> Verified 🖐Hello World!
-    </Typography>
-    <Typography variant="body2" color={"textPrimary"} component="p">
-        <RateReview/> {props.numberRev} reviews
-    </Typography>
-    <Divider />
-            <p/>
-    <ButtonStyle circular color='facebook' icon='facebook' />
-        <ButtonStyle circular color='twitter' icon='twitter' />
-        <ButtonStyle circular color='linkedin' icon='linkedin' />
-        <ButtonStyle circular color='google plus' icon='google plus' />
-        </CardContent>
-</Card>
-
+            <CardContent>
+                <Divider />
+                <Typography variant="body2" color={"textPrimary"} component="p">
+                    <VerifiedUser/> Verified 🖐Hello World!
+                </Typography>
+                <Typography variant="body2" color={"textPrimary"} component="p">
+                    <RateReview/> {props.numberRev} reviews
+                </Typography>
+                <Divider />
+                    <p/>
+                <Container style={{textAlign:'center'}}>
+                    <ButtonStyle circular color='facebook' icon='facebook' />
+                    <ButtonStyle circular color='twitter' icon='twitter' />
+                    <ButtonStyle circular color='linkedin' icon='linkedin' />
+                    <ButtonStyle circular color='google plus' icon='google plus' />
+                </Container>
+            </CardContent>
+        </Card>
     )
 }
 
 export function EditProfile(props){
     return (
-        <Grid width="100%" direction="row" container justify="space-around" alignItems="center">
+        <Grid width="100%" direction="row" container justify="space-around" alignItems="center"style={{position:'relative', top:'70px', width:'700px', left:'150px'}}>
             <Grid item xs>
                 <div>
                     <h3 className="textFellowDark">Hi, I'm {props.user.name}</h3>
-                    <p className="outline textFellowLight">Joined in 2019</p>
+                    <p className="outline textFellowDark">Joined in 2019</p>
                     <p className="body1 textFellowDark"><b>About</b></p>
                     <TextInput.Multiline classNames="body2 lineFellowRed textFellowRed"
                                          styling={{width: "90%"}}
@@ -106,13 +109,14 @@ export function EditProfile(props){
                     {props.saveProfButton}
 
 
-                    <Divider />
+                    <Divider style={{width: "90%"}}/>
                     <h5 className="textFellowDark">{props.user.name}'s listings</h5>
                     <div style={{width: "90%"}} className="action-cards">
                         {config.listings.map(ListingCard)}
                     </div>
+                    <Divider style={{width: "90%"}}/>
                     <h5>{props.numberRev} Reviews</h5>
-                    <List style={{width: "90%"}} className="action-lists">
+                    <List style={{width: "90%", padding:10}} className="action-lists">
                         {config.reviews.map(({ id, primary, secondary, person }) => (
                             <React.Fragment key={id}>
                                 <ListItem button>
@@ -132,23 +136,22 @@ export function EditProfile(props){
 
 function Profile(props) {
     return (
-        <Grid width="100%" direction="row" container justify="space-around" alignItems="center">
-
+        <Grid width="100%" direction="row" container justify="space-around" alignItems="center"style={{position:'relative', top:'70px', width:'700px', left:'150px'}}>
             <Grid item xs>
-           <div>
-               <h3 className="textFellowDark">Hi, I'm {props.user.name}</h3>
-               <hr style={{width: "90%"}}/>
-               <p className="outline textFellowLight">Joined in 2019 {props.editProfButton}</p>
-               <TextInput.Multiline className="body2 textFellowRed"
+            <div>
+                <h3 className="textFellowDark">Hi, I'm {props.user.name}</h3>
+                <p className="outline textFellowDark">Joined in 2019 {props.editProfButton}</p>
+                <TextInput.Multiline className="body2 textFellowRed"
                                     styling={{width: "90%"}}
                                     disabledText={true}
                                    value={props.user.abstract}
                />
                <Divider style={{width: "90%"}}/>
                <h5 className="textFellowDark">{props.user.name}'s listings</h5>
-               <div style={{width: "90%"}} className="action-cards">
+               <div style={{width: "90%", padding:10}} className="action-cards">
                    {config.listings.map(ListingCard)}
                </div>
+               <Divider style={{width: "90%"}}/>
                <h5>{props.numberRev} Reviews</h5>
                <List style={{width: "90%"}} className="action-lists">
                    {config.reviews.map(({ id, primary, secondary, person }) => (

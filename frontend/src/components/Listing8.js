@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from "./Home";
+import Listing from "./Listing";
 
 function Listing8 () {
     const [values, setValue] = React.useState({
@@ -117,7 +117,7 @@ function Listing8 () {
                     </Select>
                 </FormControl>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../'}>Finish</Button>
+                    <Button variant="contained" color="secondary" href={'../Listing'}>Finish</Button>
                 </BrowserRouter>
             </Container>
         </Container>
