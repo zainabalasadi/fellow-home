@@ -37,7 +37,7 @@ class Home extends Component {
                     <CssBaseline />
                     <img src="http://i64.tinypic.com/9jok7p.jpg" fullWidth style={{position:'relative'}}/>
                     <Container style={{height:'350px', width:'330px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-200px', padding:20,borderRadius: '7px'}}>
-                    <p>Find housemates to live with while you study</p>
+                    <h6>Find housemates to live with while you study</h6>
 
                     <div style ={{padding:10}}>
                         <CssTextField
