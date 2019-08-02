@@ -114,7 +114,10 @@ function Listing9 (props) {
                     <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
                         Total number of bedrooms
                     </Box>
-                        <Buttons.ButtonMinus click={()=>handleMinus('bedroom')}/>
+                    {parseInt(values.bedroom)===0
+                        ? <Buttons.ButtonMinus disabled={true}/>
+                        : <Buttons.ButtonMinus click={()=>handleMinus('bedroom')}/>
+                    }
                         <CssTextField
                             id="bedroom"
                             value={values.bedroom}
@@ -130,7 +133,10 @@ function Listing9 (props) {
                     <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
                         Total number of bathrooms
                     </Box>
-                    <Buttons.ButtonMinus click={()=>handleMinus('bathroom')}/>
+                    {parseInt(values.bathroom) === 0
+                        ? <Buttons.ButtonMinus disabled={true}/>
+                        : <Buttons.ButtonMinus click={() => handleMinus('bathroom')}/>
+                    }
                     <CssTextField
                         id="bathroom"
                         value={values.bathroom}

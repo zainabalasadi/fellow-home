@@ -103,7 +103,10 @@ function Listing2 (props) {
                 <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
                     Current number of housemates
                 </Box>
-                <Buttons.ButtonMinus click={()=>handleMinus('housemates')}/>
+                {parseInt(values.housemates) === 0
+                    ? <Buttons.ButtonMinus disabled={true}/>
+                    : <Buttons.ButtonMinus click={() => handleMinus('housemates')}/>
+                }
                 <CssTextField
                     id="housemates"
                     value={values.housemates}
@@ -119,7 +122,10 @@ function Listing2 (props) {
                 <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
                     Number of Vacancies
                 </Box>
-                <Buttons.ButtonMinus click={()=>handleMinus('vacancies')}/>
+                {parseInt(values.vacancies) === 0
+                    ? <Buttons.ButtonMinus disabled={true}/>
+                    : <Buttons.ButtonMinus click={() => handleMinus('vacancies')}/>
+                }
                 <CssTextField
                     id="vacancies"
                     value={values.vacancies}
