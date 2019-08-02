@@ -28,7 +28,7 @@
     /* Fellow Red */
     box-sizing: border-box;
     border-radius: 50%;
-
+    outline-color: transparent;
     /* + */
     font-family: Inter UI;
     font-style: normal;

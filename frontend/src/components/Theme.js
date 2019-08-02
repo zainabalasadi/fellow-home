@@ -18,6 +18,7 @@ export const theme = createMuiTheme({
         white: '#FFFFFF',
         grey: 'darkgray',
     },
+    shadows: ["none"],
     typography: {
         button: {
             textTransform: 'none',

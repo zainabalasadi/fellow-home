@@ -21,7 +21,7 @@ function Listing2 (props) {
     };
     const handleNumChange = name => event => {
         let val=event.target.value;
-        if (parseInt(val)>=0) {
+        if (val>=0) {
             setValues({
                 ...values,
                 [name]: event.target.value,
@@ -111,7 +111,6 @@ function Listing2 (props) {
                     id="housemates"
                     value={values.housemates}
                     onChange={handleNumChange('housemates')}
-                    type="number"
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -130,7 +129,6 @@ function Listing2 (props) {
                     id="vacancies"
                     value={values.vacancies}
                     onChange={handleNumChange('vacancies')}
-                    type="number"
                     InputLabelProps={{
                         shrink: true,
                     }}

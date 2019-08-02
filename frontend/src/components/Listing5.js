@@ -14,7 +14,7 @@ import Listing6 from "./Listing6";
 
 function Listing5 (props) {
     const [values, setValue] = React.useState({
-        amount: '',
+        amount: 0,
         bond: '',
         bills: '',
     });
@@ -33,7 +33,7 @@ function Listing5 (props) {
     };
     const handleNumChange = name => event => {
         let val=event.target.value;
-        if (parseInt(val)>=0) {
+        if (val>=0) {
             setValue({
                 ...values,
                 [name]: event.target.value,
@@ -104,7 +104,6 @@ function Listing5 (props) {
                             id="amount"
                             variant="outlined"
                             label="Amount"
-                            type="number"
                             fullWidth
                             value={values.amount}
                             onChange={handleNumChange('amount')}
