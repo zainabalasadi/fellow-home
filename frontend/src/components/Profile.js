@@ -110,7 +110,7 @@ export function EditProfile(props){
                     <Divider style={{width: "90%"}}/>
                     <h5 className="textFellowDark">{props.user.name}'s listings</h5>
                     <div style={{width: "90%"}} className="action-cards">
-                        {config.listings.Map(ListingCard)}
+                        {config.listings.map(ListingCard)}
                     </div>
                     <Divider style={{width: "90%"}}/>
                     <h5>{props.numberRev} Reviews</h5>
@@ -147,7 +147,7 @@ function Profile(props) {
                <Divider style={{width: "90%"}}/>
                <h5 className="textFellowDark">{props.user.name}'s listings</h5>
                <div style={{width: "90%", padding:10}} className="action-cards">
-                   {config.listings.Map(ListingCard)}
+                   {config.listings.map(ListingCard)}
                </div>
                <Divider style={{width: "90%"}}/>
                <h5>{props.numberRev} Reviews</h5>
