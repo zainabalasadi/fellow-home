@@ -14,8 +14,6 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 
 
-let abs="Hey! I’m Laura. I’m a Biomedical Science student at UNSW. My hobbies include hiking, bouldering," +
-    " breadmaking and watching National Geographic. I have a fascination with turtles and love dogs and cats.";
 export function EditProfileCard(props){
     return(
         <Card style={{width: "70%", position:'relative', left:'240px', top:'80px'}}>
@@ -98,7 +96,7 @@ export function EditProfile(props){
                                          styling={{width: "90%"}}
                                          disabledText={false}
                                          value={props.user.abstract}
-                                         id="abstract"
+                                         id="profileAbstract"
 
                     />
                     <p className="body1 textFellowDark"><b>University</b></p>
@@ -112,12 +110,12 @@ export function EditProfile(props){
                     <Divider style={{width: "90%"}}/>
                     <h5 className="textFellowDark">{props.user.name}'s listings</h5>
                     <div style={{width: "90%"}} className="action-cards">
-                        {config.listings.map(ListingCard)}
+                        {config.listings.Map(ListingCard)}
                     </div>
                     <Divider style={{width: "90%"}}/>
                     <h5>{props.numberRev} Reviews</h5>
                     <List style={{width: "90%", padding:10}} className="action-lists">
-                        {config.reviews.map(({ id, primary, secondary, person }) => (
+                        {config.reviews.Map(({ id, primary, secondary, person }) => (
                             <React.Fragment key={id}>
                                 <ListItem button>
                                     <ListItemAvatar>
@@ -149,12 +147,12 @@ function Profile(props) {
                <Divider style={{width: "90%"}}/>
                <h5 className="textFellowDark">{props.user.name}'s listings</h5>
                <div style={{width: "90%", padding:10}} className="action-cards">
-                   {config.listings.map(ListingCard)}
+                   {config.listings.Map(ListingCard)}
                </div>
                <Divider style={{width: "90%"}}/>
                <h5>{props.numberRev} Reviews</h5>
                <List style={{width: "90%"}} className="action-lists">
-                   {config.reviews.map(({ id, primary, secondary, person }) => (
+                   {config.reviews.Map(({ id, primary, secondary, person }) => (
                        <React.Fragment key={id}>
                            <ListItem button>
                                <ListItemAvatar>

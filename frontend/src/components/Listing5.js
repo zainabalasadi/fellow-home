@@ -8,11 +8,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing6 from "./Listing6";
 
-function Listing5 () {
+function Listing5 (props) {
     const [values, setValue] = React.useState({
         amount: '',
         bond: '',
@@ -30,6 +30,15 @@ function Listing5 () {
             ...values,
             [name]: event.target.value,
         });
+    };
+    const handleNumChange = name => event => {
+        let val=event.target.value;
+        if (parseInt(val)>=0) {
+            setValue({
+                ...values,
+                [name]: event.target.value,
+            });
+        }
     };
     
     return (
@@ -95,9 +104,10 @@ function Listing5 () {
                             id="amount"
                             variant="outlined"
                             label="Amount"
+                            type="number"
                             fullWidth
                             value={values.amount}
-                            onChange={handleChange('amount')}
+                            onChange={handleNumChange('amount')}
                             InputProps={{
                               startAdornment: <InputAdornment position="start">$</InputAdornment>,
                             }}
@@ -161,8 +171,7 @@ function Listing5 () {
                 </FormControl>
                 <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing6'}>Continue</Button>
-                    <Route path="/Listing6" component={() => <Listing6/>}/>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing6'} message={"Continue"}/>
                 </BrowserRouter>
             </Container>
         </Container>

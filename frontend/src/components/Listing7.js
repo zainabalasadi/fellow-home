@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Container from '@material-ui/core/Container';
 import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing8 from "./Listing8";
 
@@ -88,15 +88,12 @@ class Listing7 extends React.Component{
                     />
                     <p/>
                     <label htmlFor="contained-button-file">
-                        <Button variant="contained" component="span">
-                            Upload
-                        </Button>
+                        <Buttons.ButtonFill color={this.props.color.dark} disabled={true} classNames={{component: "span"}} message={"Upload"}/>
                     </label>
                     <img src={this.state.file}/>
                     <p/>
                     <BrowserRouter>
-                        <Button variant="contained" color="secondary" href={'../Listing8'}>Continue</Button>
-                        <Route path="/Listing8" component={() => <Listing8/>}/>
+                        <Buttons.ButtonFill color={this.props.color.primary} href={'../Listing8'} message={"Continue"}/>
                     </BrowserRouter>
                 </Container>
             </Container>

@@ -6,13 +6,13 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Check from "./Check";
 import config from "../utils/config";
 import Listing5 from "./Listing5";
 
-function Listing4 () {
+function Listing4 (props) {
     const [values, setValue] = React.useState({
         bedType: '',
     });
@@ -120,8 +120,7 @@ function Listing4 () {
                 </div>
                 <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing5'}>Continue</Button>
-                    <Route path="/Listing5" component={() => <Listing5/>}/>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing5'} message={"Continue"}/>
                 </BrowserRouter>
             </Container>
         </Container>

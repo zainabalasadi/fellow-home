@@ -67,7 +67,7 @@ class Check extends Component {
     };
 
     createCheckboxes = () => (
-        this.props.features.map(this.createCheckbox)
+        this.props.features.Map(this.createCheckbox)
     );
 
     render(){

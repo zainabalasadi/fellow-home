@@ -7,11 +7,11 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing7 from "./Listing7";
 
-function Listing6 () {
+function Listing6 (props) {
     const [values, setValue] = React.useState({
         minStay: '',
     });
@@ -118,16 +118,15 @@ function Listing6 () {
                     <option value={0}>1 Month</option>
                     <option value={1}>2 Months</option>
                     <option value={2}>3 Months</option>
-                    <option value={2}>4 Months</option>
-                    <option value={2}>5 Months</option>
-                    <option value={2}>6 Months</option>
-                    <option value={2}>1 Year</option>
+                    <option value={3}>4 Months</option>
+                    <option value={4}>5 Months</option>
+                    <option value={5}>6 Months</option>
+                    <option value={6}>1 Year</option>
                     </Select>
                 </FormControl>
                 <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing7'}>Continue</Button>
-                    <Route path="/Listing7" component={() => <Listing7/>}/>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing7'} message={"Continue"}/>
                 </BrowserRouter>
             </Container>
         </Container>

@@ -79,7 +79,7 @@ class Home extends Component {
                                     }}
                                 />
                             </div><p/>
-                            <Button variant="contained" color="secondary" href={'../'}>Search</Button>
+                            <Buttons.ButtonFill color={theme.colors.primary} href={'../'} message={"Search"}/>
                         </Container>
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                         <h4>Newest Listings</h4>

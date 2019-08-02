@@ -6,10 +6,10 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import Box from '@material-ui/core/Box';
 
-function Listing () {
+function Listing (props) {
     const [values, setValues] = React.useState({
         room: '',
     });
@@ -158,8 +158,8 @@ function Listing () {
                                 <option value={2}>Room 3</option>
                                 </Select>
                             </FormControl>
-                            <Button variant="contained" color="secondary">Send message</Button>
-                            <Button variant="contained" color="secondary">Show phone number</Button>
+                            <Buttons.ButtonFill color={props.color.primary} message={"Send message"}/>
+                            <Buttons.ButtonFill color={props.color.primary} message={"Show phone number"}/>
                         </Box>
                     </Grid>
                 </Grid>

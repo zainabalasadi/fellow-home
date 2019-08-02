@@ -23,7 +23,7 @@ class AccountManager extends Component {
     }
 
     handleStateChange(event,newState){
-        this.user.abstract = document.getElementById("abstract").value;
+        this.user.abstract = document.getElementById("profileAbstract").value;
         this.setState({isEditMode: newState});
     }
     renderSaveButton(newState) {

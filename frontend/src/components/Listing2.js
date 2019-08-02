@@ -3,23 +3,49 @@ import Container from '@material-ui/core/Container';
 import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
 import Box from '@material-ui/core/Box';
 import {CssTextField} from "./Textinputs";
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing3 from "./Listing3";
 
-function Listing2 () {
+function Listing2 (props) {
     const [values, setValues] = React.useState({
-        housemates: '',
-        vancancies: '',
+        housemates: 0,
+        vacancies: 0,
     });
 
     const handleChange = name => event => {
-        setValues({ 
-            ...values, 
-            [name]: event.target.value, 
+        setValues({
+            ...values,
+            [name]: event.target.value,
         });
     };
+    const handleNumChange = name => event => {
+        let val=event.target.value;
+        if (parseInt(val)>=0) {
+            setValues({
+                ...values,
+                [name]: event.target.value,
+            });
+        }
+    };
+    function handlePlus(name){
+        let val = document.getElementById(name).value;
 
+        setValues({
+            ...values,
+            [name]: parseInt(val)+1,
+        });
+
+    }
+    function handleMinus(name){
+        let val = document.getElementById(name).value;
+        if (parseInt(val)>0){
+            setValues({
+                ...values,
+                [name]: parseInt(val)-1,
+            });
+        }
+    }
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
@@ -77,10 +103,11 @@ function Listing2 () {
                 <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
                     Current number of housemates
                 </Box>
+                <Buttons.ButtonMinus click={()=>handleMinus('housemates')}/>
                 <CssTextField
                     id="housemates"
                     value={values.housemates}
-                    onChange={handleChange('housemates')}
+                    onChange={handleNumChange('housemates')}
                     type="number"
                     InputLabelProps={{
                         shrink: true,
@@ -88,13 +115,15 @@ function Listing2 () {
                     margin="dense"
                     variant="outlined"
                 />
+                <Buttons.ButtonPlus click={()=>handlePlus('housemates')}/>
                 <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
                     Number of Vacancies
                 </Box>
+                <Buttons.ButtonMinus click={()=>handleMinus('vacancies')}/>
                 <CssTextField
                     id="vacancies"
                     value={values.vacancies}
-                    onChange={handleChange('vacancies')}
+                    onChange={handleNumChange('vacancies')}
                     type="number"
                     InputLabelProps={{
                         shrink: true,
@@ -102,10 +131,10 @@ function Listing2 () {
                     margin="dense"
                     variant="outlined"
                 />
+                <Buttons.ButtonPlus click={()=>handlePlus('vacancies')}/>
                 <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing3'}>Continue</Button>
-                    <Route path="/Listing3" component={() => <Listing3/>}/>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing3'} message={"Continue"}/>
                 </BrowserRouter>
             </Container>
         </Container>

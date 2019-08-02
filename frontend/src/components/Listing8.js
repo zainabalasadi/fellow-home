@@ -7,11 +7,11 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing from "./Listing";
 
-function Listing8 () {
+function Listing8 (props) {
     const [values, setValue] = React.useState({
         preferences: '',
     });
@@ -117,14 +117,14 @@ function Listing8 () {
                     <option value={0}>No Preferences</option>
                     <option value={1}>Female Only</option>
                     <option value={2}>Male Only</option>
-                    <option value={2}>Couples</option>
-                    <option value={2}>No Couples</option>
-                    <option value={2}>Under 30 years of Age</option>
+                    <option value={3}>Couples</option>
+                    <option value={4}>No Couples</option>
+                    <option value={5}>Under 30 years of Age</option>
                     </Select>
                 </FormControl>
                 <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing'}>Finish</Button>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing'} message={"Finish"}/>
                 </BrowserRouter>
             </Container>
         </Container>

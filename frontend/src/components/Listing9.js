@@ -7,14 +7,14 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing2 from "./Listing2";
 
-function Listing9 () {
+function Listing9 (props) {
     const [values, setValues] = React.useState({
-        bedroom: '',
-        bathroom: '',
+        bedroom: 0,
+        bathroom: 0,
         parking: '',
         internet: '',
     });
@@ -28,10 +28,36 @@ function Listing9 () {
     const handleChange = name => event => {
         setValues({ 
             ...values, 
-            [name]: event.target.value, 
+            [name]: event.target.value,
         });
     };
+    const handleNumChange = name => event => {
+        let val=event.target.value;
+        if (parseInt(val)>=0) {
+            setValues({
+                ...values,
+                [name]: event.target.value,
+            });
+        }
+    };
+    function handlePlus(name){
+        let val = document.getElementById(name).value;
 
+        setValues({
+            ...values,
+            [name]: parseInt(val)+1,
+        })
+
+    };
+    function handleMinus(name){
+        let val = document.getElementById(name).value;
+        if (parseInt(val)>0){
+            setValues({
+                ...values,
+                [name]: parseInt(val)-1,
+            })
+        }
+    }
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
@@ -51,7 +77,7 @@ function Listing9 () {
                                 color="black" 
                                 bgcolor="white" 
                                 borderBottom={4} 
-                                borderColor="tomato" 
+                                borderColor="tomato"
                                 p={0}
                                 style={{height: '2rem'}}
                             >
@@ -88,24 +114,27 @@ function Listing9 () {
                     <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
                         Total number of bedrooms
                     </Box>
-                    <CssTextField
-                        id="bedroom"
-                        value={values.bedroom}
-                        onChange={handleChange('bedroom')}
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        margin="dense"
-                        variant="outlined"
-                    />
+                        <Buttons.ButtonMinus click={()=>handleMinus('bedroom')}/>
+                        <CssTextField
+                            id="bedroom"
+                            value={values.bedroom}
+                            onChange={handleNumChange('bedroom')}
+                            type="number"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            margin="dense"
+                            variant="outlined"
+                        />
+                        <Buttons.ButtonPlus click={()=>handlePlus('bedroom')}/>
                     <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
                         Total number of bathrooms
                     </Box>
+                    <Buttons.ButtonMinus click={()=>handleMinus('bathroom')}/>
                     <CssTextField
                         id="bathroom"
                         value={values.bathroom}
-                        onChange={handleChange('bathroom')}
+                        onChange={handleNumChange('bathroom')}
                         type="number"
                         InputLabelProps={{
                             shrink: true,
@@ -113,6 +142,7 @@ function Listing9 () {
                         margin="dense"
                         variant="outlined"
                     />
+                    <Buttons.ButtonPlus click={()=>handlePlus('bathroom')}/>
                     <Box fontSize={10} fontWeight="fontWeightBold"mt={2}>
                         PARKING
                     </Box>
@@ -167,8 +197,7 @@ function Listing9 () {
                 </Box>
                 <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing2'}>Continue</Button>
-                    <Route path="/Listing2" component={() => <Listing2/>}/>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing2'} message={"Continue"}/>
                 </BrowserRouter>
             </Container>
         </Container>
