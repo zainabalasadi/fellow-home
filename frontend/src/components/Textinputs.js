@@ -41,8 +41,9 @@ export function InputText(props){
     return(
         <CssTextField
             className={props.classNames}
-            margin={"theme.spacing(1)"}
             margin="dense"
+            type={props.type}
+            value={props.value}
             placeholder={props.placeholder}
             variant="outlined"
             id={props.id}
@@ -187,7 +188,7 @@ export function SelectDrop(props) {
         margin="normal"
 
     >
-        {props.features.map(option => (
+        {props.features.Map(option => (
             <MenuItem key={option.value} value={option.value}>
                 {option.label}
             </MenuItem>

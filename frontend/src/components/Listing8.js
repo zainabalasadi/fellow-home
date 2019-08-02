@@ -7,11 +7,11 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from "./Home";
+import Listing from "./Listing";
 
-function Listing8 () {
+function Listing8 (props) {
     const [values, setValue] = React.useState({
         preferences: '',
     });
@@ -79,8 +79,12 @@ function Listing8 () {
                 </Box>
             </Container>
             <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                <h4>Describe your property</h4>
-                <p>Description</p>
+                <Box fontSize={24}>
+                    Describe your property
+                </Box>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
+                    DESCRIPTION
+                </Box>
                       <CssTextField 
                         id="description"
                         placeholder="Describe the housemates location, atmosphere, etc."
@@ -90,7 +94,9 @@ function Listing8 () {
                         variant="outlined"
                         fullWidth
                       />
-                <p>Housemate Preferences</p>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2} mb={0}>
+                    HOUSEMATE PREFERENCES
+                </Box>
                 <FormControl 
                     variant="outlined" 
                     margin="normal"
@@ -111,13 +117,14 @@ function Listing8 () {
                     <option value={0}>No Preferences</option>
                     <option value={1}>Female Only</option>
                     <option value={2}>Male Only</option>
-                    <option value={2}>Couples</option>
-                    <option value={2}>No Couples</option>
-                    <option value={2}>Under 30 years of Age</option>
+                    <option value={3}>Couples</option>
+                    <option value={4}>No Couples</option>
+                    <option value={5}>Under 30 years of Age</option>
                     </Select>
                 </FormControl>
+                <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../'}>Finish</Button>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing'} message={"Finish"}/>
                 </BrowserRouter>
             </Container>
         </Container>

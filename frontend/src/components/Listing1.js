@@ -7,10 +7,11 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing9 from "./Listing9";
-function Listing1 () {
+
+function Listing1 (props) {
     const [values, setValue] = React.useState({
         accomodation: '',
     });
@@ -79,44 +80,52 @@ function Listing1 () {
                 </Box>
             </Container>
             <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                <h4>What kind of accomodation are you listing?</h4>
-                ACCOMODATION TYPE
-                <FormControl 
-                    variant="outlined" 
-                    margin="normal"
-                    fullWidth
-                >
-                    <InputLabel ref={inputLabel} htmlFor="accomodation">
-                        Select one
-                    </InputLabel>
-                    <Select
-                        native
-                        value={values.accomodation}
-                        onChange={handleChange('accomodation')}
-                        input={
-                            <OutlinedInput name="accomodation" labelWidth={labelWidth} id="accomodation" />
-                        }
+                <Box fontSize={24}>
+                    What kind of accomodation are you listing?
+                    <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
+                        ACCOMODATION TYPE
+                    </Box>
+                    <FormControl 
+                        variant="outlined" 
+                        margin="normal"
+                        fullWidth
                     >
-                    <option value="" />
-                    <option value={0}>Entire Property</option>
-                    <option value={1}>Private Room</option>
-                    <option value={2}>Shared Room</option>
-                    </Select>
-                </FormControl>
-                <h6>Where is your place located?</h6>
-                ADDRESS
-                <CssTextField
-                    id="address"
-                    placeholder="The Address of you listing"
-                    type="text"
-                    margin="normal"
-                    variant="outlined"
-                    helperText="This won't be revealed to users."
-                    fullWidth
-                />
+                        <InputLabel ref={inputLabel} htmlFor="accomodation">
+                            Select one
+                        </InputLabel>
+                        <Select
+                            native
+                            value={values.accomodation}
+                            onChange={handleChange('accomodation')}
+                            input={
+                                <OutlinedInput name="accomodation" labelWidth={labelWidth} id="accomodation" />
+                            }
+                        >
+                        <option value="" />
+                        <option value={0}>Entire Property</option>
+                        <option value={1}>Private Room</option>
+                        <option value={2}>Shared Room</option>
+                        </Select>
+                    </FormControl>
+                </Box>
+                    <Box fontSize={20} mt={3}>
+                        Where is your place located?
+                    <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
+                        ADDRESS
+                    </Box>
+                    <CssTextField
+                        id="address"
+                        placeholder="The Address of your listing"
+                        type="text"
+                        margin="normal"
+                        variant="outlined"
+                        helperText="This won't be revealed to users."
+                        fullWidth
+                    />
+                </Box>
+                <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing9'}>Continue</Button>
-                    <Route path="/Listing9" component={() => <Listing9/>}/>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing9'} message={"Continue"}/>
                 </BrowserRouter>
             </Container>
         </Container>

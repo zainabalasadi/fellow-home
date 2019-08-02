@@ -8,11 +8,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing6 from "./Listing6";
 
-function Listing5 () {
+function Listing5 (props) {
     const [values, setValue] = React.useState({
         amount: '',
         bond: '',
@@ -30,6 +30,15 @@ function Listing5 () {
             ...values,
             [name]: event.target.value,
         });
+    };
+    const handleNumChange = name => event => {
+        let val=event.target.value;
+        if (parseInt(val)>=0) {
+            setValue({
+                ...values,
+                [name]: event.target.value,
+            });
+        }
     };
     
     return (
@@ -83,24 +92,31 @@ function Listing5 () {
                 </Box>
             </Container>
             <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                <h4>Price your property</h4>
+                <Box fontSize={24}>
+                    Price your property
+                </Box>
                 <Grid container spacing = {4}>
                     <Grid item xs = {6}>
-                        <p>WEEKLY RENT</p>
+                        <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={2}>
+                            WEEKLY RENT
+                        </Box>
                         <CssTextField
                             id="amount"
                             variant="outlined"
                             label="Amount"
+                            type="number"
                             fullWidth
                             value={values.amount}
-                            onChange={handleChange('amount')}
+                            onChange={handleNumChange('amount')}
                             InputProps={{
                               startAdornment: <InputAdornment position="start">$</InputAdornment>,
                             }}
                         />
                     </Grid>
                     <Grid item xs = {6}>
-                        BOND
+                        <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
+                            BOND
+                        </Box>
                         <FormControl 
                             variant="outlined" 
                             margin="normal"
@@ -127,7 +143,9 @@ function Listing5 () {
                         </FormControl>
                     </Grid>
                 </Grid>
-                <p>BILLS</p>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2} mb={0}>
+                    BILLS
+                </Box>
                 <FormControl 
                     variant="outlined" 
                     margin="normal"
@@ -151,9 +169,9 @@ function Listing5 () {
                     <option value={3}>Included in rent</option>
                     </Select>
                 </FormControl>
+                <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing6'}>Continue</Button>
-                    <Route path="/Listing6" component={() => <Listing6/>}/>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing6'} message={"Continue"}/>
                 </BrowserRouter>
             </Container>
         </Container>

@@ -57,19 +57,19 @@ class App extends Component {
 				<ThemeProvider theme={theme}>
 				<CssBaseline />
 					<BrowserRouter>
-						<Header onLogin={this.onUserLogin} loggedin={login} user={this.state.user} color={theme.colors.primary}/>
+						<Header onLogin={this.onUserLogin} loggedin={login} user={this.state.user} color={theme.colors}/>
 						<Switch>
 							<Route exact path="/" component={() => <Home/>} />
-							<Route path="/Listing" component={() => <Listing/>}/>
-							<Route path="/Listing1" component={() => <Listing1/>}/>
-							<Route path="/Listing2" component={() => <Listing2/>}/>
-							<Route path="/Listing3" component={() => <Listing3/>}/>
-							<Route path="/Listing4" component={() => <Listing4/>}/>
-							<Route path="/Listing5" component={() => <Listing5/>}/>
-							<Route path="/Listing6" component={() => <Listing6/>}/>
-							<Route path="/Listing7" component={() => <Listing7/>}/>
-							<Route path="/Listing8" component={() => <Listing8/>}/>
-							<Route path="/Listing9" component={() => <Listing9/>}/>
+							<Route path="/Listing" component={() => <Listing color={theme.colors}/>}/>
+							<Route path="/Listing1" component={() => <Listing1 color={theme.colors}/>}/>
+							<Route path="/Listing2" component={() => <Listing2 color={theme.colors}/>}/>
+							<Route path="/Listing3" component={() => <Listing3 color={theme.colors}/>}/>
+							<Route path="/Listing4" component={() => <Listing4 color={theme.colors}/>}/>
+							<Route path="/Listing5" component={() => <Listing5 color={theme.colors}/>}/>
+							<Route path="/Listing6" component={() => <Listing6 color={theme.colors}/>}/>
+							<Route path="/Listing7" component={() => <Listing7 color={theme.colors}/>}/>
+							<Route path="/Listing8" component={() => <Listing8 color={theme.colors}/>}/>
+							<Route path="/Listing9" component={() => <Listing9 color={theme.colors}/>}/>
 							<Route path="/listings" component={() => <ListingCard/>}/>
 							<Route path="/About" component={() => <About/>}/>
 							<Route path="/saved" component={() => <ListingCard/>}/>

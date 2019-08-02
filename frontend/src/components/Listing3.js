@@ -7,11 +7,11 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing4 from "./Listing4";
 
-function Listing3 () {
+function Listing3 (props) {
     const [values, setValue] = React.useState({
         roomType: '',
         bathroomAccess: '',
@@ -81,8 +81,12 @@ function Listing3 () {
                 </Box>
             </Container>
             <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                <h4>Tell us about the rooms available</h4>
-                <p>ROOM NAME</p>
+                <Box fontSize={24}>
+                    Tell us about the rooms available
+                </Box>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
+                    ROOM NAME
+                </Box>
                 <CssTextField
                     id="room1"
                     placeholder="Room 1"
@@ -91,7 +95,9 @@ function Listing3 () {
                     variant="outlined"
                     fullWidth
                 />
-                <p>ROOM TYPE</p>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
+                    ROOM TYPE
+                </Box>
                 <FormControl 
                     variant="outlined" 
                     margin="normal"
@@ -114,7 +120,9 @@ function Listing3 () {
                     <option value={2}>Large</option>
                     </Select>
                 </FormControl>
-                <p>BATHROOM ACCESS</p>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
+                    BATHROOM ACCESS
+                </Box>
                 <FormControl 
                     variant="outlined" 
                     margin="normal"
@@ -137,9 +145,9 @@ function Listing3 () {
                     </Select>
                 </FormControl>
                 + add another room
+                <p/>
                 <BrowserRouter>
-                    <Button variant="contained" color="secondary" href={'../Listing4'}>Continue</Button>
-                    <Route path="/Listing4" component={() => <Listing4/>}/>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing4'} message={"Continue"}/>
                 </BrowserRouter>
             </Container>
         </Container>
