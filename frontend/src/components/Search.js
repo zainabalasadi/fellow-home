@@ -350,44 +350,51 @@ function Search () {
                                     <Box fontWeight="fontWeightBold">
                                         Price
                                     </Box>
-                                    <CssTextField
-                                        id="amount"
-                                        variant="outlined"
-                                        margin="dense"
-                                        value={values.amount}
-                                        placeholder="From"
-                                        style={{width:'80px',height:'30px'}}
-                                        onChange={handleNumChange('amount')}
-                                        InputProps={{
-                                            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                                        }}
-                                    />
-                                    <CssTextField
-                                        id="amount"
-                                        variant="outlined"
-                                        margin="dense"
-                                        placeholder="To"
-                                        style={{width:'80px', height:'30px'}}
-                                        value={values.amount}
-                                        onChange={handleNumChange('amount')}
-                                        InputProps={{
-                                            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                                        }}
-                                    />
+                                    Price Range
+                                    <Box mt={-4} ml={8}>
+                                        <CssTextField
+                                            id="amount"
+                                            variant="outlined"
+                                            margin="dense"
+                                            value={values.amount}
+                                            placeholder="From"
+                                            style={{width:'80px',height:'30px'}}
+                                            onChange={handleNumChange('amount')}
+                                            InputProps={{
+                                                startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                            }}
+                                        />
+                                        <CssTextField
+                                            id="amount"
+                                            variant="outlined"
+                                            margin="dense"
+                                            placeholder="To"
+                                            style={{width:'80px', height:'30px'}}
+                                            value={values.amount}
+                                            onChange={handleNumChange('amount')}
+                                            InputProps={{
+                                                startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                            }}
+                                        />
+                                    </Box>
                                     <Divider/>
                                     <Box fontWeight="fontWeightBold">
                                         Available From
                                     </Box>
-                                    <CssTextField
-                                        id="date"
-                                        type="date"
-                                        placeholder="YYYY-MM-DD"
-                                        style={{width:'100px'}}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    />
+                                    Availability From
+                                    <Box mt={-3} ml={12} mb={1}>
+                                        <CssTextField
+                                            id="date"
+                                            type="date"
+                                            placeholder="YYYY-MM-DD"
+                                            style={{width:'100px'}}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                        />
+                                    </Box>
                                     <Divider/>
+                                <Button disableRipple>Cancel</Button>
                                 <Button disableRipple>Submit</Button>
                             </Box>
                         </Paper>
