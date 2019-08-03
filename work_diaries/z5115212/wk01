@@ -45,5 +45,5 @@ pages.
 wk09
 There's still a lot more needing to be done for front end. So far we have a somewhat interactive system, but only for user 
 profile, login and signup. It doesn't work with the backend yet. This week I decided to take on listing pages so that users
-can add a listing to the site. I've been able to somewhat code the base design and functionality but as there's 9 pages for it,
-it might take a while to finish.
+can add a listing to the site. I've been able to somewhat code the base design and functionality. I've also worked on the
+header, home page, about and help pages.
