@@ -387,7 +387,7 @@ function Search () {
                                             id="date"
                                             type="date"
                                             placeholder="YYYY-MM-DD"
-                                            style={{width:'100px'}}
+                                            style={{width:'85px'}}
                                             InputLabelProps={{
                                                 shrink: true,
                                             }}

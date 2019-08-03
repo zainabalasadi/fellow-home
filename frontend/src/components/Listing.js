@@ -12,8 +12,21 @@ import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import tileData from './tileData';
+
+const useStyles = makeStyles(theme => ({
+  gridList: {
+    flexWrap: 'nowrap',
+    transform: 'translateZ(0)',
+    height:'400px',
+  },
+}));
 
 function Listing (props) {
+    const classes = useStyles();
     const [values, setValues] = React.useState({
         room: '',
     });
@@ -33,15 +46,24 @@ function Listing (props) {
 
     return (
         <div>
-            <div style={{backgroundColor: 'whitesmoke',height:'40vh'}} maxWidth="xl">
-                <h2>Pictures</h2>
+            <div style={{backgroundColor: 'whitesmoke',height:'43vh'}} maxWidth="xl">
+                <GridList className={classes.gridList} cols={2.5} cellHeight={390} >
+                    {tileData.map(tile => (
+                        <GridListTile key={tile.img}>
+                            <img src={tile.img} alt={tile.title}/>
+                        />
+                      </GridListTile>
+                    ))}
+                </GridList>
             </div>
-            <div style={{backgroundColor: 'whitesmoke',textAlign:'right'}} maxWidth="xl">
-                <FormControlLabel
-                    control={<Checkbox icon={<FavoriteBorder/>} 
-                    checkedIcon={<Favorite />} 
-                    value="checkedH" />}
-                />
+            <div style={{textAlign:'right'}} maxWidth="xl">
+                <Box mt={5}>
+                    <FormControlLabel
+                        control={<Checkbox icon={<FavoriteBorder/>} 
+                        checkedIcon={<Favorite />} 
+                        value="checkedH" />}
+                    />
+                </Box>
             </div>
             <Container style={{textAlign:'center', padding:30}} maxWidth="md">
                 <Grid container spacing={2}>

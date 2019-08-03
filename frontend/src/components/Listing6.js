@@ -90,6 +90,7 @@ function Listing6 (props) {
                     id="date"
                     type="date"
                     placeholder="YYYY-MM-DD"
+                    style={{width:'85px'}}
                     InputLabelProps={{
                         shrink: true,
                     }}
