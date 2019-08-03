@@ -30,13 +30,13 @@ function Listing (props) {
     const [values, setValues] = React.useState({
         room: '',
     });
-
+{/*
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
         setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
-
+*/}
     const handleChange = name => event => {
         setValues({ 
             ...values, 
@@ -143,6 +143,7 @@ function Listing (props) {
                             Description of person
                             <br/><br/>
                             <Divider/>
+                        {/*
                             <h5>The neighbourhood</h5>
                             dsecription of neighbourhood
                             <h6>Getting around</h6>
@@ -150,6 +151,7 @@ function Listing (props) {
                             <h6>nearest universities/train stations</h6>
                             <br/><br/>
                             <Divider/>
+                        */}
                             <h5>Reviews</h5>
                         </Container>
                     </Grid>
@@ -169,6 +171,7 @@ function Listing (props) {
                                 variant="outlined"
                                 fullWidth
                             />
+                        {/*
                             <FormControl 
                                 variant="outlined" 
                                 margin="normal"
@@ -191,8 +194,8 @@ function Listing (props) {
                                 <option value={2}>Room 3</option>
                                 </Select>
                             </FormControl>
+                        */}
                             <Buttons.ButtonFill color={props.color.primary} message={"Send message"}/>
-                            <Buttons.ButtonFill color={props.color.primary} message={"Show phone number"}/>
                         </Box>
                     </Grid>
                 </Grid>

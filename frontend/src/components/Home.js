@@ -62,6 +62,7 @@ class Home extends Component {
                                     variant="outlined"
                                     margin="dense"
                                     fullWidth
+                                    placeholder="'private' or 'shared'"
                                     InputProps={{
                                       startAdornment: <InputAdornment position="start"></InputAdornment>,
                                     }}

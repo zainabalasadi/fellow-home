@@ -13,15 +13,14 @@ function Help () {
 
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
-            <Container style={{padding: 20}} maxWidth="md">
+            <Container style={{padding: 20, textAlign:'left'}} maxWidth="md">
             <h4>Help</h4>
-            <h6>A peer-to-peer accommodation web portal that connects students to potential housemates in NSW</h6>
-            <p>
-            We are an indpendent organisation whose key objectives are to provide cheaper alternatives to
-            accomodation while providing a platform for students to connect to homeowners with unused rooms.
-            We hope to pave the way for affordable student accomodation in an effort to create s strong
-            sense of community and safety.
-            </p>
+            <h6>How do I create an account?</h6>
+            On the top right corner there's a 'Sign Up' button where you can enter your details to have an account created.
+            <h6>How do I log in?</h6>
+            On the top right corner there's a 'Log In' button where you can enter your email and password.
+            <h6>How do I contact the homeowner?</h6>
+            Click on their listing page and on the right side of the page there is an option to contact the owner.
             </Container>
         </Container>
     );
