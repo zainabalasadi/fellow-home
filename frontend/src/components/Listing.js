@@ -8,6 +8,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import * as Buttons from './Button';
 import Box from '@material-ui/core/Box';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 function Listing (props) {
     const [values, setValues] = React.useState({
@@ -31,6 +35,13 @@ function Listing (props) {
         <div>
             <div style={{backgroundColor: 'whitesmoke',height:'40vh'}} maxWidth="xl">
                 <h2>Pictures</h2>
+            </div>
+            <div style={{backgroundColor: 'whitesmoke',textAlign:'right'}} maxWidth="xl">
+                <FormControlLabel
+                    control={<Checkbox icon={<FavoriteBorder/>} 
+                    checkedIcon={<Favorite />} 
+                    value="checkedH" />}
+                />
             </div>
             <Container style={{textAlign:'center', padding:30}} maxWidth="md">
                 <Grid container spacing={2}>

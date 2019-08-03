@@ -102,9 +102,10 @@ function Listing1 (props) {
                             }
                         >
                         <option value="" />
-                        <option value={0}>Entire Property</option>
-                        <option value={1}>Private Room</option>
-                        <option value={2}>Shared Room</option>
+                        <option value={0}>House</option>
+                        <option value={1}>Guesthouse</option>
+                        <option value={2}>Apartment</option>
+                        <option value={2}>Townhouse</option>
                         </Select>
                     </FormControl>
                 </Box>

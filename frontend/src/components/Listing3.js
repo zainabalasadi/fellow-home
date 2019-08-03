@@ -115,9 +115,8 @@ function Listing3 (props) {
                         }
                     >
                     <option value="" />
-                    <option value={0}>Small</option>
-                    <option value={1}>Medium</option>
-                    <option value={2}>Large</option>
+                    <option value={0}>Shared</option>
+                    <option value={1}>Private</option>
                     </Select>
                 </FormControl>
                 <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
@@ -144,7 +143,6 @@ function Listing3 (props) {
                     <option value={1}>No</option>
                     </Select>
                 </FormControl>
-                + add another room
                 <p/>
                 <BrowserRouter>
                     <Buttons.ButtonFill color={props.color.primary} href={'../Listing4'} message={"Continue"}/>

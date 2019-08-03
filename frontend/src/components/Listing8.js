@@ -14,6 +14,7 @@ import Listing from "./Listing";
 function Listing8 (props) {
     const [values, setValue] = React.useState({
         preferences: '',
+        rules:'',
     });
 
     const inputLabel = React.useRef(null);
@@ -85,15 +86,15 @@ function Listing8 (props) {
                 <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
                     DESCRIPTION
                 </Box>
-                      <CssTextField 
-                        id="description"
-                        placeholder="Describe the housemates location, atmosphere, etc."
-                        multiline
-                        rows="4"
-                        margin="normal"
-                        variant="outlined"
-                        fullWidth
-                      />
+                <CssTextField 
+                    id="description"
+                    placeholder="Describe the housemates location, atmosphere, etc."
+                    multiline
+                    rows="4"
+                    margin="normal"
+                    variant="outlined"
+                    fullWidth
+                />
                 <Box fontSize={10} fontWeight="fontWeightBold" mt={2} mb={0}>
                     HOUSEMATE PREFERENCES
                 </Box>
@@ -120,6 +121,32 @@ function Listing8 (props) {
                     <option value={3}>Couples</option>
                     <option value={4}>No Couples</option>
                     <option value={5}>Under 30 years of Age</option>
+                    </Select>
+                </FormControl>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2} mb={0}>
+                    HOUSE RULES
+                </Box>
+                <FormControl 
+                    variant="outlined" 
+                    margin="normal"
+                    fullWidth
+                >
+                    <InputLabel ref={inputLabel} htmlFor="pref">
+                        Select one
+                    </InputLabel>
+                    <Select
+                        native
+                        value={values.preferences}
+                        onChange={handleChange('rules')}
+                        input={
+                            <OutlinedInput name="rules" labelWidth={labelWidth} id="rules" />
+                        }
+                    >
+                    <option value="" />
+                    <option value={0}>Suitable for Events</option>
+                    <option value={1}>Pets Allowed</option>
+                    <option value={2}>Smoking Allowed</option>
+                    <option value={3}>Children Allowed</option>
                     </Select>
                 </FormControl>
                 <p/>

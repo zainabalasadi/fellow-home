@@ -79,13 +79,15 @@ class Home extends Component {
                                     }}
                                 />
                             </div><p/>
-                            <Buttons.ButtonFill color={theme.colors.primary} href={'../'} message={"Search"}/>
+                            <Button variant="contained" color="secondary" href={'../'}>Search</Button>
                         </Container>
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                         <h4>Newest Listings</h4>
                         <GridListing />
                         <Button disableRipple href={'../Profile'}>Profile</Button>
                         <Button disableRipple href={'../Listing'}>Listing</Button>
+                        <Button disableRipple href={'../Saved'}>Saved</Button>
+                        <Button disableRipple href={'../Search'}>Search</Button>
                         {/*}
                         <div className="action-buttons">
                             <Buttons.ButtonPlus disabled={true}/>
