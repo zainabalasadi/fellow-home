@@ -52,6 +52,14 @@ As Anna was away durring when we would have the weekly meeting last week we resc
 Otherwise I worked on integrating API's like google maps and special dessign components for the listings. 
 
 Week 7
+Created the user profile page and website header, incorporated the switch for when it enters edit mode.  
+
 Week 8
+I made the styled buttons more useable by creating their own file to call them from. Also created a theme file so it can be applied to whole site and only need to call it in rather than restate it. Incorporated loggin into the header setting it up to allow header to switch when logged in.
+Durring the tute, the demonstrator also reminded us to focus development on the aspects most usefull to the students, rather than other nice to haves.
+Durring meetup as backend was done everyone jumpped onto front end, and we re-organised all the front end tasks to new assignees.
+
 Week 9
+After Anna and Zainab set up the listing pages went over them and set everything to intended styling. Otherwise worked on getting features of Google Maps API working, like searching for place data.
+
 Week 10 
