@@ -2,7 +2,6 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {theme} from './Theme';
 import Grid from '@material-ui/core/Grid';
 
 function MadeWithLove() {
@@ -59,20 +58,5 @@ export default function Footer() {
             <MadeWithLove />
         </Container>
       </footer>
-
-      // <Container maxWidth="lg">
-      //    <Grid container spacing={4} justify="space-evenly">
-      //       <Grid item xs={6} sm={3}>
-      //          <ul>
-      //             <li>Hello</li>
-      //             <li>Hello</li>
-      //             <li>Hello</li>
-      //             <li>Hello</li>
-      //          </ul>
-      //       </Grid>
-
-      //    </Grid>
-      // </Container>
   );
 }
-
