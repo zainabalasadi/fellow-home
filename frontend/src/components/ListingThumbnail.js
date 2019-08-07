@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import Listing from "./Listing";
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -19,10 +18,12 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         padding: 0,
-        paddingTop: 20,
+        paddingTop: 7,
     },
     avatar: {
         backgroundColor: red[500],
+        width: 30,
+        height: 30
     },
 }));
 
@@ -42,11 +43,9 @@ export default function ListingCard(props) {
                     <Typography variant="h6" color="textSecondary">{props.details.title}</Typography>
                     <Typography variant="body2" color="textSecondary">${props.details.price}/week</Typography>
 
-                    <CardHeader
+                    <CardHeader style={{padding:0, margin:0, marginTop: 10}}
                         avatar={
-                            <Avatar aria-label="Recipe" className={classes.avatar}>
-                                R
-                            </Avatar>
+                            <Avatar aria-label="Recipe" className={classes.avatar}>R</Avatar>
                         }
                         title="Kelsey"
                     />

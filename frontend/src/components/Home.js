@@ -4,22 +4,11 @@ import * as Buttons from './Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
 import '../app/App.css';
-import SnackBar from "./Snack";
-import Check from "./Check";
-import config from "../utils/config";
-import * as TextInput from "./Textinputs";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import Fab from "@material-ui/core/Fab";
-import ListingCard from "./ListingThumbnail"
 import {theme} from './Theme'
 import Button from '@material-ui/core/Button'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {CssTextField} from "./Textinputs";
 import GridListing from "./GridListing"
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 class Home extends Component {
@@ -38,7 +27,7 @@ class Home extends Component {
             <React.Fragment>     
                     <CssBaseline />
                     <img src="http://i64.tinypic.com/9jok7p.jpg" fullWidth style={{position:'relative'}}/>
-                        <Container style={{height:'380px', width:'330px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-300px', padding:24,borderRadius: '7px'}}>
+                        <Container style={{height:'400px', width:'400px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-400px', padding:24,borderRadius: '7px'}}>
                             <Box fontSize={20} padding={1}>
                                 Find housemates to live with while you study
                             </Box>
@@ -80,7 +69,7 @@ class Home extends Component {
                                     }}
                                 />
                             </div><p/>
-                            <Button variant="contained" color="secondary" href={'../'}>Search</Button>
+                            <Button variant="contained" color="primary" href={'../'}>Search</Button>
                         </Container>
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                         <h4>Newest Listings</h4>

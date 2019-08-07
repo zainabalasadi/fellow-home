@@ -148,7 +148,7 @@ function Register(props) {
                 </DialogContent>
                 <DialogActions>
                     <Buttons.ButtonLink click={handleClose} color={theme.colors.primary} message={"Cancel"}/>
-                    <Buttons.ButtonLink click={handleSubmit} color={theme.colors.primary} message={"Submit"} autoFocus/>
+                    <Buttons.ButtonFill click={handleSubmit} color={theme.colors.primary} message={"Submit"} autoFocus/>
                 </DialogActions>
             </Dialog>
         </div>
