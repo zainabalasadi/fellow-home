@@ -56,7 +56,9 @@ function Register(props) {
             <Dialog open={open}
                 onClose={handleClose}
                 aria-labelledby="register-title"
-                aria-describedby="register-description">
+                aria-describedby="register-description"
+                fullWidth="true"
+                maxWidth="sm">
                 <DialogTitle id="register-title">{"Sign Up"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="register-description">
