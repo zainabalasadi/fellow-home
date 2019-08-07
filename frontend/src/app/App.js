@@ -17,6 +17,8 @@ import Listing8 from '../components/Listing8'
 import Listing9 from '../components/Listing9'
 import About from '../components/About'
 import Help from '../components/Help'
+import Search from '../components/Search'
+import Saved from '../components/Saved'
 import {ThemeProvider} from "@material-ui/styles";
 import MapContainer from "../components/MapContainer";
 import Home from "../components/Home";
@@ -70,9 +72,10 @@ class App extends Component {
 							<Route path="/Listing7" component={() => <Listing7 color={theme.colors}/>}/>
 							<Route path="/Listing8" component={() => <Listing8 color={theme.colors}/>}/>
 							<Route path="/Listing9" component={() => <Listing9 color={theme.colors}/>}/>
+							<Route path="/Saved" component={() => <Saved color={theme.colors}/>}/>
+							<Route path="/Search" component={() => <Search color={theme.colors}/>}/>
 							<Route path="/listings" component={() => <ListingCard/>}/>
 							<Route path="/About" component={() => <About/>}/>
-							<Route path="/saved" component={() => <ListingCard/>}/>
 							<Route path="/message" component={() => <ListingCard/>}/>
 							<Route path="/Help" component={() => <Help/>}/>
 							<Route path="/profile" component={() => <AccountManager user={this.state.user}/>}>
