@@ -1,41 +1,22 @@
 import React, { Component } from "react";
-
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import Button from '@material-ui/core/Button'
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
+import Box from '@material-ui/core/Box';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Paper from '@material-ui/core/Paper';
-import { BrowserRouter} from 'react-router-dom';
-import { Link, Route, Switch } from 'react-router-dom';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import config from "../utils/config";
+import * as Buttons from './Button';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Check from "./Check";
-import Box from '@material-ui/core/Box';
-
+import config from "../utils/config";
 import Listing5 from "./Listing5";
 
-function Listing4 () {
-    const [state, setState] = React.useState({
-        age: '',
-        name: 'hai',
+function Listing4 (props) {
+    const [values, setValue] = React.useState({
+        bedType: '',
     });
+
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
@@ -43,106 +24,107 @@ function Listing4 () {
     }, []);
 
     const handleChange = name => event => {
-        setState({
-          ...state,
-          [name]: event.target.value,
+        setValue({
+            ...values,
+            [name]: event.target.value,
         });
-      };
+    };
+
     return (
-    	<React.Fragment>
-	    	<CssBaseline />
-	      	<Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
-                <Container style={{padding: 20}} maxWidth="md">
-                    <Box 
-                        color="tomato" 
-                        borderBottom={4} 
-                        borderColor="gainsboro" 
-                        p={0}
-                        style={{height: '2rem'}}
-                    >
-                        <Grid container spacing={0}>
-                            <Grid item xs = {2}>
-                                Type of accomodation
-                            </Grid>
-                            <Grid item xs>
-                                Basics
-                            </Grid>
-                            <Grid item xs>
-                                Housemates
-                            </Grid>
-                            <Grid item xs>
-                                Rooms
-                            </Grid>
-                            <Grid item xs>
-                                <Box 
-                                    color="black" 
-                                    bgcolor="white" 
-                                    borderBottom={4} 
-                                    borderColor="tomato" 
-                                    p={0}
-                                    style={{height: '2rem'}}
-                                >
-                                    Features
-                                </Box>
-                            </Grid>
-                            <Grid item xs>
-                                Rent
-                            </Grid>
-                            <Grid item xs>
-                                Availabilities
-                            </Grid>
-                            <Grid item xs>
-                                Photos
-                            </Grid>
-                            <Grid item xs = {2}>
-                                Preferences and About
-                            </Grid>
+        <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
+            <Container style={{padding: 20}} maxWidth="md">
+                <Box 
+                    color="tomato" 
+                    borderBottom={4} 
+                    borderColor="gainsboro" 
+                    p={0}
+                    style={{height: '2rem'}}
+                >
+                    <Grid container spacing={0}>
+                        <Grid item xs = {2}>
+                            Type of accomodation
                         </Grid>
-                    </Box>
-                </Container>
-                <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-    		      	<h4>What ammenities do the rooms offer?</h4>
-                    <p>Room with a view</p>
-    		      	<p>BED TYPE</p>
-                    <FormControl 
-                        variant="outlined" 
-                        margin="normal"
-                        fullWidth
+                        <Grid item xs>
+                            Basics
+                        </Grid>
+                        <Grid item xs>
+                            Housemates
+                        </Grid>
+                        <Grid item xs>
+                            Rooms
+                        </Grid>
+                        <Grid item xs>
+                            <Box 
+                                color="black" 
+                                bgcolor="white" 
+                                borderBottom={4} 
+                                borderColor="tomato" 
+                                p={0}
+                                style={{height: '2rem'}}
+                            >
+                                Features
+                            </Box>
+                        </Grid>
+                        <Grid item xs>
+                            Rent
+                        </Grid>
+                        <Grid item xs>
+                            Availabilities
+                        </Grid>
+                        <Grid item xs>
+                            Photos
+                        </Grid>
+                        <Grid item xs = {2}>
+                            Preferences and About
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Container>
+            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+                <Box fontSize={24}>
+                    What ammenities do the rooms offer?
+                </Box>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
+                    BED TYPE
+                </Box>
+                <FormControl 
+                    variant="outlined" 
+                    margin="normal"
+                    fullWidth
+                >
+                    <InputLabel ref={inputLabel} htmlFor="bedType">
+                        Select one
+                    </InputLabel>
+                    <Select
+                        native
+                        value={values.bedType}
+                        onChange={handleChange('bedType')}
+                        input={
+                            <OutlinedInput name="bedType" labelWidth={labelWidth} id="bedType" />
+                        }
                     >
-                        <InputLabel ref={inputLabel} htmlFor="bedtype">
-                            Select one
-                        </InputLabel>
-                        <Select
-                            native
-                            value={state.adress}
-                            onChange={handleChange('bedtype')}
-                            input={
-                                <OutlinedInput name="bedtype" labelWidth={labelWidth} id="bedtype" />
-                            }
-                        >
-                        <option value="" />
-                        <option value={0}>Single</option>
-                        <option value={1}>Double</option>
-                        <option value={2}>Queen</option>
-                        <option value={3}>King</option>
-                        <option value={4}>None</option>
-                        </Select>
-                    </FormControl>
-                    <p>Amenities</p>
-                    
-                    <p>These are just the amentiies housemates usually expect, but you can add even more after you publish</p>
-                    <div>
-                        <Check features={config.checkAmenities}/>
-                    </div>
-                    <BrowserRouter>
-                        <Button variant="contained" color="secondary" href={'../Listing5'}>Continue</Button>
-                        <Route path="/Listing5" component={() => <Listing5/>}/>
-                    </BrowserRouter>
-                </Container>
-        	</Container>
-    	</React.Fragment>
+                    <option value="" />
+                    <option value={0}>Single</option>
+                    <option value={1}>Double</option>
+                    <option value={2}>Queen</option>
+                    <option value={3}>King</option>
+                    <option value={4}>None</option>
+                    </Select>
+                </FormControl>
+                <Box fontSize={15} fontWeight="fontWeightBold" mt={2}>
+                    Amenities
+                </Box>
+                <p>These are just the amentiies housemates usually expect, but you can add even more after you publish</p>
+                <div>
+                    <Check features={config.checkAmenities}/>
+                </div>
+                <p/>
+                <BrowserRouter>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing5'} message={"Continue"}/>
+                </BrowserRouter>
+            </Container>
+        </Container>
     );
 }
  
 export default Listing4;
-

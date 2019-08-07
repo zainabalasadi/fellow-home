@@ -52,11 +52,13 @@ function Register(props) {
 
     return (
         <div>
-            <Buttons.ButtonLink color={theme.colors.primary} click={handleClickOpen} message={"Sign Up"}/>
+            <Buttons.ButtonLink color={theme.colors.dark} click={handleClickOpen} message={"Sign Up"}/>
             <Dialog open={open}
                 onClose={handleClose}
                 aria-labelledby="register-title"
-                aria-describedby="register-description">
+                aria-describedby="register-description"
+                fullWidth="true"
+                maxWidth="sm">
                 <DialogTitle id="register-title">{"Sign Up"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="register-description">
@@ -72,6 +74,7 @@ function Register(props) {
                                 type="email"
                                 variant="outlined"
                                 fullWidth
+                                required
                             />
                         </div>
                         <div>
@@ -83,6 +86,7 @@ function Register(props) {
                                 type="text"
                                 variant="outlined"
                                 fullWidth
+                                required
                             />
                         </div>
                         <div>
@@ -94,10 +98,12 @@ function Register(props) {
                             type="text"
                             variant="outlined"
                             fullWidth
+                            required
                             />
                         </div>
                         <div>
                             <CssTextField
+                                required
                                 id="password"
                                 fullWidth
                                 variant="outlined"
@@ -131,6 +137,7 @@ function Register(props) {
                                 type="text"
                                 variant="outlined"
                                 fullWidth
+                                required
                             />
                         </div>
                             <DialogContentText>
@@ -141,7 +148,7 @@ function Register(props) {
                 </DialogContent>
                 <DialogActions>
                     <Buttons.ButtonLink click={handleClose} color={theme.colors.primary} message={"Cancel"}/>
-                    <Buttons.ButtonLink click={handleSubmit} color={theme.colors.primary} message={"Submit"} autoFocus/>
+                    <Buttons.ButtonFill click={handleSubmit} color={theme.colors.primary} message={"Submit"} autoFocus/>
                 </DialogActions>
             </Dialog>
         </div>

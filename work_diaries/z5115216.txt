@@ -57,3 +57,18 @@ him about the issues I was having with npm. I also suggested that William and An
 majority of the back-end so that we can complete the website design as soon as possible. I also looked into the requirements for
 the final report and am planning to devise tasks to complete. I am also responsible for creating error messages for the user
 to hand over to William soon.
+
+# Week 08
+This week, I completed creating the listing flow and designed each individual page in the listing flow for the team to see when
+creating the front-end. I also uploaded each screen as an individual PDF and placed it on the shared Google Drive so that the
+team will have access to it when they are developing the front-end. I discussed with Jason how to better organise the code and
+some code styling to follow so that the code we call write is consistent and easy-to-read. I began modifying the code to fit this
+style guide.
+
+# Week 09
+This week, I went through the interface and identified any areas where user error would occur. I then created some appropriate
+error messages to guide users to the correct action. I collected all of these in a document and handed it to William and Anna,
+who are responsible for the back-end of the app. I also began refining the listing thumbnails to fit the user interface that
+we designed. I imported all components into the grid and cleaned some code to make it more consistent.
+
+# Week 10

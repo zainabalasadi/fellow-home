@@ -4,18 +4,12 @@ import * as Buttons from './Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
 import '../app/App.css';
-import SnackBar from "./Snack";
-import Check from "./Check";
-import config from "../utils/config";
-import * as TextInput from "./Textinputs";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import '../css/textAndColour.css'
-import '../css/buttons.css'
-import Fab from "@material-ui/core/Fab";
-import ListingCard from "../components/ListingThumbnail"
 import {theme} from './Theme'
 import Button from '@material-ui/core/Button'
+import InputAdornment from '@material-ui/core/InputAdornment';
+import {CssTextField} from "./Textinputs";
+import GridListing from "./GridListing"
+import Box from '@material-ui/core/Box';
 
 class Home extends Component {
     constructor() {
@@ -26,20 +20,65 @@ class Home extends Component {
         };
     };
 
+
     render() {
 
         return (
-            <React.Fragment>
+            <React.Fragment>     
                     <CssBaseline />
-                    <div><Check features={config.checkFeatures}/>
-                    </div>
-                    <div><Check features={config.checkFeatures}/>
-                    </div>
-                    <Container maxWidth="lg">
-                        <p>This is main, in a container with padded sides</p>
-
-                        <Button disableRipple href={'../Profile'}>prof</Button>
-
+                    <img src="https://bungalow.com/static/roommates-on-sofa.jpg" fullWidth style={{position:'relative', height:'700px'}}/>
+                        <Container style={{height:'400px', width:'400px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-400px', padding:24,borderRadius: '7px'}}>
+                            <Box fontSize={20} padding={1}>
+                                Find housemates to live with while you study
+                            </Box>
+                            <div style ={{padding:10}}>
+                                <CssTextField
+                                    id="where"
+                                    label="WHERE"
+                                    variant="outlined"
+                                    margin="dense"
+                                    fullWidth
+                                    placeholder="Search by university, city or suburb"
+                                    InputProps={{
+                                      startAdornment: <InputAdornment position="start"></InputAdornment>,
+                                    }}
+                                />
+                            </div>
+                            <div style ={{padding:10}}>
+                                <CssTextField
+                                    id="roomType"
+                                    label="ROOM TYPE"
+                                    variant="outlined"
+                                    margin="dense"
+                                    fullWidth
+                                    placeholder="'private' or 'shared'"
+                                    InputProps={{
+                                      startAdornment: <InputAdornment position="start"></InputAdornment>,
+                                    }}
+                                />
+                            </div>
+                            <div style ={{padding:10}}>
+                                <CssTextField
+                                    id="amount"
+                                    label="MAXIMUM RENT"
+                                    variant="outlined"
+                                    margin="dense"
+                                    fullWidth
+                                    InputProps={{
+                                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                    }}
+                                />
+                            </div><p/>
+                            <Button variant="contained" color="primary" href={'../'}>Search</Button>
+                        </Container>
+                    <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
+                        <h4>Newest Listings</h4>
+                        <GridListing />
+                        <Button disableRipple href={'../Profile'}>Profile</Button>
+                        <Button disableRipple href={'../Listing'}>Listing</Button>
+                        <Button disableRipple href={'../Saved'}>Saved</Button>
+                        <Button disableRipple href={'../Search'}>Search</Button>
+                        {/*}
                         <div className="action-buttons">
                             <Buttons.ButtonPlus disabled={true}/>
                             <Buttons.ButtonMinus/>
@@ -58,14 +97,15 @@ class Home extends Component {
                                 message={this.state.message}
                             />
                         </div>
+
                         <div>
                             <Fab size="small" color="primary" className="buttonPlusMinus" justify="centre">
                                 <i className="settings icon"/>
                             </Fab>
                             <SnackBar fill={true} message="Not Here" buttonLabel="Click Here" color={theme.colors.tertiary}/>
                         </div>
+                        
                         <div>
-                            <Check features={config.checkFeatures}/>
                             <form>
                                 <TextInput.Named/>
                                 <TextInput.SelectDrop features={config.dropFeatures}/>
@@ -84,11 +124,8 @@ class Home extends Component {
                             }/>
 
                         </div>
-
-                    </Container>
-                    <ListingCard abstract={"This impressive paella is a perfect party dish and a fun meal to cook together with your\n" +
-                    "                    guests. Add 1 cup of frozen peas along with the mussels, if you like."}/>
-
+                        */}
+                </Container>
             </React.Fragment>
         );
     };

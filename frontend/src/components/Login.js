@@ -10,7 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import * as Buttons from './Button';
 import {CssTextField} from "./Textinputs";
 import {theme} from "./Theme";
@@ -42,6 +43,9 @@ function Login(props) {
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('currentUser', JSON.stringify(res.data.user));
         }).catch((err) => {
+            if (err.status_code== 403) {
+                //err.errors
+            }
             console.log(err);
         });
 
@@ -68,18 +72,20 @@ function Login(props) {
 
     return (
         <div>
-            <Buttons.ButtonLink color={theme.colors.primary} click={handleClickOpen} message={"Login"}/>
+            <Buttons.ButtonLink color={theme.colors.dark} click={handleClickOpen} message={"Login"}/>
             <Dialog
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="login-title"
-                aria-describedby="login-description">
+                aria-describedby="login-description"
+                fullWidth="true"
+                maxWidth="sm">
                 <DialogTitle id="login-title">{"Login"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="login-description">
                         <DialogContentText>
                             Please enter your details below
-                    </DialogContentText>
+                        </DialogContentText>
                         <div>
                             <CssTextField
                                 autoFocus
@@ -91,6 +97,7 @@ function Login(props) {
                                 type="email"
                                 variant="outlined"
                                 fullWidth
+                                required
                             />
                         </div>
                         <div>
@@ -99,6 +106,7 @@ function Login(props) {
                                 fullWidth
                                 variant="outlined"
                                 margin="dense"
+                                required
                                 type={values.showPassword ? 'text' : 'password'}
                                 label="Password"
                                 value={values.password}
@@ -125,6 +133,10 @@ function Login(props) {
                                 <Buttons.ButtonLink click={handleRegister} color={theme.colors.primary} message={"Sign Up!"}/>
                             </DialogContentText>
                         </div>
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="secondary" />}
+                            label="Remember me"
+                        />
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

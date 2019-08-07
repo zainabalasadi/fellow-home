@@ -1,5 +1,3 @@
-@import url("textAndColour.css");
-
 .action-buttons {
     display: flex;
     flex-flow: row nowrap;
@@ -30,7 +28,7 @@
     /* Fellow Red */
     box-sizing: border-box;
     border-radius: 50%;
-
+    outline-color: transparent;
     /* + */
     font-family: Inter UI;
     font-style: normal;

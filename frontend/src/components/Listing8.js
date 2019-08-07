@@ -1,96 +1,161 @@
 import React, { Component } from "react";
-
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import Button from '@material-ui/core/Button'
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
+import Box from '@material-ui/core/Box';
+import {CssTextField} from "./Textinputs";
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Paper from '@material-ui/core/Paper';
-import { BrowserRouter} from 'react-router-dom';
-import { Link, Route, Switch } from 'react-router-dom';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import config from "../utils/config";
-import Check from "./Check";
-import Box from '@material-ui/core/Box';
+import * as Buttons from './Button';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Listing from "./Listing";
 
+function Listing8 (props) {
+    const [values, setValue] = React.useState({
+        preferences: '',
+        rules:'',
+    });
 
-function Listing8 () {
+    const inputLabel = React.useRef(null);
+    const [labelWidth, setLabelWidth] = React.useState(0);
+    React.useEffect(() => {
+        setLabelWidth(inputLabel.current.offsetWidth);
+    }, []);
 
+    const handleChange = name => event => {
+        setValue({
+            ...values,
+            [name]: event.target.value,
+        });
+    };
     return (
-        <React.Fragment>
-            <CssBaseline />
-            <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
-                <Container style={{padding: 20}} maxWidth="md">
-                    <Box 
-                        color="tomato" 
-                        borderBottom={4} 
-                        borderColor="gainsboro" 
-                        p={0}
-                        style={{height: '2rem'}}
-                    >
-                        <Grid container spacing={0}>
-                            <Grid item xs = {2}>
-                                Type of accomodation
-                            </Grid>
-                            <Grid item xs>
-                                Basics
-                            </Grid>
-                            <Grid item xs>
-                                Housemates
-                            </Grid>
-                            <Grid item xs>
-                                Rooms
-                            </Grid>
-                            <Grid item xs>
-                                Features
-                            </Grid>
-                            <Grid item xs>
-                                Rent
-                            </Grid>
-                            <Grid item xs>
-                                Availabilities
-                            </Grid>
-                            <Grid item xs>
-                                Photos
-                            </Grid>
-                            <Grid item xs = {2}>
-                                <Box 
-                                    color="black" 
-                                    bgcolor="white" 
-                                    borderBottom={4} 
-                                    borderColor="tomato" 
-                                    p={0}
-                                    style={{height: '2rem'}}
-                                >
-                                    Availabilities
-                                </Box>
-                            </Grid>
+        <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
+            <Container style={{padding: 20}} maxWidth="md">
+                <Box 
+                    color="tomato" 
+                    borderBottom={4} 
+                    borderColor="gainsboro" 
+                    p={0}
+                    style={{height: '2rem'}}
+                >
+                    <Grid container spacing={0}>
+                        <Grid item xs = {2}>
+                            Type of accomodation
                         </Grid>
-                    </Box>
-                </Container>
-                <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-
-                </Container>
+                        <Grid item xs>
+                            Basics
+                        </Grid>
+                        <Grid item xs>
+                            Housemates
+                        </Grid>
+                        <Grid item xs>
+                            Rooms
+                        </Grid>
+                        <Grid item xs>
+                            Features
+                        </Grid>
+                        <Grid item xs>
+                            Rent
+                        </Grid>
+                        <Grid item xs>
+                            Availabilities
+                        </Grid>
+                        <Grid item xs>
+                            Photos
+                        </Grid>
+                        <Grid item xs = {2}>
+                            <Box 
+                                color="black" 
+                                bgcolor="white" 
+                                borderBottom={4} 
+                                borderColor="tomato" 
+                                p={0}
+                                style={{height: '2rem'}}
+                            >
+                                Preferences and About
+                            </Box>
+                        </Grid>
+                    </Grid>
+                </Box>
             </Container>
-        </React.Fragment>
+            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+                <Box fontSize={24}>
+                    Describe your property
+                </Box>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
+                    DESCRIPTION
+                </Box>
+                <CssTextField 
+                    id="description"
+                    placeholder="Describe the housemates location, atmosphere, etc."
+                    multiline
+                    rows="4"
+                    margin="normal"
+                    variant="outlined"
+                    fullWidth
+                />
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2} mb={0}>
+                    HOUSEMATE PREFERENCES
+                </Box>
+                <FormControl 
+                    variant="outlined" 
+                    margin="normal"
+                    fullWidth
+                >
+                    <InputLabel ref={inputLabel} htmlFor="pref">
+                        Select one
+                    </InputLabel>
+                    <Select
+                        native
+                        value={values.preferences}
+                        onChange={handleChange('preferences')}
+                        input={
+                            <OutlinedInput name="preferences" labelWidth={labelWidth} id="preferences" />
+                        }
+                    >
+                    <option value="" />
+                    <option value={0}>No Preferences</option>
+                    <option value={1}>Female Only</option>
+                    <option value={2}>Male Only</option>
+                    <option value={3}>Couples</option>
+                    <option value={4}>No Couples</option>
+                    <option value={5}>Under 30 years of Age</option>
+                    </Select>
+                </FormControl>
+                <Box fontSize={10} fontWeight="fontWeightBold" mt={2} mb={0}>
+                    HOUSE RULES
+                </Box>
+                <FormControl 
+                    variant="outlined" 
+                    margin="normal"
+                    fullWidth
+                >
+                    <InputLabel ref={inputLabel} htmlFor="pref">
+                        Select one
+                    </InputLabel>
+                    <Select
+                        native
+                        value={values.preferences}
+                        onChange={handleChange('rules')}
+                        input={
+                            <OutlinedInput name="rules" labelWidth={labelWidth} id="rules" />
+                        }
+                    >
+                    <option value="" />
+                    <option value={0}>Suitable for Events</option>
+                    <option value={1}>Pets Allowed</option>
+                    <option value={2}>Smoking Allowed</option>
+                    <option value={3}>Children Allowed</option>
+                    </Select>
+                </FormControl>
+                <p/>
+                <BrowserRouter>
+                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing'} message={"Finish"}/>
+                </BrowserRouter>
+            </Container>
+        </Container>
     );
 }
  
 export default Listing8;
-

@@ -1,42 +1,28 @@
 import React, { Component } from "react";
-
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
-import Button from '@material-ui/core/Button'
-import * as TextInput from "./Textinputs";
-import TextField from '@material-ui/core/TextField';
-
-import MenuItem from '@material-ui/core/MenuItem';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Paper from '@material-ui/core/Paper';
-import { BrowserRouter} from 'react-router-dom';
-import { Link, Route, Switch } from 'react-router-dom';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import config from "../utils/config";
-import Check from "./Check";
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
 import Box from '@material-ui/core/Box';
-
-
+import * as Buttons from './Button';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing8 from "./Listing8";
 
-function Listing7 () {
+class Listing7 extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            file: null
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
 
-    return (
-        <React.Fragment>
-            <CssBaseline />
+    handleChange(event) {
+        this.setState({
+            file: URL.createObjectURL(event.target.files[0])
+        })
+    }
+
+    render(){
+        return (
             <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
                 <Container style={{padding: 20}} maxWidth="md">
                     <Box 
@@ -86,17 +72,33 @@ function Listing7 () {
                         </Grid>
                     </Box>
                 </Container>
-                <Container style={{position: 'absolute', left: 265,textAlign:'left', padding:10}} maxWidth="sm">
-                    
+                <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+                    <Box fontSize={24}>
+                        Add photos to your listing
+                    </Box>
+                    <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
+                        Photos
+                    </Box>
+                    <input
+                        accept="image/*"
+                        id="contained-button-file"
+                        multiple
+                        type="file" onChange={this.handleChange}
+                        style={{display:'none'}}
+                    />
+                    <p/>
+                    <label htmlFor="contained-button-file">
+                        <Buttons.ButtonFill color={this.props.color.dark} disabled={true} classNames={{component: "span"}} message={"Upload"}/>
+                    </label>
+                    <img src={this.state.file}/>
+                    <p/>
                     <BrowserRouter>
-                        <Button variant="contained" color="secondary" href={'../Listing8'}>Continue</Button>
-                        <Route path="/Listing8" component={() => <Listing8/>}/>
+                        <Buttons.ButtonFill color={this.props.color.primary} href={'../Listing8'} message={"Continue"}/>
                     </BrowserRouter>
                 </Container>
             </Container>
-        </React.Fragment>
-    );
+        );
+    }
 }
  
 export default Listing7;
-

@@ -25,7 +25,7 @@ export const CssTextField = withStyles({
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: theme.colors.dark,
+                borderColor: theme.colors.grey,
             },
             '&:hover fieldset': {
                 borderColor: theme.colors.dark,
@@ -37,14 +37,36 @@ export const CssTextField = withStyles({
     },
 })(TextField);
 
+export function InputNumber(props) {
+    return (
+        <CssTextField
+            className={props.classNames}
+            margin="dense"
+            type={props.type}
+            value={props.value}
+            placeholder={props.placeholder}
+            variant="outlined"
+            id={props.id}
+            style={{width:300, height:42}}
+            onChange={props.onChange}
+            InputProps={{
+                startAdornment: <InputAdornment position="start">{props.startAdornment}</InputAdornment>,
+                endAdornment: <InputAdornment position="start">{props.endAdornment}</InputAdornment>,
+            }}
+        />
+    )
+}
 export function InputText(props){
     return(
         <CssTextField
             className={props.classNames}
-            margin={"theme.spacing(1)"}
+            margin="dense"
+            type={props.type}
+            value={props.value}
             placeholder={props.placeholder}
             variant="outlined"
             id={props.id}
+            style={{width:300, height:42}}
             onChange={props.onChange}
             InputProps={{
                 startAdornment: <InputAdornment position="start">{props.startAdornment}</InputAdornment>,
@@ -185,7 +207,7 @@ export function SelectDrop(props) {
         margin="normal"
 
     >
-        {props.features.map(option => (
+        {props.features.Map(option => (
             <MenuItem key={option.value} value={option.value}>
                 {option.label}
             </MenuItem>
