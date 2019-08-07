@@ -81,9 +81,9 @@ class App extends Component {
 					</BrowserRouter>
 
 				<Footer />
-					<div>
+					{/* <div>
 						<MapContainer  />
-					</div>
+					</div> */}
 				</ThemeProvider>
 			</React.Fragment>
 		);
