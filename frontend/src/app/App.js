@@ -61,8 +61,8 @@ class App extends Component {
 					<BrowserRouter>
 						<Header onLogin={this.onUserLogin} loggedin={login} user={this.state.user} color={theme.colors}/>
 						<Switch>
-							<Route exact path="/" component={() => <Home/>} />
-							<Route path="/Listing" component={() => <Listing color={theme.colors}/>}/>
+							<Route exact path="/" component={()   => <Home color={theme.colors}/>}/>
+							<Route path="/Listing" component={()  => <Listing color={theme.colors}/>}/>
 							<Route path="/Listing1" component={() => <Listing1 color={theme.colors}/>}/>
 							<Route path="/Listing2" component={() => <Listing2 color={theme.colors}/>}/>
 							<Route path="/Listing3" component={() => <Listing3 color={theme.colors}/>}/>
@@ -72,13 +72,13 @@ class App extends Component {
 							<Route path="/Listing7" component={() => <Listing7 color={theme.colors}/>}/>
 							<Route path="/Listing8" component={() => <Listing8 color={theme.colors}/>}/>
 							<Route path="/Listing9" component={() => <Listing9 color={theme.colors}/>}/>
-							<Route path="/Saved" component={() => <Saved color={theme.colors}/>}/>
-							<Route path="/Search" component={() => <Search color={theme.colors}/>}/>
+							<Route path="/Saved" component={()    => <Saved color={theme.colors}/>}/>
+							<Route path="/Search" component={()   => <Search color={theme.colors}/>}/>
 							<Route path="/listings" component={() => <ListingCard/>}/>
-							<Route path="/About" component={() => <About/>}/>
-							<Route path="/message" component={() => <ListingCard/>}/>
-							<Route path="/Help" component={() => <Help/>}/>
-							<Route path="/profile" component={() => <AccountManager user={this.state.user}/>}>
+							<Route path="/About" component={()    => <About/>}/>
+							<Route path="/message" component={()  => <ListingCard/>}/>
+							<Route path="/Help" component={()     => <Help/>}/>
+							<Route path="/profile" component={()  => <AccountManager user={this.state.user}/>}>
 							</Route>
 						</Switch>
 					</BrowserRouter>

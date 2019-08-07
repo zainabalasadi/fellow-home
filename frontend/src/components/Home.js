@@ -10,6 +10,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import {CssTextField} from "./Textinputs";
 import GridListing from "./GridListing"
 import Box from '@material-ui/core/Box';
+import ListingCTA from "./ListCTA";
 
 class Home extends Component {
     constructor() {
@@ -20,9 +21,7 @@ class Home extends Component {
         };
     };
 
-
     render() {
-
         return (
             <React.Fragment>     
                     <CssBaseline />
@@ -74,6 +73,7 @@ class Home extends Component {
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                         <h4>Newest Listings</h4>
                         <GridListing />
+                        <ListingCTA />
                         <Button disableRipple href={'../Profile'}>Profile</Button>
                         <Button disableRipple href={'../Listing'}>Listing</Button>
                         <Button disableRipple href={'../Saved'}>Saved</Button>
