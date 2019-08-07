@@ -3,6 +3,8 @@
 from marshmallow import post_dump, pre_load, validates_schema, ValidationError
 
 from project import ma
+from project.user.models import User
+from project.user.schemas import UserSchema
 from project.listing.models import Listing, ListingImage, Room, Address, Preference, Amenity, Restriction
 
 
@@ -76,6 +78,8 @@ class ListingSchema(ma.ModelSchema):
     address = ma.Nested(AddressSchema)
     preferences = ma.Nested(PreferenceSchema, many=True)
     restrictions = ma.Nested(RestrictionSchema, many=True)
+    user = ma.Function(lambda obj: 
+                            UserSchema(exclude=['password']).dump(User.query.get(obj.user_id)).data)
 
     @validates_schema
     def validate_listing(self, data, **kwargs):

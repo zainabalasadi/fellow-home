@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -27,31 +28,39 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function ListingCard(props) {
+const ListingCard = (props) => {
     const classes = useStyles();
 
     return (
-        <div><a href= {'../Listing'}>
-            <Card className={classes.card}>
+        <div>
+            <a href= {'../Listing'}>
+                <Card className={classes.card}>
                 <CardMedia
                     style={{ height: 0, paddingTop: '56%'}}
-                    image={require('../assets/images/cooking.jpg')}
-                    title="Fellow"
+                    image={props.details.images ? props.details.images[0] : 
+                        require('../assets/images/cooking.jpg')}
+                    title={props.details.name}
                 />
                 <CardContent className={classes.content}>
-                    <Typography variant="overline" color="textSecondary">{props.details.roomType} · {props.details.suburb}</Typography>
-                    <Typography variant="h6" color="textSecondary">{props.details.title}</Typography>
-                    <Typography variant="body2" color="textSecondary">${props.details.price}/week</Typography>
+                    <Typography variant="overline" color="textSecondary">
+                        {props.details.property_type} · {props.details.address.suburb}
+                    </Typography>
+                    <Typography variant="h6" color="textSecondary">{props.details.name}</Typography>
+                    <Typography variant="body2" color="textSecondary">${props.details.rooms[0].cost}/week</Typography>
 
                     <CardHeader style={{padding:0, margin:0, marginTop: 10}}
                         avatar={
-                            <Avatar aria-label="Recipe" className={classes.avatar}>R</Avatar>
+                            <Avatar aria-label="User" 
+                                    src={props.details.user.avatar}
+                                    className={classes.avatar}>R</Avatar>
                         }
-                        title="Kelsey"
+                        title={props.details.user.first_name + " " + props.details.user.last_name}
                     />
                 </CardContent>
-            </Card>
+                </Card>
             </a>
         </div>
     );
 }
+
+export default ListingCard;
