@@ -70,12 +70,11 @@ function Header(props) {
                   <Grid direction="row" container justify="space-evenly" alignItems="center">
                       <a href="/"><img padding-top={20} height={20} src={require("../assets/images/logo.svg")}/></a>
                       <Grid item xs = {6}>
-                      <TextInput.InputText color={props.color.primary} onEnter={(e)=> searchMap(e)} classNames={{fontsize:"8px"}} placeholder="Search by university, city or suburb" startAdornment={<SearchIcon/>}/>
+                      <TextInput.InputText color={props.color.dark} onEnter={(e)=> searchMap(e)} classNames={{fontsize:"8px"}} placeholder="Search by university, city or suburb" startAdornment={<SearchIcon/>}/>
                       </Grid>
-                      <Buttons.ButtonLink color={props.color.primary} className="buttonText" href={'../About'} message={"About Fellow"}/>
-                    {/*<Buttons.ButtonLink color={props.color} href={'../app/profile'} message={"List your Place"}/>*/}
-                      <Buttons.ButtonLink color={props.color.primary} href={'../listing1'} message={"List your Place"}/>
-                      <Buttons.ButtonLink color={props.color.primary} href={'../Help'} message={"Help"}/>
+                      <Buttons.ButtonLink color={props.color.dark} className="buttonText" href={'../About'} message={"About Fellow"}/>
+                      <Buttons.ButtonLink color={props.color.dark} href={'../listing1'} message={"List your Place"}/>
+                      <Buttons.ButtonLink color={props.color.dark} href={'../Help'} message={"Help"}/>
                       <Register user={props.user} isLoggedIn={props.loggedin} onLogin={props.onLogin}/>
                       <Login openModal={false} user={props.user} isLoggedIn={props.loggedin} onLogin={props.onLogin}/>
                   </Grid>

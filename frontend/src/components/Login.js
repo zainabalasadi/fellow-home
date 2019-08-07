@@ -43,6 +43,9 @@ function Login(props) {
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('currentUser', JSON.stringify(res.data.user));
         }).catch((err) => {
+            if (err.status_code== 403) {
+                //err.errors
+            }
             console.log(err);
         });
 
@@ -69,18 +72,20 @@ function Login(props) {
 
     return (
         <div>
-            <Buttons.ButtonLink color={theme.colors.primary} click={handleClickOpen} message={"Login"}/>
+            <Buttons.ButtonLink color={theme.colors.dark} click={handleClickOpen} message={"Login"}/>
             <Dialog
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="login-title"
-                aria-describedby="login-description">
+                aria-describedby="login-description"
+                fullWidth="true"
+                maxWidth="sm">
                 <DialogTitle id="login-title">{"Login"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="login-description">
                         <DialogContentText>
                             Please enter your details below
-                    </DialogContentText>
+                        </DialogContentText>
                         <div>
                             <CssTextField
                                 autoFocus
