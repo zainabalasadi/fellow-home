@@ -52,7 +52,7 @@ function Register(props) {
 
     return (
         <div>
-            <Buttons.ButtonLink color={theme.colors.primary} click={handleClickOpen} message={"Sign Up"}/>
+            <Buttons.ButtonLink color={theme.colors.dark} click={handleClickOpen} message={"Sign Up"}/>
             <Dialog open={open}
                 onClose={handleClose}
                 aria-labelledby="register-title"

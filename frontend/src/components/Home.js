@@ -26,7 +26,7 @@ class Home extends Component {
         return (
             <React.Fragment>     
                     <CssBaseline />
-                    <img src="http://i64.tinypic.com/9jok7p.jpg" fullWidth style={{position:'relative'}}/>
+                    <img src="https://bungalow.com/static/roommates-on-sofa.jpg" fullWidth style={{position:'relative', height:'700px'}}/>
                         <Container style={{height:'400px', width:'400px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-400px', padding:24,borderRadius: '7px'}}>
                             <Box fontSize={20} padding={1}>
                                 Find housemates to live with while you study

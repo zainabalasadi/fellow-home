@@ -72,7 +72,7 @@ function Login(props) {
 
     return (
         <div>
-            <Buttons.ButtonLink color={theme.colors.primary} click={handleClickOpen} message={"Login"}/>
+            <Buttons.ButtonLink color={theme.colors.dark} click={handleClickOpen} message={"Login"}/>
             <Dialog
                 open={open}
                 onClose={handleClose}
