@@ -12,6 +12,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
+import GridListing from "./GridListing"
 
 
 export function EditProfileCard(props){
@@ -19,8 +20,8 @@ export function EditProfileCard(props){
         <Card style={{width: "70%", position:'relative', left:'240px', top:'80px'}}>
             <p/>
             <Grid container justify="space-around" alignItems="center">
-            <Avatar alt="Remy Sharp"
-                    src={require("../assets/images/octar.jpg")}
+            <Avatar alt={props.user.first_name + " " + props.user.last_name}
+                    src={props.user.avatar}
                     margin={10}
                     style={{height: "112px", width: "112px"}}
             />
@@ -57,8 +58,8 @@ export function ProfileCard(props){
         <Card style={{width: "70%", position:'relative', left:'240px', top:'80px'}}>
             <p/>
             <Grid container justify="space-around" alignItems="center">
-                <Avatar alt="Remy Sharp"
-                        src={require("../assets/images/octar.jpg")}
+                <Avatar alt={props.user.first_name + " " + props.user.last_name}
+                        src={props.user.avatar}
                         margin={10}
                         style={{height: "112px", width: "112px"}}
                 />
@@ -89,18 +90,18 @@ export function EditProfile(props){
         <Grid width="100%" direction="row" container justify="space-around" alignItems="center"style={{position:'relative', top:'70px', width:'700px', left:'150px'}}>
             <Grid item xs>
                 <div>
-                    <h3 className="textFellowDark">Hi, I'm {props.user.name}</h3>
+                    <h3 className="textFellowDark">Hi, I'm {props.user.first_name}</h3>
                     <p className="outline textFellowDark">Joined in 2019</p>
                     <p className="body1 textFellowDark"><b>About</b></p>
                     <TextInput.Multiline classNames="body2 lineFellowRed textFellowRed"
                                          styling={{width: "90%"}}
                                          disabledText={false}
-                                         value={props.user.abstract}
+                                         value={props.user.description}
                                          id="profileAbstract"
 
                     />
                     <p className="body1 textFellowDark"><b>University</b></p>
-                    <TextInput.InputText id="uni" value={props.user.uni} />
+                    <TextInput.InputText id="uni" value={props.user.university} />
 
                     <p></p>
 
@@ -110,22 +111,9 @@ export function EditProfile(props){
                     <Divider style={{width: "90%"}}/>
                     <h5 className="textFellowDark">{props.user.name}'s listings</h5>
                     <div style={{width: "90%"}} className="action-cards">
-                        {config.listings.map(ListingCard)}
+                        <GridListing/>
                     </div>
                     <Divider style={{width: "90%"}}/>
-                    <h5>{props.numberRev} Reviews</h5>
-                    <List style={{width: "90%", padding:10}} className="action-lists">
-                        {config.reviews.Map(({ id, primary, secondary, person }) => (
-                            <React.Fragment key={id}>
-                                <ListItem button>
-                                    <ListItemAvatar>
-                                        <Avatar alt="Profile Picture" src={person} />
-                                    </ListItemAvatar>
-                                    <ListItemText primary={primary} secondary={secondary} />
-                                </ListItem>
-                            </React.Fragment>
-                        ))}
-                    </List>
                 </div>
             </Grid>
         </Grid>
@@ -137,32 +125,20 @@ function Profile(props) {
         <Grid width="100%" direction="row" container justify="space-around" alignItems="center"style={{position:'relative', top:'70px', width:'700px', left:'150px'}}>
             <Grid item xs>
             <div>
-                <h3 className="textFellowDark">Hi, I'm {props.user.name}</h3>
+                <h3 className="textFellowDark">Hi, I'm {props.user.first_name}</h3>
                 <p className="outline textFellowDark">Joined in 2019 {props.editProfButton}</p>
-                <TextInput.Multiline className="body2 textFellowRed"
+               <TextInput.Multiline className="body2 textFellowRed"
                                     styling={{width: "90%"}}
                                     disabledText={true}
-                                   value={props.user.abstract}
+                                   value={props.user.description}
                />
                <Divider style={{width: "90%"}}/>
-               <h5 className="textFellowDark">{props.user.name}'s listings</h5>
+               <h5 className="textFellowDark">{props.user.first_name}'s listings</h5>
                <div style={{width: "90%", padding:10}} className="action-cards">
-                   {config.listings.map(ListingCard)}
+                    <GridListing />
+
                </div>
                <Divider style={{width: "90%"}}/>
-               <h5>{props.numberRev} Reviews</h5>
-               <List style={{width: "90%"}} className="action-lists">
-                   {config.reviews.Map(({ id, primary, secondary, person }) => (
-                       <React.Fragment key={id}>
-                           <ListItem button>
-                               <ListItemAvatar>
-                                   <Avatar alt="Profile Picture" src={person} />
-                               </ListItemAvatar>
-                               <ListItemText primary={primary} secondary={secondary} />
-                           </ListItem>
-                       </React.Fragment>
-                   ))}
-               </List>
            </div>
             </Grid>
         </Grid>

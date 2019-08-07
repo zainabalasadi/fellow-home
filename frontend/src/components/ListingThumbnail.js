@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -33,7 +32,7 @@ const ListingCard = (props) => {
 
     return (
         <div>
-            <a href= {'../Listing'}>
+            <a href= {'../listing/' + props.details.id}>
                 <Card className={classes.card}>
                 <CardMedia
                     style={{ height: 0, paddingTop: '56%'}}

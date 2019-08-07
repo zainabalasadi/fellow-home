@@ -62,7 +62,6 @@ class App extends Component {
 						<Header onLogin={this.onUserLogin} loggedin={login} user={this.state.user} color={theme.colors}/>
 						<Switch>
 							<Route exact path="/" component={()   => <Home color={theme.colors}/>}/>
-							<Route path="/Listing" component={()  => <Listing color={theme.colors}/>}/>
 							<Route path="/Listing1" component={() => <Listing1 color={theme.colors}/>}/>
 							<Route path="/Listing2" component={() => <Listing2 color={theme.colors}/>}/>
 							<Route path="/Listing3" component={() => <Listing3 color={theme.colors}/>}/>
@@ -79,6 +78,12 @@ class App extends Component {
 							<Route path="/message" component={()  => <ListingCard/>}/>
 							<Route path="/Help" component={()     => <Help/>}/>
 							<Route path="/profile" component={()  => <AccountManager user={this.state.user}/>}>
+							</Route>
+							<Route path="/user/:uid" component={(props) => 
+                                <AccountManager {...props} user={this.state.user}/>}>
+							</Route>
+							<Route path="/listing/:id" component={(props) => 
+                                <Listing {...props} color={theme.colors}/>}>
 							</Route>
 						</Switch>
 					</BrowserRouter>

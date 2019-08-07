@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Profile, {EditProfile, EditProfileCard, ProfileCard} from "./Profile";
 import {Grid} from "@material-ui/core";
 import {Button as ButtonStyle} from "semantic-ui-react";
@@ -10,12 +11,31 @@ class AccountManager extends Component {
         super(props);
 
         this.user = this.props.user;
+        this.uid = this.props.match.params.uid;
 
         this.state = {
             isEditMode: false,
+            info: {}
         };
 
         this.handleNameChange = this.handleNameChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.getUserInfo();
+    }
+
+    getUserInfo() {
+        axios.get('http://localhost:5000/api/users/' + this.uid)
+            .then((res) => {
+                console.log(res)
+                this.setState({
+                    info: res.data.data
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     handleNameChange(event) {
@@ -57,11 +77,11 @@ class AccountManager extends Component {
     }
 
     renderProfile(editButton) {
-     return(<Profile user={this.user} editProfButton={editButton}/>)
+     return(<Profile user={this.state.info} editProfButton={editButton}/>)
     }
 
     renderEditProfile(saveButton) {
-        return(<EditProfile user={this.user} saveProfButton={saveButton}/>)
+        return(<EditProfile user={this.state.info} saveProfButton={saveButton}/>)
     }
 
 
@@ -88,7 +108,7 @@ class AccountManager extends Component {
             <div width="90%" className="content">
                 <Grid container  style={containerStyle}>
                     <Grid item style={cardStyle}>
-                        {isEditMode ? <EditProfileCard/> : <ProfileCard/>}
+                        {isEditMode ? <EditProfileCard user={this.state.info}/> : <ProfileCard user={this.state.info}/>}
                     </Grid>
                     <Grid item style={contentStyle}>
                         <div className="section">
