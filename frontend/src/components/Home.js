@@ -26,10 +26,10 @@ class Home extends Component {
         return (
             <React.Fragment>     
                     <CssBaseline />
-                    <img src="https://bungalow.com/static/roommates-on-sofa.jpg" fullWidth style={{position:'relative', height:'700px'}}/>
-                        <Container style={{height:'400px', width:'400px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-550px', left:'-400px', padding:24,borderRadius: '7px'}}>
+                    <img src="https://bungalow.com/static/roommates-on-sofa.jpg" fullWidth style={{position:'relative', height:'735px'}}/>
+                        <Container style={{height:'400px', width:'400px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-580px', left:'-400px', padding:24,borderRadius: '7px'}}>
                             <Box fontSize={20} padding={1}>
-                                Find housemates to live with while you study
+                                <h5>Find housemates to live with while you study</h5>
                             </Box>
                             <div style ={{padding:10}}>
                                 <CssTextField
