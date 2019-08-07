@@ -22,8 +22,7 @@ class User(db.Model):
     verified = db.Column(db.Boolean, nullable=False, default=False)
     listings = db.relationship('Listing', backref='user', lazy=True)
 
-    reviews_recv = db.relationship('Review', backref='from', primaryjoin=id == Review.reviewer_id)
-    reviews_sent = db.relationship('Review', backref='to', primaryjoin=id == Review.reviewee_id)
+    reviews_sent = db.relationship('Review', backref='user', lazy=True)
 
     # flask-praetorian stuff
     roles = db.Column(db.Text)
@@ -72,5 +71,3 @@ class User(db.Model):
     def add_listing(self, listing):
         return Listing.add(self, listing)
 
-    def add_review(self, reviewee, review):
-        Review.add(self, reviewee, review)

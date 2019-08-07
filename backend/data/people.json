@@ -1,5 +1,17 @@
 [
   {
+    "id": 0,
+    "first_name": "Admin",
+    "last_name": "Admin",
+    "email": "admin@admin.com",
+    "gender": "Female",
+    "avatar": "https://images.pexels.com/photos/990819/pexels-photo-990819.jpeg",
+    "password": "admin",
+    "dob": "21/8/1950",
+    "description": "Hello, I am admin!",
+    "university": "UNSW"
+  },
+  {
     "id": 1,
     "first_name": "Olwen",
     "last_name": "Alesin",

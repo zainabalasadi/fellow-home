@@ -15,7 +15,7 @@ migrate = Migrate()
 ma = Marshmallow()
 
 from project.auth.models import TokenBlacklist
-from project.listing.models import Listing, ListingImage, Room, Address, Feature, Amenity, Restriction
+from project.listing.models import Listing, ListingImage, Room, Address, Preference, Amenity, Restriction
 from project.review.models import Review
 from project.user.models import User
 

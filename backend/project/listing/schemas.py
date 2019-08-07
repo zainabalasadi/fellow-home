@@ -3,49 +3,39 @@
 from marshmallow import post_dump, pre_load, validates_schema, ValidationError
 
 from project import ma
-from project.listing.models import Listing, ListingImage, Room, Address, Feature, Amenity, Restriction
+from project.listing.models import Listing, ListingImage, Room, Address, Preference, Amenity, Restriction
 
 
 class ListingImageSchema(ma.ModelSchema):
     class Meta:
         model = ListingImage
-        fields = ('url',)
 
     @post_dump(pass_many=True)
     def convert_to_list(self, out_data, many, **kwargs):
         return [x['url'] for x in out_data]
 
 
-class RoomSchema(ma.ModelSchema):
-    class Meta:
-        model = Room
-        fields = ('roomType', 'cost', 'furnished', 'availability', 'min_stay')
-
-
 class AddressSchema(ma.ModelSchema):
     class Meta:
         model = Address
-        fields = ('name', 'suburb', 'postcode')
 
 
-class FeatureSchema(ma.ModelSchema):
+class PreferenceSchema(ma.ModelSchema):
     class Meta:
-        model = Feature
-        fields = ('feature',)
+        model = Preference 
 
     @post_dump(pass_many=True)
     def convert_to_list(self, out_data, many, **kwargs):
-        return [x['feature'] for x in out_data]
+        return [x['preference'] for x in out_data]
 
     @pre_load(pass_many=True)
     def convert_from_list(self, in_data, many, **kwargs):
-        return [{"feature": x} for x in in_data]
+        return [{"preference": x} for x in in_data]
 
 
 class AmenitySchema(ma.ModelSchema):
     class Meta:
         model = Amenity
-        fields = ('amenity',)
 
     @post_dump(pass_many=True)
     def convert_to_list(self, out_data, many, **kwargs):
@@ -59,7 +49,6 @@ class AmenitySchema(ma.ModelSchema):
 class RestrictionSchema(ma.ModelSchema):
     class Meta:
         model = Restriction
-        fields = ('restriction',)
 
     @post_dump(pass_many=True)
     def convert_to_list(self, out_data, many, **kwargs):
@@ -70,6 +59,13 @@ class RestrictionSchema(ma.ModelSchema):
         return [{"restriction": x} for x in in_data]
 
 
+class RoomSchema(ma.ModelSchema):
+    class Meta:
+        model = Room
+
+    amenities = ma.Nested(AmenitySchema, many=True)
+
+
 class ListingSchema(ma.ModelSchema):
     class Meta:
         model = Listing
@@ -78,8 +74,7 @@ class ListingSchema(ma.ModelSchema):
     images = ma.Nested(ListingImageSchema, many=True)
     rooms = ma.Nested(RoomSchema, many=True)
     address = ma.Nested(AddressSchema)
-    features = ma.Nested(FeatureSchema, many=True)
-    amenities = ma.Nested(AmenitySchema, many=True)
+    preferences = ma.Nested(PreferenceSchema, many=True)
     restrictions = ma.Nested(RestrictionSchema, many=True)
 
     @validates_schema
