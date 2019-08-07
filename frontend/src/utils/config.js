@@ -7,10 +7,10 @@ const  checkFeatures = [
 ];
 
 const  checkAmenities = [
-    'Bedside Table',
+    'Furnished',
     'Balcony',
     'Wardrobe',
-    'Door lock',
+    'wifi',
     'Air Conditioning/Heater',
     'Kitchenette',
     'Desk',
