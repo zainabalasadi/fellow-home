@@ -1,6 +1,7 @@
 # backend/project/listing/models.py
 
 from project import db
+from project.review.models import Review
 
 
 class Listing(db.Model):
@@ -19,18 +20,19 @@ class Listing(db.Model):
     published = db.Column(db.Boolean, default=False)
     address = db.relationship('Address', backref='listing', uselist=False, cascade="all, delete-orphan")
     rooms = db.relationship('Room', backref='listing', lazy=True, cascade="all, delete-orphan")
-    features = db.relationship('Feature', backref='listing', lazy=True, cascade="all, delete-orphan")
-    amenities = db.relationship('Amenity', backref='listing', lazy=True, cascade="all, delete-orphan")
+    preferences = db.relationship('Preference', backref='listing', lazy=True, 
+                                    cascade="all, delete-orphan")
     restrictions = db.relationship('Restriction', backref='listing', lazy=True,
                                    cascade="all, delete-orphan")
     images = db.relationship('ListingImage', backref='listing', lazy=True, cascade="all, delete-orphan")
+    reviews = db.relationship('Review', backref='listing', lazy=True, cascade="all, delete-orphan")
 
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
 
     def __init__(self, name, property_type, description,
                  date_published, num_housemates, num_vacancies, num_bathrooms,
-                 num_bedrooms, landsize, address, rooms, features, amenities, restrictions,
-                 images, published=False):
+                 num_bedrooms, landsize, address, rooms, restrictions,
+                 images, preferences, published=False):
         self.name = name
         self.property_type = property_type
         self.description = description
@@ -42,10 +44,9 @@ class Listing(db.Model):
         self.landsize = landsize
         self.address = address
         self.rooms = rooms
-        self.features = features
-        self.amenities = amenities
         self.restrictions = restrictions
         self.images = images
+        self.preferences = preferences
         self.published = published
         # self.tags = []
 
@@ -62,6 +63,9 @@ class Listing(db.Model):
     def remove(cls, listing):
         db.session.delete(listing)
         db.session.commit()
+
+    def add_review(self, reviewer, review):
+        Review.add(self, reviewer, review)
 
 
 class ListingImage(db.Model):
@@ -85,12 +89,15 @@ class Room(db.Model):
 
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)
 
-    def __init__(self, roomType, cost, furnished, availability, min_stay):
+    amenities = db.relationship('Amenity', backref='listing', lazy=True, cascade="all, delete-orphan")
+
+    def __init__(self, roomType, cost, furnished, availability, min_stay, amenities):
         self.roomType = roomType
         self.cost = cost
         self.furnished = furnished
         self.availability = availability
         self.min_stay = min_stay
+        self.amenities = amenities
 
 
 class Address(db.Model):
@@ -100,16 +107,16 @@ class Address(db.Model):
     unitNum = db.Column(db.Integer)
     name = db.Column(db.Text)
     suburb = db.Column(db.Text)
+    city = db.Column(db.Text)
     postcode = db.Column(db.Integer)
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), unique=True)
 
 
-class Feature(db.Model):
+class Preference(db.Model):
     __tablename__ = 'Feature'
 
     id = db.Column(db.Integer, primary_key=True)
-    feature = db.Column(db.String(128), nullable=False)
-    quantity = db.Column(db.Integer, default=1)
+    preference = db.Column(db.String(128), nullable=False)
 
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)
 
@@ -120,7 +127,7 @@ class Amenity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     amenity = db.Column(db.String(128), nullable=False)
 
-    listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)
+    room_id = db.Column(db.Integer, db.ForeignKey('Room.id'), nullable=False)
 
     def __init__(self, amenity):
         self.amenity = amenity

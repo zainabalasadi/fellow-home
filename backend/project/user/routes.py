@@ -73,46 +73,7 @@ class UserListingResource(Resource):
                 'data': ListingSchema().dump(listings, many=True).data}
 
 
-class UserReviewsResource(Resource):
-    def get(self, id):
-        reviewee = User.query.get(1)
-
-        if not reviewee:
-            return {'status': 'error',
-                    'error': 'User not found'}, 404
-
-        reviews = Review.query.filter(Review.reviewee_id == id).all()
-
-        if not reviews:
-            return {'status': 'error',
-                    'error': 'No reviews found'}, 404
-
-        return {'status': 'success',
-                'data': ReviewSchema().dump(reviews, many=True).data}
-
-    @auth_required
-    def post(self, id):
-        user = current_user()
-        reviewee = User.query.get(id)
-
-        if not reviewee:
-            return {'status': 'error',
-                    'error': 'User not found'}, 404
-
-        try:
-            data, _ = ReviewSchema().load(request.get_json())
-            user.add_review(reviewee, data)
-        except Exception as err:
-            print(err)
-            return {'status': 'error',
-                    'error': 'an error occurred'}, 404
-
-        return {'status': 'success',
-                'msg': f'Successfully reviewed {id}'}
-
-
 api.add_resource(UserListResource, '/')
 api.add_resource(UserSettingsResource, '/settings')
 api.add_resource(UserResource, '/<int:id>')
 api.add_resource(UserListingResource, '/<int:id>/listings')
-api.add_resource(UserReviewsResource, '/<int:id>/reviews')

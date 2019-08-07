@@ -11,7 +11,8 @@ from flask_migrate import MigrateCommand
 
 from project import create_app, db, guard
 from project.user.models import User
-from project.listing.models import Listing, Room, Address, Amenity, ListingImage, Feature
+from project.listing.models import Listing, Room, Address, Amenity, ListingImage, Preference, Restriction
+from project.review.models import Review
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
@@ -24,13 +25,9 @@ def recreate_db():
     db.create_all()
     db.session.commit()
 
-
-@cli.command('populate_db')
-@click.argument('amount', default=1000)
-def populate_db(amount):
+def populate_users():
     with open('data/people.json') as f:
         data = json.load(f)
-        count = 0
         for person in data:
             u = User(first_name=person['first_name'],
                      last_name=person['last_name'],
@@ -38,33 +35,38 @@ def populate_db(amount):
                      avatar=person['avatar'],
                      password=person['password'],
                      dob=datetime.strptime(person['dob'], '%d/%m/%Y'),
-                     gender=person['gender'])
+                     gender=person['gender'],
+                     description=person['description'],
+                     university=person['university'])
             db.session.add(u)
-            count += 1
-            if count == amount:
-                break
     db.session.commit()
 
+def populate_listings():
     with open('data/listings.json') as f:
         data = json.load(f)
         for listing in data:
             user = User.query.get(listing['user_id'])
 
-            address = Address(name=listing["map_data"]["street"],
-                              suburb=listing["map_data"]["suburb"],
-                              postcode=listing["map_data"]["postcode"])
+            address = Address(name=listing["location"]["street"],
+                              suburb=listing["location"]["suburb"],
+                              city=listing["location"]["city"],
+                              postcode=listing["location"]["postcode"])
             images = [ListingImage(url=url) for url in listing["images"]]
-            amenities = [Amenity(amenity=amenity) for amenity in listing["amenities"]]
-            rooms = [Room(roomType=room["attributes"]["room_type"],
-                          cost=room["attributes"]["rent"],
-                          furnished=room["attributes"]["furnishings"],
-                          availability=datetime.strptime(room["attributes"]["date_available"],
-                                                         "%Y-%m-%d"),
-                          min_stay=room["attributes"]["min_stay"] or 0)
-                     for room in listing["rooms"]]
-            features = [Feature(feature=feat)
-                        for room in listing["rooms"]
-                        for feat in room["attributes"]["room_features_attributes"]]
+            preferences = [Preference(preference=preference["title"])
+                           for preference in listing["preferences"]]
+            restrictions = [Restriction(restriction=restriction)
+                            for restriction in listing["restrictions"]]
+
+            rooms = []
+            for room in listing["rooms"]:
+                amenities = [Amenity(amenity=amenity["title"]) for amenity in room["features"]]
+                rooms.append(Room(roomType=room["roomType"]["value"],
+                                  cost=room["charges"]["weeklyRent"]["code"],
+                                  furnished=room["furnishings"]["value"],
+                                  availability=datetime.strptime(room["availability"]["code"],
+                                                                 "%d-%m-%Y"),
+                                  min_stay=room["minStay"] or 0,
+                                  amenities=amenities))
 
             new_listing = Listing(name=listing["title"],
                                   property_type=listing["property_type"],
@@ -77,17 +79,37 @@ def populate_db(amount):
                                   landsize=listing["landsize"],
                                   address=address,
                                   rooms=rooms,
-                                  features=features,
-                                  amenities=amenities,
-                                  restrictions=[],
+                                  restrictions=restrictions,
                                   images=images,
+                                  preferences=preferences,
                                   published=True)
 
             user.listings.append(new_listing)
 
-            db.session.add(user)
+            #db.session.add(user)
+    db.session.commit()
+
+def populate_reviews():
+    with open('data/reviews.json') as f:
+        data = json.load(f)
+        for review in data:
+            rev_from = User.query.get(review['from'])
+            listing = Listing.query.get(review['to'])
+            new_review = Review(review['title'],
+                                review['content'],
+                                review['rating']['Overall'])
+
+            rev_from.reviews_sent.append(new_review)
+            listing.reviews.append(new_review)
 
     db.session.commit()
+
+
+@cli.command('populate_db')
+def populate_db():
+    populate_users()
+    populate_listings()
+    populate_reviews()
 
 
 if __name__ == '__main__':

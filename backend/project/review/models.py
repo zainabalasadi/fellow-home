@@ -7,10 +7,10 @@ class Review(db.Model):
     __tablename__ = 'Review'
 
     id = db.Column(db.Integer, primary_key=True)
-    reviewee_id = db.Column(db.Integer, db.ForeignKey('User.id'))
+    listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'))
     reviewer_id = db.Column(db.Integer, db.ForeignKey('User.id'))
     title = db.Column(db.String(128), nullable=False)
-    content = db.Column(db.String(512))
+    content = db.Column(db.Text)
     rating = db.Column(db.Float)
 
     def __init__(self, title, content, rating):
@@ -20,11 +20,8 @@ class Review(db.Model):
         self.rating = rating
 
     @classmethod
-    def add(cls, reviewee, reviewer, review):
-        review.reviewee_id = reviewee.id
-        review.reviewer_id = reviewer.id
-
-        reviewee.reviews_recv.append(review)
+    def add(cls, listing, reviewer, review):
+        listing.reviews.append(review)
         reviewer.reviews_sent.append(review)
 
         db.session.commit()
