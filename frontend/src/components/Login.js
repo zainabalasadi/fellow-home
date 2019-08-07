@@ -40,16 +40,17 @@ function Login(props) {
         }).then((res) => {
             console.log(res);
             props.onLogin();
-            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('token', res.data.access_token);
             localStorage.setItem('currentUser', JSON.stringify(res.data.user));
+
+            window.location.reload();
+            handleClose();
         }).catch((err) => {
-            if (err.status_code== 403) {
-                //err.errors
+            if (err.status_code === 401) {
+                console.log(err);
             }
-            console.log(err);
         });
 
-        handleClose();
     }
 
     const [values, setValues] = React.useState({

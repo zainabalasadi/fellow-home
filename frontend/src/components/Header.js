@@ -50,14 +50,14 @@ function Header(props) {
                       <Buttons.ButtonLink color={props.color.primary} href={'../app/App'} message={"Messages"}/>
                       <Buttons.ButtonLink color={props.color.primary} href={'../Help'} message={"Help"}/>
                       <Button disableRipple aria-controls="simple-menu" aria-haspopup="true" onClick={handleMenuClick}>
-                          <Avatar alt="Remy Sharp"
-                              src={require("../assets/images/octar.jpg")}
+                          <Avatar alt={currUser.first_name}
+                              src={currUser.avatar}
                               margin={10} />
                       </Button>
                       <Menu id="simple-menu" anchorEl={menuOpen} keepMounted open={Boolean(menuOpen)} onClose={handleMenuClose}>
                           <Grid direction="column" justify="flex-start" alignItems="stretch">
-                              <Grid item><Buttons.ButtonLink color={props.color.dark} href={'../Profile'} message={"Profile"}/></Grid>
-                              <Grid item><Buttons.ButtonLink color={props.color.dark} href={'../Profile'} message={"Invite Friends"}/></Grid>
+                              <Grid item><Buttons.ButtonLink color={props.color.dark} href={'../user/' + currUser.id} message={"Profile"}/></Grid>
+                              <Grid item><Buttons.ButtonLink color={props.color.dark} href={'../user/' + currUser.id} message={"Invite Friends"}/></Grid>
                               <Grid item><Buttons.ButtonLink color={props.color.dark} click={props.onUserLogout} message={"Logout"}/></Grid>
                           </Grid>
                       </Menu>

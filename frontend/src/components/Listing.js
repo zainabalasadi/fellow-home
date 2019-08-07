@@ -17,7 +17,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import tileData from './tileData';
-import { withRouter } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
   gridList: {
