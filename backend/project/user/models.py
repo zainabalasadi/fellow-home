@@ -13,10 +13,10 @@ class User(db.Model):
     last_name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False, unique=True)
     password = db.Column(db.String(256))
-    gender = db.Column(db.Text)
-    avatar = db.Column(db.Text, nullable=False)
-    dob = db.Column(db.DateTime, nullable=False)
-    description = db.Column(db.Text)
+    gender = db.Column(db.Text, default='')
+    avatar = db.Column(db.Text, default='')
+    dob = db.Column(db.DateTime, default=None)
+    description = db.Column(db.Text, default='')
     university = db.Column(db.Text)
     # rating = db.Column(db.Float)
     verified = db.Column(db.Boolean, nullable=False, default=False)
@@ -28,8 +28,8 @@ class User(db.Model):
     roles = db.Column(db.Text)
     is_active = db.Column(db.Boolean, default=True)
 
-    def __init__(self, first_name, last_name, email, password, dob, avatar, gender, description,
-                 university):
+    def __init__(self, first_name, last_name, email, password, university, 
+                dob=None, avatar='', gender='', description=''):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email

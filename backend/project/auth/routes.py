@@ -50,7 +50,7 @@ class RegisterResource(Resource):
             data, _ = UserSchema().load(request.get_json())
             id = User.add(data)
         except ValidationError as err:
-            return {'status': 'error', 'errors': err.messages['_schema']}
+            return {'status': 'error', 'errors': err.messages['_schema']}, 403
 
         return {'status': 'success', 'msg': f'successfully created user {id}'}
 

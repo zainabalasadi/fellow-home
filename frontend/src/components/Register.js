@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from "@material-ui/core/DialogContent";
@@ -15,6 +16,7 @@ import Login from "./Login";
 
 function Register(props) {
     const [open, setOpen] = React.useState(false);
+    const [errors, setErrors] = React.useState([]);
 
     function handleClickOpen() {
         setOpen(true);
@@ -26,15 +28,40 @@ function Register(props) {
 
     function handleSubmit(){
         /*create user*/
-        props.onLogin();
-        handleClose();
+        axios.post('http://localhost:5000/api/auth/register', {
+            email: values.email,
+            first_name: values.firstName,
+            last_name: values.lastName,
+            password: values.password,
+            university: values.university
+        }).then((res) => {
+            console.log(res);
+            axios.post('http://localhost:5000/api/auth/login', {
+                email: values.email,
+                password: values.password
+            }).then((res) => {
+                console.log(res);
+                localStorage.setItem('token', res.data.access_token);
+                localStorage.setItem('currentUser', JSON.stringify(res.data.user));
+            }).finally(() => {
+                window.location.reload();
+                handleClose();
+            });
+        }).catch((err) => {
+            setErrors(err.response.data.errors);
+            console.log(err.response.data.errors);
+        });
     }
     function handelSwitch() {
         handleClose();
         return(<Login openModal={true}/>)
     }
     const [values, setValues] = React.useState({
+        email: '',
         password: '',
+        firstName: '',
+        lastName: '',
+        university: '',
         showPassword: false,
     });
 
@@ -65,12 +92,15 @@ function Register(props) {
                         <DialogContentText>
                             Please enter your details below
                         </DialogContentText>
+                        {errors ? errors.map((error, i) => (<p>{error}</p>)) : null}
                         <div>
                             <CssTextField
                                 autoFocus
                                 margin="dense"
                                 id="email"
                                 label="Email Address"
+                                value={values.email}
+                                onChange={handleChange('email')}
                                 type="email"
                                 variant="outlined"
                                 fullWidth
@@ -83,6 +113,8 @@ function Register(props) {
                                 margin="dense"
                                 id="f_name"
                                 label="First Name"
+                                value={values.firstName}
+                                onChange={handleChange('firstName')}
                                 type="text"
                                 variant="outlined"
                                 fullWidth
@@ -95,6 +127,8 @@ function Register(props) {
                             margin="dense"
                             id="l_name"
                             label="Last Name"
+                            value={values.lastName}
+                            onChange={handleChange('lastName')}
                             type="text"
                             variant="outlined"
                             fullWidth
@@ -134,6 +168,8 @@ function Register(props) {
                                 margin="dense"
                                 id="uni"
                                 label="University"
+                                value={values.university}
+                                onChange={handleChange('university')}
                                 type="text"
                                 variant="outlined"
                                 fullWidth
