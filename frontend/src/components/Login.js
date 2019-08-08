@@ -20,6 +20,7 @@ import config from '../utils/config'
 function Login(props) {
 
     const [open, setOpen] = React.useState(false);
+    const [errors, setErrors] = React.useState('');
 
     function handleClickOpen() {
         setOpen(true);
@@ -46,9 +47,7 @@ function Login(props) {
             window.location.reload();
             handleClose();
         }).catch((err) => {
-            if (err.status_code === 401) {
-                console.log(err);
-            }
+            setErrors(err.response.data.message);
         });
 
     }
@@ -87,6 +86,7 @@ function Login(props) {
                         <DialogContentText>
                             Please enter your details below
                         </DialogContentText>
+                        {errors ? errors : null}
                         <div>
                             <CssTextField
                                 autoFocus
