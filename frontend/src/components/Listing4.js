@@ -13,23 +13,93 @@ import config from "../utils/config";
 import Listing5 from "./Listing5";
 
 function Listing4 (props) {
-    const [values, setValue] = React.useState({
-        bedType: '',
-    });
 
-    const inputLabel = React.useRef(null);
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
-    }, []);
+function RoomList(roomnum){
+    const [values, setValue] = React.useState({
+        bedType: localStorage.getItem("bedType"+roomnum)||'',
+    });
 
     const handleChange = name => event => {
         setValue({
             ...values,
             [name]: event.target.value,
         });
+        localStorage.setItem(name+roomnum,event.target.value);
     };
 
+    function getChecked(checked,labels) {
+        let feature=[]
+        labels.forEach(function (label) {
+            if (this.selectedCheckboxes.has(label)) {
+                feature.push(label)
+            }
+        })
+        localStorage.setItem('feature'+roomnum,feature.toString());
+    }
+        return(
+            <div>
+                <p className={"body1"}>{localStorage.getItem('name'+roomnum)}</p>
+                <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
+                    BED TYPE
+                </Box>
+                <FormControl
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                >
+
+                    <Select
+                        native
+                        value={values.bedType}
+                        style={{width:"60%"}}
+                        onChange={handleChange('bedType')}
+                        input={
+                            <OutlinedInput name="bedType" id="bedType" />
+                        }
+                    >
+                        <option value="" disabled>Select One</option>
+                        <option value={0}>Single</option>
+                        <option value={1}>Double</option>
+                        <option value={2}>Queen</option>
+                        <option value={3}>King</option>
+                        <option value={4}>Bunk</option>
+                        <option value={5}>None</option>
+                    </Select>
+                </FormControl>
+                <Box className={"subtitle"} fontWeight="fontWeightBold" mt={2}>
+                    Amenities
+                </Box>
+                <p style={{width:"60%"}} className={"overline"}>These are just the amenities housemates usually expect, but you can add even more after you publish</p>
+                <div style={{width:"60%"}}>
+                    <Check features={config.checkAmenities} checkMarked={getChecked}/>
+                </div>
+            </div>
+        )
+}
+    const [rooms, setRooms] = React.useState({
+        roomNum: localStorage.getItem("roomNum"),
+        currRoom:1,
+    });
+    function backRoom(){
+        setRooms({
+            ...rooms,
+            currRoom: rooms.currRoom-1,
+        });
+    }
+    function forwardRoom(){
+        setRooms({
+            ...rooms,
+            currRoom: rooms.currRoom+1,
+        });
+    }
+    function manyRooms(){
+        return(
+            <div>
+                {RoomList(rooms.currRoom)}
+                <hr style={{height: "4px", width:"60%"}} color={props.color.secondary}/>
+            </div>
+        )
+    }
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
@@ -80,47 +150,26 @@ function Listing4 (props) {
                     </Grid>
                 </Box>
             </Container>
-            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+            <Container style={{position:'relative',textAlign:'left', padding:10}} maxWidth="md">
+                {rooms.currRoom>1
+                    ?<Buttons.ButtonLink color={props.color.primary} click={backRoom} message={"previous room"}/>
+                    :null
+                }
                 <Box fontSize={24}>
-                    What ammenities do the rooms offer?
+                    <h4>What ammenities do the rooms offer?</h4>
                 </Box>
-                <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
-                    BED TYPE
-                </Box>
-                <FormControl 
-                    variant="outlined" 
-                    margin="normal"
-                    fullWidth
-                >
-                    <InputLabel ref={inputLabel} htmlFor="bedType">
-                        Select one
-                    </InputLabel>
-                    <Select
-                        native
-                        value={values.bedType}
-                        onChange={handleChange('bedType')}
-                        input={
-                            <OutlinedInput name="bedType" labelWidth={labelWidth} id="bedType" />
-                        }
-                    >
-                    <option value="" />
-                    <option value={0}>Single</option>
-                    <option value={1}>Double</option>
-                    <option value={2}>Queen</option>
-                    <option value={3}>King</option>
-                    <option value={4}>None</option>
-                    </Select>
-                </FormControl>
-                <Box fontSize={15} fontWeight="fontWeightBold" mt={2}>
-                    Amenities
-                </Box>
-                <p>These are just the amentiies housemates usually expect, but you can add even more after you publish</p>
-                <div>
-                    <Check features={config.checkAmenities}/>
-                </div>
+                {manyRooms()}
                 <p/>
+
                 <BrowserRouter>
-                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing5'} message={"Continue"}/>
+                    {rooms.currRoom>rooms.roomNum
+                        ?<Buttons.ButtonFill color={props.color.primary} href={'../Listing5'} message={"Continue"}/>
+                        :<div>
+                        <Buttons.ButtonLink color={props.color.primary} click={forwardRoom} message={"next room"}/>
+                        <Buttons.ButtonFill disabled color={props.color.primary} href={'../Listing5'} message={"Continue"}/>
+                        </div>
+
+                    }
                 </BrowserRouter>
             </Container>
         </Container>

@@ -10,26 +10,24 @@ import Select from '@material-ui/core/Select';
 import * as Buttons from './Button';
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing2 from "./Listing2";
+import InputBase from "@material-ui/core/InputBase";
 
 function Listing9 (props) {
     const [values, setValues] = React.useState({
-        bedroom: 0,
-        bathroom: 0,
-        parking: '',
-        internet: '',
+        bedroom: localStorage.getItem("bedroom")||0,
+        bathroom: localStorage.getItem("bathroom")||0,
+        parking: localStorage.getItem("parking")||'',
+        internet: localStorage.getItem("internet")||'',
     });
 
-    const inputLabel = React.useRef(null);
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
-    }, []);
 
     const handleChange = name => event => {
         setValues({ 
             ...values, 
             [name]: event.target.value,
         });
+        localStorage.setItem(name,event.target.value);
+
     };
     const handleNumChange = name => event => {
         let val=event.target.value;
@@ -38,6 +36,7 @@ function Listing9 (props) {
                 ...values,
                 [name]: event.target.value,
             });
+            localStorage.setItem(name,event.target.value);
         }
     };
     function handlePlus(name){
@@ -46,7 +45,8 @@ function Listing9 (props) {
         setValues({
             ...values,
             [name]: parseInt(val)+1,
-        })
+        });
+        localStorage.setItem(name,parseInt(val)+1);
 
     };
     function handleMinus(name){
@@ -55,7 +55,9 @@ function Listing9 (props) {
             setValues({
                 ...values,
                 [name]: parseInt(val)-1,
-            })
+            });
+            localStorage.setItem(name,parseInt(val)-1);
+
         }
     }
     return (
@@ -108,43 +110,53 @@ function Listing9 (props) {
                     </Grid>
                 </Box>
             </Container>
-            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+            <Container style={{position:'relative',textAlign:'left', padding:10}} maxWidth="md">
                 <Box fontSize={24}>
-                    Tell us more about the property
-                    <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
+                    <h4>Tell us more about the property</h4>
+                    <Grid container direction={"row"} alignItems={"center"} justify={"space-between"}>
+                        <Grid item xs>
+                    <Box className={"body1"} fontWeight="fontWeightBold" mt={3}>
                         Total number of bedrooms
                     </Box>
+                        </Grid>
+                        <Grid item xs style={{paddingTop: "25px"}}>
                     {parseInt(values.bedroom)===0
                         ? <Buttons.ButtonMinus disabled={true}/>
                         : <Buttons.ButtonMinus click={()=>handleMinus('bedroom')}/>
                     }
-                        <CssTextField
+                        <InputBase
                             id="bedroom"
                             value={values.bedroom}
                             onChange={handleNumChange('bedroom')}
                             margin="dense"
-                            variant="outlined"
+                            inputProps={{ style:{width:"45px" , textAlign:"center"}}}
                         />
                         <Buttons.ButtonPlus click={()=>handlePlus('bedroom')}/>
-                    <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
+                        </Grid>
+                    </Grid>
+
+                    <Grid container direction={"row"} alignItems={"center"} justify={"space-between"}>
+                        <Grid item xs>
+                    <Box className={"body1"} fontWeight="fontWeightBold" mt={2}>
                         Total number of bathrooms
                     </Box>
+                        </Grid>
+                    <Grid item xs style={{paddingTop: "20px"}}>
                     {parseInt(values.bathroom) === 0
                         ? <Buttons.ButtonMinus disabled={true}/>
                         : <Buttons.ButtonMinus click={() => handleMinus('bathroom')}/>
                     }
-                    <CssTextField
+                    <InputBase
                         id="bathroom"
                         value={values.bathroom}
                         onChange={handleNumChange('bathroom')}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
+                        inputProps={{ style:{width:"45px" , textAlign:"center"}}}
                         margin="dense"
-                        variant="outlined"
                     />
                     <Buttons.ButtonPlus click={()=>handlePlus('bathroom')}/>
-                    <Box fontSize={10} fontWeight="fontWeightBold"mt={2}>
+                    </Grid>
+                    </Grid>
+                    <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
                         PARKING
                     </Box>
                     <FormControl 
@@ -152,24 +164,24 @@ function Listing9 (props) {
                         margin="normal"
                         fullWidth
                     >
-                        <InputLabel ref={inputLabel} htmlFor="parking">
-                            Select one
-                        </InputLabel>
+
                         <Select
                             native
+                            style={{width:"60%"}}
                             value={values.parking}
                             onChange={handleChange('parking')}
                             input={
-                                <OutlinedInput name="parking" labelWidth={labelWidth} id="parking" />
+                                <OutlinedInput name="parking" id="parking" />
                             }
                         >
-                        <option value="" />
+                            <option value="" disabled>Select one</option>
                         <option value={0}>Off-street Parking</option>
                         <option value={1}>On-street Parking</option>
                         <option value={2}>No Parking</option>
                         </Select>
                     </FormControl>
-                    <Box fontSize={10} fontWeight="fontWeightBold"mt={2}>
+                        <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
+
                         INTERNET
                     </Box>
                     <FormControl 
@@ -177,18 +189,17 @@ function Listing9 (props) {
                         margin="normal"
                         fullWidth
                     >
-                        <InputLabel ref={inputLabel} htmlFor="internet">
-                            Select one
-                        </InputLabel>
+
                         <Select
                             native
+                            style={{width:"60%"}}
                             value={values.internet}
                             onChange={handleChange('internet')}
                             input={
-                                <OutlinedInput name="internet" labelWidth={labelWidth} id="internet" />
+                                <OutlinedInput name="internet" id="internet" />
                             }
                         >
-                        <option value="" />
+                            <option value="" disabled>Select One</option>
                         <option value={0}>No Internet</option>
                         <option value={1}>Available but not included in rent</option>
                         <option value={2}>Available with rent</option>
@@ -198,7 +209,10 @@ function Listing9 (props) {
                 </Box>
                 <p/>
                 <BrowserRouter>
-                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing2'} message={"Continue"}/>
+                    {values.bedroom > 0
+                        ? <Buttons.ButtonFill color={props.color.primary} href={'../Listing2'} message={"Continue"}/>
+                        : <Buttons.ButtonFill disabled color={props.color.primary} href={'../Listing2'} message={"Continue"}/>
+                    }
                 </BrowserRouter>
             </Container>
         </Container>

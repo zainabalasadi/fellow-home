@@ -6,11 +6,12 @@ import {CssTextField} from "./Textinputs";
 import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing3 from "./Listing3";
+import InputBase from "@material-ui/core/InputBase";
 
 function Listing2 (props) {
     const [values, setValues] = React.useState({
-        housemates: 0,
-        vacancies: 0,
+        housemates: localStorage.getItem("housemates")||0,
+        vacancies: localStorage.getItem("vacancies")||0,
     });
 
     const handleChange = name => event => {
@@ -18,6 +19,8 @@ function Listing2 (props) {
             ...values,
             [name]: event.target.value,
         });
+        localStorage.setItem(name,event.target.value);
+
     };
     const handleNumChange = name => event => {
         let val=event.target.value;
@@ -26,6 +29,7 @@ function Listing2 (props) {
                 ...values,
                 [name]: event.target.value,
             });
+            localStorage.setItem(name,event.target.value);
         }
     };
     function handlePlus(name){
@@ -35,6 +39,8 @@ function Listing2 (props) {
             ...values,
             [name]: parseInt(val)+1,
         });
+        localStorage.setItem(name,parseInt(val)+1);
+
 
     }
     function handleMinus(name){
@@ -44,6 +50,8 @@ function Listing2 (props) {
                 ...values,
                 [name]: parseInt(val)-1,
             });
+            localStorage.setItem(name,parseInt(val)-1);
+
         }
     }
     return (
@@ -96,49 +104,64 @@ function Listing2 (props) {
                     </Grid>
                 </Box>
             </Container>
-            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+            <Container style={{position:'relative',textAlign:'left', padding:10}} maxWidth="md">
                 <Box fontSize={24}>
-                    Tell us more about who lives in the property?
+                    <h4>Tell us more about who lives in the property?</h4>
                 </Box>
-                <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
+                <Grid container direction={"column"} justify={"space-around"}>
+                <Grid container direction={"row"} alignItems={"center"} justify={"space-between"}>
+                    <Grid item xs>
+                        <Box className={"body1"} fontWeight="fontWeightBold" mt={3}>
+
                     Current number of housemates
                 </Box>
-                {parseInt(values.housemates) === 0
+                    </Grid>
+                    <Grid item xs style={{paddingTop: "25px"}}>
+
+                    {parseInt(values.housemates) === 0
                     ? <Buttons.ButtonMinus disabled={true}/>
                     : <Buttons.ButtonMinus click={() => handleMinus('housemates')}/>
                 }
-                <CssTextField
+                <InputBase
                     id="housemates"
                     value={values.housemates}
                     onChange={handleNumChange('housemates')}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
+                    inputProps={{ style:{width:"45px" , textAlign:"center"}}}
+
                     margin="dense"
-                    variant="outlined"
                 />
                 <Buttons.ButtonPlus click={()=>handlePlus('housemates')}/>
-                <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
-                    Number of Vacancies
+                    </Grid>
+                </Grid>
+                <Grid container direction={"row"} alignItems={"center"}  justify={"space-between"}>
+                    <Grid item xs>
+                        <Box className={"body1"} fontWeight="fontWeightBold" mt={3}>
+                        Number of Vacancies
                 </Box>
+                    </Grid>
+                    <Grid items xs style={{paddingTop: "30px"}}>
                 {parseInt(values.vacancies) === 0
                     ? <Buttons.ButtonMinus disabled={true}/>
                     : <Buttons.ButtonMinus click={() => handleMinus('vacancies')}/>
                 }
-                <CssTextField
+                <InputBase
                     id="vacancies"
                     value={values.vacancies}
                     onChange={handleNumChange('vacancies')}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
+                    inputProps={{ style:{width:"45px" , textAlign:"center"}}}
                     margin="dense"
-                    variant="outlined"
                 />
                 <Buttons.ButtonPlus click={()=>handlePlus('vacancies')}/>
+                    </Grid>
+                </Grid>
+                </Grid>
                 <p/>
                 <BrowserRouter>
-                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing3'} message={"Continue"}/>
+                    {values.vacancies > 0
+                        ? <Buttons.ButtonFill color={props.color.primary} href={'../Listing3'} message={"Continue"}/>
+                        : <Buttons.ButtonFill disabled color={props.color.primary} href={'../Listing3'}
+                                              message={"Continue"}/>
+                    }
                 </BrowserRouter>
             </Container>
         </Container>

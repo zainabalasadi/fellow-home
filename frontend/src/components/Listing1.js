@@ -10,23 +10,22 @@ import Select from '@material-ui/core/Select';
 import * as Buttons from './Button';
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing9 from "./Listing9";
+import {MapContainer} from "./MapContainer";
 
 function Listing1 (props) {
     const [values, setValue] = React.useState({
-        accomodation: '',
+        accomodation: localStorage.getItem("accomodation")||'',
+        address: localStorage.getItem("accomodation")||''
     });
 
-    const inputLabel = React.useRef(null);
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
-    }, []);
 
     const handleChange = name => event => {
         setValue({
           ...values,
           [name]: event.target.value,
         });
+
+        localStorage.setItem(name,event.target.value);
     };
 
     return (
@@ -79,39 +78,38 @@ function Listing1 (props) {
                     </Grid>
                 </Box>
             </Container>
-            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
-                <Box fontSize={24}>
-                    What kind of accomodation are you listing?
-                    <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
-                        ACCOMODATION TYPE
+            <Container style={{position:'relative',textAlign:'left', padding:10}} maxWidth="md">
+
+                <Box >
+                    <h4>What kind of accomodation are you listing?</h4>
+                    <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
+                        ACCOMMODATION TYPE
                     </Box>
                     <FormControl 
                         variant="outlined" 
                         margin="normal"
                         fullWidth
                     >
-                        <InputLabel ref={inputLabel} htmlFor="accomodation">
-                            Select one
-                        </InputLabel>
                         <Select
                             native
+                            style={{width: "60%"}}
                             value={values.accomodation}
                             onChange={handleChange('accomodation')}
                             input={
-                                <OutlinedInput name="accomodation" labelWidth={labelWidth} id="accomodation" />
+                                <OutlinedInput name="accomodation"  id="accomodation" />
                             }
                         >
-                        <option value="" />
+                            <option value="" disabled>Select one</option>
                         <option value={0}>House</option>
                         <option value={1}>Guesthouse</option>
                         <option value={2}>Apartment</option>
-                        <option value={2}>Townhouse</option>
+                        <option value={3}>Townhouse</option>
                         </Select>
                     </FormControl>
                 </Box>
-                    <Box fontSize={20} mt={3}>
-                        Where is your place located?
-                    <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
+                    <Box mt={3}>
+                        <h6>Where is your place located?</h6>
+                        <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
                         ADDRESS
                     </Box>
                     <CssTextField
@@ -122,12 +120,18 @@ function Listing1 (props) {
                         variant="outlined"
                         helperText="This won't be revealed to users."
                         fullWidth
+                        style={{width: "60%"}}
+                        onChange={handleChange('address')}
                     />
+                        <div style={{display:"none"}}><MapContainer addList={props.addList}/></div>
                 </Box>
                 <p/>
                 <BrowserRouter>
-                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing9'} message={"Continue"}/>
-                </BrowserRouter>
+                    {values.address === ''
+                        ? <Buttons.ButtonFill disabled color={props.color.primary} href={'../Listing9'} message={"Continue"}/>
+                        : <Buttons.ButtonFill color={props.color.primary} href={'../Listing9'} message={"Continue"}/>
+                    }
+                            </BrowserRouter>
             </Container>
         </Container>
     );

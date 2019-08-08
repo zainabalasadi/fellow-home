@@ -89,9 +89,9 @@ class App extends Component {
 					</BrowserRouter>
 
 				<Footer />
-					{/* <div>
-						<MapContainer  />
-					</div> */}
+                    <div style={{display: "none"}}>
+                        <MapContainer  listingLocation={false} listingPage={false}/>
+                    </div>
 				</ThemeProvider>
 			</React.Fragment>
 		);

@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
         textAlign:'left', 
         position:'relative', 
         top:'-580px', 
-        left:'-400px', 
+        left:'-350px',
         paddingTop: '24px',
         borderRadius: '7px'
     }
@@ -60,7 +60,7 @@ export default function Home(props) {
     return (
             <React.Fragment>     
                     <CssBaseline />
-                    <img src="https://bungalow.com/static/roommates-on-sofa.jpg" fullWidth style={{position:'relative', height:'735px'}}/>
+                    <img src="https://bungalow.com/static/roommates-on-sofa.jpg" fullWidth style={{position:'relative', height:'650px'}}/>
                         <Container className={classes.container}>
                             <Box fontSize={20} padding={1}>
                                 <h5>Find housemates to live with while you study</h5>

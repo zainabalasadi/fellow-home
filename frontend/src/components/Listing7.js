@@ -5,22 +5,39 @@ import Box from '@material-ui/core/Box';
 import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing8 from "./Listing8";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
 
 class Listing7 extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            file: null
+            file: localStorage.getItem("images")||null
         }
         this.handleChange = this.handleChange.bind(this)
     }
 
     handleChange(event) {
+        var imag;
+        imag=this.addFile(event.target.files);
         this.setState({
-            file: URL.createObjectURL(event.target.files[0])
+            file: imag
         })
+        localStorage.setItem('images',imag);
     }
 
+    addFile(imagList){
+        let imagePack=[];
+        for (var i=0;i<imagList.length;i++){
+            let image=URL.createObjectURL(imagList[i]);
+            imagePack.push(
+                <GridListTile key={image}>
+                    <img src={image}/>
+                </GridListTile>
+            )
+        }
+        return imagePack;
+    }
     render(){
         return (
             <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
@@ -72,7 +89,8 @@ class Listing7 extends React.Component{
                         </Grid>
                     </Box>
                 </Container>
-                <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+                <Container style={{position:'relative',textAlign:'left', padding:10}} maxWidth="md">
+
                     <Box fontSize={24}>
                         Add photos to your listing
                     </Box>
@@ -90,7 +108,13 @@ class Listing7 extends React.Component{
                     <label htmlFor="contained-button-file">
                         <Buttons.ButtonFill color={this.props.color.dark} disabled={true} classNames={{component: "span"}} message={"Upload"}/>
                     </label>
-                    <img src={this.state.file}/>
+                    <div style={{backgroundColor: 'whitesmoke',height:'43vh'}} maxWidth="xl">
+                        <GridList style={{flexWrap: 'nowrap',
+                            transform: 'translateZ(0)',
+                            height:'400px',}} cols={2.5} cellHeight={390} >
+                            {this.state.file}
+                        </GridList>
+                    </div>
                     <p/>
                     <BrowserRouter>
                         <Buttons.ButtonFill color={this.props.color.primary} href={'../Listing8'} message={"Continue"}/>

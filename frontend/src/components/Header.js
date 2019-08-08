@@ -89,9 +89,10 @@ function Header(props) {
                   <Grid direction="row" container justify="space-evenly" alignItems="center">
                       <a href="/"><img padding-top={20} height={20} src={require("../assets/images/logo.svg")}/></a>
                       <Grid item xs = {6}>
-                      <TextInput.InputText color={props.color.dark} onKeyUp={handleSearchSubmit} 
-                        classNames={{fontsize:"8px"}} 
-                        placeholder="Search by university, city or suburb" 
+                      <TextInput.InputText color={props.color.dark} onKeyUp={handleSearchSubmit}
+                        classNames={{fontsize:"8px"}}
+                        id={"ListingSearch"}
+                        placeholder="Search by university, city or suburb"
                         value={values.searchString}
                         onChange={handleChange('searchString')}
                         startAdornment={<SearchIcon/>}/>

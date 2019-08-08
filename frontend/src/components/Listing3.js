@@ -12,23 +12,116 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing4 from "./Listing4";
 
 function Listing3 (props) {
-    const [values, setValue] = React.useState({
-        roomType: '',
-        bathroomAccess: '',
-    });
-
-    const inputLabel = React.useRef(null);
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
-    }, []);
-
-    const handleChange = name => event => {
-        setValue({
-          ...values,
-          [name]: event.target.value,
+    function RoomList(roomnum){
+        const [value, setValue] = React.useState({
+            roomType: localStorage.getItem("roomType"+roomnum)||'',
+            bathroomAccess: localStorage.getItem("bathroomAccess"+roomnum)||'',
+            name: localStorage.getItem("name"+roomnum)||'',
         });
-    };
+
+        const handleChange = name => event => {
+            setValue({
+                ...value,
+                [name]: event.target.value,
+            });
+            localStorage.setItem(name+roomnum.toString(),event.target.value)
+        };
+        return (
+            <div>
+                <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
+                    ROOM NAME
+                </Box>
+                <CssTextField
+                    id={"room"+roomnum}
+                    placeholder={"Room "+roomnum}
+                    type="text"
+                    margin="normal"
+                    variant="outlined"
+                    fullWidth
+                    style={{width: "60%"}}
+                    onChange={handleChange('name')}
+                />
+                <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
+                    ROOM TYPE
+                </Box>
+                <FormControl
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                >
+                    <Select
+                        native
+                        style={{width: "60%"}}
+
+                        value={value.roomType}
+                        onChange={handleChange('roomType')}
+                        input={
+                            <OutlinedInput name="roomType" id="roomType" />
+                        }
+                    >
+                        <option value="" disabled>Select One</option>
+                        <option value={0}>Shared</option>
+                        <option value={1}>Private</option>
+                    </Select>
+                </FormControl>
+                <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
+                    BATHROOM ACCESS
+                </Box>
+                <FormControl
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                >
+                    <Select
+                        native
+                        style={{width: "60%"}}
+                        value={value.bathroomAccess}
+                        onChange={handleChange('bathroomAccess')}
+                        input={
+                            <OutlinedInput name="bathroomAccess" id="bathroomAccess" />
+                        }
+                    >
+                        <option value="" disabled>Select One</option>
+                        <option value={0}>Yes</option>
+                        <option value={1}>No</option>
+                    </Select>
+                </FormControl>
+            </div>
+        )
+    }
+    const [rooms, setRooms] = React.useState({
+        roomNum: 1,
+        currRoom:1,
+    });
+function addRoom() {
+    setRooms({
+        ...rooms,
+        roomNum: rooms.roomNum+1,
+        currRoom: rooms.currRoom+1,
+    });
+    localStorage.setItem("roomNum",rooms.roomNum)
+}
+    function backRoom(){
+        setRooms({
+            ...rooms,
+            currRoom: rooms.currRoom-1,
+        });
+    }
+    function forwardRoom(){
+        setRooms({
+            ...rooms,
+            currRoom: rooms.currRoom+1,
+        });
+    }
+function manyRooms(){
+    return(
+        <div>
+        {RoomList(rooms.currRoom)}
+        <hr style={{height: "4px", width:"60%"}} color={props.color.secondary}/>
+        </div>
+        )
+}
+
 
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
@@ -80,72 +173,28 @@ function Listing3 (props) {
                     </Grid>
                 </Box>
             </Container>
-            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+            <Container style={{position:'relative',textAlign:'left', padding:10}} maxWidth="md">
+                {rooms.currRoom>1
+                    ?<Buttons.ButtonLink color={props.color.primary} click={backRoom} message={"previous room"}/>
+                    :null
+                }
+                {rooms.currRoom<rooms.roomNum
+                    ?<Buttons.ButtonLink color={props.color.primary} click={forwardRoom} message={"next room"}/>
+                    :null
+                }
                 <Box fontSize={24}>
-                    Tell us about the rooms available
+                    <h4>Tell us about the bedrooms available</h4>
                 </Box>
-                <Box fontSize={10} fontWeight="fontWeightBold" mt={3}>
-                    ROOM NAME
-                </Box>
-                <CssTextField
-                    id="room1"
-                    placeholder="Room 1"
-                    type="text"
-                    margin="normal"
-                    variant="outlined"
-                    fullWidth
-                />
-                <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
-                    ROOM TYPE
-                </Box>
-                <FormControl 
-                    variant="outlined" 
-                    margin="normal"
-                    fullWidth
-                >
-                    <InputLabel ref={inputLabel} htmlFor="roomType">
-                        Select one
-                    </InputLabel>
-                    <Select
-                        native
-                        value={values.roomType}
-                        onChange={handleChange('roomType')}
-                        input={
-                            <OutlinedInput name="roomType" labelWidth={labelWidth} id="roomType" />
-                        }
-                    >
-                    <option value="" />
-                    <option value={0}>Shared</option>
-                    <option value={1}>Private</option>
-                    </Select>
-                </FormControl>
-                <Box fontSize={10} fontWeight="fontWeightBold" mt={2}>
-                    BATHROOM ACCESS
-                </Box>
-                <FormControl 
-                    variant="outlined" 
-                    margin="normal"
-                    fullWidth
-                >
-                    <InputLabel ref={inputLabel} htmlFor="bathroomAccess">
-                        Select one
-                    </InputLabel>
-                    <Select
-                        native
-                        value={values.bathroomAccess}
-                        onChange={handleChange('bathroomAccess')}
-                        input={
-                            <OutlinedInput name="bathroomAccess" labelWidth={labelWidth} id="bathroomAccess" />
-                        }
-                    >
-                    <option value="" />
-                    <option value={0}>Yes</option>
-                    <option value={1}>No</option>
-                    </Select>
-                </FormControl>
+                {manyRooms()}
                 <p/>
+
+                {rooms.roomNum<localStorage.getItem("bedroom")
+                ?<Buttons.ButtonLink color={props.color.primary} click={addRoom} message={"+ add another room"}/>
+                :null
+                }
                 <BrowserRouter>
                     <Buttons.ButtonFill color={props.color.primary} href={'../Listing4'} message={"Continue"}/>
+
                 </BrowserRouter>
             </Container>
         </Container>

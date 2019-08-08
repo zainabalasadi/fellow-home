@@ -51,6 +51,7 @@ class Check extends Component {
         } else {
             this.selectedCheckboxes.add(label);
         }
+        this.props.checkMarked(this.selectedCheckboxes, this.props.features);
     };
 
     createCheckbox = (labels) => {

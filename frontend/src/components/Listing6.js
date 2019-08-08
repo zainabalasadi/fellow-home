@@ -10,25 +10,106 @@ import Select from '@material-ui/core/Select';
 import * as Buttons from './Button';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing7 from "./Listing7";
+import Radio from "@material-ui/core/Radio";
 
 function Listing6 (props) {
+
+    const [rooms, setRooms] = React.useState({
+        roomNum: localStorage.getItem("roomNum"),
+        currRoom:1,
+    });
+    const [manyOrOne, setManyOrOne] = React.useState("")
+    function backRoom(){
+        setRooms({
+            ...rooms,
+            currRoom: rooms.currRoom-1,
+        });
+    }
+    function forwardRoom(){
+        setRooms({
+            ...rooms,
+            currRoom: rooms.currRoom+1,
+        });
+    }
+    function manyRooms(){
+        return(
+            <div>
+                {RoomList(rooms.currRoom,false)}
+                <hr style={{height: "4px", width:"60%"}} color={props.color.secondary}/>
+            </div>
+        )
+    }
+    function handleBills(event){
+        setManyOrOne(event.target.value)
+
+    }
+    function RoomList(roomnum,oneOrMany){
     const [values, setValue] = React.useState({
-        minStay: '',
+        minStay: localStorage.getItem("minStay"+roomnum)||'',
+        date: localStorage.getItem("date"+roomnum)||'',
     });
 
-    const inputLabel = React.useRef(null);
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
-    }, []);
 
     const handleChange = name => event => {
         setValue({
             ...values,
             [name]: event.target.value,
         });
-    };
+        if(oneOrMany){
+            for (var i=1;i<=roomnum;i++){
+                localStorage.setItem(name+i,event.target.value);
+            }
 
+        }else{
+            localStorage.setItem(name+roomnum,event.target.value);
+        }
+    };
+return(
+    <div>
+        <p className={"body1"}>{localStorage.getItem('name'+roomnum)}</p>
+        <Box className={"overline"} fontWeight="fontWeightBold" mt={3} mb={1}>
+            DATE AVAILABLE FROM
+        </Box>
+        <CssTextField
+            id="date"
+            type="date"
+            placeholder="YYYY-MM-DD"
+            style={{width:'95px'}}
+            onChange={handleChange('date')}
+            InputLabelProps={{
+                shrink: true,
+            }}
+        />
+        <Box className={"overline"} fontWeight="fontWeightBold" mt={3} mb={0}>
+            MINIMUM LENGTH OF STAY
+        </Box>
+        <FormControl
+            variant="outlined"
+            margin="normal"
+            fullWidth
+        >
+            <Select
+                native
+                value={values.minStay}
+
+                onChange={handleChange('minStay')}
+                input={
+                    <OutlinedInput name="minStay" id="minStay" />
+                }
+            >
+                <option value="" disabled>Select One</option>
+                <option value={0}>1 Month</option>
+                <option value={1}>2 Months</option>
+                <option value={2}>3 Months</option>
+                <option value={3}>4 Months</option>
+                <option value={4}>5 Months</option>
+                <option value={5}>6 Months</option>
+                <option value={6}>1 Year</option>
+            </Select>
+        </FormControl>
+    </div>
+)
+    }
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
@@ -79,55 +160,47 @@ function Listing6 (props) {
                     </Grid>
                 </Box>
             </Container>
-            <Container style={{position:'relative',left:'-170px',textAlign:'left', padding:10}} maxWidth="sm">
+            <Container style={{position:'relative',textAlign:'left', padding:10}} maxWidth="md">
+                {rooms.currRoom>1 && manyOrOne==='y'
+                    ?<Buttons.ButtonLink color={props.color.primary} click={backRoom} message={"previous room"}/>
+                    :null
+                }
                 <Box fontSize={24}>
-                    When is your property available?
+                    <h4>When is your property available?</h4>
                 </Box>
-                <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={1}>
-                    DATE AVAILABLE FROM
-                </Box>
-                <CssTextField
-                    id="date"
-                    type="date"
-                    placeholder="YYYY-MM-DD"
-                    style={{width:'85px'}}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <Box fontSize={10} fontWeight="fontWeightBold" mt={3} mb={0}>
-                    MINIMUM LENGTH OF STAY
-                </Box>
-                <FormControl 
-                    variant="outlined" 
-                    margin="normal"
-                    fullWidth
-                >
-                    <InputLabel ref={inputLabel} htmlFor="minStay">
-                        Select one
-                    </InputLabel>
-                    <Select
-                        native
-                        value={values.minStay}
-
-                        onChange={handleChange('minStay')}
-                        input={
-                            <OutlinedInput name="minStay" labelWidth={labelWidth} id="minStay" />
-                        }
-                    >
-                    <option value="" />
-                    <option value={0}>1 Month</option>
-                    <option value={1}>2 Months</option>
-                    <option value={2}>3 Months</option>
-                    <option value={3}>4 Months</option>
-                    <option value={4}>5 Months</option>
-                    <option value={5}>6 Months</option>
-                    <option value={6}>1 Year</option>
-                    </Select>
-                </FormControl>
+                Are the rooms available from different dates?
+                Yes: <Radio
+                checked={manyOrOne==='y'}
+                onClick={handleBills}
+                value={'y'}
+                name={"multiBill"}
+                inputProps={{ 'aria-label': 'Yes' }}/>
+                No: <Radio
+                checked={manyOrOne==='n'}
+                onClick={handleBills}
+                value={'n'}
+                name={"multiBill"}
+                inputProps={{ 'aria-label': 'No' }}/>
+                <p/>
+                {manyOrOne==='y'
+                    ?manyRooms()
+                    :RoomList(rooms.roomNum,true)
+                }
                 <p/>
                 <BrowserRouter>
-                    <Buttons.ButtonFill color={props.color.primary} href={'../Listing7'} message={"Continue"}/>
+                    {manyOrOne==='y'||manyOrOne==='n'
+                        ?
+                        rooms.currRoom > rooms.roomNum || manyOrOne === 'n'
+                            ? <Buttons.ButtonFill color={props.color.primary} href={'../Listing7'}
+                                                  message={"Continue"}/>
+                            : <div>
+                                <Buttons.ButtonLink color={props.color.primary} click={forwardRoom}
+                                                    message={"next room"}/>
+                                <Buttons.ButtonFill disabled color={props.color.primary} href={'../Listing7'}
+                                                    message={"Continue"}/>
+                            </div>
+
+                        :null}
                 </BrowserRouter>
             </Container>
         </Container>

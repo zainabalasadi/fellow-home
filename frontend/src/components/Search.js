@@ -22,7 +22,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-
+import InputBase from "@material-ui/core/InputBase";
 function Search (props) {
     const [anchorEl4, setAnchorEl4] = React.useState(null);
     const [listings, setListings] = React.useState([]);
@@ -160,7 +160,7 @@ function Search (props) {
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper>
-                                <Box fontSize={10} p={1} border={1} borderColor="lightgray">
+                                <Box className={"overline"} p={1} border={1} borderColor="lightgray">
                                     <Box fontWeight="fontWeightBold">
                                         Rooms and Bathrooms
                                     </Box>
@@ -169,16 +169,13 @@ function Search (props) {
                                         ? <Buttons.ButtonMinus disabled={true}/>
                                         : <Buttons.ButtonMinus click={() => handleMinus('bedroom')}/>
                                     }
-                                    <CssTextField
+                                    <InputBase
                                         id="bedroom"
                                         value={values.bedroom}
                                         onChange={handleNumChange('bedroom')}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        style={{width:'40px', height:'30px'}}
+                                        inputProps={{ style:{width:'40px', height:'30px', textAlign:"center"}}}
+
                                         margin="dense"
-                                        variant="outlined"
                                     />
                                     <Buttons.ButtonPlus click={()=>handlePlus('bedroom')}/>
                                     <p/>
@@ -187,16 +184,12 @@ function Search (props) {
                                         ? <Buttons.ButtonMinus disabled={true}/>
                                         : <Buttons.ButtonMinus click={() => handleMinus('bathroom')}/>
                                     }
-                                    <CssTextField
+                                    <InputBase
                                         id="bathroom"
                                         value={values.bathroom}
                                         onChange={handleNumChange('bathroom')}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        style={{width:'40px', height:'30px'}}
+                                        inputProps={{ style:{width:'40px', height:'30px', textAlign:"center"}}}
                                         margin="dense"
-                                        variant="outlined"
                                     />
                                     <Buttons.ButtonPlus click={()=>handlePlus('bathroom')}/>
                                     <Divider/>
