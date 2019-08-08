@@ -12,6 +12,7 @@ import GridListing from "./GridListing"
 import Box from '@material-ui/core/Box'
 import ListingCTA from "./ListCTA"
 import Star from './Star'
+import SavedSearch from './SavedSearch'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -83,6 +84,7 @@ export default function Home(props) {
                         <h4>Newest Listings</h4>
                         <GridListing />
                         <ListingCTA />
+                        <SavedSearch />
                         <Star />
                         <Button disableRipple href={'../Profile'}>Profile</Button>
                         <Button disableRipple href={'../Listing'}>Listing</Button>

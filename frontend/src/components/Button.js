@@ -25,7 +25,7 @@ export function ButtonOutline(props){
         opacity: props.disabled ? 0.4 : 1
     };
     return(
-        <Button  className={props.className} href={props.href} onClick={()=>props.click()}  disabled={props.disabled} variant="outlined" color={props.color} style={style} disableRipple={true}>
+        <Button className={props.className} href={props.href} onClick={()=>props.click()}  disabled={props.disabled} variant="outlined" color={props.color} style={style} disableRipple={true}>
             {props.message}
         </Button>
     )
