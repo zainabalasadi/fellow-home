@@ -31,6 +31,22 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home(props) {
     const classes = useStyles();
+    const [listings, setListings] = React.useState([]);
+
+    React.useEffect(() => {
+        getListings();
+    }, []);
+
+    const getListings = () => {
+        axios.get('http://localhost:5000/api/listings')
+            .then((res) => {
+                console.log(res);
+                setListings(res.data.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
             <React.Fragment>     
@@ -82,7 +98,7 @@ export default function Home(props) {
                         </Container>
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                         <h4>Newest Listings</h4>
-                        <GridListing />
+                        <GridListing listings={listings}/>
                         <ListingCTA />
                         <SavedSearch />
                         <Star />

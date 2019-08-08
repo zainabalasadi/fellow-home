@@ -111,7 +111,7 @@ export function EditProfile(props){
                     <Divider style={{width: "90%"}}/>
                     <h5 className="textFellowDark">{props.user.name}'s listings</h5>
                     <div style={{width: "90%"}} className="action-cards">
-                        <GridListing/>
+                        <GridListing listings={props.listings}/>
                     </div>
                     <Divider style={{width: "90%"}}/>
                 </div>
@@ -127,15 +127,17 @@ function Profile(props) {
             <div>
                 <h3 className="textFellowDark">Hi, I'm {props.user.first_name}</h3>
                 <p className="outline textFellowDark">Joined in 2019 {props.editProfButton}</p>
-               <TextInput.Multiline className="body2 textFellowRed"
+        <p>{props.user.description}</p>
+        {/*              <TextInput.Multiline className="body2 textFellowRed"
                                     styling={{width: "90%"}}
                                     disabledText={true}
                                    value={props.user.description}
                />
+               */}
                <Divider style={{width: "90%"}}/>
                <h5 className="textFellowDark">{props.user.first_name}'s listings</h5>
                <div style={{width: "90%", padding:10}} className="action-cards">
-                    <GridListing />
+                    <GridListing listings={props.listings}/>
 
                </div>
                <Divider style={{width: "90%"}}/>

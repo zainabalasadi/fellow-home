@@ -15,7 +15,8 @@ class AccountManager extends Component {
 
         this.state = {
             isEditMode: false,
-            info: {}
+            info: {},
+            listings: []
         };
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -23,6 +24,7 @@ class AccountManager extends Component {
 
     componentDidMount() {
         this.getUserInfo();
+        this.getUserListings();
     }
 
     getUserInfo() {
@@ -31,6 +33,19 @@ class AccountManager extends Component {
                 console.log(res)
                 this.setState({
                     info: res.data.data
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+    getUserListings() {
+        axios.get('http://localhost:5000/api/users/' + this.uid + '/listings')
+            .then((res) => {
+                console.log(res)
+                this.setState({
+                    listings: res.data.data
                 });
             })
             .catch((err) => {
@@ -48,19 +63,19 @@ class AccountManager extends Component {
     }
     renderSaveButton(newState) {
         return(
-        <ButtonStyle.Group>
+            <ButtonStyle.Group>
             <Buttons.ButtonFill color={theme.colors.primary}
-                    click={() => this.handleStateChange(newState)} message={"Save"}/>
+            click={() => this.handleStateChange(newState)} message={"Save"}/>
             <ButtonStyle.Or />
             <Buttons.ButtonOutline color={theme.colors.dark}
-                    click={() => this.setState({isEditMode: newState})} message={"Cancel"}/>
-        </ButtonStyle.Group>
+            click={() => this.setState({isEditMode: newState})} message={"Cancel"}/>
+            </ButtonStyle.Group>
         )
     }
     renderEditButton(newState){
         return(
-        <Buttons.ButtonLink className="body2" color={theme.colors.primary}
-                click={() => this.setState({isEditMode: newState})} message={"Edit Profile"}/>
+            <Buttons.ButtonLink className="body2" color={theme.colors.primary}
+            click={() => this.setState({isEditMode: newState})} message={"Edit Profile"}/>
         )
     }
 
@@ -71,21 +86,23 @@ class AccountManager extends Component {
         }
         return (
             <Grid item>
-                {this.state.isEditMode ? this.renderSaveButton(newState) : this.renderEditButton(newState)}
+            {this.state.isEditMode ? this.renderSaveButton(newState) : this.renderEditButton(newState)}
             </Grid>
         )
     }
 
     renderProfile(editButton) {
-     return(<Profile user={this.state.info} editProfButton={editButton}/>)
+        return (
+            <Profile user={this.state.info} editProfButton={editButton} listings={this.state.listings}/>
+        );
     }
 
     renderEditProfile(saveButton) {
-        return(<EditProfile user={this.state.info} saveProfButton={saveButton}/>)
+        return (
+            <EditProfile user={this.state.info} saveProfButton={saveButton} 
+                        listings={this.state.listings}/>
+        );
     }
-
-
-
 
     render() {
         const isEditMode = this.state.isEditMode;
@@ -106,19 +123,19 @@ class AccountManager extends Component {
         };
         return (
             <div width="90%" className="content">
-                <Grid container  style={containerStyle}>
-                    <Grid item style={cardStyle}>
-                        {isEditMode ? <EditProfileCard user={this.state.info}/> : <ProfileCard user={this.state.info}/>}
-                    </Grid>
-                    <Grid item style={contentStyle}>
-                        <div className="section">
-                            {isEditMode ? this.renderEditProfile(this.renderButton()) : this.renderProfile(this.renderButton())}
-                        </div>
-                    </Grid>
-                </Grid>
+            <Grid container  style={containerStyle}>
+            <Grid item style={cardStyle}>
+            {isEditMode ? <EditProfileCard user={this.state.info}/> : <ProfileCard user={this.state.info}/>}
+            </Grid>
+            <Grid item style={contentStyle}>
+            <div className="section">
+            {isEditMode ? this.renderEditProfile(this.renderButton()) : this.renderProfile(this.renderButton())}
+            </div>
+            </Grid>
+            </Grid>
 
 
-                {this.renderButton()}
+            {this.renderButton()}
             </div>
         )
     }
