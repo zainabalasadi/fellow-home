@@ -3,14 +3,15 @@ import axios from 'axios'
 import * as Buttons from './Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
-import '../app/App.css';
+import '../app/App.css'
 import {theme} from './Theme'
 import Button from '@material-ui/core/Button'
-import InputAdornment from '@material-ui/core/InputAdornment';
-import {CssTextField} from "./Textinputs";
+import InputAdornment from '@material-ui/core/InputAdornment'
+import {CssTextField} from "./Textinputs"
 import GridListing from "./GridListing"
-import Box from '@material-ui/core/Box';
-import ListingCTA from "./ListCTA";
+import Box from '@material-ui/core/Box'
+import ListingCTA from "./ListCTA"
+import Star from './Star'
 
 class Home extends Component {
     constructor() {
@@ -74,6 +75,7 @@ class Home extends Component {
                         <h4>Newest Listings</h4>
                         <GridListing />
                         <ListingCTA />
+                        <Star />
                         <Button disableRipple href={'../Profile'}>Profile</Button>
                         <Button disableRipple href={'../Listing'}>Listing</Button>
                         <Button disableRipple href={'../Saved'}>Saved</Button>
