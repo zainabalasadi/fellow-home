@@ -30,6 +30,7 @@ export function ButtonOutline(props){
         </Button>
     )
 }
+
 export function ButtonLink(props){
     let style={
         backgroundColor: theme.colors.white,

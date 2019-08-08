@@ -12,22 +12,30 @@ import GridListing from "./GridListing"
 import Box from '@material-ui/core/Box'
 import ListingCTA from "./ListCTA"
 import Star from './Star'
+import { makeStyles } from '@material-ui/core/styles';
 
-class Home extends Component {
-    constructor() {
-        super();
-        this.state = {
-            message: "Hello Welcome to Fellow!",
-            open : false
-        };
-    };
+const useStyles = makeStyles(theme => ({
+    container: {
+        height:'400px', 
+        width:'400px',
+        backgroundColor: 'white',
+        textAlign:'left', 
+        position:'relative', 
+        top:'-580px', 
+        left:'-400px', 
+        paddingTop: '24px',
+        borderRadius: '7px'
+    }
+}));
 
-    render() {
-        return (
+export default function Home(props) {
+    const classes = useStyles();
+
+    return (
             <React.Fragment>     
                     <CssBaseline />
                     <img src="https://bungalow.com/static/roommates-on-sofa.jpg" fullWidth style={{position:'relative', height:'735px'}}/>
-                        <Container style={{height:'400px', width:'400px',backgroundColor: 'white',textAlign:'left', position:'relative', top:'-580px', left:'-400px', padding:24,borderRadius: '7px'}}>
+                        <Container className={classes.container}>
                             <Box fontSize={20} padding={1}>
                                 <h5>Find housemates to live with while you study</h5>
                             </Box>
@@ -130,7 +138,4 @@ class Home extends Component {
                 </Container>
             </React.Fragment>
         );
-    };
 }
-
-export default Home;
