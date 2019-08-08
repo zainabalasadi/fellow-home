@@ -34,9 +34,11 @@ const Listing = (props) => {
 
     const lid = props.match.params.id;
     const [listing, setListing] = React.useState('');
+    const [reviews, setReviews] = React.useState([]);
 
     React.useEffect(() => {
         getListing();
+        getReviews();
     }, []);
     
     const getListing = () => {
@@ -44,6 +46,17 @@ const Listing = (props) => {
             .then((res) => {
                 console.log(res);
                 setListing(res.data.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const getReviews = () => {
+        axios.get('http://localhost:5000/api/listings/' + lid + '/reviews')
+            .then((res) => {
+                console.log(res);
+                setReviews(res.data.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -67,9 +80,6 @@ const Listing = (props) => {
         <div>
             <div style={{backgroundColor: 'whitesmoke',height:'43vh'}} maxWidth="xl">
                 <GridList className={classes.gridList} cols={2.5} cellHeight={390} >
-            {/* im not sure why this happens but i think its because it tries to load
-                the data before its fetched
-            */}
         {
             listing.images ? 
             listing.images.map((image) => (
@@ -77,7 +87,7 @@ const Listing = (props) => {
                             <img src={image} alt={listing.title}/>
                       </GridListTile>
             ))
-            : console.log("nope")
+            : null
         }
                 </GridList>
             </div>
@@ -146,17 +156,21 @@ const Listing = (props) => {
                                     anyone welcome
                                 </Grid>
                             </Grid>
-                            <h6>Amenities</h6>
                 {
+                    room.amenities ? <h6>Amenities</h6> : null
+                }
+                {
+                    room.amenities ?
                     room.amenities.map((amenity) => (
                         <p>{amenity}</p>
                     ))
+                    : null
                 }
                             <br/><br/>
                             <Divider/>
                 </div>
             ))
-            : console.log("nope")
+            : null
         }
                             <h5>Things to keep in mind</h5>
                             This lister has preferences regarding their housemates.
@@ -166,7 +180,7 @@ const Listing = (props) => {
             listing.restrictions.map((restriction) => (
                 <p>{restriction}</p>
             ))
-            : console.log("nope")
+            : null
         }
                             <h6>Property preferencse</h6>
         {
@@ -174,7 +188,7 @@ const Listing = (props) => {
             listing.preferences.map((preference) => (
                 <p>{preference}</p>
             ))
-            : console.log("nope")
+            : null
         }
                             <br/><br/>
                             <Divider/>
@@ -206,7 +220,20 @@ const Listing = (props) => {
                             <br/><br/>
                             <Divider/>
                         */}
-                            <h5>Reviews</h5>
+                            <h5>{reviews.length} Reviews</h5>
+        {
+            reviews ?
+            reviews.map((review, index) => (
+                <div>
+                <h6>{review.user.first_name} - {review.title}</h6>
+                Rated {review.rating}
+                <p>{review.content}</p>
+                <Divider/>
+                <br/>
+                </div>
+            ))
+            :null
+        }
                         </Container>
                     </Grid>
                     <Grid item xs = {4}>
