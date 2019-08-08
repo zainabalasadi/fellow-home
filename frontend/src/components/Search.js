@@ -21,27 +21,37 @@ import config from "../utils/config";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 
 function Search (props) {
     const [anchorEl4, setAnchorEl4] = React.useState(null);
     const [listings, setListings] = React.useState([]);
+    const [totalListings, setTotalListings] = React.useState(0);
     const [errors, setErrors] = React.useState('');
-    const searchString = queryString.parse(props.location.search);
+    const [page, setPage] = React.useState(1);
+    const searchString = queryString.parse(props.location.search).q;
 
     React.useEffect(() => {
         getListings();
-    }, [searchString.q]);
+    }, [searchString, page]);
+
+    const handlePageClick = (data) => {
+        const selectedPage = data.selected + 1;
+        setPage(selectedPage);
+    };
 
     const getListings = () => {
-        axios.get('http://localhost:5000/api/listings?search=' + searchString.q)
+        axios.get('http://localhost:5000/api/listings?search=' + searchString +'&page=' + page)
             .then((res) => {
                 setErrors(null);
                 setListings(res.data.data);
+                setTotalListings(res.data.total);
             })
             .catch((err) => {
                 console.log(err.response);
                 setErrors(err.response.data.error);
                 setListings([]);
+                setTotalListings(0);
             })
     };
 
@@ -125,7 +135,7 @@ function Search (props) {
     }
 
     return (
-        <div>
+        <>
             <Container maxWidth="lg" style={{position:'relative', top:'0px', padding:10}}>
                 <Button aria-describedby={filter} variant="contained" onClick={handleClick4}>
                     Filter
@@ -428,10 +438,24 @@ function Search (props) {
         <Divider/>
         {errors ? errors : null}
         
-        <Container maxWidth="lg" style={{position:'relative', top:'50px', height:'100vh'}}>
+        <Container maxWidth="lg" style={{position:'relative', top:'50px', height:'220vh'}}>
             <GridListing listings={listings}/>
+            <ReactPaginate
+              previousLabel={'previous'}
+              nextLabel={'next'}
+              breakLabel={'...'}
+              breakClassName={'break-me'}
+              pageCount={totalListings}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName={'pagination'}
+              subContainerClassName={'pages pagination'}
+              activeClassName={'active'}
+            />
         </Container>
-        </div>
+
+        </>
     );
 }
 

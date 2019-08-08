@@ -15,7 +15,7 @@ services:
             - APP_SETTINGS=project.config.DevConfig
             - DATABASE_URL=postgres://postgres:postgres@fellow-db:5432/fellow_dev
             - SECRET_KEY=top-secret
-            - PER_PAGE=10
+            - PER_PAGE=12
         depends_on:
             - fellow-db
     fellow-db:

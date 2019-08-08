@@ -47,6 +47,7 @@ export default function Footer() {
   const classes = useStyles();
 
   return (
+      <>
       <footer className={classes.footer}>
         <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={4} justify="space-evenly">
@@ -63,5 +64,6 @@ export default function Footer() {
             <Box className={classes.border} borderBottom={1}></Box>
         </Container>
       </footer>
+      </>
   );
 }

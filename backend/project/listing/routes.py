@@ -24,21 +24,36 @@ class ListingListResource(Resource):
 
         listings = []
         # search by suburbs
-        listings.extend(Listing.query.join(Address).filter(Listing.published). \
+        suburb_query = Listing.query.join(Address).filter(Listing.published). \
             filter(Address.suburb.ilike(f'%{search_string}%')). \
-            paginate(page, int(os.getenv('PER_PAGE', 10)), False).items)
+            paginate(page, int(os.getenv('PER_PAGE', 12)), False)
 
         # search by city
-        listings.extend(Listing.query.join(Address).filter(Listing.published). \
+        city_query = Listing.query.join(Address).filter(Listing.published). \
             filter(Address.city.ilike(f'%{search_string}%')). \
-            paginate(page, int(os.getenv('PER_PAGE', 10)), False).items)
+            paginate(page, int(os.getenv('PER_PAGE', 12)), False)
+
+        total = suburb_query.total + city_query.total # 1 of them should be 0
+        if suburb_query.total and city_query.total:
+            # if both of them have values only return suburb query total
+            # since some addresses have no city
+            total = suburb_query.total
+
+        if suburb_query.items:
+            listings.extend(suburb_query.items)
+        elif city_query.items:
+            listings.extend(city_query.items)
+
+        # per page
+        total = int(total / 12)
 
         if not listings:
             return {'status': 'error',
                     'error': 'No listings found'}, 400
 
         return {'status': 'success',
-                'data': ListingSchema().dump(listings, many=True).data}
+                'data': ListingSchema().dump(listings, many=True).data,
+                'total': total}
 
     @auth_required
     def post(self):

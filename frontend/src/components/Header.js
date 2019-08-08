@@ -49,7 +49,7 @@ function Header(props) {
 
     const currUser = JSON.parse(localStorage.getItem('currentUser'));
    return (
-
+        <>
       <header className="overline"><overline>
           {currUser ?
           <BrowserRouter>
@@ -109,6 +109,7 @@ function Header(props) {
               </overline>
               <Divider/>
               </header>
+       </>
    )
 }
 
