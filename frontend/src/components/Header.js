@@ -26,6 +26,9 @@ function searchMap() {
 }
 function Header(props) {
     const [menuOpen, setMenuOpen] = React.useState(null);
+    const [values, setValues] = React.useState({
+        searchString: ''
+    });
 
     function handleMenuClick(event) {
         setMenuOpen(event.currentTarget);
@@ -40,6 +43,10 @@ function Header(props) {
         }
     };
 
+    const handleChange = prop => event => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+
     const currUser = JSON.parse(localStorage.getItem('currentUser'));
    return (
 
@@ -49,7 +56,12 @@ function Header(props) {
                   <Grid direction="row" container justify="space-evenly" alignItems="center">
                       <a href="/"><img padding-top={20} height={20} src={require("../assets/images/logo.svg")}/></a>
                       <Grid item xs = {7}>
-                      <TextInput.InputText onEnter={(e)=> searchMap(e)} classNames={{fontsize:"8px"}} placeholder="Search by university, city or suburb" startAdornment={<SearchIcon/>}/>
+                      <TextInput.InputText color={props.color.dark} onKeyUp={handleSearchSubmit} 
+                        classNames={{fontsize:"8px"}} 
+                        placeholder="Search by university, city or suburb" 
+                        value={values.searchString}
+                        onChange={handleChange('searchString')}
+                        startAdornment={<SearchIcon/>}/>
                       </Grid>
                       {/*<Buttons.ButtonLink color={props.color} className="buttonText" href={'../app/listings'} message={"Add Listing"}/>*/}
                       <Buttons.ButtonLink color={props.color.primary} className="buttonText" href={'../listing1'} message={"Add Listing"}/>
@@ -80,6 +92,8 @@ function Header(props) {
                       <TextInput.InputText color={props.color.dark} onKeyUp={handleSearchSubmit} 
                         classNames={{fontsize:"8px"}} 
                         placeholder="Search by university, city or suburb" 
+                        value={values.searchString}
+                        onChange={handleChange('searchString')}
                         startAdornment={<SearchIcon/>}/>
                       </Grid>
                       <Buttons.ButtonLink color={props.color.dark} className="buttonText" href={'../About'} message={"About Fellow"}/>

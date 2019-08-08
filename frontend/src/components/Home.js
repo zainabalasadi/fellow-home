@@ -31,11 +31,18 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home(props) {
     const classes = useStyles();
+    const [values, setValues] = React.useState({
+        searchString: ''
+    });
     const [listings, setListings] = React.useState([]);
 
     React.useEffect(() => {
         getListings();
     }, []);
+
+    const handleChange = prop => event => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
 
     const getListings = () => {
         axios.get('http://localhost:5000/api/listings')
@@ -64,6 +71,8 @@ export default function Home(props) {
                                     margin="dense"
                                     fullWidth
                                     placeholder="Search by university, city or suburb"
+                                    value={values.searchString}
+                                    onChange={handleChange('searchString')}
                                     InputProps={{
                                       startAdornment: <InputAdornment position="start"></InputAdornment>,
                                     }}
@@ -94,7 +103,9 @@ export default function Home(props) {
                                     }}
                                 />
                             </div><p/>
-                            <Button variant="contained" color="primary" href={'../'}>Search</Button>
+                            <Button variant="contained" 
+                                    color="primary"
+                                    href={'../Search?q=' + values.searchString}>Search</Button>
                         </Container>
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                         <h4>Newest Listings</h4>
