@@ -1,5 +1,6 @@
 # backend/project/listing/routes.py
 
+import json
 import os
 
 from flask import Blueprint, Flask, request
@@ -8,7 +9,7 @@ from flask_restful import Api, Resource
 from marshmallow import ValidationError
 
 from project import db, guard
-from project.listing.models import Listing, Address
+from project.listing.models import Listing, Address, Room, Preference
 from project.listing.schemas import ListingSchema
 from project.review.models import Review
 from project.review.schemas import ReviewSchema
@@ -16,23 +17,64 @@ from project.review.schemas import ReviewSchema
 bp = Blueprint('listing', __name__)
 api = Api(bp)
 
+filters = {
+        'room_type': {
+            'sharedRoom': 'Room shared with others',
+            'privateRoom': 'Private room'
+            },
+        'property_type': {
+            'house': 'homestay',
+            'guesthouse': 'guest-house',
+            'apartment': 'apartment',
+            'townhouse': 'townhouse'
+            },
+        'preferences': {
+            'smoking': 'Smokers accepted',
+            'pets': 'Pets considered',
+            'children': 'Children considered',
+            'female': 'All female flat'
+            }
+}
 
 class ListingListResource(Resource):
     def get(self):
         search_string = request.args.get('search', '')
         page = request.args.get('page', 1, type=int)
+        filters_checkboxes = request.args.get('filtersCheckBoxes', '')
+        filters_values = request.args.get('filtersValues', '')
+
+        listing_filter = {'room_type': [], 'property_type': [], 'preferences': []}
+        if filters_checkboxes:
+            filters_checkboxes = json.loads(filters_checkboxes)
+            for fil, val in filters_checkboxes.items():
+                if not val:
+                    continue
+                for filter in filters:
+                    if fil in filters[filter]:
+                        listing_filter[filter].append(filters[filter][fil])
 
         listings = []
         # search by suburbs
         suburb_query = Listing.query.join(Address).filter(Listing.published). \
-            filter(Address.suburb.ilike(f'%{search_string}%')). \
-            paginate(page, int(os.getenv('PER_PAGE', 12)), False)
+            filter(Address.suburb.ilike(f'%{search_string}%'))
 
         # search by city
         city_query = Listing.query.join(Address).filter(Listing.published). \
-            filter(Address.city.ilike(f'%{search_string}%')). \
-            paginate(page, int(os.getenv('PER_PAGE', 12)), False)
+            filter(Address.city.ilike(f'%{search_string}%'))
 
+        queries = [suburb_query, city_query]
+        for idx, query in enumerate(queries):
+            if listing_filter['room_type']:
+                query = query.join(Room).filter(Room.roomType.in_(listing_filter['room_type']))
+            if listing_filter['property_type']:
+                query = query.filter(Listing.property_type.in_(listing_filter['property_type']))
+            if listing_filter['preferences']:
+                query = query.join(Preference)\
+                        .filter(Preference.preference.in_(listing_filter['preferences']))
+            query = query.paginate(page, int(os.getenv('PER_PAGE', 12)), False)
+            queries[idx] = query
+
+        suburb_query, city_query = queries
         total = suburb_query.total + city_query.total # 1 of them should be 0
         if suburb_query.total and city_query.total:
             # if both of them have values only return suburb query total
@@ -45,7 +87,7 @@ class ListingListResource(Resource):
             listings.extend(city_query.items)
 
         # per page
-        total = int(total / 12)
+        total = int(total / int(os.getenv('PER_PAGE', 12)))
 
         if not listings:
             return {'status': 'error',

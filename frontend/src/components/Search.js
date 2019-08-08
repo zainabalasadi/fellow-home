@@ -30,6 +30,8 @@ function Search (props) {
     const [errors, setErrors] = React.useState('');
     const [page, setPage] = React.useState(1);
     const searchString = queryString.parse(props.location.search).q;
+    const roomTypeQuery = queryString.parse(props.location.search).roomType;
+    const maxRentQuery = queryString.parse(props.location.search).maxRent;
 
     React.useEffect(() => {
         getListings();
@@ -41,18 +43,25 @@ function Search (props) {
     };
 
     const getListings = () => {
-        axios.get('http://localhost:5000/api/listings?search=' + searchString +'&page=' + page)
-            .then((res) => {
-                setErrors(null);
-                setListings(res.data.data);
-                setTotalListings(res.data.total);
-            })
-            .catch((err) => {
-                console.log(err.response);
-                setErrors(err.response.data.error);
-                setListings([]);
-                setTotalListings(0);
-            })
+        axios.get('http://localhost:5000/api/listings', {
+            params: {
+                search: searchString,
+                page: page,
+                filtersCheckBoxes: state,
+                filtersValues: values
+            }
+        })
+        .then((res) => {
+            setErrors(null);
+            setListings(res.data.data);
+            setTotalListings(res.data.total);
+        })
+        .catch((err) => {
+            console.log(err.response);
+            setErrors(err.response.data.error);
+            setListings([]);
+            setTotalListings(0);
+        });
     };
 
     function handleClick4(event) {
@@ -62,50 +71,55 @@ function Search (props) {
     const open4 = Boolean(anchorEl4);
 
     const filter = open4 ? 'simple-popper' : undefined;
-  const [state, setState] = React.useState({
-    small: false,
-    medium: false,
-    large: false,
-    shared: false,
-    private: false,
-    sharedBath: false,
-    privateBath: false,
-    ensuite: false,
-    house: false,
-    guesthouse: false,
-    apartment: false,
-    townhouse: false,
-    noparking: false,
-    onstreet: false,
-    offstreet: false,
-    events: false,
-    smoking: false,
-    pets: false,
-    children: false,
-    female: false,
-    male: false,
-    lgbt: false,
-    couples: false,
-    nocouples: false,
-    under30: false,
-    furnished: false,
-    wifi: false,
-  });
-      const handleChangeCheck = name => event => {
-    setState({ ...state, [name]: event.target.checked });
-  };
-
-      const [values, setValues] = React.useState({
-        bedroom: 0,
-        bathroom: 0,
+    const [state, setState] = React.useState({
+        sharedRoom: roomTypeQuery === 'shared',
+        privateRoom: roomTypeQuery === 'private',
+        house: false,
+        guesthouse: false,
+        apartment: false,
+        townhouse: false,
+        noparking: false,
+        onstreet: false,
+        offstreet: false,
+        events: false,
+        smoking: false,
+        pets: false,
+        children: false,
+        female: false,
+        male: false,
+        lgbt: false,
+        couples: false,
+        nocouples: false,
+        under30: false,
+        furnished: false,
+        wifi: false,
     });
 
-      const handleChange = name => event => {
+    const handleFilterSubmit = () => {
+        console.log(state);
+        console.log(values);
+        getListings();
+        handleClick4();
+    };
+
+    const handleChangeCheck = name => event => {
+        setState({ ...state, [name]: event.target.checked });
+    };
+
+    const [values, setValues] = React.useState({
+        bedroom: 0,
+        bathroom: 0,
+        minPrice: 0,
+        maxPrice: maxRentQuery ? maxRentQuery : 0
+    });
+
+    const handleChange = name => event => {
         setValues({ 
             ...values, 
             [name]: event.target.value,
         });
     };
+
     const handleNumChange = name => event => {
         let val=event.target.value;
         if (val>=0) {
@@ -115,6 +129,7 @@ function Search (props) {
             });
         }
     };
+
     function handlePlus(name){
         let val = document.getElementById(name).value;
 
@@ -124,6 +139,7 @@ function Search (props) {
         })
 
     };
+
     function handleMinus(name){
         let val = document.getElementById(name).value;
         if (parseInt(val)>0){
@@ -188,18 +204,18 @@ function Search (props) {
                                         Room Type
                                     </Box>
                                     <Checkbox
-                                        checked={state.shared}
-                                        onChange={handleChangeCheck('shared')}
-                                        value="shared"
+                                        checked={state.sharedRoom}
+                                        onChange={handleChangeCheck('sharedRoom')}
+                                        value="sharedRoom"
                                         inputProps={{
                                             'aria-label': 'primary checkbox',
                                         }}
                                     />
                                     Shared
                                     <Checkbox
-                                        checked={state.private}
-                                        onChange={handleChangeCheck('private')}
-                                        value="private"
+                                        checked={state.privateRoom}
+                                        onChange={handleChangeCheck('privateRoom')}
+                                        value="privateRoom"
                                         inputProps={{
                                             'aria-label': 'primary checkbox',
                                         }}
@@ -392,7 +408,7 @@ function Search (props) {
                                             value={values.amount}
                                             placeholder="From"
                                             style={{width:'80px',height:'30px'}}
-                                            onChange={handleNumChange('amount')}
+                                            onChange={handleNumChange('minPrice')}
                                             InputProps={{
                                                 startAdornment: <InputAdornment position="start">$</InputAdornment>,
                                             }}
@@ -404,7 +420,7 @@ function Search (props) {
                                             placeholder="To"
                                             style={{width:'80px', height:'30px'}}
                                             value={values.amount}
-                                            onChange={handleNumChange('amount')}
+                                            onChange={handleNumChange('maxPrice')}
                                             InputProps={{
                                                 startAdornment: <InputAdornment position="start">$</InputAdornment>,
                                             }}
@@ -427,8 +443,8 @@ function Search (props) {
                                         />
                                     </Box>
                                     <Divider/>
-                                <Button disableRipple>Cancel</Button>
-                                <Button disableRipple>Submit</Button>
+                                <Button disableRipple onClick={handleClick4}>Cancel</Button>
+                                <Button disableRipple onClick={handleFilterSubmit}>Submit</Button>
                             </Box>
                         </Paper>
                     </Fade>

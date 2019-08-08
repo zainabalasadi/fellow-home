@@ -32,7 +32,9 @@ const useStyles = makeStyles(theme => ({
 export default function Home(props) {
     const classes = useStyles();
     const [values, setValues] = React.useState({
-        searchString: ''
+        searchString: '',
+        roomType: '',
+        maxRent: 0
     });
     const [listings, setListings] = React.useState([]);
 
@@ -86,6 +88,8 @@ export default function Home(props) {
                                     margin="dense"
                                     fullWidth
                                     placeholder="'private' or 'shared'"
+                                    value={values.roomType}
+                                    onChange={handleChange('roomType')}
                                     InputProps={{
                                       startAdornment: <InputAdornment position="start"></InputAdornment>,
                                     }}
@@ -97,6 +101,8 @@ export default function Home(props) {
                                     label="MAXIMUM RENT"
                                     variant="outlined"
                                     margin="dense"
+                                    value={values.maxRent}
+                                    onChange={handleChange('maxRent')}
                                     fullWidth
                                     InputProps={{
                                       startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -105,7 +111,11 @@ export default function Home(props) {
                             </div><p/>
                             <Button variant="contained" 
                                     color="primary"
-                                    href={'../Search?q=' + values.searchString}>Search</Button>
+                                    href={'../Search?q=' + values.searchString + 
+                                            '&roomType=' + values.roomType + 
+                                            '&rent=' + values.maxRent}>
+                                Search
+                            </Button>
                         </Container>
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                         <h4>Newest Listings</h4>
