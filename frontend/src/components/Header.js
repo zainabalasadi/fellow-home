@@ -17,6 +17,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Container from "@material-ui/core/Container";
 import GridList from "@material-ui/core/GridList";
 
+import { withRouter } from 'react-router-dom';
+
 function searchMap() {
     return (
         <MapContainer />
@@ -32,6 +34,11 @@ function Header(props) {
     function handleMenuClose() {
         setMenuOpen(null);
     }
+    const handleSearchSubmit = (event) => {
+        if (event.key === 'Enter') {
+            props.history.push('/Search?q='+event.target.value);
+        }
+    };
 
     const currUser = JSON.parse(localStorage.getItem('currentUser'));
    return (
@@ -70,7 +77,10 @@ function Header(props) {
                   <Grid direction="row" container justify="space-evenly" alignItems="center">
                       <a href="/"><img padding-top={20} height={20} src={require("../assets/images/logo.svg")}/></a>
                       <Grid item xs = {6}>
-                      <TextInput.InputText color={props.color.dark} onEnter={(e)=> searchMap(e)} classNames={{fontsize:"8px"}} placeholder="Search by university, city or suburb" startAdornment={<SearchIcon/>}/>
+                      <TextInput.InputText color={props.color.dark} onKeyUp={handleSearchSubmit} 
+                        classNames={{fontsize:"8px"}} 
+                        placeholder="Search by university, city or suburb" 
+                        startAdornment={<SearchIcon/>}/>
                       </Grid>
                       <Buttons.ButtonLink color={props.color.dark} className="buttonText" href={'../About'} message={"About Fellow"}/>
                       <Buttons.ButtonLink color={props.color.dark} href={'../listing1'} message={"List your Place"}/>
@@ -88,4 +98,4 @@ function Header(props) {
    )
 }
 
-export default Header;
+export default withRouter(Header);

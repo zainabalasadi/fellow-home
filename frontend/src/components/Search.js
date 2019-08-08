@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import Container from '@material-ui/core/Container';
 import GridListing from "./GridListing";
 import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
@@ -18,9 +19,31 @@ import Select from '@material-ui/core/Select';
 import Check from "./Check";
 import config from "../utils/config";
 import InputAdornment from '@material-ui/core/InputAdornment';
+import queryString from 'query-string';
+import { withRouter } from 'react-router-dom';
 
-function Search () {
+function Search (props) {
     const [anchorEl4, setAnchorEl4] = React.useState(null);
+    const [listings, setListings] = React.useState([]);
+    const [errors, setErrors] = React.useState('');
+    const searchString = queryString.parse(props.location.search);
+
+    React.useEffect(() => {
+        getListings();
+    }, [searchString.q]);
+
+    const getListings = () => {
+        axios.get('http://localhost:5000/api/listings?search=' + searchString.q)
+            .then((res) => {
+                setErrors(null);
+                setListings(res.data.data);
+            })
+            .catch((err) => {
+                console.log(err.response);
+                setErrors(err.response.data.error);
+                setListings([]);
+            })
+    };
 
     function handleClick4(event) {
         setAnchorEl4(anchorEl4 ? null : event.currentTarget);
@@ -403,11 +426,13 @@ function Search () {
             </Popper>
         </Container>
         <Divider/>
+        {errors ? errors : null}
+        
         <Container maxWidth="lg" style={{position:'relative', top:'50px', height:'100vh'}}>
-            <GridListing/>
+            <GridListing listings={listings}/>
         </Container>
         </div>
     );
 }
 
-export default Search
+export default withRouter(Search);

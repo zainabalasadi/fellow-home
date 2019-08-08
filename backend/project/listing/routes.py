@@ -35,7 +35,7 @@ class ListingListResource(Resource):
 
         if not listings:
             return {'status': 'error',
-                    'error': 'No listings found'}, 404
+                    'error': 'No listings found'}, 400
 
         return {'status': 'success',
                 'data': ListingSchema().dump(listings, many=True).data}

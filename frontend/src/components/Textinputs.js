@@ -68,6 +68,7 @@ export function InputText(props){
             id={props.id}
             style={{width:300, height:42}}
             onChange={props.onChange}
+            onKeyUp={props.onKeyUp}
             InputProps={{
                 startAdornment: <InputAdornment position="start">{props.startAdornment}</InputAdornment>,
                 endAdornment: <InputAdornment position="start">{props.endAdornment}</InputAdornment>,
