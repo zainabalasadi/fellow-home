@@ -106,7 +106,10 @@ const Listing = (props) => {
                     <Grid item xs = {8}>
                         <Container style={{padding: 10, textAlign:'left'}}>
                             <h4>{listing.name}</h4>
-                            Location
+                            {listing.address ? 
+                                listing.address.name + ", " + listing.address.suburb + ", "  +
+                                listing.address.city + ", " + listing.address.postcode
+                            : null}
                             <br/><br/>
                             <Grid container>
                                 <Grid item xs>
@@ -138,21 +141,21 @@ const Listing = (props) => {
                             <Grid container>
                                 <Grid item xs>
                                     <img src="https://img.icons8.com/ios/50/000000/us-dollar.png" width='15' hspace='10'/>
-                                    weekly rent<br/>
+                                    ${room.cost} weekly rent<br/>
                                     <img src="https://img.icons8.com/pastel-glyph/64/000000/electricity.png" width='15' hspace='10'/>
                                     bills<br/>
                                     <img src="https://img.icons8.com/material-outlined/24/000000/calendar.png" width='15' hspace='10'/>
-                                    minimum stay<br/>
+                {room.min_stay} days minimum stay<br/>
                                     <img src="https://img.icons8.com/small/16/000000/parking.png" width='15' hspace='10'/>
                                     parking
                                 </Grid>
                                 <Grid item xs>
                                     <img src="https://img.icons8.com/ios/50/000000/bed.png" width='20' hspace='10'/>
-                                    room<br/>
+                {room.roomType}<br/>
                                     <img src="https://img.icons8.com/ios/50/000000/shower-and-tub.png" width='20' hspace='10'/>
                                     bathroom<br/>
                                     <img src="https://img.icons8.com/dotty/80/000000/armchair.png" width='20' hspace='10'/>
-                                    furnished<br/>
+                {room.furnished}<br/>
                                     <img src="https://img.icons8.com/ios/50/000000/men-age-group-4.png" width='20' hspace='10'/>
                                     anyone welcome
                                 </Grid>
@@ -240,7 +243,7 @@ const Listing = (props) => {
                             borderColor="silver" 
                             p={2}
                         >
-                            <h4>Contact</h4>
+                            <h4>Contact {listing.user ? listing.user.first_name : null}</h4>
                             <CssTextField 
                                 id="description"
                                 placeholder="Type your message..."
