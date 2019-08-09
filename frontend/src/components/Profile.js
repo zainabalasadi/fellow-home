@@ -13,7 +13,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import GridListing from "./GridListing"
+import {CssTextField} from "./Textinputs";
 
+import * as Buttons from './Button';
 
 export function EditProfileCard(props){
     return(
@@ -141,6 +143,7 @@ function Profile(props) {
 
                </div>
                <Divider style={{width: "90%"}}/>
+
            </div>
             </Grid>
         </Grid>
