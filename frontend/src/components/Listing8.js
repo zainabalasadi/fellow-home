@@ -14,11 +14,11 @@ import axios from "axios";
 
 function Listing8 (props) {
     const [errors, setErrors] = React.useState([]);
-
+    var id=''
     function handleSubmit(){
         /*create listing*/
         compileRooms()
-        axios.post('http://localhost:5000/api/auth/listing', {
+        axios.post('http://localhost:5000/api/listings/', {
             property_type: localStorage.getItem("propert_type"),
             internet: localStorage.getItem("internet"),
             parking: localStorage.getItem("parking"),
@@ -35,11 +35,8 @@ function Listing8 (props) {
 
         }).then((res) => {
             console.log(res);
-            axios.post('http://localhost:5000/api/auth/listing', {
-                rooms:localStorage.getItem("rooms"),
-            }).then((res) =>
-            {
-                console.log(res);
+            id=res.data.id;
+
                 /*clear local storage*/
                 localStorage.removeItem("propert_type");
                     localStorage.removeItem("internet");
@@ -57,7 +54,7 @@ function Listing8 (props) {
 
                     removeRoom();
 
-            });
+
         }).catch((err) => {
             setErrors(err.response.data.errors);
             console.log(err.response.data.errors);
@@ -258,7 +255,7 @@ function Listing8 (props) {
                 </FormControl>
                 <p/>
                 <BrowserRouter>
-                    <Buttons.ButtonFill color={props.color.primary} click={handleSubmit} href={'../Listing'} message={"Finish"}/>
+                    <Buttons.ButtonFill color={props.color.primary} click={handleSubmit} href={'../Listing/'+id} message={"Finish"}/>
                 </BrowserRouter>
             </Container>
         </Container>
