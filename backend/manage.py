@@ -86,7 +86,6 @@ def populate_listings():
 
             user.listings.append(new_listing)
 
-            #db.session.add(user)
     db.session.commit()
 
 def populate_reviews():
@@ -101,6 +100,7 @@ def populate_reviews():
 
             rev_from.reviews_sent.append(new_review)
             listing.reviews.append(new_review)
+            listing._update_rating()
 
     db.session.commit()
 

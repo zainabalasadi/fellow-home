@@ -266,7 +266,8 @@ const Listing = (props) => {
             }}
             />
                         <Buttons.ButtonFill click={sendReview} color={props.color.primary} message={"Submit"}/>
-                            <h5>{reviews.length} Reviews</h5>
+                            <h5>{reviews.length} Reviews </h5>
+                            <Star rating={listing.rating} readOnly="true"/>
                     </div>
             : null
         }

@@ -1,5 +1,6 @@
 # backend/project/review/models.py
 
+from datetime import datetime
 from project import db
 
 
@@ -12,6 +13,7 @@ class Review(db.Model):
     title = db.Column(db.String(128), nullable=False)
     content = db.Column(db.Text)
     rating = db.Column(db.Float)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __init__(self, title, content, rating):
         self.title = title

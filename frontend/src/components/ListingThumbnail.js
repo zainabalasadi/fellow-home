@@ -48,6 +48,7 @@ const ListingCard = (props) => {
                     <Typography variant="h6" color="textSecondary">{props.details.name}</Typography>
                     <Typography variant="body2" color="textSecondary">${props.details.rooms[0].cost}/week</Typography>
 
+                <Star rating={props.details.rating} readOnly="true"/>
                     <CardHeader style={{padding:0, margin:0, marginTop: 10}}
                         avatar={
                             <Avatar aria-label="User" 

@@ -1,5 +1,7 @@
 # backend/project/listing/models.py
 
+from sqlalchemy.sql import func
+
 from project import db
 from project.review.models import Review
 
@@ -17,6 +19,7 @@ class Listing(db.Model):
     num_bathrooms = db.Column(db.Integer)
     num_bedrooms = db.Column(db.Integer)
     landsize = db.Column(db.Float)
+    rating = db.Column(db.Float)
     published = db.Column(db.Boolean, default=False)
     address = db.relationship('Address', backref='listing', uselist=False, cascade="all, delete-orphan")
     rooms = db.relationship('Room', backref='listing', lazy=True, cascade="all, delete-orphan")
@@ -32,7 +35,7 @@ class Listing(db.Model):
     def __init__(self, name, property_type, description,
                  date_published, num_housemates, num_vacancies, num_bathrooms,
                  num_bedrooms, landsize, address, rooms, restrictions,
-                 images, preferences, published=False):
+                 images, preferences, rating=0.0, published=False):
         self.name = name
         self.property_type = property_type
         self.description = description
@@ -47,6 +50,7 @@ class Listing(db.Model):
         self.restrictions = restrictions
         self.images = images
         self.preferences = preferences
+        self.rating = rating
         self.published = published
         # self.tags = []
 
@@ -66,6 +70,10 @@ class Listing(db.Model):
 
     def add_review(self, reviewer, review):
         Review.add(self, reviewer, review)
+        self._update_rating()
+
+    def _update_rating(self):
+        self.rating = db.session.query(func.avg(Review.rating)).filter(self.id == Review.listing_id)
 
 
 class ListingImage(db.Model):
