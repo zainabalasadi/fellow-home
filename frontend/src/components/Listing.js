@@ -137,8 +137,8 @@ const Listing = (props) => {
             listing.rooms ?
             listing.rooms.map((room, index) => (
                 <div>
-                <h5>Room {index + 1}</h5>
-                            <h6>Details</h6>
+                <h5 style={{paddingTop:30}}>Room {index + 1}</h5>
+                            <h6 style={{marginTop:40, marginBottom:20}}>Details</h6>
                             <Grid container>
                                 <Grid item xs>
                                     <img src="https://img.icons8.com/ios/50/000000/us-dollar.png" width='15' hspace='10'/>
@@ -162,7 +162,7 @@ const Listing = (props) => {
                                 </Grid>
                             </Grid>
                 {
-                    room.amenities ? <h6>Amenities</h6> : null
+                    room.amenities ? <h6 style={{marginTop:40, marginBottom:20}}>Amenities</h6> : null
                 }
                 {
                     room.amenities ?
@@ -179,7 +179,7 @@ const Listing = (props) => {
         }
                             <h5>Things to keep in mind</h5>
                             This lister has preferences regarding their housemates.
-                            <h6>House rules</h6>
+                            <h6 style={{marginTop:40, marginBottom:20}}>House rules</h6>
         {
             listing.restrictions ?
             listing.restrictions.map((restriction) => (
@@ -187,7 +187,7 @@ const Listing = (props) => {
             ))
             : null
         }
-                            <h6>Property preference</h6>
+                            <h6 style={{marginTop:40, marginBottom:20}}>Property preference</h6>
         {
             listing.preferences ?
             listing.preferences.map((preference) => (
