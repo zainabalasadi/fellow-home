@@ -32,7 +32,9 @@ const Listing = (props) => {
     const classes = useStyles();
     const [values, setValues] = React.useState({
         room: '',
+        review: ''
     });
+    const currUser = localStorage.getItem('currentUser');
 
     const lid = props.match.params.id;
     const [listing, setListing] = React.useState('');
@@ -41,7 +43,7 @@ const Listing = (props) => {
     React.useEffect(() => {
         getListing();
         getReviews();
-    }, []);
+    }, [reviews]);
     
     const getListing = () => {
         axios.get('http://localhost:5000/api/listings/' + lid)
@@ -64,6 +66,24 @@ const Listing = (props) => {
                 console.log(err);
             });
     };
+
+    const sendReview = () => {
+        axios.post('http://localhost:5000/api/listings/' + lid + '/reviews', {
+            title: '',
+            content: values.review,
+            rating: 1.0
+        },{
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 {/*
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -221,22 +241,28 @@ const Listing = (props) => {
                             <div style={{position: "relative", height: "250px"}}><MapContainer listingLocation={listing.location} listingPage={true}/></div>
                             <br/><br/>
                             <Divider/>
-                            
+        {currUser ?
+                    <div>
                         <CssTextField 
-                            id="description"
+                            id="review"
                             placeholder="Write a review."
                             multiline
                             rows="4"
                             margin="normal"
                             variant="outlined"
+                            value={values.review}
                             fullWidth
                             style={{width:'60%'}}
-                            onChange={handleChange('description')}
+                            onChange={handleChange('review')}
                         />
                         <Star />
                         <p/>
-                        <Buttons.ButtonFill color={props.color.primary} message={"Submit"}/>
+                        <Buttons.ButtonFill click={sendReview} color={props.color.primary} message={"Submit"}/>
                             <h5>{reviews.length} Reviews</h5>
+                    </div>
+            : null
+        }
+
 
         {
             reviews ?
