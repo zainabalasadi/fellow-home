@@ -12,7 +12,7 @@ const StyledRating = withStyles({
    },
  })(Rating);
 
-export default function SimpleRating() {
+export default function SimpleRating(props) {
    const [value, setValue] = React.useState(Math.random()*5);
 
   return (
@@ -20,11 +20,10 @@ export default function SimpleRating() {
       <Box component="fieldset" mb={3} borderColor="transparent">
          <StyledRating
             name="simple-controlled"
-            value={value}
+            value={props.rating}
             precision={0.5}
-            onChange={(event, newValue) => {
-            setValue(newValue);
-         }}
+            readOnly={props.readOnly}
+            onChange={props.onChange}
         />
       </Box>
     </div>

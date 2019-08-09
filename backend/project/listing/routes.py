@@ -242,7 +242,7 @@ class ListingReviewsResource(Resource):
             data, _ = ReviewSchema().load(request.get_json())
             listing.add_review(user, data)
         except Exception as err:
-            print(err)
+            print(request.get_json())
             return {'status': 'error',
                     'error': 'an error occurred'}, 404
 

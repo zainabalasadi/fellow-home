@@ -32,19 +32,21 @@ const useStyles = makeStyles(theme => ({
 const Listing = (props) => {
     const classes = useStyles();
     const [values, setValues] = React.useState({
-        room: '',
-        review: ''
+        review: '',
     });
     const currUser = localStorage.getItem('currentUser');
 
     const lid = props.match.params.id;
     const [listing, setListing] = React.useState('');
     const [reviews, setReviews] = React.useState([]);
+    const [rating, setRating] = React.useState(0);
+    const [reviewSent, setReviewSent] = React.useState(false);
 
     React.useEffect(() => {
         getListing();
         getReviews();
-    }, [JSON.stringify(reviews)]);
+        setReviewSent(false);
+    }, [reviewSent]);
 
     const hasLoaded = () => {
         return !listing.images || !listing.user || !listing.rooms 
@@ -74,21 +76,24 @@ const Listing = (props) => {
     };
 
     const sendReview = () => {
+        console.log(values.review);
         axios.post('http://localhost:5000/api/listings/' + lid + '/reviews', {
             title: '',
             content: values.review,
-            rating: 1.0
-        },{
+            rating: rating
+        }, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('token')
             }
-        })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
+        }).then((res) => {
+            console.log(res);
+            setReviewSent(true);
+        }).catch((err) => {
                 console.log(err);
-            });
+        }).finally(() => {
+            setValues({review: ''});
+            setRating(0);
+        });
     }
 {/*
     const inputLabel = React.useRef(null);
@@ -220,8 +225,7 @@ const Listing = (props) => {
         }
                             <br/><br/>
                             <Divider/>
-                            <h5>About {listing.user ? listing.user.first_name
-                            :null}</h5>
+                            <h5>About {listing.user.first_name}</h5>
                             Joined in 2019<br/>
                             <Grid container>
                                 <Grid item xs>
@@ -235,8 +239,7 @@ const Listing = (props) => {
                             </Grid>
                             <br/><br/>
                             <Divider/>
-                            {listing.user ? listing.user.description
-                            :null}
+                            {listing.user.description}
                             <br/><br/>
                             <Divider/>
 
@@ -258,8 +261,10 @@ const Listing = (props) => {
                             style={{width:'60%'}}
                             onChange={handleChange('review')}
                         />
-                        <Star />
-                        <p/>
+            <Star rating={rating} onChange={(event, newRating) => {
+                setRating(newRating);
+            }}
+            />
                         <Buttons.ButtonFill click={sendReview} color={props.color.primary} message={"Submit"}/>
                             <h5>{reviews.length} Reviews</h5>
                     </div>
@@ -271,7 +276,7 @@ const Listing = (props) => {
             reviews.map((review, index) => (
                 <div>
                 <h6>{review.user.first_name} - {review.title}</h6>
-                Rated {review.rating}
+                <Star rating={review.rating} readOnly="true"/>
                 <p>{review.content}</p>
                 <Divider/>
                 <br/>
