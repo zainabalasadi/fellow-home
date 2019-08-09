@@ -129,7 +129,7 @@ class ListingListResource(Resource):
         except ValidationError as err:
             return {'status': 'error', 'errors': err.messages['_schema']}
 
-        return {'status': 'success', 'msg': f'successfully created listing {id}'}
+        return {'status': 'success', 'msg': f'successfully created listing {id}', 'id': id}
 
 
 class ListingResource(Resource):

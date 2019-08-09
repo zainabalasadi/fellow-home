@@ -120,13 +120,6 @@ export default function Home(props) {
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                         <h4>Newest Listings</h4>
                         <GridListing listings={listings}/>
-                        <ListingCTA />
-                        <SavedSearch />
-                        <Star />
-                        <Button disableRipple href={'../Profile'}>Profile</Button>
-                        <Button disableRipple href={'../Listing'}>Listing</Button>
-                        <Button disableRipple href={'../Saved'}>Saved</Button>
-                        <Button disableRipple href={'../Search'}>Search</Button>
                         {/*}
                         <div className="action-buttons">
                             <Buttons.ButtonPlus disabled={true}/>

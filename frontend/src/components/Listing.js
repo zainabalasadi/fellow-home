@@ -18,6 +18,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import tileData from './tileData';
 import MapContainer from "./MapContainer";
+import Star from './Star'
 
 const useStyles = makeStyles(theme => ({
   gridList: {
@@ -254,6 +255,7 @@ const Listing = (props) => {
                             style={{width:'60%'}}
                             onChange={handleChange('review')}
                         />
+                        <Star />
                         <p/>
                         <Buttons.ButtonFill click={sendReview} color={props.color.primary} message={"Submit"}/>
                             <h5>{reviews.length} Reviews</h5>

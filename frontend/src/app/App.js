@@ -37,6 +37,7 @@ class App extends Component {
 			isLoggedIn: config.userProfile.loggedin
 		};
 		this.onUserLogin=this.onUserLogin.bind(this);
+		this.onUserLogout=this.onUserLogout.bind(this);
 		localStorage.setItem("login", "");
 	}
 
@@ -47,9 +48,9 @@ class App extends Component {
 	}
 
 	onUserLogout(){
-		/*this.setState({user : event.target.value})*/
 		this.setState({isLoggedIn : false});
-		localStorage.setItem("login", "");
+		localStorage.clear();
+		axios.post('http://localhose:5000/api/auth/logout');
 	}
 
 	render() {
@@ -59,7 +60,7 @@ class App extends Component {
 				<ThemeProvider theme={theme}>
 				<CssBaseline />
 					<BrowserRouter>
-						<Header onLogin={this.onUserLogin} loggedin={login} user={this.state.user} color={theme.colors}/>
+						<Header onLogin={this.onUserLogin} onUserLogout={this.onUserLogout} loggedin={login} user={this.state.user} color={theme.colors}/>
 						<Switch>
 							<Route exact path="/" component={()   => <Home color={theme.colors}/>}/>
 							<Route path="/Listing1" component={() => <Listing1 color={theme.colors}/>}/>

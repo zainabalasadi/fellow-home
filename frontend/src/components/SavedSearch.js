@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import Button from '@material-ui/core/Button'
 import * as Buttons from './Button'
 import Grid from '@material-ui/core/Grid'
+import Link from '@material-ui/core/Link'
 
 const useStyles = makeStyles({
    button: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles({
       borderRadius: '4px',
    },
    headingPadding: {
-      paddingTop: '30px',
+      paddingTop: '20px',
       marginBottom: '5px',
    },
    grid: {
@@ -34,7 +35,6 @@ export default function SavedSearch() {
                </Grid>
                <Grid item xs={6} sm={3}>Continue</Grid>
          </Grid>
-            
       </div>
-  )
+   )
 }
