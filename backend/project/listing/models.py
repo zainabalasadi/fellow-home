@@ -73,7 +73,7 @@ class Listing(db.Model):
         self._update_rating()
 
     def _update_rating(self):
-        self.rating = db.session.query(func.avg(Review.rating)).filter(self.id == Review.listing_id)
+        self.rating = db.session.query(func.avg(Review.rating)).filter(self.id == Review.listing_id).all()[0]
 
 
 class ListingImage(db.Model):
