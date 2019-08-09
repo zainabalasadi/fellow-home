@@ -70,11 +70,11 @@ class ListingListResource(Resource):
         listings = []
         # search by suburbs
         suburb_query = Listing.query.join(Address).join(Room).filter(Listing.published). \
-            filter(Address.suburb.ilike(f'%{search_string}%'))
+            filter(Address.suburb.ilike(f'%{search_string}%')).distinct()
 
         # search by city
         city_query = Listing.query.join(Address).join(Room).filter(Listing.published). \
-            filter(Address.city.ilike(f'%{search_string}%'))
+            filter(Address.city.ilike(f'%{search_string}%')).distinct()
 
         queries = [suburb_query, city_query]
         for idx, query in enumerate(queries):
