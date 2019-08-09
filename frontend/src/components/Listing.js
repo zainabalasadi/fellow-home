@@ -19,6 +19,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import tileData from './tileData';
 import MapContainer from "./MapContainer";
 import Star from './Star'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   gridList: {
@@ -43,7 +44,12 @@ const Listing = (props) => {
     React.useEffect(() => {
         getListing();
         getReviews();
-    }, [reviews]);
+    }, [JSON.stringify(reviews)]);
+
+    const hasLoaded = () => {
+        return !listing.images || !listing.user || !listing.rooms 
+                || !listing.address || !listing.restrictions || !listing.preferences;
+    }
     
     const getListing = () => {
         axios.get('http://localhost:5000/api/listings/' + lid)
@@ -98,18 +104,21 @@ const Listing = (props) => {
         });
     };
 
+    {/* wait for data to be fetched before loading */}
+    if (hasLoaded()) {
+        return (<CircularProgress />);
+    }
+
     return (
         <div>
             <div style={{backgroundColor: 'whitesmoke',height:'43vh'}} maxWidth="xl">
                 <GridList className={classes.gridList} cols={2.5} cellHeight={390} >
         {
-            listing.images ? 
             listing.images.map((image) => (
                         <GridListTile key={image}>
                             <img src={image} alt={listing.title}/>
                       </GridListTile>
             ))
-            : null
         }
                 </GridList>
             </div>
@@ -127,10 +136,10 @@ const Listing = (props) => {
                     <Grid item xs = {8}>
                         <Container style={{padding: 10, textAlign:'left'}}>
                             <h4>{listing.name}</h4>
-                            {listing.address ? 
+                            { 
                                 listing.address.name + ", " + listing.address.suburb + ", "  +
                                 listing.address.city + ", " + listing.address.postcode
-                            : null}
+                            }
                             <br/><br/>
                             <Grid container>
                                 <Grid item xs>
@@ -154,7 +163,6 @@ const Listing = (props) => {
                             <br/><br/>
                             <Divider/>
         {
-            listing.rooms ?
             listing.rooms.map((room, index) => (
                 <div>
                 <h5 style={{paddingTop:30}}>Room {index + 1}</h5>
@@ -195,30 +203,25 @@ const Listing = (props) => {
                             <Divider/>
                 </div>
             ))
-            : null
         }
                             <h5>Things to keep in mind</h5>
                             This lister has preferences regarding their housemates.
                             <h6 style={{marginTop:40, marginBottom:20}}>House rules</h6>
         {
-            listing.restrictions ?
             listing.restrictions.map((restriction) => (
                 <p>{restriction}</p>
             ))
-            : null
         }
                             <h6 style={{marginTop:40, marginBottom:20}}>Property preference</h6>
         {
-            listing.preferences ?
             listing.preferences.map((preference) => (
                 <p>{preference}</p>
             ))
-            : null
         }
                             <br/><br/>
                             <Divider/>
                             <h5>About {listing.user ? listing.user.first_name
-                            :console.log("nope")}</h5>
+                            :null}</h5>
                             Joined in 2019<br/>
                             <Grid container>
                                 <Grid item xs>
@@ -233,7 +236,7 @@ const Listing = (props) => {
                             <br/><br/>
                             <Divider/>
                             {listing.user ? listing.user.description
-                            :console.log("nope")}
+                            :null}
                             <br/><br/>
                             <Divider/>
 
@@ -265,7 +268,6 @@ const Listing = (props) => {
 
 
         {
-            reviews ?
             reviews.map((review, index) => (
                 <div>
                 <h6>{review.user.first_name} - {review.title}</h6>
@@ -275,7 +277,6 @@ const Listing = (props) => {
                 <br/>
                 </div>
             ))
-            :null
         }
                         </Container>
                     </Grid>
@@ -285,12 +286,12 @@ const Listing = (props) => {
                             borderColor="silver" 
                             p={2}
                         >
-                            <h4>Contact {listing.user ? listing.user.first_name : null}
-        {
-            listing.user ?
-            listing.user.id : null
-        }
-        </h4>
+                        <h4>
+                          <Avatar alt={listing.user.first_name}
+                              src={listing.user.avatar}
+                              />
+                            Contact <a href={'../user/' + listing.user.id}>{listing.user.first_name}</a>
+                        </h4>
                             <CssTextField 
                                 id="description"
                                 placeholder="Type your message..."
