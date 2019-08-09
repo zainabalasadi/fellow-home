@@ -220,8 +220,21 @@ const Listing = (props) => {
                             <div style={{position: "relative", height: "250px"}}><MapContainer listingLocation={listing.location} listingPage={true}/></div>
                             <br/><br/>
                             <Divider/>
-
+                        <CssTextField 
+                            id="description"
+                            placeholder="Write a review."
+                            multiline
+                            rows="4"
+                            margin="normal"
+                            variant="outlined"
+                            fullWidth
+                            style={{width:'60%'}}
+                            onChange={handleChange('description')}
+                        />
+                        <p/>
+                        <Buttons.ButtonFill color={props.color.primary} message={"Submit"}/>
                             <h5>{reviews.length} Reviews</h5>
+
         {
             reviews ?
             reviews.map((review, index) => (
