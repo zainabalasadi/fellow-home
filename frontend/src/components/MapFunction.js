@@ -106,6 +106,7 @@ export default class MapFunction extends Component{
         this.searchPlace=this.searchPlace.bind(this);
         this.searchP=this.searchP.bind(this);
         this.find_closest_marker=this.find_closest_marker.bind(this);
+        this.setPlace=this.setPlace(this);
     }
 
     getUserListings() {
@@ -122,7 +123,7 @@ export default class MapFunction extends Component{
     }
 
     setPlace(listings){
-            var locations;
+            let locations=new this.google.maps.LatLng(-33.867, 151.195);
             let google=this.google;
                 var request={
                     query: listings.street+listings.suburb+listings.state+listings.postcode+listings.country,
@@ -353,8 +354,8 @@ export default class MapFunction extends Component{
         });
     }
 
-    geoMap() {
-
+    geoMap(location) {
+        this.setPlace(location)
         var sydney = new this.google.maps.LatLng(-33.867, 151.195);
         var pyrmont = new this.google.maps.LatLng(-32.8665433,147.1956316);
         var query;

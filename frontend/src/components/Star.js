@@ -13,7 +13,7 @@ const StyledRating = withStyles({
  })(Rating);
 
 export default function SimpleRating() {
-   const [value, setValue] = React.useState(2);
+   const [value, setValue] = React.useState(Math.random()*5);
 
   return (
    <div>
