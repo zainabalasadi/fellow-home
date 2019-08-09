@@ -17,7 +17,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import tileData from './tileData';
-import {MapContainer} from "./MapContainer";
+import MapContainer from "./MapContainer";
 
 const useStyles = makeStyles(theme => ({
   gridList: {
@@ -183,7 +183,7 @@ const Listing = (props) => {
             ))
             : null
         }
-                            <h6>Property preferencse</h6>
+                            <h6>Property preference</h6>
         {
             listing.preferences ?
             listing.preferences.map((preference) => (
@@ -214,11 +214,7 @@ const Listing = (props) => {
                             <Divider/>
 
                             <h5>The neighbourhood</h5>
-                            dsecription of neighbourhood
-                            <h6>Getting around</h6>
-                            description of getting around<br/>
                             <div style={{position: "relative", height: "250px"}}><MapContainer listingLocation={listing.location} listingPage={true}/></div>
-                            <h6>nearest universities/train stations</h6>
                             <br/><br/>
                             <Divider/>
 
