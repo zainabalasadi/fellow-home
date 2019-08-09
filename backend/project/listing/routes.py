@@ -43,7 +43,15 @@ class ListingListResource(Resource):
         filters_checkboxes = request.args.get('filtersCheckBoxes', '')
         filters_values = request.args.get('filtersValues', '')
 
-        listing_filter = {'room_type': [], 'property_type': [], 'preferences': []}
+        listing_filter = {
+                'room_type': [], 
+                'property_type': [], 
+                'preferences': [],
+                'min_rent': 0,
+                'max_rent': 0,
+                'num_bedrooms': 0,
+                'num_bathrooms': 0}
+
         if filters_checkboxes:
             filters_checkboxes = json.loads(filters_checkboxes)
             for fil, val in filters_checkboxes.items():
@@ -52,25 +60,40 @@ class ListingListResource(Resource):
                 for filter in filters:
                     if fil in filters[filter]:
                         listing_filter[filter].append(filters[filter][fil])
+        if filters_values:
+            filters_values = json.loads(filters_values)
+            listing_filter['min_rent'] = filters_values['minPrice']
+            listing_filter['max_rent'] = filters_values['maxPrice']
+            listing_filter['num_bedrooms'] = filters_values['bedroom']
+            listing_filter['num_bathrooms'] = filters_values['bathroom']
 
         listings = []
         # search by suburbs
-        suburb_query = Listing.query.join(Address).filter(Listing.published). \
+        suburb_query = Listing.query.join(Address).join(Room).filter(Listing.published). \
             filter(Address.suburb.ilike(f'%{search_string}%'))
 
         # search by city
-        city_query = Listing.query.join(Address).filter(Listing.published). \
+        city_query = Listing.query.join(Address).join(Room).filter(Listing.published). \
             filter(Address.city.ilike(f'%{search_string}%'))
 
         queries = [suburb_query, city_query]
         for idx, query in enumerate(queries):
             if listing_filter['room_type']:
-                query = query.join(Room).filter(Room.roomType.in_(listing_filter['room_type']))
+                query = query.filter(Room.roomType.in_(listing_filter['room_type']))
             if listing_filter['property_type']:
                 query = query.filter(Listing.property_type.in_(listing_filter['property_type']))
             if listing_filter['preferences']:
                 query = query.join(Preference)\
                         .filter(Preference.preference.in_(listing_filter['preferences']))
+            if listing_filter['num_bedrooms']:
+                query = query.filter(Listing.num_bedrooms >= listing_filter['num_bedrooms'])
+            if listing_filter['num_bathrooms']:
+                query = query.filter(Listing.num_bathrooms >= listing_filter['num_bathrooms'])
+            if listing_filter['min_rent']:
+                query = query.filter(Room.cost >= listing_filter['min_rent'])
+            if listing_filter['max_rent']:
+                query = query.filter(Room.cost <= listing_filter['max_rent'])
+
             query = query.paginate(page, int(os.getenv('PER_PAGE', 12)), False)
             queries[idx] = query
 
