@@ -220,7 +220,7 @@ class ListingReviewsResource(Resource):
             return {'status': 'error',
                     'error': 'Listing not found'}, 404
 
-        reviews = Review.query.filter(Review.listing_id == id).all()
+        reviews = Review.query.filter(Review.listing_id == id).order_by(Review.created_at.desc()).all()
 
         if not reviews:
             return {'status': 'error',

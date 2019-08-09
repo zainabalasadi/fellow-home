@@ -15,12 +15,6 @@ class Review(db.Model):
     rating = db.Column(db.Float)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def __init__(self, title, content, rating):
-        self.title = title
-        self.content = content
-        # self.image = []
-        self.rating = rating
-
     @classmethod
     def add(cls, listing, reviewer, review):
         listing.reviews.append(review)

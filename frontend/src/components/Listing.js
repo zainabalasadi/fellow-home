@@ -20,6 +20,7 @@ import tileData from './tileData';
 import MapContainer from "./MapContainer";
 import Star from './Star'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import moment from 'moment';
 
 const useStyles = makeStyles(theme => ({
   gridList: {
@@ -278,6 +279,7 @@ const Listing = (props) => {
                 <div>
                 <h6>{review.user.first_name} - {review.title}</h6>
                 <Star rating={review.rating} readOnly="true"/>
+                <p>{moment(review.created_at).format('MMM YYYY')}</p>
                 <p>{review.content}</p>
                 <Divider/>
                 <br/>

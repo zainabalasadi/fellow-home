@@ -94,9 +94,11 @@ def populate_reviews():
         for review in data:
             rev_from = User.query.get(review['from'])
             listing = Listing.query.get(review['to'])
-            new_review = Review(review['title'],
-                                review['content'],
-                                review['rating']['Overall'])
+            new_review = Review(title=review['title'],
+                                content=review['content'],
+                                rating=review['rating']['Overall'],
+                                created_at=datetime.strptime(review["date"],
+                                                                 "%B %d, %Y"))
 
             rev_from.reviews_sent.append(new_review)
             listing.reviews.append(new_review)
