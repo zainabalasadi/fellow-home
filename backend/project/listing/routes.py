@@ -127,6 +127,7 @@ class ListingListResource(Resource):
             listing, _ = ListingSchema().load(request.get_json())
             id = user.add_listing(listing)
         except ValidationError as err:
+            print(err)
             return {'status': 'error', 'errors': err.messages['_schema']}
 
         return {'status': 'success', 'msg': f'successfully created listing {id}', 'id': id}

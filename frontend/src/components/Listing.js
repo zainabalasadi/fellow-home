@@ -285,7 +285,12 @@ const Listing = (props) => {
                             borderColor="silver" 
                             p={2}
                         >
-                            <h4>Contact {listing.user ? listing.user.first_name : null}</h4>
+                            <h4>Contact {listing.user ? listing.user.first_name : null}
+        {
+            listing.user ?
+            listing.user.id : null
+        }
+        </h4>
                             <CssTextField 
                                 id="description"
                                 placeholder="Type your message..."
