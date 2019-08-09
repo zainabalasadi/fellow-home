@@ -92,7 +92,7 @@ function Register(props) {
                         <DialogContentText>
                             Please enter your details below
                         </DialogContentText>
-                        {errors ? errors.map((error, i) => (<p>{error}</p>)) : null}
+                        <p style ={{color:'red'}}>{errors ? errors.map((error, i) => (<p>{error}</p>)) : null}</p>
                         <div>
                             <CssTextField
                                 autoFocus

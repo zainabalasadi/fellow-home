@@ -85,7 +85,7 @@ function Login(props) {
                         <DialogContentText>
                             Please enter your details below
                         </DialogContentText>
-                        {errors ? errors : null}
+                        <p style ={{color:'red'}}>{errors ? errors : null}</p>
                         <div>
                             <CssTextField
                                 autoFocus
