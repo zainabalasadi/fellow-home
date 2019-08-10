@@ -72,3 +72,9 @@ who are responsible for the back-end of the app. I also began refining the listi
 we designed. I imported all components into the grid and cleaned some code to make it more consistent.
 
 # Week 10
+During this week, my main priority was to complete the front-end components of the site. I completed a basic footer to complete
+the landing page of the site. I also created a star rating system with ReactJS that users can use and read when accessing reviews.
+I further refined the listing cubes (padding, spacing and text colour) as well as a component to trigger users to list their spot.
+Additionally, I was responsible for creating a slide deck and plan for the presentation on the Friday of that week. I worked
+alongside William to fix bug issues in log out. I also assisted the team in dividing tasks for the report and created a basic report
+skeleton to follow.
