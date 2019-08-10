@@ -111,9 +111,6 @@ class ListingListResource(Resource):
         elif city_query.items:
             listings.extend(city_query.items)
 
-        # per page
-        total = int(total / int(os.getenv('PER_PAGE', 12)))
-
         if not listings:
             return {'status': 'error',
                     'error': 'No listings found'}, 400

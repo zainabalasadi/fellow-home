@@ -21,8 +21,9 @@ import config from "../utils/config";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
+import Pagination from "material-ui-flat-pagination";
 import InputBase from "@material-ui/core/InputBase";
+
 function Search (props) {
     const [anchorEl4, setAnchorEl4] = React.useState(null);
     const [listings, setListings] = React.useState([]);
@@ -35,11 +36,11 @@ function Search (props) {
 
     React.useEffect(() => {
         getListings();
+        window.scrollTo(0, 0);
     }, [searchString, page]);
 
-    const handlePageClick = (data) => {
-        const selectedPage = data.selected + 1;
-        setPage(selectedPage);
+    const handlePageClick = (e, offset) => {
+        setPage((offset / 12 ) + 1);
     };
 
     const getListings = () => {
@@ -447,21 +448,16 @@ function Search (props) {
         <Divider/>
         {errors ? errors : null}
         
-        <Container maxWidth="lg" style={{position:'relative', top:'50px', height:'220vh'}}>
+        <Container maxWidth="lg" style={{position:'relative', top:'50px', height:'235vh'}}>
             <GridListing listings={listings}/>
-            <ReactPaginate
-              previousLabel={'previous'}
-              nextLabel={'next'}
-              breakLabel={'...'}
-              breakClassName={'break-me'}
-              pageCount={totalListings}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              onPageChange={handlePageClick}
-              containerClassName={'pagination'}
-              subContainerClassName={'pages pagination'}
-              activeClassName={'active'}
-            />
+        <center>
+<Pagination
+          limit={12}
+          offset={(page-1)*12}
+          total={totalListings}
+          onClick={handlePageClick}
+        />
+        </center>
         </Container>
 
         </>
