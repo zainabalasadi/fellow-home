@@ -49,8 +49,10 @@ class App extends Component {
 
 	onUserLogout(){
 		this.setState({isLoggedIn : false});
+        axios.post('http://localhost:5000/api/auth/logout', {
+            token: localStorage.getItem('token')
+        });
 		localStorage.clear();
-		axios.post('http://localhose:5000/api/auth/logout');
 	}
 
 	render() {
