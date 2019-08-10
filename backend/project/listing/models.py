@@ -74,6 +74,7 @@ class Listing(db.Model):
 
     def _update_rating(self):
         self.rating = db.session.query(func.avg(Review.rating)).filter(self.id == Review.listing_id).all()[0]
+        db.session.commit()
 
 
 class ListingImage(db.Model):
@@ -121,7 +122,7 @@ class Address(db.Model):
 
 
 class Preference(db.Model):
-    __tablename__ = 'Feature'
+    __tablename__ = 'Preference'
 
     id = db.Column(db.Integer, primary_key=True)
     preference = db.Column(db.String(128), nullable=False)

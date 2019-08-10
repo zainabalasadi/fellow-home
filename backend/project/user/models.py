@@ -4,6 +4,11 @@ from project import db, guard
 from project.review.models import Review
 from project.listing.models import Listing
 
+saved_listings = db.Table('saved_listings',
+    db.Column('user_id', db.Integer, db.ForeignKey('User.id')),
+    db.Column('listing_id', db.Integer, db.ForeignKey('Listing.id')),
+    db.PrimaryKeyConstraint('user_id', 'listing_id')
+)
 
 class User(db.Model):
     __tablename__ = 'User'
@@ -18,9 +23,10 @@ class User(db.Model):
     dob = db.Column(db.DateTime, default=None)
     description = db.Column(db.Text, default='')
     university = db.Column(db.Text)
-    # rating = db.Column(db.Float)
     verified = db.Column(db.Boolean, nullable=False, default=False)
     listings = db.relationship('Listing', backref='user', lazy=True)
+    saved = db.relationship('Listing', secondary=saved_listings, 
+                            backref=db.backref('saved', lazy='dynamic'))
 
     reviews_sent = db.relationship('Review', backref='user', lazy=True)
 
@@ -39,7 +45,6 @@ class User(db.Model):
         self.gender = gender
         self.description = description
         self.university = university
-        # self._rating = rating
         # self._socials = []
 
     @property
@@ -71,3 +76,10 @@ class User(db.Model):
     def add_listing(self, listing):
         return Listing.add(self, listing)
 
+    def add_save_listing(self, listing):
+        self.saved.append(listing)
+        db.session.commit()
+
+    def remove_save_listing(self, listing):
+        self.saved.remove(listing)
+        db.session.commit()

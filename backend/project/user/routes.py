@@ -7,7 +7,7 @@ from flask_praetorian import auth_required, current_user
 from flask_restful import Api, Resource
 
 from project import db
-from project.user.models import User
+from project.user.models import User, saved_listings
 from project.user.schemas import UserSchema
 from project.listing.models import Listing
 from project.listing.schemas import ListingSchema
@@ -72,8 +72,51 @@ class UserListingResource(Resource):
         return {'status': 'success',
                 'data': ListingSchema().dump(listings, many=True).data}
 
+class UserSavedListingResource(Resource):
+    @auth_required
+    def get(self):
+        user = current_user()
+        listings = user.saved
+
+        if not listings:
+            return {'status': 'error',
+                    'error': 'No listings found'}, 404
+
+        return {'status': 'success',
+                'data': ListingSchema().dump(listings, many=True).data}
+
+    @auth_required
+    def post(self):
+        user = current_user()
+
+        listing = Listing.query.filter(Listing.id == request.get_json()["listing_id"]).one_or_none()
+        
+        if not listing:
+            return {'status': 'error',
+                    'error': 'Listing not found'}, 404
+
+        user.add_save_listing(listing)
+
+        return {'status': 'success',
+                'msg': f'succesfully added {listing}'}
+
+    @auth_required
+    def delete(self):
+        user = current_user()
+
+        listing = Listing.query.filter(Listing.id == request.get_json()["listing_id"]).one_or_none()
+
+        if not listing:
+            return {'status': 'error',
+                    'error': 'Listing not found'}, 404
+
+        user.remove_save_listing(listing)
+
+        return {'status': 'success',
+                'msg': f'succesfully removed {listing}'}
 
 api.add_resource(UserListResource, '/')
 api.add_resource(UserSettingsResource, '/settings')
 api.add_resource(UserResource, '/<int:id>')
 api.add_resource(UserListingResource, '/<int:id>/listings')
+api.add_resource(UserSavedListingResource, '/saved')

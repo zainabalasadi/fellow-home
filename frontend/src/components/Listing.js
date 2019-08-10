@@ -18,7 +18,8 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import tileData from './tileData';
 import MapContainer from "./MapContainer";
-import Star from './Star'
+import Star from './Star';
+import SaveButton from './SaveButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import moment from 'moment';
 
@@ -128,15 +129,11 @@ const Listing = (props) => {
         }
                 </GridList>
             </div>
+            {currUser ? 
             <div style={{textAlign:'right'}} maxWidth="xl">
-                <Box mt={5}>
-                    <FormControlLabel
-                        control={<Checkbox icon={<FavoriteBorder/>} 
-                        checkedIcon={<Favorite />} 
-                        value="checkedH" />}
-                    />
-                </Box>
+                <SaveButton listing_id={listing.id}/>
             </div>
+            : null }
             <Container style={{textAlign:'center', padding:30}} maxWidth="md">
                 <Grid container spacing={2}>
                     <Grid item xs = {8}>
