@@ -20,6 +20,8 @@ class Listing(db.Model):
     num_bedrooms = db.Column(db.Integer)
     landsize = db.Column(db.Float)
     rating = db.Column(db.Float)
+    internet = db.Column(db.Text)
+    parking = db.Column(db.Text)
     published = db.Column(db.Boolean, default=False)
     address = db.relationship('Address', backref='listing', uselist=False, cascade="all, delete-orphan")
     rooms = db.relationship('Room', backref='listing', lazy=True, cascade="all, delete-orphan")
@@ -34,7 +36,7 @@ class Listing(db.Model):
 
     def __init__(self, name, property_type, description,
                  date_published, num_housemates, num_vacancies, num_bathrooms,
-                 num_bedrooms, landsize, address, rooms, restrictions,
+                 num_bedrooms, landsize, internet, parking, address, rooms, restrictions,
                  images, preferences, rating=0.0, published=False):
         self.name = name
         self.property_type = property_type
@@ -45,6 +47,8 @@ class Listing(db.Model):
         self.num_bedrooms = num_bedrooms
         self.date_published = date_published
         self.landsize = landsize
+        self.internet = internet
+        self.parking = parking
         self.address = address
         self.rooms = rooms
         self.restrictions = restrictions
@@ -95,18 +99,27 @@ class Room(db.Model):
     furnished = db.Column(db.Text)
     availability = db.Column(db.DateTime)
     min_stay = db.Column(db.Integer)
+    bathroom = db.Column(db.Text)
+    bed_size = db.Column(db.Text)
+    bond = db.Column(db.Text)
+    bills = db.Column(db.Text)
 
     listing_id = db.Column(db.Integer, db.ForeignKey('Listing.id'), nullable=False)
 
     amenities = db.relationship('Amenity', backref='listing', lazy=True, cascade="all, delete-orphan")
 
-    def __init__(self, roomType, cost, furnished, availability, min_stay, amenities):
+    def __init__(self, roomType, cost, furnished, availability, min_stay, bathroom, bed_size, 
+                bond, bills, amenities):
         self.roomType = roomType
         self.cost = cost
         self.furnished = furnished
         self.availability = availability
         self.min_stay = min_stay
+        self.bathroom = bathroom
+        self.bed_size = bed_size
         self.amenities = amenities
+        self.bond = bond
+        self.bills = bills
 
 
 class Address(db.Model):

@@ -66,6 +66,10 @@ def populate_listings():
                                   availability=datetime.strptime(room["availability"]["code"],
                                                                  "%d-%m-%Y"),
                                   min_stay=room["minStay"] or 0,
+                                  bathroom=room["bathroom"]["value"],
+                                  bed_size=room["bed_size"],
+                                  bond=room["charges"]["deposit"]["value"],
+                                  bills=room["charges"]["bills"]["value"],
                                   amenities=amenities))
 
             new_listing = Listing(name=listing["title"],
@@ -77,6 +81,8 @@ def populate_listings():
                                   num_bathrooms=listing["bathrooms"],
                                   num_bedrooms=listing["bedrooms"],
                                   landsize=listing["landsize"],
+                                  internet=listing["internet"]["desc"],
+                                  parking=listing["parking"]["desc"],
                                   address=address,
                                   rooms=rooms,
                                   restrictions=restrictions,
