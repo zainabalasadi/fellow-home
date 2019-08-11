@@ -1,15 +1,12 @@
 /**
- * 
+ * Map component 
+ * Written by: Jason Love
  */
 import React, { Component } from 'react'
 import {Map} from 'google-maps-react'
 import '../css/Map.css'
 import axios from "axios"
 
-/**
- * 
- * @param {*} props 
- */
 export function MapCons(props) {
     /**
      * 
@@ -56,9 +53,6 @@ export function MapCons(props) {
     )
 }
 
-/**
- * 
- */
 export default class MapFunction extends Component{
 
     constructor(props,place,google,map){
@@ -79,7 +73,7 @@ export default class MapFunction extends Component{
     }
 
     /**
-     * 
+     * Get user listings from database
      */
     getUserListings() {
         axios.get('http://localhost:5000/api/listings')
@@ -95,8 +89,8 @@ export default class MapFunction extends Component{
     }
 
     /**
-     * 
-     * @param {*} listings 
+     * Set place of listing in map
+     * @param {*} listings listing in system
      */
     setPlace(listings){
             let locations=new this.google.maps.LatLng(-33.867, 151.195);
@@ -115,7 +109,7 @@ export default class MapFunction extends Component{
             };
 
     /**
-     * 
+     * Set marker of listing in map
      */
     setMark(){
         this.getUserListings();
@@ -146,16 +140,19 @@ export default class MapFunction extends Component{
         this.setState({listMarkers:Markers});
     }
 
-
+    /**
+     * Get marker of listing
+     */
     get marker(){
         return this.state.listMarkers;
     }
+
     mapsu(){
         this.map=this.google.maps.Map(document.getElementById('listMap'));
         return(<div id={'listMap'}></div>)
     }
-    listPlace(){
 
+    listPlace(){
         let google=this.google;
         let map=this.map
         var service;
@@ -228,7 +225,7 @@ export default class MapFunction extends Component{
     }
 
     /**
-     * 
+     * Find closest marker to the listing
      */
     find_closest_marker() {
         let google=this.google;
@@ -247,8 +244,8 @@ export default class MapFunction extends Component{
     }
 
     /**
-     * 
-     * @param {*} searchBar 
+     * Search by place
+     * @param {*} searchBar searchbar component
      */
     searchPlace(searchBar) {
         // Create the search box and link it to the UI element.

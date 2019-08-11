@@ -1,5 +1,6 @@
 /**
- * 
+ * Listing page component
+ * Written by: Anna Ung, Zainab Alasadi
  */
 import React from "react"
 import axios from 'axios'
@@ -14,7 +15,7 @@ import SaveButton from './SaveButton'
 import moment from 'moment'
 
 /**
- * 
+ * Styles for listing page
  */
 const useStyles = makeStyles(theme => ({
     gridList: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 /**
- * 
+ * Listing component const
  */
 const Listing = (props) => {
     const classes = useStyles();
@@ -52,7 +53,7 @@ const Listing = (props) => {
     }
     
     /**
-     * 
+     * Retrieve current listing
      */
     const getListing = () => {
         axios.get('http://localhost:5000/api/listings/' + lid)
@@ -66,7 +67,7 @@ const Listing = (props) => {
     };
 
     /**
-     * 
+     * Retrieve reviews of listing
      */
     const getReviews = () => {
         axios.get('http://localhost:5000/api/listings/' + lid + '/reviews')
@@ -80,7 +81,7 @@ const Listing = (props) => {
     };
 
     /**
-     * 
+     * Submit a review for the listing
      */
     const sendReview = () => {
         console.log(values.review);
@@ -104,7 +105,7 @@ const Listing = (props) => {
     }
 
     /**
-     * 
+     * Handle change in listing
      */
     const handleChange = name => event => {
         setValues({ 
@@ -122,13 +123,13 @@ const Listing = (props) => {
         <div>
             <div style={{backgroundColor: 'whitesmoke',height:'43vh'}} maxWidth="xl">
                 <GridList className={classes.gridList} cols={2.5} cellHeight={390} >
-        {
-            listing.images.map((image) => (
-                        <GridListTile key={image}>
-                            <img src={image} alt={listing.title}/>
-                      </GridListTile>
-            ))
-        }
+                    {
+                        listing.images.map((image) => (
+                                    <GridListTile key={image}>
+                                        <img src={image} alt={listing.title}/>
+                                </GridListTile>
+                        ))
+                    }
                 </GridList>
             </div>
             {currUser ? 
@@ -141,23 +142,23 @@ const Listing = (props) => {
                     <Grid item xs = {8}>
                         <Container style={{padding: 10, textAlign:'left'}}>
                             <h4>{listing.name}</h4>
-                            { 
-                                listing.address.name + ", " + listing.address.suburb + ", "  +
-                                listing.address.city + ", " + listing.address.postcode
-                            }
+                                { 
+                                    listing.address.name + ", " + listing.address.suburb + ", "  +
+                                    listing.address.city + ", " + listing.address.postcode
+                                }
                             <br/><br/>
                             <Grid container>
                                 <Grid item xs>
                                     <img alt="Bed" src="https://img.icons8.com/ios/50/000000/bed.png" width='20' hspace='10'/>
-        {listing.num_bedrooms} bedrooms
+                                    {listing.num_bedrooms} bedrooms
                                 </Grid>
                                 <Grid item xs>
                                     <img alt="Bathroom" src="https://img.icons8.com/ios/50/000000/shower-and-tub.png" width='20' hspace='10'/>
-        {listing.num_bathrooms} bathrooms
+                                    {listing.num_bathrooms} bathrooms
                                 </Grid>
                                 <Grid item xs>
                                     <img alt="People" src="https://img.icons8.com/ios/50/000000/men-age-group-4.png" width='20' hspace='10'/>
-        {listing.num_vacancies} vacancies
+                                    {listing.num_vacancies} vacancies
                                 </Grid>
                             </Grid>
                             <br/><br/>
@@ -167,61 +168,61 @@ const Listing = (props) => {
 
                             <br/><br/>
                             <Divider/>
-        {
-            listing.rooms.map((room, index) => (
-                <div>
-                <h5 style={{paddingTop:30}}>Room {index + 1}</h5>
-                            <h6 style={{marginTop:40, marginBottom:20}}>Details</h6>
-                            <Grid container>
-                                <Grid item xs>
-                                    <img alt="Price" src="https://img.icons8.com/ios/50/000000/us-dollar.png" width='15' hspace='10'/>
-                                    ${room.cost} weekly rent<br/>
-                                    <img alt="Electricity" src="https://img.icons8.com/pastel-glyph/64/000000/electricity.png" width='15' hspace='10'/>
-                Bills {room.bills}<br/>
-                                    <img alt="Date" src="https://img.icons8.com/material-outlined/24/000000/calendar.png" width='15' hspace='10'/>
-                {room.min_stay} days minimum stay<br/>
-                                    <img alt="Parking" src="https://img.icons8.com/small/16/000000/parking.png" width='15' hspace='10'/>
-                {listing.parking}<br/>
-                Internet {listing.internet}
-                                </Grid>
-                                <Grid item xs>
-                                    <img alt="Bed" src="https://img.icons8.com/ios/50/000000/bed.png" width='20' hspace='10'/>
-                {room.roomType}<br/>
-                                    <img alt="Bathroom" src="https://img.icons8.com/ios/50/000000/shower-and-tub.png" width='20' hspace='10'/>
-                {room.bathroom}<br/>
-                                    <img alt="Furnished" src="https://img.icons8.com/dotty/80/000000/armchair.png" width='20' hspace='10'/>
-                {room.furnished}<br/>
-                                </Grid>
-                            </Grid>
-                {
-                    room.amenities ? <h6 style={{marginTop:40, marginBottom:20}}>Amenities</h6> : null
-                }
-                {
-                    room.amenities ?
-                    room.amenities.map((amenity) => (
-                        <p>{amenity}</p>
-                    ))
-                    : null
-                }
-                            <br/><br/>
-                            <Divider/>
-                </div>
-            ))
-        }
+                        {
+                            listing.rooms.map((room, index) => (
+                                <div>
+                                <h5 style={{paddingTop:30}}>Room {index + 1}</h5>
+                                            <h6 style={{marginTop:40, marginBottom:20}}>Details</h6>
+                                            <Grid container>
+                                                <Grid item xs>
+                                                    <img alt="Price" src="https://img.icons8.com/ios/50/000000/us-dollar.png" width='15' hspace='10'/>
+                                                    ${room.cost} weekly rent<br/>
+                                                    <img alt="Electricity" src="https://img.icons8.com/pastel-glyph/64/000000/electricity.png" width='15' hspace='10'/>
+                                                    Bills {room.bills}<br/>
+                                                    <img alt="Date" src="https://img.icons8.com/material-outlined/24/000000/calendar.png" width='15' hspace='10'/>
+                                                    {room.min_stay} days minimum stay<br/>
+                                                    <img alt="Parking" src="https://img.icons8.com/small/16/000000/parking.png" width='15' hspace='10'/>
+                                                    {listing.parking}<br/>
+                                                    Internet {listing.internet}
+                                                </Grid>
+                                                <Grid item xs>
+                                                    <img alt="Bed" src="https://img.icons8.com/ios/50/000000/bed.png" width='20' hspace='10'/>
+                                                    {room.roomType}<br/>
+                                                    <img alt="Bathroom" src="https://img.icons8.com/ios/50/000000/shower-and-tub.png" width='20' hspace='10'/>
+                                                    {room.bathroom}<br/>
+                                                    <img alt="Furnished" src="https://img.icons8.com/dotty/80/000000/armchair.png" width='20' hspace='10'/>
+                                                    {room.furnished}<br/>
+                                                </Grid>
+                                            </Grid>
+                                        {
+                                            room.amenities ? <h6 style={{marginTop:40, marginBottom:20}}>Amenities</h6> : null
+                                        }
+                                        {
+                                            room.amenities ?
+                                            room.amenities.map((amenity) => (
+                                                <p>{amenity}</p>
+                                            ))
+                                            : null
+                                        }
+                                        <br/><br/>
+                                        <Divider/>
+                                </div>
+                                ))
+                            }
                             <h5>Things to keep in mind</h5>
                             This lister has preferences regarding their housemates.
                             <h6 style={{marginTop:40, marginBottom:20}}>House rules</h6>
-        {
-            listing.restrictions.map((restriction) => (
-                <p>{restriction}</p>
-            ))
-        }
+                            {
+                                listing.restrictions.map((restriction) => (
+                                    <p>{restriction}</p>
+                                ))
+                            }
                             <h6 style={{marginTop:40, marginBottom:20}}>Property preference</h6>
-        {
-            listing.preferences.map((preference) => (
-                <p>{preference}</p>
-            ))
-        }
+                            {
+                                listing.preferences.map((preference) => (
+                                    <p>{preference}</p>
+                                ))
+                            }
                             <br/><br/>
                             <Divider/>
                             <h5>About {listing.user.first_name}</h5>
@@ -260,30 +261,28 @@ const Listing = (props) => {
                             style={{width:'60%'}}
                             onChange={handleChange('review')}
                         />
-            <Star rating={rating} onChange={(event, newRating) => {
-                setRating(newRating);
-            }}
-            />
-                        <Buttons.ButtonFill click={sendReview} color={props.color.primary} message={"Submit"}/>
-                            <h5>{reviews.length} Reviews </h5>
-                            <Star rating={listing.rating} readOnly="true"/>
-                    </div>
-            : null
-        }
-
-
-        {
-            reviews.map((review, index) => (
-                <div>
-                <h6>{review.user.first_name} - {review.title}</h6>
-                <Star rating={review.rating} readOnly="true"/>
-                <p>{moment(review.created_at).format('MMM YYYY')}</p>
-                <p>{review.content}</p>
-                <Divider/>
-                <br/>
-                </div>
-            ))
-        }
+                            <Star rating={rating} onChange={(event, newRating) => {
+                                setRating(newRating);
+                            }}
+                            />
+                                        <Buttons.ButtonFill click={sendReview} color={props.color.primary} message={"Submit"}/>
+                                            <h5>{reviews.length} Reviews </h5>
+                                            <Star rating={listing.rating} readOnly="true"/>
+                                    </div>
+                            : null
+                        }
+                        {
+                            reviews.map((review, index) => (
+                                <div>
+                                <h6>{review.user.first_name} - {review.title}</h6>
+                                <Star rating={review.rating} readOnly="true"/>
+                                <p>{moment(review.created_at).format('MMM YYYY')}</p>
+                                <p>{review.content}</p>
+                                <Divider/>
+                                <br/>
+                                </div>
+                            ))
+                        }
                         </Container>
                     </Grid>
                     <Grid item xs = {4}>
@@ -292,21 +291,21 @@ const Listing = (props) => {
                             borderColor="silver" 
                             p={2}
                         >
-                        <h4>
-                          <Avatar alt={listing.user.first_name}
-                              src={listing.user.avatar}
-                              />
-                            Contact <a href={'../user/' + listing.user.id}>{listing.user.first_name}</a>
-                        </h4>
-                            <CssTextField 
-                                id="description"
-                                placeholder="Type your message..."
-                                multiline
-                                rows="4"
-                                margin="normal"
-                                variant="outlined"
-                                fullWidth
+                            <h4>
+                            <Avatar alt={listing.user.first_name}
+                                src={listing.user.avatar}
                             />
+                            Contact <a href={'../user/' + listing.user.id}>{listing.user.first_name}</a>
+                            </h4>
+                                <CssTextField 
+                                    id="description"
+                                    placeholder="Type your message..."
+                                    multiline
+                                    rows="4"
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                />
                             <Buttons.ButtonFill color={props.color.primary} message={"Send message"}/>
                         </Box>
                     </Grid>

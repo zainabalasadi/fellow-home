@@ -1,5 +1,6 @@
 /**
- * 
+ * Home page component
+ * Written by: Zainab Alasadi, Anna Ung, William Chen
  */
 import React from 'react'
 import axios from 'axios'
@@ -10,7 +11,7 @@ import GridListing from "./GridListing"
 import { makeStyles } from '@material-ui/core/styles'
 
 /**
- * 
+ * Styles for home page container
  */
 const useStyles = makeStyles(theme => ({
     container: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 /**
- * 
+ * Render home page component
  */
 export default function Home(props) {
     const classes = useStyles();
@@ -47,6 +48,9 @@ export default function Home(props) {
         setValues({ ...values, [prop]: event.target.value });
     };
 
+    /**
+     * Retrives listings from database
+     */
     const getListings = () => {
         axios.get('http://localhost:5000/api/listings')
             .then((res) => {

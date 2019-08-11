@@ -1,3 +1,7 @@
+/**
+ * Class to manage accounts with database
+ * Written by: William Chan
+ */
 import React, { Component } from 'react'
 import axios from 'axios'
 import Profile, {EditProfile, EditProfileCard, ProfileCard} from "./Profile"
@@ -7,8 +11,7 @@ import * as Buttons from './Button'
 import {theme} from './Theme'
 
 /**
- * Class to manage accounts with database
- * Written by: William Chan
+ * Account manager component class 
  */
 class AccountManager extends Component {
     constructor(props) {
@@ -62,14 +65,24 @@ class AccountManager extends Component {
             });
     }
 
+    /**
+     * Change name of user
+     * @param {*} event new user name 
+     */
     handleNameChange(event) {
         this.user.name = event.target.value;
     }
 
+    /**
+     * Handle user state change
+     * @param {*} event event generate state
+     * @param {*} newState new state to set
+     */
     handleStateChange(event,newState){
         this.user.abstract = document.getElementById("profileAbstract").value;
         this.setState({isEditMode: newState});
     }
+
     renderSaveButton(newState) {
         return(
             <ButtonStyle.Group>
@@ -81,6 +94,7 @@ class AccountManager extends Component {
             </ButtonStyle.Group>
         )
     }
+
     renderEditButton(newState){
         return(
             <Buttons.ButtonLink className="body2" color={theme.colors.primary}
@@ -100,12 +114,20 @@ class AccountManager extends Component {
         )
     }
 
+    /**
+     * Render profile in profile page
+     * @param {*} editButton button clicked to edit details
+     */
     renderProfile(editButton) {
         return (
             <Profile user={this.state.info} editProfButton={editButton} listings={this.state.listings}/>
         );
     }
 
+    /**
+     * Save details after profile edited
+     * @param {*} saveButton button clicked to confirm changes
+     */
     renderEditProfile(saveButton) {
         return (
             <EditProfile user={this.state.info} saveProfButton={saveButton} 

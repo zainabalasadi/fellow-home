@@ -1,5 +1,6 @@
 /**
- * 
+ * Button to save listings
+ * Written by: Anna Ung
  */
 import React from 'react'
 import axios from 'axios'
@@ -7,7 +8,7 @@ import {Box, FormControlLabel, Checkbox} from '@material-ui/core'
 import {Favorite, FavoriteBorder} from '@material-ui/icons'
 
 /**
- * 
+ * Method to render save button
  */
 const SaveButton = (props) => {
     const [isSaved, setIsSaved] = React.useState(false);
@@ -17,7 +18,7 @@ const SaveButton = (props) => {
     }, [isSaved]);
 
     /**
-     * 
+     * Saved listing id retrieval
      */
     const saveListing = () => {
         if (isSaved) {
@@ -45,7 +46,7 @@ const SaveButton = (props) => {
     };
 
     /**
-     * 
+     * Check if listing is saved
      */
     const checkSaved = () => {
         axios.get('http://localhost:5000/api/users/saved', {

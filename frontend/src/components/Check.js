@@ -1,12 +1,13 @@
 /**
- * 
+ * Check button component
+ * Written by: Jason Love
  */
 import React, {Component} from 'react'
 import {Checkbox, FormControlLabel} from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 
 /**
- * 
+ * Styles for check component
  */
 const useStyles = makeStyles( (props)=>({
     root: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles( (props)=>({
 }));
 
 /**
- * 
+ * Checkbox component rendering
  */
 function CustomCheckbox(props) {
     const classes = useStyles(props.colors);
@@ -46,14 +47,14 @@ function CustomCheckbox(props) {
 }
 
 /**
- * 
+ * Check box component
  */
 class Check extends Component {
-    /*checkbox*/
     componentWillMount = () => {
         this.selectedCheckboxes = new Set();
     };
 
+    /* Toggling of checkbox */
     toggleCheckbox = (label) => {
         if (this.selectedCheckboxes.has(label)) {
             this.selectedCheckboxes.delete(label);
@@ -63,6 +64,7 @@ class Check extends Component {
         this.props.checkMarked(this.selectedCheckboxes, this.props.features);
     };
 
+    /* Create checkbox given label */
     createCheckbox = (labels) => {
         return (<FormControlLabel
             label={labels}

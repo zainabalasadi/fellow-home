@@ -8,7 +8,7 @@ import {theme} from './Theme'
 
 /**
  * Filled button component
- * @param {*} props fellow theme
+ * @param {*} props button details
  */
 export function ButtonFill(props){
     let style={
@@ -26,7 +26,7 @@ export function ButtonFill(props){
 
 /**
  * Outlined button component
- * @param {*} props fellow theme
+ * @param {*} props button details
  */
 export function ButtonOutline(props){
     let style={
@@ -44,7 +44,7 @@ export function ButtonOutline(props){
 
 /**
  * Button link component
- * @param {*} props fellow theme
+ * @param {*} props button details
  */
 export function ButtonLink(props){
     let style={
@@ -61,7 +61,7 @@ export function ButtonLink(props){
 
 /**
  * Plus button component
- * @param {*} props fellow theme
+ * @param {*} props button details
  */
 export function ButtonPlus(props){
     return(
@@ -73,7 +73,7 @@ export function ButtonPlus(props){
 
 /**
  * Minus button component
- * @param {*} props fellow theme
+ * @param {*} props button details
  */
 export function ButtonMinus(props){
     return(

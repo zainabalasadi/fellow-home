@@ -1,5 +1,6 @@
 /**
- * 
+ * Review component for listings
+ * Written by: William Chan
  */
 
 import React,{Component} from "react"
@@ -7,7 +8,7 @@ import {ListItem, ListItemText, List} from "@material-ui/core"
 import Star from './Star'
 
 /**
- * 
+ * Method to render review component
  */
 export default class Review extends Component{
     constructor(props){

@@ -1,5 +1,6 @@
 /**
- * 
+ * Saved listings page 
+ * Written by: Anna Ung
  */
 import React from 'react'
 import axios from 'axios'
@@ -7,7 +8,7 @@ import Container from '@material-ui/core/Container'
 import GridListing from "./GridListing"
 
 /**
- * 
+ * Method to return saves listings page
  */
 function Saved () {
     const [listings, setListings] = React.useState([]);
@@ -17,7 +18,7 @@ function Saved () {
     }, []);
 
     /**
-     * 
+     * Get saved listings by user
      */
     const getSaved = () => {
         axios.get('http://localhost:5000/api/users/saved', {

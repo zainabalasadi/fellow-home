@@ -1,5 +1,6 @@
 /**
- * 
+ * Map container component in listing page
+ * Written by: Jason Love
  */
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper } from 'google-maps-react'
@@ -7,7 +8,7 @@ import '../css/Map.css'
 import MapFunction from './MapFunction'
 
 /**
- * 
+ * Renders map container component
  */
 export class MapContainer extends Component{
     constructor(props){
@@ -15,12 +16,16 @@ export class MapContainer extends Component{
         this.listingPage=props.listingPage;
         this.listingLocation=props.listingLocation;
     }
+
+    /**
+     * Retrieves map component
+     */
     get maps(){
         return(<Map/>)
     }
 
     /**
-     * 
+     * Search for map location
      * @param {*} mapProps 
      * @param {*} map 
      */
