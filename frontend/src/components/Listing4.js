@@ -1,5 +1,5 @@
 /**
- * 
+ * Listing bed amenities
  */
 import React from "react"
 import {Grid, Box, Container, OutlinedInput, FormControl, Select} from "@material-ui/core"
@@ -9,12 +9,13 @@ import Check from "./Check"
 import config from "../utils/config"
 
 /**
- * 
+ * @param {*} props
  */
 function Listing4 (props) {
 
     /**
-     * 
+     * makes listing info different for each room
+     * @param {*} roomNum number of the room curently listing
      */
     function RoomList(roomnum){
         const [values, setValue] = React.useState({
@@ -22,7 +23,7 @@ function Listing4 (props) {
         });
 
         /**
-         * 
+         * changes value of 'name' field
          */
         const handleChange = name => event => {
             setValue({
@@ -33,7 +34,9 @@ function Listing4 (props) {
         };
 
         /**
-         * 
+         * Stores list of all checked checkbox labels
+         * @param {*} checked set of checked values
+         * @param {*} list of all labels
          */
         function getChecked(checked,labels) {
             let feature=[]
@@ -85,13 +88,19 @@ function Listing4 (props) {
             )
     }
 
+    
+    
+    /**
+    * roomNum: total amount of rooms
+    * currRoom: what room is curently being looked at
+    */
     const [rooms, setRooms] = React.useState({
         roomNum: localStorage.getItem("roomNum"),
         currRoom:1,
     });
 
     /**
-     * 
+     * go back a room to edit
      */
     function backRoom(){
         setRooms({
@@ -101,7 +110,7 @@ function Listing4 (props) {
     }
 
     /**
-     * 
+     * go forward a room to edit
      */
     function forwardRoom(){
         setRooms({
@@ -111,7 +120,7 @@ function Listing4 (props) {
     }
 
     /**
-     * 
+     *  loop through room info when going back and forward
      */
     function manyRooms(){
         return(
@@ -122,6 +131,8 @@ function Listing4 (props) {
         )
     }
 
+
+/*Page code*/
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
