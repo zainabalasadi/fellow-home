@@ -43,3 +43,27 @@ help Zainab with some issues she was having with Postgres/Docker. Scraped fake d
 added basic functionalities for creating and getting data from the backend. Added a migration system
 for the database and migrated to using Flask-Restful to build the REST API and Marshmallow to serialize 
 the data from the frontend to the backend and vice-versa.
+
+# Week 8
+I continued working on adding major features to the backend such as searching for listings, creating new 
+listings, deleting listings, and editing existing listings. I also added a feature which made it possible
+for users to hide their listing by default until they were ready to publish it. Also added a feature
+which allowed for users to update their own settings. Had a group meeting to discuss everyone's progress 
+and I was assigned to work on some frontend features once I was done with the backend.
+
+# Week 9
+Had a group meeting to discuss everyone's progress for the week. Discussed how we were going to use the
+Google Maps API to refine searches easier and to show a user's listing on a map. Also clarified some 
+features which differed from the interface Zainab made and our original diagram/models. Implemented 
+some error messages in the backend portion. Started making most of the backend work with the frontend 
+such as logging users in and persisting that login state. Also started cleaning up the backend code so 
+that it followed PEP8. Scraped fake reviews and added some missing data to users.
+
+# Week 10
+Started finishing off the important features so that we could showcase them in the demo. Connected more 
+portions of the frontend to the backend, and rendered everything important such as users, listings, and 
+reviews. Fixed a lot of bugs and added some extra functionality such as refining the search filters, and
+sorting the listings. Added handy features to the frontend such as star ratings, pagination, and fixed
+components rendering before the actual data was fetched. Added feature to favourite listings. Had a 
+group call to discuss progress and what we would present in the demo and fixed up more bugs before the
+demo. Started working on and finishing off the final report as well.
