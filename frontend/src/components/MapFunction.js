@@ -109,7 +109,7 @@ export default class MapFunction extends Component{
             };
 
     /**
-     * Set marker of listing in map
+     * Set marker of all listings in map
      */
     setMark(){
         this.getUserListings();
@@ -141,7 +141,7 @@ export default class MapFunction extends Component{
     }
 
     /**
-     * Get marker of listing
+     * Get markers of listings
      */
     get marker(){
         return this.state.listMarkers;
@@ -152,6 +152,10 @@ export default class MapFunction extends Component{
         return(<div id={'listMap'}></div>)
     }
 
+     /**
+     * Called when making a new list
+     * Finds specific Lat/Longitude and detailed address
+     */
     listPlace(){
         let google=this.google;
         let map=this.map
@@ -165,9 +169,9 @@ export default class MapFunction extends Component{
             searchBox.setBounds(map.getBounds());
         });
         var locate;
+        var mapData;
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
-        var mapData;
         searchBox.addListener('places_changed', function() {
             var request = {
                 query:  input.value,
@@ -276,7 +280,7 @@ export default class MapFunction extends Component{
     };
 
     /**
-     * 
+     * Search nearBy places querried and mark them on map with unique icon
      * @param {*} query 
      */
     searchP(query){
@@ -332,13 +336,12 @@ export default class MapFunction extends Component{
     }
 
     /**
-     * 
+     * Finds nearby Universities and train stations of location and lists them on map 
      * @param {*} location 
      */
     geoMap(location) {
         this.setPlace(location)
         var sydney = new this.google.maps.LatLng(-33.867, 151.195);
-        var pyrmont = new this.google.maps.LatLng(-32.8665433,147.1956316);
         var query;
         query = {
             location: this.place,
