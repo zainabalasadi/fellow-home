@@ -1,5 +1,5 @@
 /**
- * 
+ * Page to list number of vaccancies and number of current housemates
  */
 import React from "react"
 import {Grid, Box, Container, InputBase} from "@material-ui/core"
@@ -46,7 +46,7 @@ function Listing2 (props) {
     };
 
     /**
-     * 
+     * Increases value by 1
      * @param {*} name 
      */
     function handlePlus(name){
@@ -59,7 +59,7 @@ function Listing2 (props) {
     }
 
     /**
-     * 
+     * decrease value by one
      */
     function handleMinus(name){
         let val = document.getElementById(name).value;
