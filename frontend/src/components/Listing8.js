@@ -1,15 +1,16 @@
+/**
+ * 
+ */
 import React from "react"
-import Container from '@material-ui/core/Container'
-import {Grid} from "@material-ui/core"
-import Box from '@material-ui/core/Box'
-import {CssTextField} from "./Textinputs"
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import * as Buttons from './Button'
-import {BrowserRouter} from 'react-router-dom'
 import axios from "axios"
+import {Container, Grid, Box, OutlinedInput, FormControl, Select} from "@material-ui/core"
+import * as Buttons from './Button'
+import {CssTextField} from "./Textinputs"
+import {BrowserRouter} from 'react-router-dom'
 
+/**
+ * 
+ */
 function Listing8 (props) {
     const [setErrors] = React.useState([]);
     var id=''
@@ -58,6 +59,10 @@ function Listing8 (props) {
             console.log(err.response.data.errors);
         });
     }
+
+    /**
+     * 
+     */
     function removeRoom(){
         for (var roomNum=1; roomNum<=localStorage.getItem("roomNum");roomNum++) {
             localStorage.removeItem("name" + roomNum);
@@ -74,6 +79,10 @@ function Listing8 (props) {
             localStorage.removeItem("roomNum");
 
     }
+
+    /**
+     * 
+     */
     function addRoom(roomNum){
         return({
             "id": 0,
@@ -132,6 +141,10 @@ function Listing8 (props) {
 
         })
     }
+
+    /**
+     * 
+     */
     function compileRooms(){
         let rom=[]
         for (var i=1; i<=localStorage.getItem("roomNum");i++){
@@ -140,12 +153,15 @@ function Listing8 (props) {
         }
         localStorage.setItem("rooms",rom);
     }
+
     const [values, setValue] = React.useState({
         preferences: localStorage.getItem("preferences")||'',
         description: localStorage.getItem("description")||'',
     });
 
-
+    /**
+     * 
+     */
     const handleChange = name => event => {
         setValue({
             ...values,
@@ -153,6 +169,7 @@ function Listing8 (props) {
         });
         localStorage.setItem(name,event.target.value)
     };
+
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">

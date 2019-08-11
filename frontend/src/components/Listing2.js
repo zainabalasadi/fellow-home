@@ -1,17 +1,26 @@
+/**
+ * 
+ */
 import React from "react"
-import Container from '@material-ui/core/Container'
-import {Grid} from "@material-ui/core"
-import Box from '@material-ui/core/Box'
+import {Grid, Box, Container, InputBase} from "@material-ui/core"
 import * as Buttons from './Button'
 import { BrowserRouter} from 'react-router-dom'
-import InputBase from "@material-ui/core/InputBase"
 
+/**
+ * 
+ */
 function Listing2 (props) {
+    /**
+     * 
+     */
     const [values, setValues] = React.useState({
         housemates: localStorage.getItem("housemates")||0,
         vacancies: localStorage.getItem("vacancies")||0,
     });
 
+    /**
+     * 
+     */
     const handleChange = name => event => {
         setValues({
             ...values,
@@ -20,6 +29,11 @@ function Listing2 (props) {
         localStorage.setItem(name,event.target.value);
 
     };
+
+    /**
+     * 
+     * @param {*} name 
+     */
     const handleNumChange = name => event => {
         let val=event.target.value;
         if (val>=0) {
@@ -30,17 +44,23 @@ function Listing2 (props) {
             localStorage.setItem(name,event.target.value);
         }
     };
+
+    /**
+     * 
+     * @param {*} name 
+     */
     function handlePlus(name){
         let val = document.getElementById(name).value;
-
         setValues({
             ...values,
             [name]: parseInt(val)+1,
         });
         localStorage.setItem(name,parseInt(val)+1);
-
-
     }
+
+    /**
+     * 
+     */
     function handleMinus(name){
         let val = document.getElementById(name).value;
         if (parseInt(val)>0){
@@ -52,6 +72,7 @@ function Listing2 (props) {
 
         }
     }
+
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">

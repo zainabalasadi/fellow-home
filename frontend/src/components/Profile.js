@@ -1,13 +1,17 @@
+/**
+ * 
+ */
 import React from 'react'
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core"
-import Typography from "@material-ui/core/Typography"
-import VerifiedUser from '@material-ui/icons/VerifiedUser'
-import RateReview from '@material-ui/icons/RateReview'
+import {CardContent, Divider, Grid, Avatar, Card, Container, Typography} from "@material-ui/core"
+import {VerifiedUser, RateReview} from '@material-ui/icons/'
 import * as TextInput from "./Textinputs"
 import {Button as ButtonStyle} from 'semantic-ui-react'
-import Container from '@material-ui/core/Container'
 import GridListing from "./GridListing"
 
+/**
+ * 
+ * @param {*} props 
+ */
 export function EditProfileCard(props){
     return(
         <Card style={{width: "70%", position:'relative', left:'240px', top:'80px'}}>
@@ -46,6 +50,11 @@ export function EditProfileCard(props){
         </Card>
     )
 }
+
+/**
+ * 
+ * @param {*} props 
+ */
 export function ProfileCard(props){
     return(
         <Card style={{width: "70%", position:'relative', left:'240px', top:'80px'}}>
@@ -78,6 +87,10 @@ export function ProfileCard(props){
     )
 }
 
+/**
+ * 
+ * @param {*} props 
+ */
 export function EditProfile(props){
     return (
         <Grid width="100%" direction="row" container justify="space-around" alignItems="center"style={{position:'relative', top:'70px', width:'700px', left:'150px'}}>
@@ -113,33 +126,28 @@ export function EditProfile(props){
     )
 }
 
+/**
+ * 
+ */
 function Profile(props) {
     return (
         <Grid width="100%" direction="row" container justify="space-around" alignItems="center"style={{position:'relative', top:'70px', width:'700px', left:'150px'}}>
             <Grid item xs>
-            <div>
-                <h3 className="textFellowDark">Hi, I'm {props.user.first_name}</h3>
-                <p className="outline textFellowDark">Joined in 2019 {props.editProfButton}</p>
-        <p>{props.user.description}</p>
-        {/*              <TextInput.Multiline className="body2 textFellowRed"
-                                    styling={{width: "90%"}}
-                                    disabledText={true}
-                                   value={props.user.description}
-               />
-               */}
-               <Divider style={{width: "90%"}}/>
-               <h5 className="textFellowDark">{props.user.first_name}'s listings</h5>
-               <div style={{width: "90%", padding:10}} className="action-cards">
-                    <GridListing listings={props.listings}/>
+                <div>
+                    <h3 className="textFellowDark">Hi, I'm {props.user.first_name}</h3>
+                    <p className="outline textFellowDark">Joined in 2019 {props.editProfButton}</p>
+                    <p>{props.user.description}</p>
+                    <Divider style={{width: "90%"}}/>
+                    <h5 className="textFellowDark">{props.user.first_name}'s listings</h5>
+                    <div style={{width: "90%", padding:10}} className="action-cards">
+                        <GridListing listings={props.listings}/>
 
-               </div>
-               <Divider style={{width: "90%"}}/>
-
-           </div>
+                    </div>
+                    <Divider style={{width: "90%"}}/>
+                </div>
             </Grid>
         </Grid>
     )
-
 }
 
 export default Profile;

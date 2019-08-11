@@ -1,24 +1,25 @@
+/**
+ * Search page component
+ * Written by: Anna Ung
+ */
+
 import React from 'react'
 import axios from 'axios'
-import Container from '@material-ui/core/Container'
+import {Container, Divider, Paper, Box} from '@material-ui/core'
 import GridListing from "./GridListing"
-import {Divider} from "@material-ui/core"
-import Button from '@material-ui/core/Button'
-import Fade from '@material-ui/core/Fade'
-import Paper from '@material-ui/core/Paper'
-import Box from '@material-ui/core/Box'
-import Popper from '@material-ui/core/Popper'
+import {Button, Fade, Popper, Checkbox, InputAdornment} from '@material-ui/core/'
 import {CssTextField} from "./Textinputs"
 import * as Buttons from './Button'
-import Checkbox from '@material-ui/core/Checkbox'
 import Check from "./Check"
 import config from "../utils/config"
-import InputAdornment from '@material-ui/core/InputAdornment'
 import queryString from 'query-string'
 import { withRouter } from 'react-router-dom'
 import Pagination from "material-ui-flat-pagination"
 import InputBase from "@material-ui/core/InputBase"
 
+/**
+ * 
+ */
 function Search (props) {
     const [anchorEl4, setAnchorEl4] = React.useState(null);
     const [listings, setListings] = React.useState([]);
@@ -60,6 +61,9 @@ function Search (props) {
         });
     };
 
+    /**
+     * 
+     */
     function handleClick4(event) {
         setAnchorEl4(anchorEl4 ? null : event.currentTarget);
     }
@@ -91,6 +95,9 @@ function Search (props) {
         wifi: false,
     });
 
+    /**
+     * 
+     */
     const handleFilterSubmit = () => {
         console.log(state);
         console.log(values);
@@ -98,10 +105,16 @@ function Search (props) {
         handleClick4();
     };
 
+    /**
+     * 
+     */
     const handleChangeCheck = name => event => {
         setState({ ...state, [name]: event.target.checked });
     };
 
+    /**
+     * 
+     */
     const [values, setValues] = React.useState({
         bedroom: 0,
         bathroom: 0,
@@ -109,6 +122,9 @@ function Search (props) {
         maxPrice: maxRentQuery ? maxRentQuery : 0
     });
 
+    /**
+     * 
+     */
     const handleChange = name => event => {
         setValues({ 
             ...values, 
@@ -116,6 +132,9 @@ function Search (props) {
         });
     };
 
+    /**
+     * 
+     */
     const handleNumChange = name => event => {
         let val=event.target.value;
         if (val>=0) {
@@ -126,6 +145,9 @@ function Search (props) {
         }
     };
 
+    /**
+     * 
+     */
     function handlePlus(name){
         let val = document.getElementById(name).value;
 
@@ -136,6 +158,9 @@ function Search (props) {
 
     };
 
+    /**
+     * 
+     */
     function handleMinus(name){
         let val = document.getElementById(name).value;
         if (parseInt(val)>0){

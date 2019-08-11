@@ -1,7 +1,14 @@
+/**
+ * 
+ */
 import Button from "@material-ui/core/Button"
 import React from "react"
 import {theme} from './Theme'
 
+/**
+ * Filled button component
+ * @param {*} props fellow theme
+ */
 export function ButtonFill(props){
     let style={
         backgroundColor: props.color,
@@ -15,6 +22,10 @@ export function ButtonFill(props){
     )
 }
 
+/**
+ * Outlined button component
+ * @param {*} props fellow theme
+ */
 export function ButtonOutline(props){
     let style={
         backgroundColor: theme.colors.white,
@@ -29,6 +40,10 @@ export function ButtonOutline(props){
     )
 }
 
+/**
+ * Button link component
+ * @param {*} props fellow theme
+ */
 export function ButtonLink(props){
     let style={
         backgroundColor: theme.colors.white,
@@ -42,6 +57,10 @@ export function ButtonLink(props){
     )
 }
 
+/**
+ * Plus button component
+ * @param {*} props fellow theme
+ */
 export function ButtonPlus(props){
     return(
         <button onClick={()=>props.click()}  disabled={props.disabled} className={props.disabled?
@@ -49,6 +68,11 @@ export function ButtonPlus(props){
             "buttonPlusMinus textFellowRed backgroundFellowWhite lineFellowRed"}>+</button>
     )
 }
+
+/**
+ * Minus button component
+ * @param {*} props fellow theme
+ */
 export function ButtonMinus(props){
     return(
         <button onClick={()=>props.click()}  disabled={props.disabled} className={props.disabled?

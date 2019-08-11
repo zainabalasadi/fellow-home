@@ -1,27 +1,32 @@
+/**
+ * 
+ */
 import React from "react"
 import axios from 'axios'
-import Container from '@material-ui/core/Container'
-import {Divider,Grid,Avatar} from "@material-ui/core"
+import {Divider, Box, Grid, Avatar, Container} from "@material-ui/core"
 import {CssTextField} from "./Textinputs"
 import * as Buttons from './Button'
-import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles'
-import GridList from '@material-ui/core/GridList'
-import GridListTile from '@material-ui/core/GridListTile'
+import {GridList, GridListTile, CircularProgress} from "@material-ui/core"
 import MapContainer from "./MapContainer"
 import Star from './Star'
 import SaveButton from './SaveButton'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import moment from 'moment'
 
+/**
+ * 
+ */
 const useStyles = makeStyles(theme => ({
-  gridList: {
-    flexWrap: 'nowrap',
-    transform: 'translateZ(0)',
-    height:'400px',
-  },
+    gridList: {
+        flexWrap: 'nowrap',
+        transform: 'translateZ(0)',
+        height:'400px',
+    },
 }));
 
+/**
+ * 
+ */
 const Listing = (props) => {
     const classes = useStyles();
     const [values, setValues] = React.useState({
@@ -46,6 +51,9 @@ const Listing = (props) => {
                 || !listing.address || !listing.restrictions || !listing.preferences;
     }
     
+    /**
+     * 
+     */
     const getListing = () => {
         axios.get('http://localhost:5000/api/listings/' + lid)
             .then((res) => {
@@ -57,6 +65,9 @@ const Listing = (props) => {
             });
     };
 
+    /**
+     * 
+     */
     const getReviews = () => {
         axios.get('http://localhost:5000/api/listings/' + lid + '/reviews')
             .then((res) => {
@@ -68,6 +79,9 @@ const Listing = (props) => {
             });
     };
 
+    /**
+     * 
+     */
     const sendReview = () => {
         console.log(values.review);
         axios.post('http://localhost:5000/api/listings/' + lid + '/reviews', {
@@ -88,6 +102,10 @@ const Listing = (props) => {
             setRating(0);
         });
     }
+
+    /**
+     * 
+     */
     const handleChange = name => event => {
         setValues({ 
             ...values, 

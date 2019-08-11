@@ -1,15 +1,17 @@
+/**
+ * 
+ */
 import React from 'react'
 import axios from 'axios'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Container from '@material-ui/core/Container'
+import {CssBaseline, Box, Container, Button, InputAdornment} from '@material-ui/core/'
 import '../app/App.css'
-import Button from '@material-ui/core/Button'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import {CssTextField} from "./Textinputs"
 import GridListing from "./GridListing"
-import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
 
+/**
+ * 
+ */
 const useStyles = makeStyles(theme => ({
     container: {
         height:'400px', 
@@ -24,6 +26,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+/**
+ * 
+ */
 export default function Home(props) {
     const classes = useStyles();
     const [values, setValues] = React.useState({
@@ -31,6 +36,7 @@ export default function Home(props) {
         roomType: '',
         maxRent: 0
     });
+
     const [listings, setListings] = React.useState([]);
 
     React.useEffect(() => {
@@ -117,5 +123,5 @@ export default function Home(props) {
                         <GridListing listings={listings}/>
                 </Container>
             </React.Fragment>
-        );
+    );
 }

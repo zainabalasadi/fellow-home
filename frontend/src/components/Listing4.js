@@ -1,95 +1,118 @@
+/**
+ * 
+ */
 import React from "react"
-import Container from '@material-ui/core/Container'
-import {Grid} from "@material-ui/core"
-import Box from '@material-ui/core/Box'
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
+import {Grid, Box, Container, OutlinedInput, FormControl, Select} from "@material-ui/core"
 import * as Buttons from './Button'
 import {BrowserRouter} from 'react-router-dom'
 import Check from "./Check"
 import config from "../utils/config"
 
+/**
+ * 
+ */
 function Listing4 (props) {
 
-function RoomList(roomnum){
-    const [values, setValue] = React.useState({
-        bedType: localStorage.getItem("bedType"+roomnum)||'',
-    });
-
-    const handleChange = name => event => {
-        setValue({
-            ...values,
-            [name]: event.target.value,
+    /**
+     * 
+     */
+    function RoomList(roomnum){
+        const [values, setValue] = React.useState({
+            bedType: localStorage.getItem("bedType"+roomnum)||'',
         });
-        localStorage.setItem(name+roomnum,event.target.value);
-    };
 
-    function getChecked(checked,labels) {
-        let feature=[]
-        labels.forEach(function (label) {
-            if (this.selectedCheckboxes.has(label)) {
-                feature.push(label)
-            }
-        })
-        localStorage.setItem('feature'+roomnum,feature.toString());
-    }
-        return(
-            <div>
-                <p className={"body1"}>{localStorage.getItem('name'+roomnum)}</p>
-                <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
-                    BED TYPE
-                </Box>
-                <FormControl
-                    variant="outlined"
-                    margin="normal"
-                    fullWidth
-                >
+        /**
+         * 
+         */
+        const handleChange = name => event => {
+            setValue({
+                ...values,
+                [name]: event.target.value,
+            });
+            localStorage.setItem(name+roomnum,event.target.value);
+        };
 
-                    <Select
-                        native
-                        value={values.bedType}
-                        style={{width:"60%"}}
-                        onChange={handleChange('bedType')}
-                        input={
-                            <OutlinedInput name="bedType" id="bedType" />
-                        }
+        /**
+         * 
+         */
+        function getChecked(checked,labels) {
+            let feature=[]
+            labels.forEach(function (label) {
+                if (this.selectedCheckboxes.has(label)) {
+                    feature.push(label)
+                }
+            })
+            localStorage.setItem('feature'+roomnum,feature.toString());
+        }
+            return(
+                <div>
+                    <p className={"body1"}>{localStorage.getItem('name'+roomnum)}</p>
+                    <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
+                        BED TYPE
+                    </Box>
+                    <FormControl
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
                     >
-                        <option value="" disabled>Select One</option>
-                        <option value={0}>Single</option>
-                        <option value={1}>Double</option>
-                        <option value={2}>Queen</option>
-                        <option value={3}>King</option>
-                        <option value={4}>Bunk</option>
-                        <option value={5}>None</option>
-                    </Select>
-                </FormControl>
-                <Box className={"subtitle"} fontWeight="fontWeightBold" mt={2}>
-                    Amenities
-                </Box>
-                <p style={{width:"60%"}} className={"overline"}>These are just the amenities housemates usually expect, but you can add even more after you publish</p>
-                <div style={{width:"60%"}}>
-                    <Check features={config.checkAmenities} checkMarked={getChecked}/>
+
+                        <Select
+                            native
+                            value={values.bedType}
+                            style={{width:"60%"}}
+                            onChange={handleChange('bedType')}
+                            input={
+                                <OutlinedInput name="bedType" id="bedType" />
+                            }
+                        >
+                            <option value="" disabled>Select One</option>
+                            <option value={0}>Single</option>
+                            <option value={1}>Double</option>
+                            <option value={2}>Queen</option>
+                            <option value={3}>King</option>
+                            <option value={4}>Bunk</option>
+                            <option value={5}>None</option>
+                        </Select>
+                    </FormControl>
+                    <Box className={"subtitle"} fontWeight="fontWeightBold" mt={2}>
+                        Amenities
+                    </Box>
+                    <p style={{width:"60%"}} className={"overline"}>These are just the amenities housemates usually expect, but you can add even more after you publish</p>
+                    <div style={{width:"60%"}}>
+                        <Check features={config.checkAmenities} checkMarked={getChecked}/>
+                    </div>
                 </div>
-            </div>
-        )
-}
+            )
+    }
+
     const [rooms, setRooms] = React.useState({
         roomNum: localStorage.getItem("roomNum"),
         currRoom:1,
     });
+
+    /**
+     * 
+     */
     function backRoom(){
         setRooms({
             ...rooms,
             currRoom: rooms.currRoom-1,
         });
     }
+
+    /**
+     * 
+     */
     function forwardRoom(){
         setRooms({
             ...rooms,
             currRoom: rooms.currRoom+1,
         });
     }
+
+    /**
+     * 
+     */
     function manyRooms(){
         return(
             <div>
@@ -98,6 +121,7 @@ function RoomList(roomnum){
             </div>
         )
     }
+
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">

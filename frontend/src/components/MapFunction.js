@@ -1,51 +1,21 @@
+/**
+ * 
+ */
 import React, { Component } from 'react'
 import {Map} from 'google-maps-react'
 import '../css/Map.css'
 import axios from "axios"
-/*function findMap() {
-    var service;
-    var infowindow;
-    var sydney = new google.maps.LatLng(-33.867, 151.195);
 
-    infowindow = new google.maps.InfoWindow();
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
-        center: {lat: 40.731, lng: -73.997}
-    });
-    map = new google.maps.Map(
-        document.getElementById('map'), {center: sydney, zoom: 15});
-
-    var request = {
-        query: document.getElementById(element),
-        fields: ['name', 'geometry'],
-    };
-
-    service = new google.maps.places.PlacesService(map);
-    var marker;
-    service.findPlaceFromQuery(request, function(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                var place=results[i];
-                marker = new google.maps.Marker({
-                    map: map,
-                    position: place.geometry.location
-                });
-
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.setContent(place.name);
-                    infowindow.open(map, this);
-                });
-            }
-
-            map.setCenter(results[0].geometry.location);
-        }
-    });
-}
+/**
+ * 
+ * @param {*} props 
  */
-
-export function MapCons(props){
-
+export function MapCons(props) {
+    /**
+     * 
+     * @param {*} mapProps 
+     * @param {*} map 
+     */
     function MapSearch(mapProps, map) {
         const {google} = mapProps;
         var sydney = new google.maps.LatLng(-33.867, 151.195);
@@ -60,33 +30,35 @@ export function MapCons(props){
         }
     }
 
+    const mapStyle = {
+        marginTop: 20,
+        width: '100%',
+        height: '100%',
+        z_index: 0,
+        inline: true
+    };
 
-
-        const mapStyle = {
-            marginTop: 20,
-            width: '100%',
-            height: '100%',
-            z_index: 0,
-            inline: true
-        };
-
-        const centre = {
-            lat: -33.9173,
-            lng: 151.2313
-        };
-        return (
-            <div>
-                <Map
-                    onReady={MapSearch}
-                    style={mapStyle}
-                    className="maps"
-                    initialCenter={centre}
-                    google={props.google}
-                    zoom={17}/>
-            </div>
-        )
-
+    const centre = {
+        lat: -33.9173,
+        lng: 151.2313
+    };
+        
+    return (
+        <div>
+            <Map
+                onReady={MapSearch}
+                style={mapStyle}
+                className="maps"
+                initialCenter={centre}
+                google={props.google}
+                zoom={17}/>
+        </div>
+    )
 }
+
+/**
+ * 
+ */
 export default class MapFunction extends Component{
 
     constructor(props,place,google,map){
@@ -106,6 +78,9 @@ export default class MapFunction extends Component{
         this.setPlace=this.setPlace(this);
     }
 
+    /**
+     * 
+     */
     getUserListings() {
         axios.get('http://localhost:5000/api/listings')
             .then((res) => {
@@ -119,6 +94,10 @@ export default class MapFunction extends Component{
             });
     }
 
+    /**
+     * 
+     * @param {*} listings 
+     */
     setPlace(listings){
             let locations=new this.google.maps.LatLng(-33.867, 151.195);
             let google=this.google;
@@ -135,7 +114,9 @@ export default class MapFunction extends Component{
 
             };
 
-
+    /**
+     * 
+     */
     setMark(){
         this.getUserListings();
         let locations=[];
@@ -164,8 +145,6 @@ export default class MapFunction extends Component{
         });
         this.setState({listMarkers:Markers});
     }
-
-
 
 
     get marker(){
@@ -233,7 +212,6 @@ export default class MapFunction extends Component{
                             }
                         }
                         mapData={
-                            /*locate: locate,*/
                             street: streetName,
                             suburb: suburb,
                             state: state,
@@ -241,18 +219,17 @@ export default class MapFunction extends Component{
                             country: country,
                         }
                     });
-
                     this.place=locate;
                 }
-
             });
-
-
         });
 
         return JSON.stringify(mapData);
     }
 
+    /**
+     * 
+     */
     find_closest_marker() {
         let google=this.google;
         this.setMark();
@@ -269,6 +246,10 @@ export default class MapFunction extends Component{
         return closeFar;
     }
 
+    /**
+     * 
+     * @param {*} searchBar 
+     */
     searchPlace(searchBar) {
         // Create the search box and link it to the UI element.
         var input = document.getElementById(searchBar);
@@ -297,8 +278,10 @@ export default class MapFunction extends Component{
         return dist;
     };
 
-
-
+    /**
+     * 
+     * @param {*} query 
+     */
     searchP(query){
         var infowindow;
         infowindow = new this.google.maps.InfoWindow();
@@ -351,6 +334,10 @@ export default class MapFunction extends Component{
         });
     }
 
+    /**
+     * 
+     * @param {*} location 
+     */
     geoMap(location) {
         this.setPlace(location)
         var sydney = new this.google.maps.LatLng(-33.867, 151.195);
@@ -371,6 +358,4 @@ export default class MapFunction extends Component{
         this.searchP(query);
 
     }
-
 }
-

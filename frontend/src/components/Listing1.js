@@ -1,22 +1,26 @@
+/**
+ * 
+ */
 import React from "react"
-import Container from '@material-ui/core/Container'
-import {Grid} from "@material-ui/core"
-import Box from '@material-ui/core/Box'
+import {Grid, Box, Container, OutlinedInput, FormControl, Select} from "@material-ui/core"
 import {CssTextField} from "./Textinputs"
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
 import * as Buttons from './Button'
 import {BrowserRouter} from 'react-router-dom'
 import {MapContainer} from "./MapContainer"
 
+/**
+ * 
+ * @param {*} props 
+ */
 function Listing1 (props) {
     const [values, setValue] = React.useState({
         accomodation: localStorage.getItem("accomodation")||'',
         address: localStorage.getItem("accomodation")||''
     });
 
-
+    /**
+     * 
+     */
     const handleChange = name => event => {
         setValue({
           ...values,
@@ -77,8 +81,7 @@ function Listing1 (props) {
                 </Box>
             </Container>
             <Container style={{position:'relative',textAlign:'left', padding:10}} maxWidth="md">
-
-                <Box >
+                <Box>
                     <h4>What kind of accomodation are you listing?</h4>
                     <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
                         ACCOMMODATION TYPE

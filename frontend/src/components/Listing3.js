@@ -1,14 +1,16 @@
+/**
+ * 
+ */
 import React from "react"
-import Container from '@material-ui/core/Container'
-import {Grid} from "@material-ui/core"
-import Box from '@material-ui/core/Box'
+import {Grid, Box, Container, OutlinedInput, FormControl, Select} from "@material-ui/core"
 import {CssTextField} from "./Textinputs"
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
 import * as Buttons from './Button'
 import {BrowserRouter} from 'react-router-dom'
 
+/**
+ * 
+ * @param {*} props 
+ */
 function Listing3 (props) {
     function RoomList(roomnum){
         const [value, setValue] = React.useState({
@@ -17,6 +19,9 @@ function Listing3 (props) {
             name: localStorage.getItem("name"+roomnum)||'',
         });
 
+        /**
+         * 
+         */
         const handleChange = name => event => {
             setValue({
                 ...value,
@@ -24,6 +29,7 @@ function Listing3 (props) {
             });
             localStorage.setItem(name+roomnum.toString(),event.target.value)
         };
+        
         return (
             <div>
                 <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
@@ -91,35 +97,50 @@ function Listing3 (props) {
         roomNum: 1,
         currRoom:1,
     });
-function addRoom() {
-    setRooms({
-        ...rooms,
-        roomNum: rooms.roomNum+1,
-        currRoom: rooms.currRoom+1,
-    });
-    localStorage.setItem("roomNum",rooms.roomNum)
-}
+
+    /**
+     * 
+     */
+    function addRoom() {
+        setRooms({
+            ...rooms,
+            roomNum: rooms.roomNum+1,
+            currRoom: rooms.currRoom+1,
+        });
+        localStorage.setItem("roomNum",rooms.roomNum)
+    }
+
+    /**
+     * 
+     */
     function backRoom(){
         setRooms({
             ...rooms,
             currRoom: rooms.currRoom-1,
         });
     }
+
+    /**
+     * 
+     */
     function forwardRoom(){
         setRooms({
             ...rooms,
             currRoom: rooms.currRoom+1,
         });
     }
-function manyRooms(){
-    return(
-        <div>
-        {RoomList(rooms.currRoom)}
-        <hr style={{height: "4px", width:"60%"}} color={props.color.secondary}/>
-        </div>
-        )
-}
 
+    /**
+     * 
+     */
+    function manyRooms(){
+        return(
+            <div>
+            {RoomList(rooms.currRoom)}
+            <hr style={{height: "4px", width:"60%"}} color={props.color.secondary}/>
+            </div>
+        )
+    }
 
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">

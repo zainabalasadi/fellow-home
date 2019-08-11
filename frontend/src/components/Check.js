@@ -1,9 +1,13 @@
+/**
+ * 
+ */
 import React, {Component} from 'react'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+import {Checkbox, FormControlLabel} from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 
-
+/**
+ * 
+ */
 const useStyles = makeStyles( (props)=>({
     root: {
         color: props.colors.light,
@@ -23,6 +27,9 @@ const useStyles = makeStyles( (props)=>({
         }},
 }));
 
+/**
+ * 
+ */
 function CustomCheckbox(props) {
     const classes = useStyles(props.colors);
 
@@ -38,6 +45,9 @@ function CustomCheckbox(props) {
     );
 }
 
+/**
+ * 
+ */
 class Check extends Component {
     /*checkbox*/
     componentWillMount = () => {
@@ -54,7 +64,6 @@ class Check extends Component {
     };
 
     createCheckbox = (labels) => {
-
         return (<FormControlLabel
             label={labels}
             control={

@@ -1,48 +1,61 @@
+/**
+ * 
+ */
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
+import {Typography, Box, Container, Grid} from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
 
+/**
+ * 
+ */
 function MadeWithLove() {
-  return (
-    <Typography variant="subtitle">
-      {'Built with love by Team Home.'}
-    </Typography>
-  );
+  	return (
+      <Typography variant="subtitle">
+      	{'Built with love by Team Home.'}
+    	</Typography>
+  	);
 }
 
+/**
+ * 
+ */
 const useStyles = makeStyles(theme => ({
-  root: {
+  	root: {
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100vh',
-  },
-  footer: {
+  	},
+  
+  	footer: {
       padding: theme.spacing(2),
       marginTop: 'auto',
       backgroundColor: '#484848',
       color: "white",
-  },
+  	},
 
-  container: {
+  	container: {
       paddingTop: '50px',
       paddingBottom: '50px',
    },
-   logo: {
+	
+	logo: {
       width: '120px',
    },
-   caption: {
+	
+	caption: {
       fontWeight: 'bold',
       fontSize: '15px',
       paddingBottom: '30px',
    },
-   border: {
+	
+	border: {
       marginTop: '30px',
    }
 }));
 
+/**
+ * 
+ */
 export default function Footer() {
   const classes = useStyles();
 

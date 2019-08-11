@@ -1,12 +1,17 @@
+/**
+ * 
+ */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
+import {Container, Grid} from '@material-ui/core/Container'
 import Image from '../assets/images/list_cube.jpg'
 import * as Buttons from './Button'
 
+/**
+ * 
+ */
 const useStyles = makeStyles(theme => ({
-  container: {
+   container: {
       paddingTop: '50px',
       paddingBottom: '50px',
       borderRadius: '10px',
@@ -15,15 +20,21 @@ const useStyles = makeStyles(theme => ({
       backgroundSize: 'cover',
       color: '#484848',
    },
+
    padding: {
       paddingBottom: '100px',
    },
+
    button: {
       background: '#FF5240',
       height: '40px',
    }
 }));
 
+/**
+ * 
+ * @param {*} props 
+ */
 export default function ListingCTA(props) {
    const classes = useStyles();
 

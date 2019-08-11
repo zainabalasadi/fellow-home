@@ -6,6 +6,10 @@ import {Button as ButtonStyle} from "semantic-ui-react"
 import * as Buttons from './Button'
 import {theme} from './Theme'
 
+/**
+ * Class to manage accounts with database
+ * Written by: William Chan
+ */
 class AccountManager extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +22,6 @@ class AccountManager extends Component {
             info: {},
             listings: []
         };
-
         this.handleNameChange = this.handleNameChange.bind(this);
     }
 
@@ -27,6 +30,9 @@ class AccountManager extends Component {
         this.getUserListings();
     }
 
+    /**
+     * Retrieves user information to place on interface
+     */
     getUserInfo() {
         axios.get('http://localhost:5000/api/users/' + this.uid)
             .then((res) => {
@@ -40,6 +46,9 @@ class AccountManager extends Component {
             });
     }
 
+    /**
+     * Retrives listings by user
+     */
     getUserListings() {
         axios.get('http://localhost:5000/api/users/' + this.uid + '/listings')
             .then((res) => {

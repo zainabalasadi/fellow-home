@@ -1,23 +1,25 @@
+/**
+ * 
+ */
+
 import React,{Component} from "react"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemText from "@material-ui/core/ListItemText"
-import List from "@material-ui/core/List"
+import {ListItem, ListItemText, List} from "@material-ui/core"
 import Star from './Star'
 
+/**
+ * 
+ */
 export default class Review extends Component{
     constructor(props){
         super(props)
         this.reviewList=props.reviewList;
     }
 
-
     render() {
-
         return (
             <List style={{width: "90%"}} className="action-lists">
                 {this.reviewList.forEach(function (review) {
                     /*(({ id, primary, secondary, person }) => (*/
-
                     return (
                         <React.Fragment key={review.date}>
                             <ListItem button>
@@ -30,5 +32,4 @@ export default class Review extends Component{
             </List>
         );
     }
-
 }

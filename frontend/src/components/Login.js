@@ -1,37 +1,46 @@
+/**
+ * 
+ */
 import React from 'react'
 import axios from 'axios'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from "@material-ui/core/DialogContent"
-import DialogContentText from "@material-ui/core/DialogContentText"
-import DialogTitle from '@material-ui/core/DialogTitle'
-import IconButton from '@material-ui/core/IconButton'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import Visibility from '@material-ui/icons/Visibility'
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core/'
+import {IconButton, InputAdornment, Checkbox, FormControlLabel} from '@material-ui/core/'
+import {Visibility, VisibilityOff} from '@material-ui/icons/'
 import * as Buttons from './Button'
 import {CssTextField} from "./Textinputs"
 import {theme} from "./Theme"
 
+/**
+ * 
+ */
 function Login(props) {
-
     const [open, setOpen] = React.useState(false);
     const [errors, setErrors] = React.useState('');
 
+    /**
+     * 
+     */
     function handleClickOpen() {
         setOpen(true);
     }
 
+    /**
+     * 
+     */
     function handleClose() {
         setOpen(false);
     }
 
+    /**
+     * 
+     */
     function handleRegister() {
         handleClose();
     }
 
+    /**
+     * 
+     */
     function handleLogin(){
         axios.post('http://localhost:5000/api/auth/login', {
             email: values.email,
@@ -52,20 +61,33 @@ function Login(props) {
         });
     }
 
+    /**
+     * 
+     */
     const [values, setValues] = React.useState({
         email: '',
         password: '',
         showPassword: false,
     });
 
+    /**
+     * 
+     */
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
+    /**
+     * 
+     */
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
 
+    /**
+     * 
+     * @param {*} event 
+     */
     const handleMouseDownPassword = event => {
         event.preventDefault();
     };

@@ -1,34 +1,46 @@
+/**
+ * 
+ */
 import React from "react"
-import Container from '@material-ui/core/Container'
-import {Grid} from "@material-ui/core"
-import Box from '@material-ui/core/Box'
+import {Grid, Box, Container, OutlinedInput, FormControl, Select, Radio} from "@material-ui/core"
 import {CssTextField} from "./Textinputs"
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
 import * as Buttons from './Button'
 import {BrowserRouter} from 'react-router-dom'
-import Radio from "@material-ui/core/Radio"
 
+/**
+ * 
+ */
 function Listing6 (props) {
-
     const [rooms, setRooms] = React.useState({
         roomNum: localStorage.getItem("roomNum"),
         currRoom:1,
     });
+
     const [manyOrOne, setManyOrOne] = React.useState("")
+    
+    /**
+     * 
+     */
     function backRoom(){
         setRooms({
             ...rooms,
             currRoom: rooms.currRoom-1,
         });
     }
+
+    /**
+     * 
+     */
     function forwardRoom(){
         setRooms({
             ...rooms,
             currRoom: rooms.currRoom+1,
         });
     }
+
+    /**
+     * 
+     */
     function manyRooms(){
         return(
             <div>
@@ -37,17 +49,30 @@ function Listing6 (props) {
             </div>
         )
     }
+
+    /**
+     * 
+     */
     function handleBills(event){
         setManyOrOne(event.target.value)
 
     }
-    function RoomList(roomnum,oneOrMany){
+
+    /**
+     * 
+     * @param {*} roomnum 
+     * @param {*} oneOrMany 
+     */
+    function RoomList(roomnum,oneOrMany) {
     const [values, setValue] = React.useState({
         minStay: localStorage.getItem("minStay"+roomnum)||'',
         date: localStorage.getItem("date"+roomnum)||'',
     });
 
-
+    /**
+     * 
+     * @param {*} name 
+     */
     const handleChange = name => event => {
         setValue({
             ...values,
@@ -62,51 +87,52 @@ function Listing6 (props) {
             localStorage.setItem(name+roomnum,event.target.value);
         }
     };
-return(
-    <div>
-        <p className={"body1"}>{localStorage.getItem('name'+roomnum)}</p>
-        <Box className={"overline"} fontWeight="fontWeightBold" mt={3} mb={1}>
-            DATE AVAILABLE FROM
-        </Box>
-        <CssTextField
-            id="date"
-            type="date"
-            placeholder="YYYY-MM-DD"
-            style={{width:'95px'}}
-            onChange={handleChange('date')}
-            InputLabelProps={{
-                shrink: true,
-            }}
-        />
-        <Box className={"overline"} fontWeight="fontWeightBold" mt={3} mb={0}>
-            MINIMUM LENGTH OF STAY
-        </Box>
-        <FormControl
-            variant="outlined"
-            margin="normal"
-            fullWidth
-        >
-            <Select
-                native
-                value={values.minStay}
 
-                onChange={handleChange('minStay')}
-                input={
-                    <OutlinedInput name="minStay" id="minStay" />
-                }
-            >
-                <option value="" disabled>Select One</option>
-                <option value={0}>1 Month</option>
-                <option value={1}>2 Months</option>
-                <option value={2}>3 Months</option>
-                <option value={3}>4 Months</option>
-                <option value={4}>5 Months</option>
-                <option value={5}>6 Months</option>
-                <option value={6}>1 Year</option>
-            </Select>
-        </FormControl>
-    </div>
-)
+        return (
+            <div>
+                <p className={"body1"}>{localStorage.getItem('name'+roomnum)}</p>
+                <Box className={"overline"} fontWeight="fontWeightBold" mt={3} mb={1}>
+                    DATE AVAILABLE FROM
+                </Box>
+                <CssTextField
+                    id="date"
+                    type="date"
+                    placeholder="YYYY-MM-DD"
+                    style={{width:'95px'}}
+                    onChange={handleChange('date')}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <Box className={"overline"} fontWeight="fontWeightBold" mt={3} mb={0}>
+                    MINIMUM LENGTH OF STAY
+                </Box>
+                <FormControl
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                >
+                    <Select
+                        native
+                        value={values.minStay}
+
+                        onChange={handleChange('minStay')}
+                        input={
+                            <OutlinedInput name="minStay" id="minStay" />
+                        }
+                    >
+                        <option value="" disabled>Select One</option>
+                        <option value={0}>1 Month</option>
+                        <option value={1}>2 Months</option>
+                        <option value={2}>3 Months</option>
+                        <option value={3}>4 Months</option>
+                        <option value={4}>5 Months</option>
+                        <option value={5}>6 Months</option>
+                        <option value={6}>1 Year</option>
+                    </Select>
+                </FormControl>
+            </div>
+        )
     }
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">

@@ -1,12 +1,14 @@
+/**
+ * 
+ */
 import React from "react"
-import Container from '@material-ui/core/Container'
-import {Grid} from "@material-ui/core"
-import Box from '@material-ui/core/Box'
+import {Grid, Box, Container, GridList, GridListTile} from "@material-ui/core"
 import * as Buttons from './Button'
 import {BrowserRouter} from 'react-router-dom'
-import GridList from "@material-ui/core/GridList"
-import GridListTile from "@material-ui/core/GridListTile"
 
+/**
+ * 
+ */
 class Listing7 extends React.Component{
     constructor(props){
         super(props)
@@ -37,6 +39,7 @@ class Listing7 extends React.Component{
         }
         return imagePack;
     }
+    
     render(){
         return (
             <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">

@@ -1,35 +1,48 @@
+/**
+ * 
+ */
 import React from "react"
-import Container from '@material-ui/core/Container'
-import {Grid} from "@material-ui/core"
-import Box from '@material-ui/core/Box'
+import {Grid, Box, Container, OutlinedInput, FormControl, InputAdornment, Radio} from "@material-ui/core"
 import {CssTextField} from "./Textinputs"
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import * as Buttons from './Button'
 import {BrowserRouter} from 'react-router-dom'
-import Radio from "@material-ui/core/Radio"
 
+/**
+ * 
+ */
 function Listing5 (props) {
 
     const [rooms, setRooms] = React.useState({
         roomNum: localStorage.getItem("roomNum"),
         currRoom:1,
     });
+
     const [manyOrOne, setManyOrOne] = React.useState("")
+
+    /**
+     * 
+     */
     function backRoom(){
         setRooms({
             ...rooms,
             currRoom: rooms.currRoom-1,
         });
     }
+
+    /**
+     * 
+     */
     function forwardRoom(){
         setRooms({
             ...rooms,
             currRoom: rooms.currRoom+1,
         });
     }
+
+    /**
+     * 
+     */
     function manyRooms(){
         return(
             <div>
@@ -38,10 +51,18 @@ function Listing5 (props) {
             </div>
         )
     }
+
+    /**
+     * 
+     */
     function handleBills(event){
         setManyOrOne(event.target.value)
 
     }
+
+    /**
+     * 
+     */
     function RoomList(roomnum,oneOrMany){
         const [values, setValue] = React.useState({
             amount: localStorage.getItem("amount"+roomnum)||0,
@@ -49,8 +70,10 @@ function Listing5 (props) {
             bills: localStorage.getItem("bills"+roomnum)||'',
         });
 
-
-
+        /**
+         * 
+         * @param {*} name 
+         */
         const handleChange = name => event => {
             setValue({
                 ...values,
@@ -65,6 +88,10 @@ function Listing5 (props) {
                 localStorage.setItem(name+roomnum,event.target.value);
             }
         };
+
+        /**
+         * 
+         */
         const handleNumChange = name => event => {
             let val=event.target.value;
             if (val>=0) {
@@ -82,11 +109,12 @@ function Listing5 (props) {
                 }
             }
         };
+
         return(
             <div>
                 {oneOrMany===false
                 ?<p className={"body1"}>{localStorage.getItem('name'+roomnum)}</p>
-            :null}
+                :null}
                 <Grid container spacing = {4}>
                     <Grid item xs = {6}>
                         <Box className={"overline"} fontWeight="fontWeightBold" mt={3} mb={2}>

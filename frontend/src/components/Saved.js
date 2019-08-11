@@ -1,8 +1,14 @@
+/**
+ * 
+ */
 import React from 'react'
 import axios from 'axios'
 import Container from '@material-ui/core/Container'
 import GridListing from "./GridListing"
 
+/**
+ * 
+ */
 function Saved () {
     const [listings, setListings] = React.useState([]);
 
@@ -10,6 +16,9 @@ function Saved () {
         getSaved();
     }, []);
 
+    /**
+     * 
+     */
     const getSaved = () => {
         axios.get('http://localhost:5000/api/users/saved', {
             headers: {

@@ -1,11 +1,14 @@
+/**
+ * 
+ */
 import React from 'react'
 import axios from 'axios'
-import Box from '@material-ui/core/Box'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
-import Favorite from '@material-ui/icons/Favorite'
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
+import {Box, FormControlLabel, Checkbox} from '@material-ui/core'
+import {Favorite, FavoriteBorder} from '@material-ui/icons'
 
+/**
+ * 
+ */
 const SaveButton = (props) => {
     const [isSaved, setIsSaved] = React.useState(false);
 
@@ -13,6 +16,9 @@ const SaveButton = (props) => {
         checkSaved();
     }, [isSaved]);
 
+    /**
+     * 
+     */
     const saveListing = () => {
         if (isSaved) {
             axios.delete('http://localhost:5000/api/users/saved', {
@@ -38,6 +44,9 @@ const SaveButton = (props) => {
         }
     };
 
+    /**
+     * 
+     */
     const checkSaved = () => {
         axios.get('http://localhost:5000/api/users/saved', {
             headers: {

@@ -1,47 +1,62 @@
+/**
+ * 
+ */
 import React from 'react'
-import Avatar from '@material-ui/core/Avatar'
-import Grid from '@material-ui/core/Grid'
+import {Avatar, Grid, Divider, Button, Menu} from '@material-ui/core/Avatar'
 import * as TextInput from "./Textinputs"
 import SearchIcon from '@material-ui/icons/Search'
-import Divider from '@material-ui/core/Divider'
 import { BrowserRouter} from 'react-router-dom'
-import {Button} from "@material-ui/core"
 import * as Buttons from './Button'
 import Login from "./Login"
 import Register from "./Register"
-import Menu from '@material-ui/core/Menu'
 import { withRouter } from 'react-router-dom'
 
-
+/**
+ * 
+ */
 function Header(props) {
     const [menuOpen, setMenuOpen] = React.useState(null);
     const [values, setValues] = React.useState({
         searchString: ''
     });
 
+    /**
+     * 
+     */
     function handleMenuClick(event) {
         setMenuOpen(event.currentTarget);
     }
 
+    /**
+     * 
+     */
     function handleMenuClose() {
         setMenuOpen(null);
     }
+
+    /**
+     * 
+     */
     const handleSearchSubmit = (event) => {
         if (event.key === 'Enter') {
             props.history.push('/Search?q='+event.target.value);
         }
     };
 
+    /**
+     * 
+     * @param {*} prop 
+     */
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
     const currUser = JSON.parse(localStorage.getItem('currentUser'));
-   return (
+    return (
         <>
-      <header className="overline"><overline>
-          {currUser ?
-          <BrowserRouter>
+        <header className="overline"><overline>
+            {currUser ?
+            <BrowserRouter>
                   <Grid direction="row" container justify="space-evenly" alignItems="center">
                       <a href="/"><img alt="Fellow logo" padding-top={20} height={20} src={require("../assets/images/logo.svg")}/></a>
                       <Grid item xs = {7}>
@@ -92,8 +107,6 @@ function Header(props) {
                       <Register user={props.user} isLoggedIn={props.loggedin} onLogin={props.onLogin}/>
                       <Login openModal={false} user={props.user} isLoggedIn={props.loggedin} addList={false} onLogin={props.onLogin}/>
                   </Grid>
-
-
               </BrowserRouter>
           }
               </overline>

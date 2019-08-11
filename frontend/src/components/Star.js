@@ -1,21 +1,34 @@
+/**
+ * Star rating component
+ * Written by: Zainab Alasadi
+ */
+
 import React from 'react'
 import Rating from '@material-ui/lab/Rating'
 import Box from '@material-ui/core/Box'
 import { withStyles } from '@material-ui/core/styles'
 
+/**
+ * Generate styles for star
+ */
 const StyledRating = withStyles({
-   iconFilled: {
-     color: '#FF5240',
-   },
-   iconHover: {
-     color: '#FF5240',
-   },
- })(Rating);
+	iconFilled: {
+		color: '#FF5240',
+	},
+	iconHover: {
+		color: '#FF5240',
+	},
+ }) (Rating);
 
-export default function SimpleRating(props) {
-   const [value, setValue] = React.useState(Math.random()*5);
 
-  return (
+/**
+ * Star rating component 
+ * @param {*} props 
+ */
+export default function Star(props) {
+	const [value, setValue] = React.useState(Math.random()*5);
+
+	return (
    <div>
       <Box component="fieldset" mb={3} borderColor="transparent">
          <StyledRating

@@ -1,8 +1,13 @@
+/**
+ * 
+ */
 import React from "react"
 import Container from '@material-ui/core/Container'
 
+/**
+ * 
+ */
 function Help () {
-
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20, textAlign:'left'}} maxWidth="md">

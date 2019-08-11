@@ -1,6 +1,12 @@
+/**
+ * 
+ */
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
+/**
+ * 
+ */
 class NavigationMenuItem extends Component {
     render() {
         let imgURL = "../assets/image/" + this.props.img;

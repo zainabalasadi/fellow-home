@@ -1,14 +1,14 @@
+/**
+ * 
+ */
 import React from "react"
-import Container from '@material-ui/core/Container'
-import {Grid} from "@material-ui/core"
-import Box from '@material-ui/core/Box'
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
+import {Container, Grid, Box, OutlinedInput, FormControl, Select, InputBase} from "@material-ui/core"
 import * as Buttons from './Button'
 import {BrowserRouter} from 'react-router-dom'
-import InputBase from "@material-ui/core/InputBase"
 
+/**
+ * 
+ */
 function Listing9 (props) {
     const [values, setValues] = React.useState({
         bedroom: localStorage.getItem("bedroom")||0,
@@ -17,7 +17,9 @@ function Listing9 (props) {
         internet: localStorage.getItem("internet")||'',
     });
 
-
+    /**
+     * 
+     */
     const handleChange = name => event => {
         setValues({ 
             ...values, 
@@ -26,6 +28,10 @@ function Listing9 (props) {
         localStorage.setItem(name,event.target.value);
 
     };
+
+    /**
+     * 
+     */
     const handleNumChange = name => event => {
         let val=event.target.value;
         if (val>=0) {
@@ -36,9 +42,12 @@ function Listing9 (props) {
             localStorage.setItem(name,event.target.value);
         }
     };
+
+    /**
+     * 
+     */
     function handlePlus(name){
         let val = document.getElementById(name).value;
-
         setValues({
             ...values,
             [name]: parseInt(val)+1,
@@ -46,6 +55,10 @@ function Listing9 (props) {
         localStorage.setItem(name,parseInt(val)+1);
 
     };
+
+    /**
+     * 
+     */
     function handleMinus(name){
         let val = document.getElementById(name).value;
         if (parseInt(val)>0){
@@ -57,6 +70,7 @@ function Listing9 (props) {
 
         }
     }
+
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
@@ -117,10 +131,10 @@ function Listing9 (props) {
                     </Box>
                         </Grid>
                         <Grid item xs style={{paddingTop: "25px"}}>
-                    {parseInt(values.bedroom)===0
-                        ? <Buttons.ButtonMinus disabled={true}/>
-                        : <Buttons.ButtonMinus click={()=>handleMinus('bedroom')}/>
-                    }
+                        {parseInt(values.bedroom)===0
+                            ? <Buttons.ButtonMinus disabled={true}/>
+                            : <Buttons.ButtonMinus click={()=>handleMinus('bedroom')}/>
+                        }
                         <InputBase
                             id="bedroom"
                             value={values.bedroom}
