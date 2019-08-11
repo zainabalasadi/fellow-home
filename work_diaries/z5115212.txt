@@ -47,3 +47,6 @@ There's still a lot more needing to be done for front end. So far we have a some
 profile, login and signup. It doesn't work with the backend yet. This week I decided to take on listing pages so that users
 can add a listing to the site. I've been able to somewhat code the base design and functionality. I've also worked on the
 header, home page, about and help pages.
+
+wk10
+The helped refine a lot of the features for the aesthetic features as well as edited the listing page to include photos as well as a comment section to add reviews in. We had a group meeting before our presentation to prepare for it. After we gave out roles to have the report completed by the end of the week
