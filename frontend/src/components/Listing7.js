@@ -1,5 +1,5 @@
 /**
- * 
+ * Class for listing images
  */
 import React from "react"
 import {Grid, Box, Container, GridList, GridListTile} from "@material-ui/core"
@@ -10,6 +10,7 @@ import {BrowserRouter} from 'react-router-dom'
  * 
  */
 class Listing7 extends React.Component{
+    
     constructor(props){
         super(props)
         this.state = {
@@ -18,6 +19,9 @@ class Listing7 extends React.Component{
         this.handleChange = this.handleChange.bind(this)
     }
 
+    /**
+    * store images  as url lis
+    */
     handleChange(event) {
         var imag;
         imag=this.addFile(event.target.files);
@@ -26,7 +30,11 @@ class Listing7 extends React.Component{
         })
         localStorage.setItem('images',imag);
     }
-
+ 
+    
+    /**
+    * put image into url list
+    */
     addFile(imagList){
         let imagePack=[];
         for (var i=0;i<imagList.length;i++){
@@ -40,6 +48,8 @@ class Listing7 extends React.Component{
         return imagePack;
     }
     
+    
+    /*Page Code*/
     render(){
         return (
             <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
