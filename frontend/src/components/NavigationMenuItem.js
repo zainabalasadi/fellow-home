@@ -1,11 +1,12 @@
 /**
- * 
+ * Navigation menu item component
+ * Written by: Jason Love
  */
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
 /**
- * 
+ * Return navigation menu item component
  */
 class NavigationMenuItem extends Component {
     render() {

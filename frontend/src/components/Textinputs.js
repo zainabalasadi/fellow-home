@@ -42,7 +42,7 @@ export const CssTextField = withStyles({
 
 /**
  * Number input bar
- * @param {*} props 
+ * @param {*} props input bar details
  */
 export function InputNumber(props) {
     return (
@@ -66,7 +66,7 @@ export function InputNumber(props) {
 
 /**
  * Input text bar
- * @param {*} props 
+ * @param {*} props input bar details
  */
 export function InputText(props){
     return(
@@ -90,7 +90,7 @@ export function InputText(props){
 }
 
 /**
- * 
+ * Named input bar
  */
 export function Named(props) { 
     return(
@@ -99,7 +99,7 @@ export function Named(props) {
 }
 
 /**
- * 
+ * Required input bar
  */
 export function Require(props) { 
     return(
@@ -116,8 +116,8 @@ export function Require(props) {
 }
 
 /**
- * 
- * @param {*} props 
+ * Error input bar
+ * @param {*} props error
  */
 export function Error(props) { 
     return(
@@ -133,7 +133,7 @@ export function Error(props) {
 }
 
 /**
- * 
+ * Disabled input bar
  */
 export function Disabled(props) { 
     return(
@@ -149,7 +149,7 @@ export function Disabled(props) {
 }
 
 /**
- * 
+ * Password input bat
  */
 export function Password (props) {
     const [values, setValues] = React.useState({
@@ -185,7 +185,7 @@ export function Password (props) {
 }
 
 /**
- * 
+ * Email input bar
  */
 export function Email (props) { 
     return(
@@ -204,7 +204,7 @@ export function Email (props) {
 }
 
 /**
- * 
+ * Multiline input box
  */
 export function Multiline (props) {
     const [values, setValues] = React.useState({
@@ -232,8 +232,8 @@ export function Multiline (props) {
 }
 
 /**
- * 
- * @param {*} props 
+ * Drop down menu input
+ * @param {*} props drop-down menu details
  */
 export function SelectDrop(props) {
     const [values, setValues] = React.useState({
@@ -271,7 +271,7 @@ export function SelectDrop(props) {
 }
 
 /**
- * 
+ * Form modal input component
  */
 export function FormModal(props) {
     const [open, setOpen] = React.useState(false);

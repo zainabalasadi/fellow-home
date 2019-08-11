@@ -1,13 +1,13 @@
 /**
  * Search page component
- * Written by: Anna Ung
+ * Written by: Anna Ung, William Chen
  */
 
 import React from 'react'
 import axios from 'axios'
 import {Container, Divider, Paper, Box} from '@material-ui/core'
 import GridListing from "./GridListing"
-import {Button, Fade, Popper, Checkbox, InputAdornment} from '@material-ui/core/'
+import {Button, Fade, Popper, Checkbox, InputAdornment, InputBase} from '@material-ui/core/'
 import {CssTextField} from "./Textinputs"
 import * as Buttons from './Button'
 import Check from "./Check"
@@ -15,10 +15,9 @@ import config from "../utils/config"
 import queryString from 'query-string'
 import { withRouter } from 'react-router-dom'
 import Pagination from "material-ui-flat-pagination"
-import InputBase from "@material-ui/core/InputBase"
 
 /**
- * 
+ * Method to return search component
  */
 function Search (props) {
     const [anchorEl4, setAnchorEl4] = React.useState(null);
@@ -39,6 +38,9 @@ function Search (props) {
         setPage((offset / 12 ) + 1);
     };
 
+    /**
+     * Retrieve listings from database
+     */
     const getListings = () => {
         axios.get('http://localhost:5000/api/listings', {
             params: {
@@ -61,9 +63,6 @@ function Search (props) {
         });
     };
 
-    /**
-     * 
-     */
     function handleClick4(event) {
         setAnchorEl4(anchorEl4 ? null : event.currentTarget);
     }
@@ -96,7 +95,7 @@ function Search (props) {
     });
 
     /**
-     * 
+     * Handle when user clicks filter button
      */
     const handleFilterSubmit = () => {
         console.log(state);
@@ -105,16 +104,10 @@ function Search (props) {
         handleClick4();
     };
 
-    /**
-     * 
-     */
     const handleChangeCheck = name => event => {
         setState({ ...state, [name]: event.target.checked });
     };
 
-    /**
-     * 
-     */
     const [values, setValues] = React.useState({
         bedroom: 0,
         bathroom: 0,
@@ -123,7 +116,7 @@ function Search (props) {
     });
 
     /**
-     * 
+     * Handle user change
      */
     const handleChange = name => event => {
         setValues({ 
@@ -133,7 +126,7 @@ function Search (props) {
     };
 
     /**
-     * 
+     * Handle number change
      */
     const handleNumChange = name => event => {
         let val=event.target.value;
@@ -146,7 +139,7 @@ function Search (props) {
     };
 
     /**
-     * 
+     * Handle when plus button is pressed for filter
      */
     function handlePlus(name){
         let val = document.getElementById(name).value;
@@ -159,7 +152,7 @@ function Search (props) {
     };
 
     /**
-     * 
+     * Handle when minus button is pressed for filter
      */
     function handleMinus(name){
         let val = document.getElementById(name).value;
@@ -467,15 +460,14 @@ function Search (props) {
         </Container>
         <Divider/>
         {errors ? errors : null}
-        
         <Container maxWidth="lg" style={{position:'relative', top:'50px', height:'235vh'}}>
             <GridListing listings={listings}/>
         <center>
-<Pagination
-          limit={12}
-          offset={(page-1)*12}
-          total={totalListings}
-          onClick={handlePageClick}
+        <Pagination
+            limit={12}
+            offset={(page-1)*12}
+            total={totalListings}
+            onClick={handlePageClick}
         />
         </center>
         </Container>

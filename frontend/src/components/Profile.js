@@ -1,5 +1,6 @@
 /**
- * 
+ * Profile page component
+ * Written by: Jason Love
  */
 import React from 'react'
 import {CardContent, Divider, Grid, Avatar, Card, Container, Typography} from "@material-ui/core"
@@ -9,8 +10,8 @@ import {Button as ButtonStyle} from 'semantic-ui-react'
 import GridListing from "./GridListing"
 
 /**
- * 
- * @param {*} props 
+ * Edit profile card component 
+ * @param {*} props profile details
  */
 export function EditProfileCard(props){
     return(
@@ -52,8 +53,8 @@ export function EditProfileCard(props){
 }
 
 /**
- * 
- * @param {*} props 
+ * View profile card component
+ * @param {*} props profile details
  */
 export function ProfileCard(props){
     return(
@@ -88,8 +89,8 @@ export function ProfileCard(props){
 }
 
 /**
- * 
- * @param {*} props 
+ * Edit profile page
+ * @param {*} props profile details
  */
 export function EditProfile(props){
     return (
@@ -127,7 +128,7 @@ export function EditProfile(props){
 }
 
 /**
- * 
+ * View profile component
  */
 function Profile(props) {
     return (

@@ -10,15 +10,23 @@ import {theme} from './Theme'
 import {ThemeProvider} from "@material-ui/styles"
 
 /**
- * 
+ * Returns snack componennt
  */
 export default function SnackBar(props) {
     const [open, setOpen] = React.useState(false);
 
+    /**
+     * Handler for user click on component
+     */
     function handleClick() {
         setOpen(true);
     }
 
+    /**
+     * Handle user close component
+     * @param {*} event user event
+     * @param {*} reason why closing component
+     */
     function handleClose(event, reason) {
         if (reason === 'clickaway') {
             return;

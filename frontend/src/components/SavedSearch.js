@@ -1,12 +1,13 @@
 /**
- * 
+ * Saved searches component
+ * Written by: Zainab Alasadi
  */
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import Grid from '@material-ui/core/Grid'
 
 /**
- * 
+ * Styles for saved search
  */
 const useStyles = makeStyles({
    button: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 /**
- * 
+ * Render saved search component ui
  */
 export default function SavedSearch() {
   const classes = useStyles();
