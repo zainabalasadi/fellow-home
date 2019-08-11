@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import axios from 'axios'
-import {CssBaseline, Box, Container, Button, InputAdornment} from '@material-ui/core/'
+import {OutlinedInput, Select, FormControl, CssBaseline, Box, Container, Button, InputAdornment} from '@material-ui/core/'
 import '../app/App.css'
 import {CssTextField} from "./Textinputs"
 import GridListing from "./GridListing"
@@ -96,7 +96,7 @@ export default function Home(props) {
                                         label="ROOM TYPE"
                                         margin="dense"
                                         fullWidth
-                                        value={value.roomType}
+                                        value={values.roomType}
                                         onChange={handleChange('roomType')}
                                         input={
                                             <OutlinedInput name="roomType" id="roomType" />
