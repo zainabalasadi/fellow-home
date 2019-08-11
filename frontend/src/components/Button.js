@@ -1,5 +1,6 @@
 /**
- * 
+ * Button material ui components
+ * Written by: Jason Love
  */
 import Button from "@material-ui/core/Button"
 import React from "react"
@@ -15,10 +16,11 @@ export function ButtonFill(props){
         color: props.color===theme.colors.white? theme.colors.primary : theme.colors.white,
         opacity: props.disabled ? 0.4 : 1
     };
+
     return(
-    <Button className={props.className} href={props.href} onClick={()=>props.click()} disabled={props.disabled} variant="contained" color={props.color} style={style} disableRipple={true}>
-        {props.message}
-    </Button>
+        <Button className={props.className} href={props.href} onClick={()=>props.click()} disabled={props.disabled} variant="contained" color={props.color} style={style} disableRipple={true}>
+            {props.message}
+        </Button>
     )
 }
 

@@ -2,7 +2,7 @@
  * 
  */
 import React from 'react'
-import {Avatar, Grid, Divider, Button, Menu} from '@material-ui/core/Avatar'
+import {Avatar, Grid, Divider, Button, Menu} from '@material-ui/core'
 import * as TextInput from "./Textinputs"
 import SearchIcon from '@material-ui/icons/Search'
 import { BrowserRouter} from 'react-router-dom'

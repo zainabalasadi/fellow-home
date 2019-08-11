@@ -1,9 +1,12 @@
+/**
+ * Sample about page 
+ * Written by: Jason Love
+ */
 import React from "react"
 import Container from '@material-ui/core/Container'
 
 /**
- * Sample about page 
- * Written by: Jason Love
+ * About page rendering
  */
 function About () {
     return (

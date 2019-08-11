@@ -7,7 +7,7 @@ import {CssBaseline, Box, Container, Button, InputAdornment} from '@material-ui/
 import '../app/App.css'
 import {CssTextField} from "./Textinputs"
 import GridListing from "./GridListing"
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 
 /**
  * 
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: 'white',
         textAlign:'left', 
         position:'relative', 
-        top:'-580px', 
+        top:'-520px', 
         left:'-350px',
         paddingTop: '24px',
         borderRadius: '7px'
