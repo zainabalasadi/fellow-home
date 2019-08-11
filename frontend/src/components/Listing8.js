@@ -1,5 +1,6 @@
 /**
- * 
+ * listing property description and preferences
+ * sends data from all listing pages back to database
  */
 import React from "react"
 import axios from "axios"
@@ -9,16 +10,21 @@ import {CssTextField} from "./Textinputs"
 import {BrowserRouter} from 'react-router-dom'
 
 /**
- * 
+ * @param {*} props
  */
 function Listing8 (props) {
     const [setErrors] = React.useState([]);
-    var id=''
+    var id='' /*new listing id*/
+    
+    /**
+    * When Finish button clicked  
+    */
     function handleSubmit(){
         /*create listing*/
         compileRooms()
+        /*send to db*/
         axios.post('http://localhost:5000/api/listings/', {
-            property_type: localStorage.getItem("propert_type"),
+            property_type: localStorage.getItem("accomodation"),
             internet: localStorage.getItem("internet"),
             parking: localStorage.getItem("parking"),
             images: localStorage.getItem("images"),
@@ -35,10 +41,13 @@ function Listing8 (props) {
         }).then((res) => {
             console.log(res);
             id=res.data.id;
-
-                /*clear local storage*/
-                localStorage.removeItem("propert_type");
-                    localStorage.removeItem("internet");
+        }).catch((err) => {
+            setErrors(err.response.data.errors);
+            console.log(err.response.data.errors);
+        }).finally(() => {
+            /*clear local storage*/
+                localStorage.removeItem("accomodation");
+                localStorage.removeItem("internet");
                 localStorage.removeItem("parking");
                 localStorage.removeItem("images");
                 localStorage.removeItem("description");
@@ -50,18 +59,12 @@ function Listing8 (props) {
                 localStorage.removeItem("rooms");
                 localStorage.removeItem("amenities");
                 localStorage.removeItem("vacancies");
-
-                    removeRoom();
-
-
-        }).catch((err) => {
-            setErrors(err.response.data.errors);
-            console.log(err.response.data.errors);
+            removeRoom();
         });
     }
 
     /**
-     * 
+     * clear storage on each room
      */
     function removeRoom(){
         for (var roomNum=1; roomNum<=localStorage.getItem("roomNum");roomNum++) {
@@ -81,7 +84,8 @@ function Listing8 (props) {
     }
 
     /**
-     * 
+     * info addition per room
+     * @param {*} roomNum
      */
     function addRoom(roomNum){
         return({
@@ -143,7 +147,7 @@ function Listing8 (props) {
     }
 
     /**
-     * 
+     * make each room into a list of room objects
      */
     function compileRooms(){
         let rom=[]
@@ -154,13 +158,16 @@ function Listing8 (props) {
         localStorage.setItem("rooms",rom);
     }
 
+    
+    
+    /* Set font end field values*/
     const [values, setValue] = React.useState({
         preferences: localStorage.getItem("preferences")||'',
         description: localStorage.getItem("description")||'',
     });
 
     /**
-     * 
+     * change values in fields
      */
     const handleChange = name => event => {
         setValue({
@@ -170,8 +177,12 @@ function Listing8 (props) {
         localStorage.setItem(name,event.target.value)
     };
 
+    
+    /*Page Code*/
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
+            
+        
             <Container style={{padding: 20}} maxWidth="md">
                 <Box 
                     color="tomato" 
@@ -220,6 +231,8 @@ function Listing8 (props) {
                     </Grid>
                 </Box>
             </Container>
+        
+        
             <Container style={{position:'relative',textAlign:'left', padding:10}} maxWidth="md">
                 <p>{localStorage.getItem("mapSearch")}</p>
                 <Box fontSize={24}>
