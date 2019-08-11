@@ -63,3 +63,4 @@ Week 9
 After Anna and Zainab set up the listing pages went over them and set everything to intended styling. Otherwise worked on getting features of Google Maps API working, like searching for place data.
 
 Week 10 
+Demo week, we all worked on trying to get the main parts functioning, and organising what we would show for the demo. At the meetup Zainab set up a final reports page and we seperated the parts we would fill out.
