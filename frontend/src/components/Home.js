@@ -93,9 +93,7 @@ export default function Home(props) {
                                 >
                                     <Select
                                         native
-                                        id="roomType"
                                         label="ROOM TYPE"
-                                        variant="outlined"
                                         margin="dense"
                                         fullWidth
                                         value={value.roomType}
@@ -126,6 +124,7 @@ export default function Home(props) {
                             </div><p/>
                             <Button variant="contained" 
                                     color="primary"
+                                    disableRipple={true}
                                     href={'../Search?q=' + values.searchString + 
                                             '&roomType=' + values.roomType + 
                                             '&rent=' + values.maxRent}>
