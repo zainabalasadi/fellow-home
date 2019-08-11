@@ -1,5 +1,5 @@
 /**
- * 
+ * First listing page for address and accomodation type
  */
 import React from "react"
 import {Grid, Box, Container, OutlinedInput, FormControl, Select} from "@material-ui/core"
