@@ -1,5 +1,6 @@
 /**
- * 
+ * List each room type,
+ * number of rooms can only be increased here while making listing
  */
 import React from "react"
 import {Grid, Box, Container, OutlinedInput, FormControl, Select} from "@material-ui/core"
@@ -12,6 +13,12 @@ import {BrowserRouter} from 'react-router-dom'
  * @param {*} props 
  */
 function Listing3 (props) {
+    
+    
+    /**
+    * Crafts new fields for listing Room {roomNum}
+    *@param {*} roomNum number of the room curently listing
+    */
     function RoomList(roomnum){
         const [value, setValue] = React.useState({
             roomType: localStorage.getItem("roomType"+roomnum)||'',
@@ -30,6 +37,7 @@ function Listing3 (props) {
             localStorage.setItem(name+roomnum.toString(),event.target.value)
         };
         
+        /*Render room fields*/
         return (
             <div>
                 <Box className={"overline"} fontWeight="fontWeightBold" mt={3}>
@@ -93,13 +101,21 @@ function Listing3 (props) {
             </div>
         )
     }
+    
+    
+    
+    
+    /**
+    * roomNum: total amount of rooms
+    * currRoom: what room is curently being looked at
+    */
     const [rooms, setRooms] = React.useState({
         roomNum: 1,
         currRoom:1,
     });
 
     /**
-     * 
+     * increase the number of rooms user is listing
      */
     function addRoom() {
         setRooms({
@@ -111,7 +127,7 @@ function Listing3 (props) {
     }
 
     /**
-     * 
+     * traverse back to edit previous rooms listing
      */
     function backRoom(){
         setRooms({
@@ -121,7 +137,7 @@ function Listing3 (props) {
     }
 
     /**
-     * 
+     * traverse forward to edit following room listing
      */
     function forwardRoom(){
         setRooms({
@@ -131,7 +147,7 @@ function Listing3 (props) {
     }
 
     /**
-     * 
+     * loops frontend render code over whatever room when going back and forward
      */
     function manyRooms(){
         return(
@@ -142,6 +158,7 @@ function Listing3 (props) {
         )
     }
 
+/*Page code*/
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
