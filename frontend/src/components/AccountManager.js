@@ -1,6 +1,6 @@
 /**
  * Class to manage accounts with database
- * Written by: William Chan
+ * Written by: William Chan, Jason Love
  */
 import React, { Component } from 'react'
 import axios from 'axios'
