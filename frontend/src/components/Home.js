@@ -86,19 +86,29 @@ export default function Home(props) {
                                 />
                             </div>
                             <div style ={{padding:10}}>
-                                <CssTextField
-                                    id="roomType"
-                                    label="ROOM TYPE"
+                                <FormControl
                                     variant="outlined"
-                                    margin="dense"
+                                    margin="normal"
                                     fullWidth
-                                    placeholder="'private' or 'shared'"
-                                    value={values.roomType}
-                                    onChange={handleChange('roomType')}
-                                    InputProps={{
-                                      startAdornment: <InputAdornment position="start"></InputAdornment>,
-                                    }}
-                                />
+                                >
+                                    <Select
+                                        native
+                                        id="roomType"
+                                        label="ROOM TYPE"
+                                        variant="outlined"
+                                        margin="dense"
+                                        fullWidth
+                                        value={value.roomType}
+                                        onChange={handleChange('roomType')}
+                                        input={
+                                            <OutlinedInput name="roomType" id="roomType" />
+                                        }
+                                    >
+                                        <option value="" disabled>Select One</option>
+                                        <option value={0}>Shared</option>
+                                        <option value={1}>Private</option>
+                                    </Select>
+                                </FormControl>                                
                             </div>
                             <div style ={{padding:10}}>
                                 <CssTextField
