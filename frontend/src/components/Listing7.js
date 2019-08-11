@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import Container from '@material-ui/core/Container';
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import Box from '@material-ui/core/Box';
-import * as Buttons from './Button';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Listing8 from "./Listing8";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
+import React from "react"
+import Container from '@material-ui/core/Container'
+import {Grid} from "@material-ui/core"
+import Box from '@material-ui/core/Box'
+import * as Buttons from './Button'
+import {BrowserRouter} from 'react-router-dom'
+import GridList from "@material-ui/core/GridList"
+import GridListTile from "@material-ui/core/GridListTile"
 
 class Listing7 extends React.Component{
     constructor(props){
@@ -32,7 +31,7 @@ class Listing7 extends React.Component{
             let image=URL.createObjectURL(imagList[i]);
             imagePack.push(
                 <GridListTile key={image}>
-                    <img src={image}/>
+                    <img alt="Fellow" src={image}/>
                 </GridListTile>
             )
         }

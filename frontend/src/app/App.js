@@ -4,7 +4,6 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import './App.css';
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import Profile from '../components/Profile'
 import Listing from '../components/Listing'
 import Listing1 from '../components/Listing1'
 import Listing2 from '../components/Listing2'
@@ -19,14 +18,14 @@ import About from '../components/About'
 import Help from '../components/Help'
 import Search from '../components/Search'
 import Saved from '../components/Saved'
-import {ThemeProvider} from "@material-ui/styles";
-import MapContainer from "../components/MapContainer";
-import Home from "../components/Home";
-import ListingCard from "../components/ListingThumbnail";
-import AccountManager from "../components/AccountManager";
-import config from "../utils/config";
+import {ThemeProvider} from "@material-ui/styles"
+import MapContainer from "../components/MapContainer"
+import Home from "../components/Home"
+import ListingCard from "../components/ListingThumbnail"
+import AccountManager from "../components/AccountManager"
+import config from "../utils/config"
 import {theme} from "../components/Theme"
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 class App extends Component {
 	constructor(props) {

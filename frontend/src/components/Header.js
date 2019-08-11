@@ -1,29 +1,18 @@
 import React from 'react'
-import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
-import NavigationMenuItem from './NavigationMenuItem';
-import * as TextInput from "./Textinputs";
+import Avatar from '@material-ui/core/Avatar'
+import Grid from '@material-ui/core/Grid'
+import * as TextInput from "./Textinputs"
 import SearchIcon from '@material-ui/icons/Search'
-import Divider from '@material-ui/core/Divider';
-import { BrowserRouter} from 'react-router-dom';
-import {Button} from "@material-ui/core";
-import {MapContainer} from "./MapContainer";
+import Divider from '@material-ui/core/Divider'
+import { BrowserRouter} from 'react-router-dom'
+import {Button} from "@material-ui/core"
 import * as Buttons from './Button'
-import Login from "./Login";
-import Register from "./Register";
+import Login from "./Login"
+import Register from "./Register"
+import Menu from '@material-ui/core/Menu'
+import { withRouter } from 'react-router-dom'
 
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Container from "@material-ui/core/Container";
-import GridList from "@material-ui/core/GridList";
 
-import { withRouter } from 'react-router-dom';
-
-function searchMap() {
-    return (
-        <MapContainer />
-    )
-}
 function Header(props) {
     const [menuOpen, setMenuOpen] = React.useState(null);
     const [values, setValues] = React.useState({
@@ -54,7 +43,7 @@ function Header(props) {
           {currUser ?
           <BrowserRouter>
                   <Grid direction="row" container justify="space-evenly" alignItems="center">
-                      <a href="/"><img padding-top={20} height={20} src={require("../assets/images/logo.svg")}/></a>
+                      <a href="/"><img alt="Fellow logo" padding-top={20} height={20} src={require("../assets/images/logo.svg")}/></a>
                       <Grid item xs = {7}>
                       <TextInput.InputText color={props.color.dark} onKeyUp={handleSearchSubmit} 
                         classNames={{fontsize:"8px"}} 
@@ -87,7 +76,7 @@ function Header(props) {
           :
               <BrowserRouter>
                   <Grid direction="row" container justify="space-evenly" alignItems="center">
-                      <a href="/"><img padding-top={20} height={20} src={require("../assets/images/logo.svg")}/></a>
+                      <a href="/"><img alt="Fellow logo" padding-top={20} height={20} src={require("../assets/images/logo.svg")}/></a>
                       <Grid item xs = {6}>
                       <TextInput.InputText color={props.color.dark} onKeyUp={handleSearchSubmit}
                         classNames={{fontsize:"8px"}}

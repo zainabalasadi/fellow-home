@@ -1,11 +1,11 @@
-import React from 'react';
-import * as Buttons from './Button';
+import React from 'react'
+import * as Buttons from './Button'
 import Button from '@material-ui/core/Button'
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import Snackbar from '@material-ui/core/Snackbar'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
 import {theme} from './Theme'
-import {ThemeProvider} from "@material-ui/styles";
+import {ThemeProvider} from "@material-ui/styles"
 
 
 

@@ -1,18 +1,18 @@
-import React from 'react';
-import axios from 'axios';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from '@material-ui/core/DialogTitle';
-import {CssTextField} from "./Textinputs";
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
+import React from 'react'
+import axios from 'axios'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from "@material-ui/core/DialogContent"
+import DialogContentText from "@material-ui/core/DialogContentText"
+import DialogTitle from '@material-ui/core/DialogTitle'
+import {CssTextField} from "./Textinputs"
+import IconButton from '@material-ui/core/IconButton'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import * as Buttons from './Button';
-import {theme} from "./Theme";
-import Login from "./Login";
+import * as Buttons from './Button'
+import {theme} from "./Theme"
+import Login from "./Login"
 
 function Register(props) {
     const [open, setOpen] = React.useState(false);

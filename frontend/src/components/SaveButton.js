@@ -1,10 +1,10 @@
-import React from 'react';
-import axios from 'axios';
-import Box from '@material-ui/core/Box';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import React from 'react'
+import axios from 'axios'
+import Box from '@material-ui/core/Box'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import Favorite from '@material-ui/icons/Favorite'
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
 
 const SaveButton = (props) => {
     const [isSaved, setIsSaved] = React.useState(false);

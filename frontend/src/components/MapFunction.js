@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import { Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
-import '../css/Map.css';
-import config from '../utils/config'
-import MapContainer from './MapContainer'
-import {Grid} from '@material-ui/core'
-import axios from "axios";
+import React, { Component } from 'react'
+import {Map} from 'google-maps-react'
+import '../css/Map.css'
+import axios from "axios"
 /*function findMap() {
     var service;
     var infowindow;
@@ -290,7 +287,7 @@ export default class MapFunction extends Component{
         searchBox.addListener('places_changed', function() {
             var places = searchBox.getPlaces();
 
-            if (places.length == 0) {
+            if (places.length === 0) {
                 return;
             }
 

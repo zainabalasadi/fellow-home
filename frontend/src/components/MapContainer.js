@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
-import '../css/Map.css';
+import React, { Component } from 'react'
+import { Map, GoogleApiWrapper } from 'google-maps-react'
+import '../css/Map.css'
 import MapFunction from './MapFunction'
-import {Grid} from '@material-ui/core'
 /*function findMap() {
     var service;
     var infowindow;

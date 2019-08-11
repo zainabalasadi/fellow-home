@@ -1,9 +1,9 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import React from 'react'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 
 function MadeWithLove() {
   return (
@@ -52,7 +52,7 @@ export default function Footer() {
         <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={4} justify="space-evenly">
                <Grid item xs={6} sm={6}>
-               <a href="/"><img className={classes.logo} src={require("../assets/images/logo.svg")}/></a>
+               <a href="/"><img alt="Fellow logo" className={classes.logo} src={require("../assets/images/logo.svg")}/></a>
                <Typography className={classes.caption} variant="body1">Flatmates.com.au is a peer to peer listing site for those looking for shared homes or those looking for a flatmate. Simply create a listing, search and connect.</Typography>
                </Grid>
                <Grid item xs={6} sm={3}></Grid>
