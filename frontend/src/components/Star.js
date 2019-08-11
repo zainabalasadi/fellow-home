@@ -15,15 +15,17 @@ const StyledRating = withStyles({
 	iconFilled: {
 		color: '#FF5240',
 	},
+
 	iconHover: {
 		color: '#FF5240',
 	},
- }) (Rating);
+
+}) (Rating);
 
 
 /**
  * Star rating component 
- * @param {*} props 
+ * @param {*} props rating for listing
  */
 export default function Star(props) {
 	const [value, setValue] = React.useState(Math.random()*5);
@@ -32,13 +34,13 @@ export default function Star(props) {
    <div>
       <Box component="fieldset" mb={3} borderColor="transparent">
          <StyledRating
-            name="simple-controlled"
-            value={props.rating}
-            precision={0.5}
-            readOnly={props.readOnly}
-            onChange={props.onChange}
-        />
-      </Box>
-    </div>
-  );
+				name="simple-controlled"
+				value={props.rating}
+				precision={0.5}
+				readOnly={props.readOnly}
+				onChange={props.onChange}
+     		/>
+   	</Box>
+   </div>
+  	);
 }

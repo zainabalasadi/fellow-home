@@ -1,5 +1,6 @@
 /**
- * 
+ * Login Page component
+ * Written by: Jason Love, William Chan
  */
 import React from 'react'
 import axios from 'axios'
@@ -11,35 +12,35 @@ import {CssTextField} from "./Textinputs"
 import {theme} from "./Theme"
 
 /**
- * 
+ * Method to render and handle login
  */
 function Login(props) {
     const [open, setOpen] = React.useState(false);
     const [errors, setErrors] = React.useState('');
 
     /**
-     * 
+     * Handler to open modal
      */
     function handleClickOpen() {
         setOpen(true);
     }
 
     /**
-     * 
+     * Handler to close modal
      */
     function handleClose() {
         setOpen(false);
     }
 
     /**
-     * 
+     * Handler to close modal when register button is pressed
      */
     function handleRegister() {
         handleClose();
     }
 
     /**
-     * 
+     * Handle next action when login button pressed
      */
     function handleLogin(){
         axios.post('http://localhost:5000/api/auth/login', {
@@ -61,9 +62,6 @@ function Login(props) {
         });
     }
 
-    /**
-     * 
-     */
     const [values, setValues] = React.useState({
         email: '',
         password: '',
@@ -71,21 +69,21 @@ function Login(props) {
     });
 
     /**
-     * 
+     * Handle changes in user action
      */
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
     /**
-     * 
+     * Reveal password when show password button is pressed
      */
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
 
     /**
-     * 
+     * Handle mouse down on password
      * @param {*} event 
      */
     const handleMouseDownPassword = event => {

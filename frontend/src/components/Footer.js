@@ -1,12 +1,13 @@
 /**
- * 
+ * Footer component for site
+ * Written by: Zainab Alasadi
  */
 import React from 'react'
 import {Typography, Box, Container, Grid} from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 
 /**
- * 
+ * Made with love message 
  */
 function MadeWithLove() {
   	return (
@@ -17,7 +18,7 @@ function MadeWithLove() {
 }
 
 /**
- * 
+ * Styles for footer
  */
 const useStyles = makeStyles(theme => ({
   	root: {
@@ -36,32 +37,32 @@ const useStyles = makeStyles(theme => ({
   	container: {
       paddingTop: '50px',
       paddingBottom: '50px',
-   },
+    },
 	
 	logo: {
       width: '120px',
-   },
+    },
 	
 	caption: {
       fontWeight: 'bold',
       fontSize: '15px',
       paddingBottom: '30px',
-   },
+    },
 	
 	border: {
       marginTop: '30px',
-   }
+    }
 }));
 
 /**
- * 
+ * Footer component
  */
 export default function Footer() {
   const classes = useStyles();
 
   return (
-      <>
-      <footer className={classes.footer}>
+    <>
+    <footer className={classes.footer}>
         <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={4} justify="space-evenly">
                <Grid item xs={6} sm={6}>
@@ -76,7 +77,7 @@ export default function Footer() {
             <MadeWithLove />
             <Box className={classes.border} borderBottom={1}></Box>
         </Container>
-      </footer>
-      </>
+    </footer>
+    </>
   );
 }

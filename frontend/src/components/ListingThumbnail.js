@@ -1,5 +1,6 @@
 /**
- * 
+ * Listing thumbnail component
+ * Written by: Zainab Alasadi
  */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
@@ -8,30 +9,33 @@ import { red } from '@material-ui/core/colors'
 import Star from './Star'
 
 /**
- * 
+ * Styles for listing thumbnail component
  */
 const useStyles = makeStyles(theme => ({
     card: {
         maxWidth: 285,
         boxShadow: 'none',
     },
+
     media: {
         paddingTop: '56.25%', // 16:9
     },
+
     content: {
         padding: 0,
         paddingTop: 7,
     },
+
     avatar: {
         backgroundColor: red[500],
         width: 30,
         height: 30
-    },
+    }
 }));
 
 /**
- * 
- * @param {*} props 
+ * Listing thumbnail component rendering
+ * @param {*} props details of listing thumbnail
  */
 const ListingCard = (props) => {
     const classes = useStyles();

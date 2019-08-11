@@ -1,5 +1,6 @@
 /**
- * 
+ * Register page component
+ * Written by: Jason Love, William Chan
  */
 import React from 'react'
 import axios from 'axios'
@@ -12,28 +13,28 @@ import {theme} from "./Theme"
 import Login from "./Login"
 
 /**
- * 
+ * Method to return register component
  */
 function Register(props) {
     const [open, setOpen] = React.useState(false);
     const [errors, setErrors] = React.useState([]);
 
     /**
-     * 
+     * Handle user click register modal
      */
     function handleClickOpen() {
         setOpen(true);
     }
 
     /**
-     * 
+     * Handle user close register modal
      */
     function handleClose() {
         setOpen(false);
     }
 
     /**
-     * 
+     * Handle click register button
      */
     function handleSubmit(){
         axios.post('http://localhost:5000/api/auth/register', {
@@ -64,7 +65,7 @@ function Register(props) {
         });
     }
     /**
-     * 
+     * Handle user action switch
      */
     function handelSwitch() {
         handleClose();
@@ -80,21 +81,21 @@ function Register(props) {
     });
 
     /**
-     * 
+     * Handle user action change
      */
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
     /**
-     * 
+     * Handle user presses show password button
      */
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
 
     /**
-     * 
+     * Handle mouse down on password
      */
     const handleMouseDownPassword = event => {
         event.preventDefault();

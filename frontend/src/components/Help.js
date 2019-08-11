@@ -1,11 +1,12 @@
 /**
- * 
+ * Sample help page for website
+ * Written by: Jason Love
  */
 import React from "react"
 import Container from '@material-ui/core/Container'
 
 /**
- * 
+ * Method to return help page
  */
 function Help () {
     return (
