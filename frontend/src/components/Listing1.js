@@ -19,7 +19,7 @@ function Listing1 (props) {
     });
 
     /**
-     * 
+     * store field change
      */
     const handleChange = name => event => {
         setValue({
@@ -30,6 +30,7 @@ function Listing1 (props) {
         localStorage.setItem(name,event.target.value);
     };
 
+    /*Page Code*/
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
