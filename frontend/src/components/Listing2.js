@@ -11,7 +11,7 @@ import { BrowserRouter} from 'react-router-dom'
  */
 function Listing2 (props) {
     /**
-     * 
+     * valus of fields
      */
     const [values, setValues] = React.useState({
         housemates: localStorage.getItem("housemates")||0,
@@ -19,7 +19,7 @@ function Listing2 (props) {
     });
 
     /**
-     * 
+     * store field change
      */
     const handleChange = name => event => {
         setValues({
@@ -31,7 +31,7 @@ function Listing2 (props) {
     };
 
     /**
-     * 
+     * store numeric change
      * @param {*} name 
      */
     const handleNumChange = name => event => {
@@ -73,6 +73,7 @@ function Listing2 (props) {
         }
     }
 
+    /*Page Code*/
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
