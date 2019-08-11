@@ -1,5 +1,5 @@
 /**
- * 
+ * Listing Room Availability
  */
 import React from "react"
 import {Grid, Box, Container, OutlinedInput, FormControl, Select, Radio} from "@material-ui/core"
@@ -11,15 +11,22 @@ import {BrowserRouter} from 'react-router-dom'
  * 
  */
 function Listing6 (props) {
+    
+    /**
+    * roomNum: total amount of rooms
+    * currRoom: what room is curently being looked at
+    */
     const [rooms, setRooms] = React.useState({
         roomNum: localStorage.getItem("roomNum"),
         currRoom:1,
     });
 
+    
+    /*State holder for wether billing info is seperate or same for all rooms*/
     const [manyOrOne, setManyOrOne] = React.useState("")
     
     /**
-     * 
+     * go back a room to edit
      */
     function backRoom(){
         setRooms({
@@ -29,7 +36,7 @@ function Listing6 (props) {
     }
 
     /**
-     * 
+     * go forward a room to edit
      */
     function forwardRoom(){
         setRooms({
@@ -39,7 +46,7 @@ function Listing6 (props) {
     }
 
     /**
-     * 
+     *  loop through room info when going back and forward
      */
     function manyRooms(){
         return(
@@ -50,19 +57,19 @@ function Listing6 (props) {
         )
     }
 
-    /**
-     * 
+     /**
+     * set value of manyToOne wether billing info is seperate {true} or same for all rooms {false}
      */
-    function handleBills(event){
+    function handleAvailability(event){
         setManyOrOne(event.target.value)
 
     }
 
     /**
-     * 
-     * @param {*} roomnum 
-     * @param {*} oneOrMany 
-     */
+    * makes listing info different for each room
+    * @param {*} oneOrMany true if loop info to all rooms or false if seperate entry for each
+    * @param {*} roomNum number of the room curently listing
+    */
     function RoomList(roomnum,oneOrMany) {
     const [values, setValue] = React.useState({
         minStay: localStorage.getItem("minStay"+roomnum)||'',
@@ -70,9 +77,9 @@ function Listing6 (props) {
     });
 
     /**
-     * 
-     * @param {*} name 
-     */
+    * field change
+    * @param {*} name 
+    */
     const handleChange = name => event => {
         setValue({
             ...values,
@@ -88,6 +95,8 @@ function Listing6 (props) {
         }
     };
 
+        
+         /*Render fields*/
         return (
             <div>
                 <p className={"body1"}>{localStorage.getItem('name'+roomnum)}</p>
@@ -134,6 +143,11 @@ function Listing6 (props) {
             </div>
         )
     }
+    
+    
+    
+    
+    /*Page code*/
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
@@ -195,13 +209,13 @@ function Listing6 (props) {
                 Are the rooms available from different dates?
                 Yes: <Radio
                 checked={manyOrOne==='y'}
-                onClick={handleBills}
+                onClick={handleAvailability}
                 value={'y'}
                 name={"multiBill"}
                 inputProps={{ 'aria-label': 'Yes' }}/>
                 No: <Radio
                 checked={manyOrOne==='n'}
-                onClick={handleBills}
+                onClick={handleAvailability}
                 value={'n'}
                 name={"multiBill"}
                 inputProps={{ 'aria-label': 'No' }}/>
