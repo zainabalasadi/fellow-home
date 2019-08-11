@@ -1,27 +1,18 @@
-import React, { Component } from "react";
-import axios from 'axios';
-import Container from '@material-ui/core/Container';
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import {CssTextField} from "./Textinputs";
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import * as Buttons from './Button';
-import Box from '@material-ui/core/Box';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import tileData from './tileData';
-import MapContainer from "./MapContainer";
-import Star from './Star';
-import SaveButton from './SaveButton';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import moment from 'moment';
+import React from "react"
+import axios from 'axios'
+import Container from '@material-ui/core/Container'
+import {Divider,Grid,Avatar} from "@material-ui/core"
+import {CssTextField} from "./Textinputs"
+import * as Buttons from './Button'
+import Box from '@material-ui/core/Box'
+import { makeStyles } from '@material-ui/core/styles'
+import GridList from '@material-ui/core/GridList'
+import GridListTile from '@material-ui/core/GridListTile'
+import MapContainer from "./MapContainer"
+import Star from './Star'
+import SaveButton from './SaveButton'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import moment from 'moment'
 
 const useStyles = makeStyles(theme => ({
   gridList: {
@@ -97,13 +88,6 @@ const Listing = (props) => {
             setRating(0);
         });
     }
-{/*
-    const inputLabel = React.useRef(null);
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
-    }, []);
-*/}
     const handleChange = name => event => {
         setValues({ 
             ...values, 
@@ -111,7 +95,7 @@ const Listing = (props) => {
         });
     };
 
-    {/* wait for data to be fetched before loading */}
+    /* wait for data to be fetched before loading */
     if (hasLoaded()) {
         return (<CircularProgress />);
     }
@@ -146,15 +130,15 @@ const Listing = (props) => {
                             <br/><br/>
                             <Grid container>
                                 <Grid item xs>
-                                    <img src="https://img.icons8.com/ios/50/000000/bed.png" width='20' hspace='10'/>
+                                    <img alt="Bed" src="https://img.icons8.com/ios/50/000000/bed.png" width='20' hspace='10'/>
         {listing.num_bedrooms} bedrooms
                                 </Grid>
                                 <Grid item xs>
-                                    <img src="https://img.icons8.com/ios/50/000000/shower-and-tub.png" width='20' hspace='10'/>
+                                    <img alt="Bathroom" src="https://img.icons8.com/ios/50/000000/shower-and-tub.png" width='20' hspace='10'/>
         {listing.num_bathrooms} bathrooms
                                 </Grid>
                                 <Grid item xs>
-                                    <img src="https://img.icons8.com/ios/50/000000/men-age-group-4.png" width='20' hspace='10'/>
+                                    <img alt="People" src="https://img.icons8.com/ios/50/000000/men-age-group-4.png" width='20' hspace='10'/>
         {listing.num_vacancies} vacancies
                                 </Grid>
                             </Grid>
@@ -172,22 +156,22 @@ const Listing = (props) => {
                             <h6 style={{marginTop:40, marginBottom:20}}>Details</h6>
                             <Grid container>
                                 <Grid item xs>
-                                    <img src="https://img.icons8.com/ios/50/000000/us-dollar.png" width='15' hspace='10'/>
+                                    <img alt="Price" src="https://img.icons8.com/ios/50/000000/us-dollar.png" width='15' hspace='10'/>
                                     ${room.cost} weekly rent<br/>
-                                    <img src="https://img.icons8.com/pastel-glyph/64/000000/electricity.png" width='15' hspace='10'/>
+                                    <img alt="Electricity" src="https://img.icons8.com/pastel-glyph/64/000000/electricity.png" width='15' hspace='10'/>
                 Bills {room.bills}<br/>
-                                    <img src="https://img.icons8.com/material-outlined/24/000000/calendar.png" width='15' hspace='10'/>
+                                    <img alt="Date" src="https://img.icons8.com/material-outlined/24/000000/calendar.png" width='15' hspace='10'/>
                 {room.min_stay} days minimum stay<br/>
-                                    <img src="https://img.icons8.com/small/16/000000/parking.png" width='15' hspace='10'/>
+                                    <img alt="Parking" src="https://img.icons8.com/small/16/000000/parking.png" width='15' hspace='10'/>
                 {listing.parking}<br/>
                 Internet {listing.internet}
                                 </Grid>
                                 <Grid item xs>
-                                    <img src="https://img.icons8.com/ios/50/000000/bed.png" width='20' hspace='10'/>
+                                    <img alt="Bed" src="https://img.icons8.com/ios/50/000000/bed.png" width='20' hspace='10'/>
                 {room.roomType}<br/>
-                                    <img src="https://img.icons8.com/ios/50/000000/shower-and-tub.png" width='20' hspace='10'/>
+                                    <img alt="Bathroom" src="https://img.icons8.com/ios/50/000000/shower-and-tub.png" width='20' hspace='10'/>
                 {room.bathroom}<br/>
-                                    <img src="https://img.icons8.com/dotty/80/000000/armchair.png" width='20' hspace='10'/>
+                                    <img alt="Furnished" src="https://img.icons8.com/dotty/80/000000/armchair.png" width='20' hspace='10'/>
                 {room.furnished}<br/>
                                 </Grid>
                             </Grid>
@@ -226,11 +210,11 @@ const Listing = (props) => {
                             Joined in 2019<br/>
                             <Grid container>
                                 <Grid item xs>
-                                    <img src="https://img.icons8.com/ios-glyphs/30/000000/star.png" width='10' hspace='10'/>
+                                    <img alt="Stars" src="https://img.icons8.com/ios-glyphs/30/000000/star.png" width='10' hspace='10'/>
                                     Reviews
                                 </Grid>
                                 <Grid item xs>
-                                    <img src="https://img.icons8.com/material/24/000000/checked-user-male--v1.png" width='15' hspace='10'/>
+                                    <img alt="People" src="https://img.icons8.com/material/24/000000/checked-user-male--v1.png" width='15' hspace='10'/>
                                     Verfied
                                 </Grid>
                             </Grid>
@@ -305,30 +289,6 @@ const Listing = (props) => {
                                 variant="outlined"
                                 fullWidth
                             />
-                        {/*
-                            <FormControl 
-                                variant="outlined" 
-                                margin="normal"
-                                fullWidth
-                            >
-                                <InputLabel ref={inputLabel} htmlFor="room">
-                                    Which room are you interested in?
-                                </InputLabel>
-                                <Select
-                                    native
-                                    value={values.room}
-                                    onChange={handleChange('room')}
-                                    input={
-                                        <OutlinedInput name="room" labelWidth={labelWidth} id="room" />
-                                    }
-                                >
-                                <option value="" />
-                                <option value={0}>Room 1</option>
-                                <option value={1}>Room 2</option>
-                                <option value={2}>Room 3</option>
-                                </Select>
-                            </FormControl>
-                        */}
                             <Buttons.ButtonFill color={props.color.primary} message={"Send message"}/>
                         </Box>
                     </Grid>

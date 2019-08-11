@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react'
 import axios from 'axios'
-import Container from '@material-ui/core/Container';
-import GridListing from "./GridListing";
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Fade from '@material-ui/core/Fade';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Popper from '@material-ui/core/Popper';
-import {CssTextField} from "./Textinputs";
-import * as Buttons from './Button';
-import Checkbox from '@material-ui/core/Checkbox';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Check from "./Check";
-import config from "../utils/config";
-import InputAdornment from '@material-ui/core/InputAdornment';
-import queryString from 'query-string';
-import { withRouter } from 'react-router-dom';
-import Pagination from "material-ui-flat-pagination";
-import InputBase from "@material-ui/core/InputBase";
+import Container from '@material-ui/core/Container'
+import GridListing from "./GridListing"
+import {Divider} from "@material-ui/core"
+import Button from '@material-ui/core/Button'
+import Fade from '@material-ui/core/Fade'
+import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
+import Popper from '@material-ui/core/Popper'
+import {CssTextField} from "./Textinputs"
+import * as Buttons from './Button'
+import Checkbox from '@material-ui/core/Checkbox'
+import Check from "./Check"
+import config from "../utils/config"
+import InputAdornment from '@material-ui/core/InputAdornment'
+import queryString from 'query-string'
+import { withRouter } from 'react-router-dom'
+import Pagination from "material-ui-flat-pagination"
+import InputBase from "@material-ui/core/InputBase"
 
 function Search (props) {
     const [anchorEl4, setAnchorEl4] = React.useState(null);

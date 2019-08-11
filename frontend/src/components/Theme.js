@@ -1,5 +1,5 @@
-import {createMuiTheme} from "@material-ui/core";
-import { nominalTypeHack } from "prop-types";
+import {createMuiTheme} from "@material-ui/core"
+
 export const theme = createMuiTheme({
     palette:{
         primary: {

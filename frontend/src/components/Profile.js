@@ -1,21 +1,12 @@
-import React from 'react';
-import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
+import React from 'react'
+import {CardContent,Divider,Grid,Avatar,Card} from "@material-ui/core"
+import Typography from "@material-ui/core/Typography"
 import VerifiedUser from '@material-ui/icons/VerifiedUser'
 import RateReview from '@material-ui/icons/RateReview'
-import * as TextInput from "./Textinputs";
-import config from '../utils/config'
-import {Button as ButtonStyle} from 'semantic-ui-react';
-import ListingCard from "./ListingThumbnail";
-import Container from '@material-ui/core/Container';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
+import * as TextInput from "./Textinputs"
+import {Button as ButtonStyle} from 'semantic-ui-react'
+import Container from '@material-ui/core/Container'
 import GridListing from "./GridListing"
-import {CssTextField} from "./Textinputs";
-
-import * as Buttons from './Button';
 
 export function EditProfileCard(props){
     return(

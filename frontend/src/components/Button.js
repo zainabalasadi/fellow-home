@@ -1,13 +1,11 @@
-import Button from "@material-ui/core/Button";
-import React from "react";
+import Button from "@material-ui/core/Button"
+import React from "react"
 import {theme} from './Theme'
-
-
 
 export function ButtonFill(props){
     let style={
         backgroundColor: props.color,
-        color: props.color==theme.colors.white? theme.colors.primary : theme.colors.white,
+        color: props.color===theme.colors.white? theme.colors.primary : theme.colors.white,
         opacity: props.disabled ? 0.4 : 1
     };
     return(

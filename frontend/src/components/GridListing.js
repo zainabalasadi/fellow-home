@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import ListingCard from "../components/ListingThumbnail"
 

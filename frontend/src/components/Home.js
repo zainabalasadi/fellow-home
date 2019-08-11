@@ -1,18 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import axios from 'axios'
-import * as Buttons from './Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
 import '../app/App.css'
-import {theme} from './Theme'
 import Button from '@material-ui/core/Button'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import {CssTextField} from "./Textinputs"
 import GridListing from "./GridListing"
 import Box from '@material-ui/core/Box'
-import ListingCTA from "./ListCTA"
-import Star from './Star'
-import SavedSearch from './SavedSearch'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -60,7 +55,7 @@ export default function Home(props) {
     return (
             <React.Fragment>     
                     <CssBaseline />
-                    <img src="https://bungalow.com/static/roommates-on-sofa.jpg" fullWidth style={{position:'relative', height:'650px'}}/>
+                    <img alt="Fellow home" src="https://bungalow.com/static/roommates-on-sofa.jpg" fullWidth style={{position:'relative', width:'100%'}}/>
                         <Container className={classes.container}>
                             <Box fontSize={20} padding={1}>
                                 <h5>Find housemates to live with while you study</h5>
@@ -120,53 +115,6 @@ export default function Home(props) {
                     <Container maxWidth="lg" style={{position:'relative', top:'-300px'}}>
                         <h4>Newest Listings</h4>
                         <GridListing listings={listings}/>
-                        {/*}
-                        <div className="action-buttons">
-                            <Buttons.ButtonPlus disabled={true}/>
-                            <Buttons.ButtonMinus/>
-                            <Buttons.ButtonFill
-                                disabled={true}
-                                color={theme.colors.tertiary}
-                                message={this.state.message}
-                            />
-                            <Buttons.ButtonOutline
-                                disabled={true}
-                                color={theme.colors.primary}
-                                message={this.state.message}
-                            />
-                            <Buttons.ButtonLink
-                                color={theme.colors.primary}
-                                message={this.state.message}
-                            />
-                        </div>
-
-                        <div>
-                            <Fab size="small" color="primary" className="buttonPlusMinus" justify="centre">
-                                <i className="settings icon"/>
-                            </Fab>
-                            <SnackBar fill={true} message="Not Here" buttonLabel="Click Here" color={theme.colors.tertiary}/>
-                        </div>
-                        
-                        <div>
-                            <form>
-                                <TextInput.Named/>
-                                <TextInput.SelectDrop features={config.dropFeatures}/>
-                                <TextInput.InputText startAdornment={"$"} endAdornment={"%"}/>
-                                <TextInput.Email/>
-                                <TextInput.Disabled/>
-                            </form>
-                            <TextInput.FormModal color={theme.colors.primary} buttonLabel={"Open Modal"} submitLabel={"Check In"} message={
-                                <DialogContent>
-                                    <DialogContentText>
-                                        To subscribe to this website, please enter your email address here. We will send updates
-                                        occasionally.
-                                    </DialogContentText>
-                                    <TextInput.Email/>
-                                </DialogContent>
-                            }/>
-
-                        </div>
-                        */}
                 </Container>
             </React.Fragment>
         );

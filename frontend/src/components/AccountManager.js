@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Profile, {EditProfile, EditProfileCard, ProfileCard} from "./Profile";
-import {Grid} from "@material-ui/core";
-import {Button as ButtonStyle} from "semantic-ui-react";
-import * as Buttons from './Button';
-import {theme} from './Theme';
+import React, { Component } from 'react'
+import axios from 'axios'
+import Profile, {EditProfile, EditProfileCard, ProfileCard} from "./Profile"
+import {Grid} from "@material-ui/core"
+import {Button as ButtonStyle} from "semantic-ui-react"
+import * as Buttons from './Button'
+import {theme} from './Theme'
 
 class AccountManager extends Component {
     constructor(props) {

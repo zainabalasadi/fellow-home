@@ -1,10 +1,7 @@
-import React,{Component} from "react";
-import config from "../utils/config";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import {Avatar} from "@material-ui/core";
-import ListItemText from "@material-ui/core/ListItemText";
-import List from "@material-ui/core/List";
+import React,{Component} from "react"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemText from "@material-ui/core/ListItemText"
+import List from "@material-ui/core/List"
 import Star from './Star'
 
 export default class Review extends Component{
