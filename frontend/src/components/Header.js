@@ -98,10 +98,10 @@ function Header(props) {
                         startAdornment={<SearchIcon/>}/>
                       </Grid>
                       <Buttons.ButtonLink color={props.color.dark} className="buttonText" href={'../About'} message={"About Fellow"}/>
-                      <Buttons.ButtonLink color={props.color.dark} href={'../listing1'} message={"List your Place"}/>
+                      <Login openModal={false} user={props.user} isLoggedIn={props.loggedin} addList={true} onLogin={props.onLogin}/>
                       <Buttons.ButtonLink color={props.color.dark} href={'../Help'} message={"Help"}/>
                       <Register user={props.user} isLoggedIn={props.loggedin} onLogin={props.onLogin}/>
-                      <Login openModal={false} user={props.user} isLoggedIn={props.loggedin} onLogin={props.onLogin}/>
+                      <Login openModal={false} user={props.user} isLoggedIn={props.loggedin} addList={false} onLogin={props.onLogin}/>
                   </Grid>
 
 

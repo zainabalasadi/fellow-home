@@ -46,6 +46,9 @@ function Login(props) {
 
             window.location.reload();
             handleClose();
+            if (props.addList){
+              window.location.replace("../listing1");
+            }
         }).catch((err) => {
             setErrors(err.response.data.message);
         });
@@ -71,7 +74,9 @@ function Login(props) {
 
     return (
         <div>
-            <Buttons.ButtonLink color={theme.colors.dark} click={handleClickOpen} message={"Login"}/>
+            {props.addList
+            ?<Buttons.ButtonLink color={theme.colors.dark} click={handleClickOpen} message={"List your Place"}/>
+            :<Buttons.ButtonLink color={theme.colors.dark} click={handleClickOpen} message={"Login"}/>}
             <Dialog
                 open={open}
                 onClose={handleClose}
