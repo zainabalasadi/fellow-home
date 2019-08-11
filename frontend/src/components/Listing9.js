@@ -1,5 +1,5 @@
 /**
- * 
+ * Listing number of bedrooms, bathrooms, parking availability and internet availability
  */
 import React from "react"
 import {Container, Grid, Box, OutlinedInput, FormControl, Select, InputBase} from "@material-ui/core"
@@ -18,7 +18,7 @@ function Listing9 (props) {
     });
 
     /**
-     * 
+     * store field change
      */
     const handleChange = name => event => {
         setValues({ 
@@ -30,7 +30,7 @@ function Listing9 (props) {
     };
 
     /**
-     * 
+     * store numeric change
      */
     const handleNumChange = name => event => {
         let val=event.target.value;
@@ -44,7 +44,7 @@ function Listing9 (props) {
     };
 
     /**
-     * 
+     * Increase numeric value by one
      */
     function handlePlus(name){
         let val = document.getElementById(name).value;
@@ -57,7 +57,7 @@ function Listing9 (props) {
     };
 
     /**
-     * 
+     * Decrase numeric value by one
      */
     function handleMinus(name){
         let val = document.getElementById(name).value;
@@ -71,6 +71,7 @@ function Listing9 (props) {
         }
     }
 
+    /*Page Code*/
     return (
         <Container style={{height:'100vh',backgroundColor: 'white', textAlign:'center'}} maxWidth="xl">
             <Container style={{padding: 20}} maxWidth="md">
