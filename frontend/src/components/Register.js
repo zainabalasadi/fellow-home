@@ -46,6 +46,9 @@ function Register(props) {
             }).finally(() => {
                 window.location.reload();
                 handleClose();
+                if (props.addList){
+                  window.location.replace("../listing1");
+                }
             });
         }).catch((err) => {
             setErrors(err.response.data.errors);
