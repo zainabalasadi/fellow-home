@@ -6,7 +6,7 @@ blinker==1.4
 Click==7.0
 Flask==1.0.3
 flask-buzz==0.1.14
-Flask-Cors==3.0.8
+Flask-Cors==3.0.9
 Flask-JWT-Extended==3.19.0
 Flask-Mail==0.9.1
 flask-marshmallow==0.10.1
